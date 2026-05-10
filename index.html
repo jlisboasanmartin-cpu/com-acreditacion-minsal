@@ -551,8 +551,12 @@
     const prog = parseInt(localStorage.getItem(`progress_${perfil.id}`) || '0');
     const done = activo && (localStorage.getItem(`quiz_done_${perfil.id}`) === '1' || prog >= 100);
 
+    // Contar láminas reales (excluyendo tipo identificacion, igual que capsula.html)
+    const capsData = COM.capsulas[perfil.id];
+    const lamCount = capsData ? capsData.laminas.filter(l => l.tipo !== 'identificacion').length : 0;
+
     const card = document.createElement('a');
-    card.href = activo ? `perfil.html?id=${perfil.id}` : '#';
+    card.href = activo ? `capsula.html?id=${perfil.id}` : '#';
     card.dataset.perfilId = perfil.id;
     let cardClass = 'profile-card';
     if (enDesarrollo) cardClass += ' en-desarrollo';
@@ -579,8 +583,8 @@
             ${perfil.tiempo}
           </div>
           <div class="profile-meta-item">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            ${perfil.preguntas} preg.
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            ${lamCount} lám.
           </div>
           ${done ? `<div class="profile-meta-item" style="color:#1a7a44;font-weight:700">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>

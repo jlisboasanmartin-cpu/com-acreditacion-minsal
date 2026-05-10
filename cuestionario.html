@@ -678,7 +678,7 @@
   const perfil   = COM.getPerfilById(perfilId);
   if (!perfil) { window.location.href = 'index.html'; }
 
-  document.getElementById('btn-back').href   = `perfil.html?id=${perfilId}`;
+  document.getElementById('btn-back').href   = 'index.html';
   document.getElementById('qz-ctx').innerHTML = `<strong>${perfil.nombre}</strong> · Cuestionario de Práctica`;
   document.getElementById('qz-pool').style.color = perfil.color;
 
@@ -1029,7 +1029,7 @@
 
     // Links
     document.getElementById('btn-repaso').href = `capsula.html?id=${perfilId}`;
-    document.getElementById('btn-perfil').href  = `perfil.html?id=${perfilId}`;
+    document.getElementById('btn-perfil').href  = 'index.html';
 
     // Guía de estudio button
     const actionsEl = document.getElementById('qz-res-actions');
