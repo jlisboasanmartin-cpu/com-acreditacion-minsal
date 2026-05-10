@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal de Capacitación — Centro Odontológico de Macul</title>
+  <link rel="stylesheet" href="com-styles.css" />
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--bg); display: flex; flex-direction: column; }
+
+    /* ─── Header ─── */
+    .site-header {
+      background: var(--primary-dark); height: 56px; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 32px; gap: 16px;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.3); z-index: 10;
+    }
+    .site-header-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .site-header-logo img { height: 30px; filter: brightness(0) invert(1); display: block; }
+    .hd { width: 1px; height: 26px; background: rgba(255,255,255,0.2); }
+    .site-header-titles { display: flex; flex-direction: column; gap: 1px; }
+    .site-header-main { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: white; line-height: 1; }
+    .site-header-sub  { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1; }
+
+    /* ─── Intro band ─── */
+    .intro-band {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a6b8a 100%);
+      flex-shrink: 0;
+      padding: 16px 32px;
+      display: flex; align-items: center; gap: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .intro-band-text { flex: 1; }
+    .intro-band-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 100px; padding: 4px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.9);
+      margin-bottom: 10px;
+    }
+    .intro-band-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .intro-band-title {
+      font-family: var(--font-display); font-size: 26px; font-weight: 700;
+      color: white; line-height: 1.2; margin-bottom: 6px;
+    }
+    .intro-band-title span { color: #7ee8b8; }
+    .intro-band-desc {
+      font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.55; max-width: 560px;
+    }
+    .intro-band-mascot {
+      flex-shrink: 0; display: flex; align-items: flex-end;
+    }
+    .intro-band-mascot img {
+      height: 100px; width: auto;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+    }
+    .intro-band-stats {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 10px;
+      padding-left: 28px; border-left: 1px solid rgba(255,255,255,0.18);
+    }
+    .intro-stat {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 13px; color: rgba(255,255,255,0.7);
+    }
+    .intro-stat svg { color: var(--accent); flex-shrink: 0; }
+    .intro-stat strong { color: white; font-weight: 700; }
+
+    /* ─── Profiles section ─── */
+    .profiles-section {
+      flex: 1; min-height: 0;
+      padding: 10px 32px 8px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .profiles-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); flex-shrink: 0;
+    }
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px; align-content: start;
+    }
+
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px; align-content: start;
+      align-items: stretch;
+    }
+
+    /* ─── Profile Card ─── */
+    .profile-card {
+      background: white; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      overflow: hidden; cursor: pointer;
+      transition: all 0.2s ease; text-decoration: none;
+      display: flex; flex-direction: column;
+      box-shadow: 0 1px 4px rgba(14,74,97,0.06);
+    }
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(14,74,97,0.15);
+    }
+    .profile-card:hover .profile-card-name { color: var(--primary-dark); }
+    .profile-card:hover .profile-arrow { opacity: 1; transform: translateX(0); }
+    .profile-card-bar { height: 4px; width: 100%; flex-shrink: 0; }
+    .profile-card-top {
+      padding: 14px 16px 0;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    .profile-card-icon {
+      width: 40px; height: 40px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .profile-card-icon svg { width: 20px; height: 20px; }
+    .profile-card-name {
+      font-family: var(--font-display); font-size: 15px; font-weight: 700;
+      color: var(--text); line-height: 1.3;
+      transition: color 0.18s ease;
+      min-height: 40px; display: flex; align-items: center;
+    }
+    .profile-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px 12px; border-top: 1px solid var(--surface);
+      margin-top: auto;
+    }
+    .profile-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .profile-meta-item {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 11px; color: var(--text-muted);
+    }
+    .profile-arrow {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateX(-6px);
+      transition: all 0.2s ease; flex-shrink: 0;
+    }
+    .profile-arrow svg { width: 13px; height: 13px; color: white; }
+
+    /* ─── Profiles footer ─── */
+    .profiles-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0; padding-top: 8px;
+    }
+    .profiles-footer-msg {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--primary-dark); font-weight: 600;
+      background: var(--primary-light); border-radius: 100px;
+      padding: 7px 16px;
+    }
+    .countdown-badge {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--primary-dark); color: white;
+      border-radius: 100px; padding: 6px 16px;
+      font-size: 12px; font-weight: 700;
+    }
+    .countdown-badge svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      background: var(--primary-dark); height: 40px; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 32px; gap: 14px;
+    }
+    .site-footer img { height: 20px; filter: brightness(0) invert(1); opacity: 0.7; display: block; }
+    .site-footer-div { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+    .site-footer-text { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .site-footer-badge {
+      margin-left: auto; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 100px;
+      padding: 3px 10px; font-size: 10px; font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════
+     TWEAKS PANEL
+════════════════════════════════ -->
+<div id="tweaks-panel" style="
+  display:none; position:fixed; bottom:24px; right:24px; z-index:9999;
+  background:white; border-radius:16px; box-shadow:0 8px 32px rgba(14,74,97,0.18);
+  border:1.5px solid var(--border); width:280px; overflow:hidden;
+  font-family:var(--font-body);
+">
+  <div style="background:var(--primary-dark);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-family:var(--font-display);font-weight:700;font-size:14px;color:white;">Tweaks</span>
+    <button onclick="closeTweaks()" style="background:rgba(255,255,255,0.15);border:none;border-radius:6px;color:white;cursor:pointer;width:24px;height:24px;font-size:16px;display:flex;align-items:center;justify-content:center;">×</button>
+  </div>
+  <div style="padding:16px;display:flex;flex-direction:column;gap:16px;">
+
+    <!-- Densidad -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Densidad visual</div>
+      <div style="display:flex;gap:6px;">
+        <button class="tw-btn" onclick="setDensity('compact')" data-density="compact">Compacto</button>
+        <button class="tw-btn" onclick="setDensity('normal')" data-density="normal">Normal</button>
+        <button class="tw-btn" onclick="setDensity('airy')" data-density="airy">Amplio</button>
+      </div>
+    </div>
+
+    <!-- Paleta tarjetas -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Estilo de tarjetas</div>
+      <div style="display:flex;gap:6px;">
+        <button class="tw-btn" onclick="setCardStyle('color')" data-cardstyle="color">Por perfil</button>
+        <button class="tw-btn" onclick="setCardStyle('mono')" data-cardstyle="mono">Monocromático</button>
+        <button class="tw-btn" onclick="setCardStyle('bold')" data-cardstyle="bold">Bold</button>
+      </div>
+    </div>
+
+    <!-- Fecha acreditación -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Fecha de acreditación</div>
+      <input type="date" id="tw-date" style="
+        width:100%;padding:8px 12px;border-radius:8px;
+        border:1.5px solid var(--border);font-size:13px;
+        font-family:var(--font-body);outline:none;color:var(--text);
+        transition:border-color 0.18s;
+      " oninput="setAcredDate(this.value)" />
+    </div>
+
+  </div>
+</div>
+
+<style>
+.tw-btn {
+  flex:1; padding:7px 6px; border-radius:8px;
+  border:1.5px solid var(--border); background:white;
+  font-size:12px; font-weight:600; color:var(--text-mid);
+  cursor:pointer; font-family:var(--font-body);
+  transition:all 0.15s ease;
+}
+.tw-btn:hover { background:var(--surface); }
+.tw-btn.active {
+  background:var(--primary-dark); color:white;
+  border-color:var(--primary-dark);
+}
+</style>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="site-header-logo">
+    <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+  </a>
+  <div class="hd"></div>
+  <div class="site-header-titles">
+    <span class="site-header-main">Portal de Capacitación</span>
+    <span class="site-header-sub">Centro Odontológico de Macul</span>
+  </div>
+</header>
+
+<!-- Intro band -->
+<div class="intro-band">
+  <div class="intro-band-text">
+    <div class="intro-band-eyebrow">
+      <div class="intro-band-dot"></div>
+      Preparación para Acreditación
+    </div>
+    <h1 class="intro-band-title">Capacitación para Acreditación <span>MINSAL</span></h1>
+    <p class="intro-band-desc">Selecciona tu perfil para acceder a la cápsula educativa y al cuestionario de práctica.</p>
+  </div>
+  <div class="intro-band-stats">
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <span><strong>8</strong> perfiles disponibles</span>
+    </div>
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <span><strong>8</strong> láminas por perfil</span>
+    </div>
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span><strong>≈ 7–8 min</strong> por perfil</span>
+    </div>
+  </div>
+  <div class="intro-band-mascot">
+    <img src="assets/muela_saludo.png" alt="Dr. Com" />
+  </div>
+</div>
+
+<!-- Profiles -->
+<div class="profiles-section">
+  <div class="profiles-label">Selecciona tu perfil</div>
+  <div class="profiles-grid" id="profiles-grid"></div>
+  <div class="profiles-footer">
+    <span class="profiles-footer-msg">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      ¡Practicar te prepara mejor que memorizar!
+    </span>
+    <div class="countdown-badge" id="countdown-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span id="countdown-text">Calculando fecha...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+  <div class="site-footer-div"></div>
+  <span class="site-footer-text">Centro Odontológico de Macul · Corporación Municipal de Macul</span>
+  <div class="site-footer-badge">REG 1.1 — Versión 3 · 2026</div>
+</footer>
+
+<script src="com-data.js"></script>
+<script>
+  const icons = {
+    tooth:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 2.5 1 5 3 6.5v4a1 1 0 001 1h6a1 1 0 001-1v-4c2-1.5 3-4 3-6.5 0-4-3-7-7-7z"/></svg>`,
+    tools:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+    shield:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    desk:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
+    xray:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>`,
+    check:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    chart:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    building: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="7" x2="9.01" y2="7"/><line x1="15" y1="7" x2="15.01" y2="7"/><line x1="9" y1="12" x2="15" y2="12"/></svg>`,
+  };
+
+  const grid = document.getElementById('profiles-grid');
+
+  COM.perfiles.forEach(perfil => {
+    const prog = parseInt(localStorage.getItem(`progress_${perfil.id}`) || '0');
+    const done = localStorage.getItem(`quiz_done_${perfil.id}`) === '1' || prog >= 100;
+
+    const card = document.createElement('a');
+    card.href = `perfil.html?id=${perfil.id}`;
+    card.className = 'profile-card';
+
+    card.innerHTML = `
+      <div class="profile-card-bar" style="background:${perfil.color}"></div>
+      <div class="profile-card-top">
+        <div class="profile-card-icon" style="background:${perfil.colorLight};color:${perfil.color}">
+          ${icons[perfil.icon]}
+        </div>
+        <div class="profile-card-name">${perfil.nombre}</div>
+      </div>
+      <div class="profile-card-footer">
+        <div class="profile-meta">
+          <div class="profile-meta-item">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${perfil.tiempo}
+          </div>
+          <div class="profile-meta-item">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            ${perfil.preguntas} preg.
+          </div>
+          ${done ? `<div class="profile-meta-item" style="color:#1a7a44;font-weight:700">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Completado
+          </div>` : ''}
+        </div>
+        <div class="profile-arrow" style="background:${perfil.color}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    `;
+    if (done) card.style.borderColor = '#abebc6';
+    grid.appendChild(card);
+  });
+
+  // ── Contador de días para acreditación ──
+  // Fecha de acreditación: se puede ajustar aquí
+  const ACRED_DATE = new Date('2026-06-02T00:00:00');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diff = Math.ceil((ACRED_DATE - today) / (1000 * 60 * 60 * 24));
+  const txt = document.getElementById('countdown-text');
+  if (diff > 0) {
+    txt.textContent = `${diff} día${diff !== 1 ? 's' : ''} para la Acreditación`;
+  } else if (diff === 0) {
+    txt.textContent = '¡Hoy es el día de la Acreditación!';
+  } else {
+    txt.textContent = 'Acreditación completada';
+  }
+
+  /* ════ TWEAKS ════ */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "density": "airy",
+    "cardStyle": "color",
+    "acredDate": "2026-06-02"
+  }/*EDITMODE-END*/;
+
+  let T = Object.assign({}, TWEAK_DEFAULTS);
+
+  // Density
+  const DENSITY = {
+    compact: { gap:'6px',  cardPad:'8px 14px 0',  footerPad:'6px 14px 8px',  bannerPad:'12px 32px', mascotH:'80px'  },
+    normal:  { gap:'10px', cardPad:'14px 16px 0', footerPad:'10px 16px 12px', bannerPad:'18px 32px', mascotH:'100px' },
+    airy:    { gap:'12px', cardPad:'16px 18px 0', footerPad:'11px 18px 13px', bannerPad:'18px 32px', mascotH:'110px' },
+  };
+
+  function applyDensity(d) {
+    const D = DENSITY[d] || DENSITY.normal;
+    document.getElementById('profiles-grid').style.gap = D.gap;
+    document.querySelectorAll('.profile-card-top').forEach(el => el.style.padding = D.cardPad);
+    document.querySelectorAll('.profile-card-footer').forEach(el => el.style.padding = D.footerPad);
+    document.querySelector('.intro-band').style.padding = D.bannerPad;
+    const mascot = document.querySelector('.intro-band-mascot img');
+    if (mascot) mascot.style.height = D.mascotH;
+    document.querySelectorAll('[data-density]').forEach(b => b.classList.toggle('active', b.dataset.density === d));
+  }
+
+  // Card style
+  function applyCardStyle(s) {
+    document.querySelectorAll('.profile-card').forEach((card, i) => {
+      const perfil = COM.perfiles[i];
+      const bar = card.querySelector('.profile-card-bar');
+      const icon = card.querySelector('.profile-card-icon');
+      if (s === 'color') {
+        card.style.background = 'white';
+        bar.style.background = perfil.color;
+        icon.style.background = perfil.colorLight;
+        icon.style.color = perfil.color;
+        card.style.borderColor = '';
+      } else if (s === 'mono') {
+        card.style.background = 'white';
+        bar.style.background = 'var(--primary)';
+        icon.style.background = 'var(--primary-light)';
+        icon.style.color = 'var(--primary)';
+        card.style.borderColor = '';
+      } else if (s === 'bold') {
+        card.style.background = perfil.colorLight;
+        bar.style.background = perfil.color;
+        icon.style.background = 'white';
+        icon.style.color = perfil.color;
+        card.style.borderColor = perfil.color + '44';
+      }
+    });
+    document.querySelectorAll('[data-cardstyle]').forEach(b => b.classList.toggle('active', b.dataset.cardstyle === s));
+  }
+
+  // Acred date
+  function applyAcredDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const hoy = new Date(); hoy.setHours(0,0,0,0);
+    const diff2 = Math.ceil((d - hoy) / (1000*60*60*24));
+    const txt2 = document.getElementById('countdown-text');
+    if (diff2 > 0) txt2.textContent = `${diff2} día${diff2!==1?'s':''} para la Acreditación`;
+    else if (diff2===0) txt2.textContent = '¡Hoy es el día!';
+    else txt2.textContent = 'Acreditación completada';
+    const inp = document.getElementById('tw-date');
+    if (inp) inp.value = dateStr;
+  }
+
+  function setDensity(d) { T.density = d; applyDensity(d); saveTweaks(); }
+  function setCardStyle(s) { T.cardStyle = s; applyCardStyle(s); saveTweaks(); }
+  function setAcredDate(v) { T.acredDate = v; applyAcredDate(v); saveTweaks(); }
+
+  function saveTweaks() {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: T }, '*');
+  }
+
+  function closeTweaks() {
+    document.getElementById('tweaks-panel').style.display = 'none';
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  }
+
+  // Host protocol
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks-panel').style.display = 'block';
+    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  // Init
+  applyDensity(T.density);
+  applyCardStyle(T.cardStyle);
+  applyAcredDate(T.acredDate);
+  document.getElementById('tw-date').value = T.acredDate;
+</script>
+</body>
+</html>

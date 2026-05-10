@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil — Portal de Capacitación COM</title>
+  <link rel="stylesheet" href="com-styles.css" />
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--bg); display: flex; flex-direction: column; }
+
+    /* ─── Header ─── */
+    .site-header {
+      background: var(--primary-dark); height: 56px; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 32px; gap: 16px;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.3); z-index: 10;
+    }
+    .site-header a.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .site-header a.logo img { height: 30px; filter: brightness(0) invert(1); display: block; }
+    .hd { width: 1px; height: 26px; background: rgba(255,255,255,0.2); }
+    .breadcrumb { font-size: 13px; color: rgba(255,255,255,0.6); display: flex; align-items: center; gap: 6px; }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: white; }
+    .breadcrumb strong { color: white; font-weight: 600; }
+    .hd-right { margin-left: auto; }
+    .btn-back-white {
+      display: flex; align-items: center; gap: 6px; padding: 7px 16px;
+      border-radius: 8px; font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08); text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .btn-back-white:hover { background: rgba(255,255,255,0.16); color: white; }
+
+    /* ─── Main layout ─── */
+    .perfil-body {
+      flex: 1; min-height: 0;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+    }
+
+    /* ─── Left panel: perfil info ─── */
+    .perfil-left {
+      background: white;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 20px 20px 0;
+      gap: 14px; overflow: hidden;
+    }
+    .perfil-left-top {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; text-align: center; padding-bottom: 14px;
+      border-bottom: 1px solid var(--surface); flex-shrink: 0;
+    }
+    .perfil-icon-lg {
+      width: 60px; height: 60px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .perfil-icon-lg svg { width: 28px; height: 28px; }
+    .perfil-nombre {
+      font-family: var(--font-display); font-size: 22px; font-weight: 700;
+      color: var(--text); line-height: 1.25;
+    }
+    .perfil-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.6;
+      text-align: center;
+    }
+    .perfil-badges { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+    .perfil-badge {
+      padding: 3px 10px; border-radius: 100px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .perfil-badge-primary { background: var(--primary-light); color: var(--primary-dark); }
+    .perfil-badge-accent  { background: #d5f5e3; color: #1a7a44; }
+
+    /* Progress block */
+    .perfil-progress-block { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+    .perfil-progress-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .perfil-progress-bar {
+      height: 8px; background: var(--surface); border-radius: 100px; overflow: hidden;
+    }
+    .perfil-progress-fill { height: 100%; border-radius: 100px; transition: width 0.6s ease; }
+    .perfil-progress-meta { display: flex; justify-content: space-between; }
+    .perfil-progress-meta span { font-size: 11px; color: var(--text-muted); }
+    .perfil-progress-meta strong { font-size: 12px; font-weight: 700; }
+
+    /* Done state */
+    .perfil-done-block {
+      display: none; flex-direction: column; align-items: center; gap: 8px;
+      background: #eafaf1; border: 1px solid #abebc6;
+      border-radius: 12px; padding: 14px; text-align: center;
+    }
+    .perfil-done-block.show { display: flex; }
+    .perfil-done-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+    }
+    .perfil-done-icon svg { width: 18px; height: 18px; color: white; }
+    .perfil-done-title { font-family: var(--font-display); font-size: 14px; font-weight: 700; color: #1a7a44; }
+    .perfil-done-sub { font-size: 12px; color: #27ae60; }
+
+    /* Mascot — empuja hacia arriba del footer */
+    .perfil-mascot {
+      flex: 1; display: flex; justify-content: center; align-items: flex-end;
+      min-height: 0; overflow: hidden;
+    }
+    .perfil-mascot img {
+      width: 210px; max-height: 100%; object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(14,74,97,0.18));
+    }
+
+    /* Logo institucional en panel izquierdo — ahora es footer de página completa */
+    .perfil-inst-logo { display: none; }
+
+    /* ─── Right panel: actividades ─── */
+    .perfil-right {
+      display: flex; flex-direction: column;
+      padding: 24px 28px; gap: 16px; overflow: hidden;
+    }
+    .perfil-right-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); flex-shrink: 0;
+    }
+
+    /* Activity cards grid — fill available space */
+    .activities-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px; flex: 1; min-height: 0;
+    }
+
+    .act-card {
+      background: white; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      display: flex; flex-direction: column;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 4px rgba(14,74,97,0.05);
+      overflow: hidden; position: relative;
+    }
+    .act-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(14,74,97,0.12);
+      border-color: var(--primary-light);
+    }
+    .act-card.done-act { border-color: var(--accent); }
+    .act-card.done-act .act-status { background: #eafaf1; color: #1a7a44; }
+
+    /* Full-width card for cápsula */
+    .act-card.full { grid-column: 1 / -1; flex-direction: row; align-items: center; }
+    .act-card.full .act-body { flex: 1; }
+    .act-card.full .act-mascot-side {
+      width: 110px; flex-shrink: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 8px 12px 0;
+      background: linear-gradient(135deg, var(--bg) 0%, white 100%);
+      border-left: 1px solid var(--surface);
+      align-self: stretch;
+    }
+    .act-card.full .act-mascot-side img { width: 90px; height: auto; }
+
+    .act-body { padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .act-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .act-icon {
+      width: 48px; height: 48px; border-radius: 13px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .act-icon svg { width: 24px; height: 24px; }
+    .act-status {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px; background: var(--surface); color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .act-title {
+      font-family: var(--font-display); font-size: 20px; font-weight: 700;
+      color: var(--text); line-height: 1.2;
+    }
+    .act-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .act-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 12px; margin-top: auto; }
+    .act-tag {
+      display: flex; align-items: center; gap: 4px;
+      padding: 5px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      background: var(--surface); color: var(--text-mid);
+    }
+    .act-tag {
+      display: flex; align-items: center; gap: 4px;
+      padding: 3px 9px; border-radius: 100px;
+      font-size: 11px; font-weight: 600;
+      background: var(--surface); color: var(--text-mid);
+    }
+    .act-arrow {
+      position: absolute; bottom: 14px; right: 14px;
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(0.8);
+      transition: all 0.2s ease;
+    }
+    .act-card:hover .act-arrow { opacity: 1; transform: scale(1); }
+    .act-arrow svg { width: 13px; height: 13px; color: white; }
+
+    /* Guía: mismo estilo */
+    .act-card.secondary { background: white; }
+    .act-card.secondary:hover { background: white; }
+
+    /* Countdown banner → footer institucional */
+    .perfil-inst-footer {
+      background: var(--primary-dark); border-radius: 12px;
+      padding: 12px 20px; flex-shrink: 0;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .perfil-inst-footer img {
+      height: 24px; filter: brightness(0) invert(1); opacity: 0.85; display: block;
+    }
+    .perfil-inst-footer-div { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+    .perfil-inst-footer-text {
+      font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4;
+    }
+    .perfil-inst-footer-text strong { color: rgba(255,255,255,0.85); font-weight: 600; display: block; }
+    .perfil-inst-footer-badge {
+      margin-left: auto; background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 100px;
+      padding: 4px 12px; font-size: 10px; font-weight: 600;
+      color: rgba(255,255,255,0.5); white-space: nowrap;
+    }
+
+    /* ─── Modal ─── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(14,74,97,0.4);
+      backdrop-filter: blur(4px); z-index: 1000;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: white; border-radius: 20px; padding: 32px;
+      max-width: 440px; width: 100%; box-shadow: 0 16px 48px rgba(14,74,97,0.2);
+      transform: translateY(16px); transition: transform 0.2s ease;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-title { font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; }
+    .modal-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5; }
+    .modal-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); margin-bottom: 6px; display: block; }
+    .modal-input {
+      width: 100%; padding: 11px 14px; border-radius: 10px;
+      border: 2px solid var(--border); font-size: 14px; outline: none;
+      transition: border-color 0.18s ease; font-family: var(--font-body);
+    }
+    .modal-input:focus { border-color: var(--primary); }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+    .modal-success {
+      display: none; flex-direction: column; align-items: center;
+      gap: 10px; text-align: center; padding: 8px 0;
+    }
+    .modal-success-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--success-bg); display: flex; align-items: center; justify-content: center;
+    }
+    .modal-success-icon svg { color: var(--accent); width: 26px; height: 26px; }
+    .modal-success h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); }
+    .modal-success p { font-size: 13px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="logo">
+    <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+  </a>
+  <div class="hd"></div>
+  <div class="breadcrumb">
+    <a href="index.html">Perfiles</a>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    <strong id="breadcrumb-name">—</strong>
+  </div>
+  <div class="hd-right">
+    <a href="index.html" class="btn-back-white">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al portal
+    </a>
+  </div>
+</header>
+
+<!-- Body -->
+<div class="perfil-body">
+
+  <!-- LEFT: Perfil info -->
+  <aside class="perfil-left">
+    <div class="perfil-left-top">
+      <div class="perfil-icon-lg" id="perfil-icon"></div>
+      <div class="perfil-nombre" id="perfil-nombre">—</div>
+      <div class="perfil-desc" id="perfil-desc">—</div>
+      <div class="perfil-badges">
+        <span class="perfil-badge perfil-badge-primary" id="perfil-protocolo">—</span>
+        <span class="perfil-badge perfil-badge-accent">Acreditación MINSAL</span>
+      </div>
+    </div>
+
+    <!-- Progreso -->
+    <div class="perfil-progress-block">
+      <div class="perfil-progress-label">Tu progreso</div>
+      <div class="perfil-progress-bar">
+        <div class="perfil-progress-fill" id="prog-fill"></div>
+      </div>
+      <div class="perfil-progress-meta">
+        <span>Cápsula + Cuestionario</span>
+        <strong id="prog-pct">0%</strong>
+      </div>
+    </div>
+
+    <!-- Done state -->
+    <div class="perfil-done-block" id="done-block">
+      <div class="perfil-done-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="perfil-done-title">¡Perfil completado!</div>
+      <div class="perfil-done-sub">Puedes repetir cuando quieras</div>
+    </div>
+
+    <!-- Mascot -->
+    <div class="perfil-mascot">
+      <img src="assets/images/muela_saludo.png" alt="Dr. Com" id="perfil-mascot" />
+    </div>
+
+    <!-- Footer institucional -->
+    <div class="perfil-inst-logo">
+      <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+      <div class="perfil-inst-logo-text">
+        <strong>Centro Odontológico de Macul</strong>
+        <span>Corporación Municipal de Macul</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT: Actividades -->
+  <main class="perfil-right">
+    <div class="perfil-right-title">Actividades disponibles</div>
+
+    <div class="activities-grid">
+
+      <!-- Cápsula (full width) -->
+      <a class="act-card full" id="card-capsula" href="#">
+        <div class="act-body">
+          <div class="act-header">
+            <div class="act-icon" style="background:#e8f4f8;color:#1a6b8a">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="act-status" id="capsula-status">Pendiente</span>
+          </div>
+          <div class="act-title">Cápsula de Capacitación</div>
+          <div class="act-desc" id="capsula-desc">11 láminas con los puntos clave del protocolo REG 1.1 para tu perfil.</div>
+          <div class="act-tags">
+            <div class="act-tag">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              11 láminas
+            </div>
+            <div class="act-tag" id="tag-tiempo">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ≈ 15 min
+            </div>
+          </div>
+        </div>
+        <div class="act-mascot-side">
+          <img src="assets/images/muela_computador.png" alt="Dr. Com" />
+        </div>
+        <div class="act-arrow" style="background:var(--primary)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Cuestionario -->
+      <a class="act-card" id="card-quiz" href="#">
+        <div class="act-body">
+          <div class="act-header">
+            <div class="act-icon" style="background:#eafaf1;color:#27ae60">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            </div>
+            <span class="act-status" id="quiz-status">Pendiente</span>
+          </div>
+          <div class="act-title">Cuestionario de Práctica</div>
+          <div class="act-desc">8 preguntas aleatorias con feedback inmediato. No es una evaluación.</div>
+          <div class="act-tags">
+            <div class="act-tag">8 preguntas</div>
+            <div class="act-tag">Aleatorias</div>
+          </div>
+        </div>
+        <div class="act-arrow" style="background:#27ae60">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Guía de estudio -->
+      <div class="act-card secondary" id="card-guia" style="cursor:pointer">
+        <div class="act-body">
+          <div class="act-header">
+            <div class="act-icon" style="background:#f5eefb;color:#8e44ad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="act-title">Guía de Estudio</div>
+          <div class="act-desc">Resumen PDF con los puntos clave del protocolo, enviado a tu correo institucional.</div>
+          <div class="act-tags">
+            <div class="act-tag">PDF por correo</div>
+          </div>
+        </div>
+        <div class="act-arrow" style="background:#8e44ad">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<!-- Modal Guía -->
+<div class="modal-overlay" id="modal-guia">
+  <div class="modal">
+    <div id="modal-form-body">
+      <div class="modal-title">Guía de Estudio</div>
+      <div class="modal-desc">Ingrese su correo electrónico institucional y le enviaremos el resumen en PDF del perfil seleccionado.</div>
+      <label class="modal-label" for="email-input">Correo electrónico</label>
+      <input class="modal-input" type="email" id="email-input" placeholder="nombre@macul.cl" />
+      <div class="modal-actions">
+        <button class="btn btn-ghost btn-sm" id="btn-cancelar">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="btn-enviar">Enviar guía</button>
+      </div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="modal-success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>¡Enviado!</h3>
+      <p>La guía de estudio ha sido enviada a su correo.</p>
+      <button class="btn btn-primary btn-sm" id="btn-ok" style="margin-top:8px">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script src="com-data.js"></script>
+<script>
+  const icons = {
+    tooth:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 2.5 1 5 3 6.5v4a1 1 0 001 1h6a1 1 0 001-1v-4c2-1.5 3-4 3-6.5 0-4-3-7-7-7z"/></svg>`,
+    tools:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+    shield:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    desk:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
+    xray:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>`,
+    check:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    chart:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    building: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="7" x2="9.01" y2="7"/><line x1="15" y1="7" x2="15.01" y2="7"/><line x1="9" y1="12" x2="15" y2="12"/></svg>`,
+  };
+
+  const params   = new URLSearchParams(window.location.search);
+  const perfilId = params.get('id') || 'dentista';
+  const perfil   = COM.getPerfilById(perfilId);
+  const capsula  = COM.capsulas[perfilId];
+  if (!perfil) { window.location.href = 'index.html'; }
+
+  // ── Fill left panel ──
+  document.getElementById('breadcrumb-name').textContent = perfil.nombre;
+  document.getElementById('perfil-icon').innerHTML = icons[perfil.icon];
+  document.getElementById('perfil-icon').style.background = perfil.colorLight;
+  document.getElementById('perfil-icon').style.color = perfil.color;
+  document.getElementById('perfil-nombre').textContent = perfil.nombre;
+  document.getElementById('perfil-desc').textContent = perfil.subtitulo;
+  document.getElementById('perfil-protocolo').textContent = perfil.protocolo;
+
+  // ── Progress ──
+  const capProg  = parseInt(localStorage.getItem(`progress_${perfilId}`) || '0');
+  const quizDone = localStorage.getItem(`quiz_done_${perfilId}`) === '1';
+  const overallPct = quizDone ? Math.max(capProg, 50) + 50 : capProg;
+  const displayPct = Math.min(100, Math.round((capProg + (quizDone ? 100 : 0)) / 2));
+
+  document.getElementById('prog-fill').style.width      = displayPct + '%';
+  document.getElementById('prog-fill').style.background = perfil.color;
+  document.getElementById('prog-pct').textContent        = displayPct + '%';
+  document.getElementById('prog-pct').style.color        = perfil.color;
+
+  if (displayPct >= 100) {
+    document.getElementById('done-block').classList.add('show');
+    document.getElementById('perfil-mascot').src = 'assets/images/muela_victoria.png';
+  }
+
+  // ── Activity states ──
+  const capsulePos = parseInt(localStorage.getItem(`capsule_pos_${perfilId}`) || '0');
+  const totalSlides = capsula ? capsula.laminas.length : 8;
+
+  if (capProg >= 100) {
+    document.getElementById('capsula-status').textContent = '✓ Completada';
+    document.getElementById('card-capsula').classList.add('done-act');
+  } else if (capsulePos > 0) {
+    document.getElementById('capsula-status').textContent = `Lámina ${capsulePos + 1}/${totalSlides}`;
+  }
+
+  if (quizDone) {
+    const best = parseInt(localStorage.getItem(`best_score_${perfilId}`) || '0');
+    document.getElementById('quiz-status').textContent = best > 0 ? `✓ Mejor: ${best}%` : '✓ Completado';
+    document.getElementById('card-quiz').classList.add('done-act');
+  }
+
+  // ── Links ──
+  document.getElementById('card-capsula').href = `capsula.html?id=${perfilId}`;
+  document.getElementById('card-quiz').href    = `cuestionario.html?id=${perfilId}`;
+  document.getElementById('tag-tiempo').innerHTML = `
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    ≈ ${perfil.tiempo}`;
+
+  if (capsula) {
+    document.getElementById('capsula-desc').textContent =
+      `${capsula.titulo}. ${capsula.laminas.length} láminas.`;
+  }
+
+  // ── Modal Guía ──
+  const overlay = document.getElementById('modal-guia');
+  document.getElementById('card-guia').addEventListener('click', () => overlay.classList.add('open'));
+  document.getElementById('btn-cancelar').addEventListener('click', closeModal);
+  document.getElementById('btn-ok').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+  document.getElementById('btn-enviar').addEventListener('click', () => {
+    const email = document.getElementById('email-input').value.trim();
+    if (!email || !email.includes('@')) { document.getElementById('email-input').focus(); return; }
+    document.getElementById('modal-form-body').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'flex';
+  });
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    setTimeout(() => {
+      document.getElementById('modal-form-body').style.display = 'block';
+      document.getElementById('modal-success').style.display = 'none';
+      document.getElementById('email-input').value = '';
+    }, 300);
+  }
+
+</script>
+  <!-- Footer institucional de página completa -->
+  <footer style="background:var(--primary-dark);height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 32px;gap:14px;">
+    <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:22px;filter:brightness(0) invert(1);opacity:0.85;display:block;" />
+    <div style="width:1px;height:18px;background:rgba(255,255,255,0.2);"></div>
+    <span style="font-size:12px;color:rgba(255,255,255,0.55);"><strong style="color:rgba(255,255,255,0.85);font-weight:600;">Centro Odontológico de Macul</strong> · Corporación Municipal de Macul</span>
+    <div style="margin-left:auto;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:3px 12px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.5);">REG 1.1 — Versión 3 · 2026</div>
+  </footer>
+
+</body>
+</html>

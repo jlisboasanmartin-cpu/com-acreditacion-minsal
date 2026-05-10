@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuestionario de Práctica — COM Macul</title>
+  <link rel="stylesheet" href="com-styles.css" />
+  <style>
+    html, body { height: 100%; }
+    body { background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ─── Header ─── */
+    .qz-header {
+      background: var(--primary-dark);
+      height: 60px; display: flex; align-items: center;
+      padding: 0 32px; gap: 20px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.25);
+    }
+    .qz-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0; }
+    .qz-logo img { height: 32px; display: block; }
+    .qz-header-div { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+    .qz-header-ctx { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .qz-header-ctx strong { color: white; font-weight: 600; }
+    .qz-header-actions { margin-left: auto; }
+    .qz-btn-back {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.08);
+      text-decoration: none; transition: all 0.18s ease;
+    }
+    .qz-btn-back:hover { background: rgba(255,255,255,0.16); color: white; }
+
+    /* ─── Progress ─── */
+    .qz-prog-bar { height: 4px; background: var(--primary-dark); }
+    .qz-prog-inner { height: 100%; background: rgba(255,255,255,0.1); position: relative; }
+    .qz-prog-fill {
+      position: absolute; top:0; left:0; height: 100%;
+      background: var(--accent); transition: width 0.5s ease; border-radius: 0 2px 2px 0;
+    }
+
+    /* ─── Wrapper ─── */
+    .qz-wrapper { flex: 1; max-width: 920px; width: 100%; margin: 0 auto; padding: 36px 32px 32px; display: flex; flex-direction: column; }
+    /* When results active, allow inner scroll only in review area */
+    .qz-results.active { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+    /* ════════════════════════════
+       INTRO SCREEN
+    ════════════════════════════ */
+    .qz-intro {
+      background: white; border-radius: 20px;
+      border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(14,74,97,0.10);
+      overflow: hidden; display: flex;
+    }
+    .qz-intro-left {
+      flex: 1; padding: 52px 52px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .qz-intro-right {
+      width: 280px; flex-shrink: 0;
+      background: linear-gradient(170deg, var(--bg) 0%, #dff0f8 100%);
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: flex-end; padding: 0 20px 24px;
+      position: relative; overflow: hidden;
+    }
+    .qz-intro-right::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(26,107,138,0.1) 0%, transparent 70%);
+    }
+    .qz-intro-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px;
+    }
+    .qz-intro-title {
+      font-family: var(--font-display); font-size: 30px; font-weight: 700;
+      color: var(--text); line-height: 1.2; margin-bottom: 6px;
+    }
+    .qz-intro-sub { font-size: 15px; color: var(--text-muted); margin-bottom: 32px; }
+    .qz-stats {
+      display: flex; gap: 28px; align-items: flex-end; margin-bottom: 32px;
+    }
+    .qz-stat { text-align: center; }
+    .qz-stat-num {
+      font-family: var(--font-display); font-size: 38px; font-weight: 700;
+      line-height: 1; color: var(--text);
+    }
+    .qz-stat-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      color: var(--text-muted); margin-top: 4px;
+    }
+    .qz-stat-sep { width: 1px; height: 48px; background: var(--border); align-self: center; }
+    .qz-info {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--primary-light); border-radius: 12px;
+      padding: 16px 18px; margin-bottom: 32px;
+    }
+    .qz-info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .qz-info-text { font-size: 13px; color: var(--primary-dark); line-height: 1.55; }
+    .qz-info-text strong { font-weight: 700; }
+    .qz-intro-mascot {
+      position: relative; z-index: 1;
+      width: 200px; height: auto;
+      filter: drop-shadow(0 10px 28px rgba(14,74,97,0.18));
+      animation: mascotBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes mascotBounce {
+      from { transform: scale(0.85) translateY(20px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .qz-intro-bubble {
+      position: relative; z-index: 1;
+      background: var(--primary-dark); color: white;
+      border-radius: 14px; border-bottom-right-radius: 4px;
+      padding: 11px 15px; font-size: 13px; font-weight: 600;
+      text-align: center; line-height: 1.45; max-width: 200px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 16px rgba(14,74,97,0.20);
+    }
+    .qz-intro-bubble::after {
+      content: '';
+      position: absolute; bottom: -9px; right: 18px;
+      border-left: 9px solid transparent;
+      border-top: 9px solid var(--primary-dark);
+    }
+
+    /* ════════════════════════════
+       QUESTION SCREEN
+    ════════════════════════════ */
+    .qz-question { display: none; }
+    .qz-question.active { display: block; }
+
+    .qz-qcard {
+      background: white; border-radius: 20px;
+      border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(14,74,97,0.10);
+      overflow: hidden;
+      animation: qFadeIn 0.3s ease;
+    }
+    @keyframes qFadeIn {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card header */
+    .qz-qhead {
+      padding: 18px 28px 0;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .qz-qmeta { display: flex; align-items: center; gap: 10px; }
+    .qz-qcounter {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .qz-qtype {
+      padding: 3px 10px; border-radius: 100px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      background: var(--primary-light); color: var(--primary-dark);
+    }
+    .qz-scores { display: flex; gap: 8px; }
+    .qz-score {
+      display: flex; align-items: center; gap: 5px;
+      padding: 5px 13px; border-radius: 100px; font-size: 13px; font-weight: 700;
+    }
+    .qz-score-ok  { background: #eafaf1; color: #1a7a44; }
+    .qz-score-bad { background: #fdf0ef; color: #c0392b; }
+
+    /* Progress bar inside card */
+    .qz-qprog { padding: 12px 28px 0; }
+    .qz-qprog-bar { height: 5px; background: var(--surface); border-radius: 100px; overflow: hidden; }
+    .qz-qprog-fill { height: 100%; border-radius: 100px; transition: width 0.5s ease; }
+
+    /* Question body */
+    .qz-qbody { display: flex; gap: 0; }
+    .qz-qmain { flex: 1; padding: 24px 28px 24px; }
+    .qz-qtext {
+      font-family: var(--font-display); font-size: 20px; font-weight: 700;
+      color: var(--text); line-height: 1.45; margin-bottom: 24px;
+    }
+
+    /* Options */
+    .qz-options { display: flex; flex-direction: column; gap: 10px; }
+    .qz-opt {
+      display: flex; align-items: center; gap: 16px;
+      padding: 15px 20px; border-radius: 12px;
+      border: 2px solid var(--border); background: white;
+      cursor: pointer; text-align: left; width: 100%;
+      font-family: var(--font-body); transition: all 0.18s ease;
+    }
+    .qz-opt:hover:not(:disabled) {
+      border-color: var(--primary); background: var(--primary-light);
+      transform: translateX(3px);
+    }
+    .qz-opt:disabled { cursor: default; }
+    .qz-opt-letter {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--surface); color: var(--text-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; flex-shrink: 0;
+      transition: all 0.18s ease;
+    }
+    .qz-opt-text { font-size: 15px; color: var(--text); line-height: 1.4; }
+
+    /* Answer states */
+    .qz-opt.correct {
+      border-color: var(--accent); background: #eafaf1;
+      animation: correctBounce 0.45s ease;
+    }
+    @keyframes correctBounce {
+      0%   { transform: scale(1); }
+      35%  { transform: scale(1.025); }
+      100% { transform: scale(1); }
+    }
+    .qz-opt.correct .qz-opt-letter { background: var(--accent); color: white; }
+    .qz-opt.correct .qz-opt-text { color: #1a7a44; font-weight: 600; }
+    .qz-opt.wrong {
+      border-color: #e74c3c; background: #fdf0ef;
+      animation: wrongShake 0.4s ease;
+    }
+    @keyframes wrongShake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-7px); }
+      40%     { transform: translateX(7px); }
+      60%     { transform: translateX(-4px); }
+      80%     { transform: translateX(4px); }
+    }
+    .qz-opt.wrong .qz-opt-letter { background: #e74c3c; color: white; }
+    .qz-opt.wrong .qz-opt-text { color: #c0392b; }
+    .qz-opt.dimmed { opacity: 0.32; }
+
+    /* Mascot side panel (question) */
+    .qz-qside {
+      width: 200px; flex-shrink: 0;
+      background: linear-gradient(170deg, var(--bg) 0%, #dff0f8 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      padding: 0 12px 20px;
+      border-left: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .qz-qside::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(26,107,138,0.09) 0%, transparent 70%);
+    }
+    .qz-side-bubble {
+      position: relative; z-index: 1;
+      background: var(--primary-dark); color: white;
+      border-radius: 12px; border-bottom-right-radius: 3px;
+      padding: 9px 13px; font-size: 12px; font-weight: 600;
+      text-align: center; line-height: 1.4; max-width: 160px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 12px rgba(14,74,97,0.20);
+    }
+    .qz-side-bubble::after {
+      content: '';
+      position: absolute; bottom: -8px; right: 14px;
+      border-left: 8px solid transparent;
+      border-top: 8px solid var(--primary-dark);
+    }
+    .qz-side-mascot {
+      position: relative; z-index: 1;
+      width: 160px; height: auto;
+      filter: drop-shadow(0 8px 20px rgba(14,74,97,0.15));
+      transition: all 0.35s ease;
+    }
+
+    /* Feedback box */
+    .qz-feedback {
+      display: none; align-items: flex-start; gap: 14px;
+      margin: 0 28px 20px;
+      margin-right: calc(200px + 28px); /* no overlap with mascot panel */
+      padding: 16px 20px; border-radius: 12px; border: 1px solid;
+      animation: qFadeIn 0.3s ease;
+    }
+    .qz-feedback.show { display: flex; }
+    .qz-feedback.fb-ok  { background: #eafaf1; border-color: #abebc6; }
+    .qz-feedback.fb-bad { background: #fdf0ef; border-color: #f1948a; }
+    .qz-fb-icon { font-size: 22px; flex-shrink: 0; }
+    .qz-fb-title {
+      font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 4px;
+    }
+    .fb-ok  .qz-fb-title { color: #1a7a44; }
+    .fb-bad .qz-fb-title { color: #c0392b; }
+    .qz-fb-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+    /* Footer */
+    .qz-qfoot {
+      padding: 14px 28px;
+      border-top: 1px solid var(--surface);
+      display: flex; justify-content: flex-end;
+    }
+
+    /* ════════════════════════════
+       RESULTS SCREEN — no scroll
+    ════════════════════════════ */
+    .qz-results { display: none; flex-direction: column; gap: 0; height: 100%; }
+    .qz-results.active { display: flex; }
+
+    /* Hero strip */
+    .qz-res-hero {
+      background: var(--primary-dark);
+      padding: 20px 28px;
+      display: flex; align-items: center; gap: 20px;
+      flex-shrink: 0; border-radius: 16px 16px 0 0;
+      border: 1px solid var(--border); border-bottom: none;
+    }
+    .qz-res-hero-mascot { width: 72px; height: auto; flex-shrink: 0;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+      animation: mascotBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes mascotBounce {
+      from { transform: scale(0.85) translateY(12px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .qz-res-hero-text { flex: 1; }
+    .qz-res-hero-title {
+      font-family: var(--font-display); font-size: 22px; font-weight: 700;
+      color: white; line-height: 1.2; margin-bottom: 3px;
+    }
+    .qz-res-hero-sub { font-size: 13px; color: rgba(255,255,255,0.6); }
+    .qz-res-hero-score {
+      text-align: center; flex-shrink: 0;
+    }
+    .qz-score-ring {
+      width: 80px; height: 80px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      border: 4px solid;
+      background: rgba(255,255,255,0.08);
+    }
+    .qz-score-ring-num {
+      font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1;
+    }
+    .qz-score-ring-pct { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); }
+
+    /* Stats + actions bar */
+    .qz-res-bar {
+      background: white; border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex; align-items: center; gap: 16px; flex-shrink: 0;
+      border-bottom: 1px solid var(--surface);
+    }
+    .qz-bd-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 10px; border: 1px solid var(--border);
+    }
+    .qz-bd-num { font-family: var(--font-display); font-size: 20px; font-weight: 700; line-height: 1; }
+    .qz-bd-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+    .qz-res-actions { display: flex; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+
+    /* Review scroll area */
+    .qz-res-review {
+      flex: 1; min-height: 0; overflow-y: auto;
+      background: white;
+      border: 1px solid var(--border); border-top: none; border-radius: 0 0 16px 16px;
+      padding: 16px 28px 20px;
+    }
+    .qz-review-title {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .qz-review-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 12px 14px; border-radius: 10px; border: 1px solid;
+      margin-bottom: 8px;
+    }
+    .qz-review-item.rv-ok  { background: #f0fbf5; border-color: #abebc6; }
+    .qz-review-item.rv-bad { background: #fef7f6; border-color: #f1948a; }
+    .qz-rv-icon {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .rv-ok  .qz-rv-icon { background: #abebc6; }
+    .rv-bad .qz-rv-icon { background: #f1948a; }
+    .qz-rv-icon svg { width: 12px; height: 12px; }
+    .rv-ok  .qz-rv-icon svg { color: #1a7a44; }
+    .rv-bad .qz-rv-icon svg { color: #c0392b; }
+    .qz-rv-q { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; line-height: 1.4; }
+    .qz-rv-a { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .rv-ok  .qz-rv-a span { color: #1a7a44; font-weight: 600; }
+    .rv-bad .qz-rv-a span { color: #c0392b; font-weight: 600; }
+    .qz-rv-exp { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 3px; font-style: italic; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .qz-wrapper { padding: 16px 16px 60px; }
+      .qz-res-hero { padding: 16px; gap: 12px; }
+      .qz-res-hero-mascot { width: 52px; }
+      .qz-res-hero-title { font-size: 18px; }
+      .qz-score-ring { width: 64px; height: 64px; }
+      .qz-score-ring-num { font-size: 20px; }
+      .qz-res-bar { flex-wrap: wrap; gap: 10px; padding: 12px 16px; }
+      .qz-res-actions { margin-left: 0; width: 100%; }
+      .qz-res-review { padding: 14px 16px; }
+      .qz-qbody { flex-direction: column; }
+      .qz-qside { width: 100%; height: 80px; flex-direction: row; justify-content: center; align-items: center; gap: 16px; padding: 8px 16px; border-left: none; border-top: 1px solid var(--border); }
+      .qz-side-mascot { width: 60px; }
+      .qz-side-bubble { margin-bottom: 0; }
+    }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="qz-header">
+  <a href="index.html" class="qz-logo">
+    <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:32px;display:block;filter:brightness(0) invert(1);" />
+  </a>
+  <div class="qz-header-div"></div>
+  <span class="qz-header-ctx" id="qz-ctx">Cuestionario de Práctica</span>
+  <div class="qz-header-actions">
+    <a href="#" id="btn-back" class="qz-btn-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al perfil
+    </a>
+  </div>
+</header>
+
+<div class="qz-prog-bar">
+  <div class="qz-prog-inner">
+    <div class="qz-prog-fill" id="qz-prog"></div>
+  </div>
+</div>
+
+<div class="qz-wrapper">
+
+  <!-- ── INTRO ── -->
+  <div class="qz-intro" id="qz-intro">
+    <div class="qz-intro-left">
+      <div class="qz-intro-eyebrow">Preparación para Acreditación MINSAL</div>
+      <h1 class="qz-intro-title">Cuestionario<br>de Práctica</h1>
+      <p class="qz-intro-sub" id="qz-intro-sub">Simulación de preguntas de la visita de acreditación</p>
+      <div class="qz-stats">
+        <div class="qz-stat">
+          <div class="qz-stat-num">8</div>
+          <div class="qz-stat-label">Por sesión</div>
+        </div>
+        <div class="qz-stat-sep"></div>
+        <div class="qz-stat">
+          <div class="qz-stat-num" id="qz-pool" style="color:var(--primary)">12</div>
+          <div class="qz-stat-label">Pool total</div>
+        </div>
+        <div class="qz-stat-sep"></div>
+        <div class="qz-stat">
+          <div class="qz-stat-num" style="color:var(--text-muted)">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+          </div>
+          <div class="qz-stat-label">Aleatorias</div>
+        </div>
+      </div>
+      <div class="qz-info">
+        <span class="qz-info-icon">💡</span>
+        <div class="qz-info-text">
+          <strong>Cada intento mezcla 8 preguntas distintas</strong> de un pool mayor. No es una evaluación: cada respuesta incorrecta incluye una explicación vinculada al protocolo REG 1.1.
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" id="btn-start">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Comenzar cuestionario
+      </button>
+    </div>
+    <div class="qz-intro-right">
+      <div class="qz-intro-bubble">¡Hola! Practiquemos juntos para la acreditación.</div>
+      <img class="qz-intro-mascot" src="assets/muela_atencion.png" alt="Dr. Com" />
+    </div>
+  </div>
+
+  <!-- ── QUESTION ── -->
+  <div class="qz-question" id="qz-question">
+    <div class="qz-qcard" id="qz-qcard">
+      <div class="qz-qhead">
+        <div class="qz-qmeta">
+          <span class="qz-qcounter" id="q-counter">PREGUNTA 1 DE 8</span>
+          <span class="qz-qtype" id="q-type">Protocolo</span>
+        </div>
+        <div class="qz-scores">
+          <div class="qz-score qz-score-ok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="sc-ok">0</span>
+          </div>
+          <div class="qz-score qz-score-bad">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <span id="sc-bad">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="qz-qprog">
+        <div class="qz-qprog-bar">
+          <div class="qz-qprog-fill" id="q-prog-fill"></div>
+        </div>
+      </div>
+      <div class="qz-qbody">
+        <div class="qz-qmain">
+          <div class="qz-qtext" id="q-text"></div>
+          <div class="qz-options" id="q-options"></div>
+        </div>
+        <div class="qz-qside" id="qz-qside">
+          <div class="qz-side-bubble" id="side-bubble">Piensa bien antes de responder.</div>
+          <img class="qz-side-mascot" id="side-mascot" src="assets/muela_atencion.png" alt="Dr. Com" />
+        </div>
+      </div>
+      <div class="qz-feedback" id="qz-feedback">
+        <div class="qz-fb-icon" id="fb-icon"></div>
+        <div>
+          <div class="qz-fb-title" id="fb-title"></div>
+          <div class="qz-fb-text" id="fb-text"></div>
+        </div>
+      </div>
+      <div class="qz-qfoot">
+        <button class="btn btn-primary btn-sm" id="btn-next-q" style="display:none">
+          Siguiente pregunta
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESULTS ── -->
+  <div class="qz-results" id="qz-results">
+    <div class="qz-res-hero">
+      <img class="qz-res-hero-mascot" id="qz-res-mascot" src="assets/muela_victoria.png" alt="Dr. Com" />
+      <div class="qz-res-hero-text">
+        <div class="qz-res-hero-title" id="qz-res-title">Resultados</div>
+        <div class="qz-res-hero-sub" id="qz-res-sub">Cuestionario completado</div>
+      </div>
+      <div class="qz-res-hero-score">
+        <div class="qz-score-ring" id="qz-score-ring">
+          <div class="qz-score-ring-num" id="qz-score-num">0/8</div>
+          <div class="qz-score-ring-pct" id="qz-score-pct">0%</div>
+        </div>
+      </div>
+    </div>
+    <div class="qz-res-bar">
+      <div class="qz-bd-item" style="background:#eafaf1;border-color:#abebc6">
+        <div class="qz-bd-num" style="color:#1a7a44" id="bd-ok">0</div>
+        <div class="qz-bd-label">Correctas</div>
+      </div>
+      <div class="qz-bd-item" style="background:#fdf0ef;border-color:#f1948a">
+        <div class="qz-bd-num" style="color:#c0392b" id="bd-bad">0</div>
+        <div class="qz-bd-label">Incorrectas</div>
+      </div>
+      <div class="qz-bd-item">
+        <div class="qz-bd-num" id="bd-total">8</div>
+        <div class="qz-bd-label">Total</div>
+      </div>
+      <div class="qz-res-actions">
+        <button class="btn btn-primary btn-sm" onclick="restartQuiz()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>
+          Intentar de nuevo
+        </button>
+        <a id="btn-repaso" href="#" class="btn btn-ghost btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Repasar cápsula
+        </a>
+        <a id="btn-perfil" href="#" class="btn btn-outline btn-sm">Volver al perfil</a>
+      </div>
+    </div>
+    <div class="qz-res-review">
+      <div class="qz-review-title">Revisión detallada</div>
+      <div id="qz-review-list"></div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script src="com-data.js"></script>
+<script>
+  /* ── Setup ── */
+  const params   = new URLSearchParams(window.location.search);
+  const perfilId = params.get('id') || 'dentista';
+  const perfil   = COM.getPerfilById(perfilId);
+  if (!perfil) { window.location.href = 'index.html'; }
+
+  document.getElementById('btn-back').href   = `perfil.html?id=${perfilId}`;
+  document.getElementById('qz-ctx').innerHTML = `<strong>${perfil.nombre}</strong> · Cuestionario de Práctica`;
+  document.getElementById('qz-pool').style.color = perfil.color;
+
+  const poolTotal = (COM.preguntas[perfilId] || []).length;
+  document.getElementById('qz-pool').textContent = poolTotal;
+
+  /* ── Mascot rotation during questions ── */
+  const QMASCOTAS = [
+    'assets/muela_atencion.png',
+    'assets/muela_formulario.png',
+    'assets/muela_lupa.png',
+    'assets/muela_computador.png',
+  ];
+  const BUBBLES_WAIT = [
+    'Piensa bien antes de responder.',
+    'Recuerda el protocolo REG 1.1.',
+    '¿Ya lo revisaste en la cápsula?',
+    'Tómate tu tiempo.',
+  ];
+
+  /* ── State ── */
+  const LETTERS = ['A','B','C','D'];
+  let questions = [], current = 0, correctCount = 0, wrongCount = 0, answered = false, results = [];
+
+  /* ── Start ── */
+  document.getElementById('btn-start').addEventListener('click', () => {
+    questions = COM.getPreguntasAleatorias(perfilId, 8);
+    current = 0; correctCount = 0; wrongCount = 0; results = [];
+    document.getElementById('qz-intro').style.display = 'none';
+    document.getElementById('qz-question').classList.add('active');
+    renderQuestion();
+  });
+
+  /* ── Render question ── */
+  function renderQuestion() {
+    answered = false;
+    const q = questions[current];
+    const total = questions.length;
+
+    document.getElementById('q-counter').textContent = `PREGUNTA ${current + 1} DE ${total}`;
+    document.getElementById('q-type').textContent = q.tipo;
+    document.getElementById('q-text').textContent  = q.texto;
+    document.getElementById('sc-ok').textContent   = correctCount;
+    document.getElementById('sc-bad').textContent  = wrongCount;
+
+    /* Progress fill */
+    const pct = (current / total) * 100;
+    const pf  = document.getElementById('q-prog-fill');
+    pf.style.width      = pct + '%';
+    pf.style.background = perfil.color;
+    document.getElementById('qz-prog').style.width = pct + '%';
+
+    /* Mascot side */
+    const mIdx = current % QMASCOTAS.length;
+    document.getElementById('side-mascot').src = QMASCOTAS[mIdx];
+    document.getElementById('side-bubble').textContent = BUBBLES_WAIT[mIdx];
+
+    /* Options */
+    const optEl = document.getElementById('q-options');
+    optEl.innerHTML = '';
+    q.opciones.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'qz-opt';
+      btn.dataset.idx = i;
+      btn.innerHTML = `<div class="qz-opt-letter">${LETTERS[i]}</div><div class="qz-opt-text">${opt}</div>`;
+      btn.addEventListener('click', () => handleAnswer(i));
+      optEl.appendChild(btn);
+    });
+
+    /* Reset feedback */
+    const fb = document.getElementById('qz-feedback');
+    fb.classList.remove('show','fb-ok','fb-bad');
+    document.getElementById('btn-next-q').style.display = 'none';
+
+    /* Re-trigger animation */
+    const card = document.getElementById('qz-qcard');
+    card.style.animation = 'none';
+    card.offsetHeight;
+    card.style.animation = '';
+  }
+
+  /* ── Handle answer ── */
+  function handleAnswer(idx) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[current];
+    const isOk = idx === q.correcta;
+
+    document.querySelectorAll('.qz-opt').forEach((b, i) => {
+      b.disabled = true;
+      if (i === q.correcta) b.classList.add('correct');
+      else if (i === idx && !isOk) b.classList.add('wrong');
+      else if (i !== q.correcta) b.classList.add('dimmed');
+    });
+
+    if (isOk) { correctCount++; } else { wrongCount++; }
+    results.push({ q, selected: idx, isOk });
+
+    /* Mascot reaction */
+    document.getElementById('side-mascot').src   = isOk ? 'assets/muela_animo.png' : 'assets/muela_atencion.png';
+    document.getElementById('side-bubble').textContent = isOk ? '¡Excelente! Eso es correcto.' : 'No te preocupes, lee la explicación.';
+
+    /* Feedback box */
+    const fb = document.getElementById('qz-feedback');
+    fb.classList.add('show', isOk ? 'fb-ok' : 'fb-bad');
+    document.getElementById('fb-icon').textContent  = isOk ? '✅' : '❌';
+    document.getElementById('fb-title').textContent = isOk ? '¡Correcto!' : `Respuesta correcta: ${LETTERS[q.correcta]}`;
+    document.getElementById('fb-text').textContent  = q.explicacion;
+
+    /* Next button */
+    const btnNext = document.getElementById('btn-next-q');
+    btnNext.style.display = 'flex';
+    if (current === questions.length - 1) {
+      btnNext.innerHTML = `Ver mis resultados <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+      btnNext.onclick = showResults;
+    } else {
+      btnNext.innerHTML = `Siguiente pregunta <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      btnNext.onclick = () => { current++; renderQuestion(); };
+    }
+
+    document.getElementById('sc-ok').textContent  = correctCount;
+    document.getElementById('sc-bad').textContent = wrongCount;
+
+    const pf2 = document.getElementById('q-prog-fill');
+    pf2.style.width      = `${((current + 1) / questions.length) * 100}%`;
+    pf2.style.background = perfil.color;
+    document.getElementById('qz-prog').style.width = `${((current + 1) / questions.length) * 100}%`;
+  }
+
+  /* ── Results ── */
+  function showResults() {
+    document.getElementById('qz-question').classList.remove('active');
+    document.getElementById('qz-results').classList.add('active');
+    document.getElementById('qz-prog').style.width = '100%';
+    window.scrollTo(0,0);
+
+    // Mark complete
+    localStorage.setItem(`quiz_done_${perfilId}`, '1');
+
+    const total      = questions.length;
+    const pct        = Math.round((correctCount / total) * 100);
+    const excellent  = pct >= 80;
+    const scoreColor = excellent ? '#2ecc71' : pct >= 60 ? perfil.color : '#e74c3c';
+    const msg        = excellent ? '¡Excelente preparación!' : pct >= 60 ? 'Buen avance — sigue practicando' : 'Revisa la cápsula e intenta de nuevo';
+    const resMascot  = excellent ? 'assets/muela_victoria.png' : 'assets/muela_animo.png';
+
+    // Hero
+    document.getElementById('qz-res-mascot').src = resMascot;
+    document.getElementById('qz-res-title').textContent = msg;
+    document.getElementById('qz-res-sub').textContent = perfil.nombre + ' · Protocolo REG 1.1';
+
+    // Score ring
+    const ring = document.getElementById('qz-score-ring');
+    ring.style.borderColor = scoreColor;
+    document.getElementById('qz-score-num').textContent = correctCount + '/' + total;
+    document.getElementById('qz-score-num').style.color = scoreColor;
+    document.getElementById('qz-score-pct').textContent = pct + '%';
+
+    // Stats
+    document.getElementById('bd-ok').textContent    = correctCount;
+    document.getElementById('bd-bad').textContent   = wrongCount;
+    document.getElementById('bd-total').textContent = total;
+    document.getElementById('bd-total').style.color = perfil.color;
+
+    // Links
+    document.getElementById('btn-repaso').href = `capsula.html?id=${perfilId}`;
+    document.getElementById('btn-perfil').href  = `perfil.html?id=${perfilId}`;
+
+    // Review list
+    const reviewHTML = results.map((r, i) => `
+      <div class="qz-review-item ${r.isOk ? 'rv-ok' : 'rv-bad'}">
+        <div class="qz-rv-icon">
+          ${r.isOk
+            ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+            : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+          }
+        </div>
+        <div>
+          <div class="qz-rv-q">${i + 1}. ${r.q.texto}</div>
+          <div class="qz-rv-a">
+            ${r.isOk
+              ? `<span>Correcto: ${r.q.opciones[r.q.correcta]}</span>`
+              : `Tu respuesta: ${r.q.opciones[r.selected]} — <span>Correcta: ${r.q.opciones[r.q.correcta]}</span>`
+            }
+          </div>
+          ${!r.isOk ? `<div class="qz-rv-exp">${r.q.explicacion}</div>` : ''}
+        </div>
+      </div>`).join('');
+
+    document.getElementById('qz-review-list').innerHTML = reviewHTML;
+  }
+
+    function restartQuiz() {
+    document.getElementById('qz-results').classList.remove('active');
+    document.getElementById('qz-question').classList.remove('active');
+    document.getElementById('qz-intro').style.display = 'flex';
+    document.getElementById('qz-prog').style.width = '0%';
+  }
+</script>
+
+<!-- Footer institucional -->
+<footer style="background:var(--primary-dark);height:44px;display:flex;align-items:center;padding:0 32px;gap:14px;flex-shrink:0;">
+  <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:22px;filter:brightness(0) invert(1);opacity:0.85;display:block;" />
+  <div style="width:1px;height:18px;background:rgba(255,255,255,0.2);"></div>
+  <span style="font-size:12px;color:rgba(255,255,255,0.55);"><strong style="color:rgba(255,255,255,0.85);font-weight:600;">Centro Odontológico de Macul</strong> · Corporación Municipal de Macul</span>
+  <div style="margin-left:auto;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:3px 12px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.5);">REG 1.1 — Versión 3 · 2026</div>
+</footer>
+
+</body>
+</html>

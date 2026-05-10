@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "acreditacion",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "require('http').createServer((req,res)=>{const fs=require('fs'),path=require('path'),url=require('url');let p=path.join('/Users/lisboa/Desktop/Proyectos/Acreditacion',url.parse(req.url).pathname);if(p.endsWith('/')||!path.extname(p))p=path.join(p,'index.html');fs.readFile(p,(e,d)=>{if(e){res.writeHead(404);res.end();}else{const ext=path.extname(p).slice(1);const m={'html':'text/html','css':'text/css','js':'application/javascript','png':'image/png','svg':'image/svg+xml','ico':'image/x-icon'};res.writeHead(200,{'Content-Type':m[ext]||'text/plain'});res.end(d);}});}).listen(5050,'0.0.0.0')"],
+      "port": 5050
+    }
+  ]
+}

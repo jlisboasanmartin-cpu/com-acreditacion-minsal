@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cápsula de Capacitación — COM Macul</title>
+  <link rel="stylesheet" href="com-styles.css" />
+  <style>
+    body { background: var(--bg); min-height: 100vh; }
+
+    /* ─── Header ─── */
+    .cap-header {
+      background: var(--primary-dark);
+      height: 60px;
+      display: flex; align-items: center;
+      padding: 0 32px;
+      gap: 20px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.25);
+    }
+    .cap-header-logo {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .cap-header-logo img { height: 32px; display: block; }
+    .cap-header-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+    .cap-header-context { font-size: 13px; color: rgba(255,255,255,0.7); }
+    .cap-header-context strong { color: white; font-weight: 600; }
+    .cap-header-actions { margin-left: auto; }
+    .cap-btn-back {
+      display: flex; align-items: center; gap: 6px;
+      padding: 7px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .cap-btn-back:hover { background: rgba(255,255,255,0.16); color: white; }
+
+    /* ─── Progress bar ─── */
+    .cap-progress {
+      height: 4px; background: rgba(255,255,255,0.15);
+      position: sticky; top: 60px; z-index: 99;
+      background: var(--primary-dark);
+    }
+    .cap-progress-inner { height: 100%; background: var(--surface); position: relative; }
+    .cap-progress-fill {
+      position: absolute; top: 0; left: 0; height: 100%;
+      background: var(--accent); border-radius: 0 2px 2px 0;
+      transition: width 0.45s ease;
+    }
+
+    /* ─── Main wrapper ─── */
+    .cap-wrapper {
+      max-width: 1120px; margin: 0 auto;
+      padding: 32px 32px 160px;
+    }
+
+    /* ─── Slide card ─── */
+    .cap-slide {
+      display: none;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(14,74,97,0.10);
+      overflow: hidden;
+      min-height: 540px;
+    }
+    .cap-slide.active {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .cap-slide.slide-back {
+      animation: slideBack 0.3s ease;
+    }
+    @keyframes slideBack {
+      from { opacity: 0; transform: translateX(-18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ─── Left: content ─── */
+    .cap-content {
+      padding: 48px 52px 40px;
+      display: flex; flex-direction: column;
+      gap: 0;
+      border-right: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    /* Portada */
+    .cap-version-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light); color: var(--primary-dark);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 10px; width: fit-content;
+    }
+    .cap-profile-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 10px; padding: 8px 18px;
+      font-size: 13px; font-weight: 700;
+      margin-bottom: 22px; width: fit-content;
+    }
+    .cap-title {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 700;
+      color: var(--text); line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .cap-lead {
+      font-size: 15px; color: var(--text-muted);
+      line-height: 1.6; margin-bottom: 28px;
+    }
+    .cap-temas {
+      background: var(--bg);
+      border-radius: 14px; border: 1px solid var(--border);
+      padding: 22px 26px;
+    }
+    .cap-temas-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
+    }
+    .cap-temas-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 9px 28px;
+    }
+    .cap-tema {
+      display: flex; align-items: baseline; gap: 9px;
+      font-size: 13px; color: var(--text-mid); line-height: 1.4;
+    }
+    .cap-tema-n {
+      font-family: var(--font-display); font-size: 12px; font-weight: 700;
+      width: 22px; flex-shrink: 0;
+    }
+
+    /* Contenido */
+    .cap-intro {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.7; margin-bottom: 26px;
+    }
+    .cap-steps { display: flex; flex-direction: column; margin-bottom: 20px; }
+    .cap-step {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 14px 0; border-bottom: 1px solid var(--surface);
+    }
+    .cap-step:last-child { border-bottom: none; }
+    .cap-step-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .cap-step-body { font-size: 15px; color: var(--text-mid); line-height: 1.55; }
+    .cap-step-body strong { color: var(--text); font-weight: 700; }
+    .cap-callout {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px 18px; border-radius: 12px;
+      border-left: 3px solid; margin-top: auto;
+    }
+    .cap-callout-warn { background: #fffbea; border-color: #f0c040; }
+    .cap-callout-info { background: var(--primary-light); border-color: var(--primary); }
+    .cap-callout-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+    .cap-callout-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+    .cap-callout-text strong { color: var(--text); font-weight: 700; }
+
+    /* Cierre */
+    .cap-cierre-msg {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      color: var(--text); line-height: 1.3;
+      margin-bottom: 12px; margin-top: 8px;
+    }
+    .cap-cierre-sub {
+      font-size: 14px; color: var(--text-muted);
+      line-height: 1.6; margin-bottom: 28px;
+    }
+
+    /* ─── Right: mascot panel ─── */
+    .cap-mascot-panel {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      padding: 20px 16px 28px;
+      background: linear-gradient(170deg, var(--bg) 0%, #eef6fb 60%, white 100%);
+      position: relative; overflow: hidden;
+    }
+    .cap-mascot-panel::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: radial-gradient(ellipse 90% 60% at 50% 100%,
+        rgba(26,107,138,0.08) 0%, transparent 70%);
+    }
+    .cap-slide-num {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 11px; font-weight: 700; color: var(--text-muted);
+      background: white; border: 1px solid var(--border);
+      border-radius: 100px; padding: 4px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .cap-bubble {
+      position: relative; z-index: 1;
+      background: var(--primary-dark); color: white;
+      border-radius: 14px; border-bottom-right-radius: 4px;
+      padding: 11px 15px; font-size: 13px; font-weight: 600;
+      text-align: center; line-height: 1.45;
+      max-width: 210px; margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(14,74,97,0.20);
+    }
+    .cap-bubble::after {
+      content: '';
+      position: absolute; bottom: -9px; right: 18px;
+      border-left: 9px solid transparent;
+      border-top: 9px solid var(--primary-dark);
+    }
+    .cap-mascot-img {
+      position: relative; z-index: 1;
+      width: 220px; height: auto;
+      filter: drop-shadow(0 10px 28px rgba(14,74,97,0.18));
+      transition: transform 0.4s ease;
+    }
+    .cap-slide.active .cap-mascot-img {
+      animation: mascotPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes mascotPop {
+      from { transform: scale(0.88) translateY(16px); opacity: 0.6; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* ─── Nav footer ─── */
+    .cap-nav {
+      position: fixed; bottom: 44px; left: 0; right: 0;
+      background: white; border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(14,74,97,0.07);
+      z-index: 200;
+    }
+    .cap-nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 12px 32px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .cap-nav-center { flex: 1; text-align: center; }
+    .cap-nav-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted);
+      display: block; margin-bottom: 6px;
+    }
+    .cap-dots {
+      display: flex; align-items: center; gap: 6px; justify-content: center;
+    }
+    .cap-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); transition: all 0.25s ease; cursor: pointer;
+    }
+    .cap-dot:hover { background: var(--primary-light); transform: scale(1.2); }
+    .cap-dot.done { background: var(--accent); }
+    .cap-dot.active { width: 22px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="cap-header">
+  <a href="index.html" class="cap-header-logo">
+    <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:32px;display:block;filter:brightness(0) invert(1);" />
+  </a>
+  <div class="cap-header-divider"></div>
+  <span class="cap-header-context" id="cap-context">Cápsula de Capacitación</span>
+  <div class="cap-header-actions">
+    <a href="#" id="btn-back" class="cap-btn-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al perfil
+    </a>
+  </div>
+</header>
+
+<!-- Progress -->
+<div class="cap-progress">
+  <div class="cap-progress-inner">
+    <div class="cap-progress-fill" id="cap-prog-fill"></div>
+  </div>
+</div>
+
+<!-- Slides -->
+<div class="cap-wrapper" id="cap-wrapper">
+  <!-- rendered by JS -->
+</div>
+
+<!-- Nav -->
+<div class="cap-nav">
+  <div class="cap-nav-inner">
+    <button class="btn btn-ghost btn-sm" id="btn-prev" disabled>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Anterior
+    </button>
+    <div class="cap-nav-center">
+      <span class="cap-nav-label" id="nav-label">LÁMINA 1 DE 8</span>
+      <div class="cap-dots" id="cap-dots"></div>
+    </div>
+    <button class="btn btn-primary btn-sm" id="btn-next">
+      Siguiente
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="com-data.js"></script>
+<script>
+  // ── Params ──
+  const params   = new URLSearchParams(window.location.search);
+  const perfilId = params.get('id') || 'dentista';
+  const perfil   = COM.getPerfilById(perfilId);
+  const capsula  = COM.capsulas[perfilId];
+  if (!perfil || !capsula) { window.location.href = 'index.html'; }
+
+  // ── Mascot map by slide index (Dentista) ──
+  const MASCOT_MAP = {
+    dentista: [
+      'assets/muela_saludo.png',    // 0 portada
+      'assets/muela_atencion.png',  // 1 REG 1.1
+      'assets/muela_formulario.png',// 2 ficha papel
+      'assets/muela_formulario.png',// 3 solicitud
+      'assets/muela_union.png',     // 4 unificación
+      'assets/muela_computador.png',// 5 hospital digital
+      'assets/muela_lupa.png',      // 6 RISPAC
+      'assets/muela_victoria.png',  // 7 cierre
+    ],
+    // otros perfiles usan rotación por defecto
+  };
+  const MASCOT_DEFAULT = [
+    'assets/muela_saludo.png',
+    'assets/muela_atencion.png',
+    'assets/muela_formulario.png',
+    'assets/muela_lupa.png',
+    'assets/muela_computador.png',
+    'assets/muela_union.png',
+    'assets/muela_radiografia.png',
+    'assets/muela_victoria.png',
+  ];
+  function getMascot(idx) {
+    const map = MASCOT_MAP[perfilId] || MASCOT_DEFAULT;
+    return map[idx] || map[map.length - 1];
+  }
+
+  // ── Bubble messages ──
+  function getBubble(lamina) {
+    if (lamina.tipo === 'portada') return '¡Hola! Soy el Dr. Com.<br>Revisemos esto juntos.';
+    if (lamina.tipo === 'cierre')  return '¡Excelente! Ya estás listo/a para la acreditación.';
+    if (lamina.alerta)             return lamina.alerta.texto.length > 70
+      ? lamina.alerta.texto.substring(0, 70) + '…'
+      : lamina.alerta.texto;
+    return 'Recuerda este punto<br>en la visita.';
+  }
+
+  // ── Header ──
+  document.getElementById('cap-context').innerHTML =
+    `<strong>${perfil.nombre}</strong> · ${capsula.titulo}`;
+  document.getElementById('btn-back').href = `perfil.html?id=${perfilId}`;
+
+  // ── Build slides ──
+  const total   = capsula.laminas.length;
+  const wrapper = document.getElementById('cap-wrapper');
+
+  capsula.laminas.forEach((lam, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'cap-slide';
+    slide.dataset.idx = idx;
+
+    let content = '';
+
+    if (lam.tipo === 'portada') {
+      const temasHTML = (lam.temas || []).map(t => `
+        <div class="cap-tema">
+          <span class="cap-tema-n" style="color:${perfil.color}">${t.num}</span>
+          <span>${t.texto}</span>
+        </div>`).join('');
+      content = `
+        <div class="cap-version-tag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          ${lam.version || capsula.subtitulo}
+        </div>
+        <div class="cap-profile-badge" style="background:${perfil.colorLight};color:${perfil.color}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ${capsula.badge}
+        </div>
+        <h2 class="cap-title">${lam.titulo}</h2>
+        <p class="cap-lead">${lam.contenido}</p>
+        <div class="cap-temas">
+          <div class="cap-temas-label">¿Qué vamos a ver?</div>
+          <div class="cap-temas-grid">${temasHTML}</div>
+        </div>`;
+
+    } else if (lam.tipo === 'cierre') {
+      const stepsHTML = (lam.puntos || []).map(p => `
+        <div class="cap-step">
+          <div class="cap-step-num" style="background:${perfil.color}">${p.num}</div>
+          <div class="cap-step-body">${p.texto} <strong>${p.destacado}</strong></div>
+        </div>`).join('');
+      content = `
+        <div class="cap-profile-badge" style="background:${perfil.colorLight};color:${perfil.color};margin-bottom:10px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Resumen final
+        </div>
+        <h2 class="cap-title">${lam.titulo}</h2>
+        <p class="cap-intro">${lam.intro}</p>
+        <div class="cap-steps">${stepsHTML}</div>
+        <div style="margin-top:auto;padding-top:24px;">
+          <p class="cap-cierre-sub">${lam.cierre.texto}</p>
+          <a href="cuestionario.html?id=${perfilId}" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            ${lam.cierre.cta}
+          </a>
+        </div>`;
+
+    } else {
+      const stepsHTML = (lam.puntos || []).map(p => `
+        <div class="cap-step">
+          <div class="cap-step-num" style="background:${perfil.color}">${p.num}</div>
+          <div class="cap-step-body">${p.texto} <strong>${p.destacado}</strong></div>
+        </div>`).join('');
+      const alertaHTML = lam.alerta ? `
+        <div class="cap-callout cap-callout-warn" style="margin-top:auto">
+          <span class="cap-callout-icon">${lam.alerta.icono}</span>
+          <div class="cap-callout-text"><strong>¿Por qué importa?</strong> ${lam.alerta.texto}</div>
+        </div>` : '';
+      content = `
+        <h2 class="cap-title">${lam.titulo}</h2>
+        <p class="cap-intro">${lam.intro}</p>
+        <div class="cap-steps">${stepsHTML}</div>
+        ${alertaHTML}`;
+    }
+
+    slide.innerHTML = `
+      <div class="cap-content">${content}</div>
+      <div class="cap-mascot-panel">
+        <div class="cap-slide-num">${idx + 1} / ${total}</div>
+        <div class="cap-bubble">${getBubble(lam)}</div>
+        <img class="cap-mascot-img" src="${getMascot(idx)}" alt="Dr. Com" />
+      </div>`;
+
+    wrapper.appendChild(slide);
+  });
+
+  // ── Dots ──
+  const dotsEl = document.getElementById('cap-dots');
+  capsula.laminas.forEach((_, idx) => {
+    const d = document.createElement('div');
+    d.className = 'cap-dot';
+    d.addEventListener('click', () => goTo(idx, idx >= current));
+    dotsEl.appendChild(d);
+  });
+
+  // ── State ──
+  let current = parseInt(localStorage.getItem(`capsule_pos_${perfilId}`) || '0');
+  let forward = true;
+
+  function updateUI() {
+    const slides = wrapper.querySelectorAll('.cap-slide');
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'slide-back');
+      if (i === current) {
+        s.classList.add('active');
+        if (!forward) s.classList.add('slide-back');
+      }
+    });
+
+    const dots = dotsEl.querySelectorAll('.cap-dot');
+    dots.forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      d.style.background = '';
+      if (i < current)    { d.classList.add('done'); d.style.background = perfil.color; d.style.opacity = '0.4'; }
+      if (i === current)  { d.classList.add('active'); d.style.background = perfil.color; d.style.opacity = '1'; }
+    });
+
+    document.getElementById('nav-label').textContent = `LÁMINA ${current + 1} DE ${total}`;
+    document.getElementById('cap-prog-fill').style.width = `${((current + 1) / total) * 100}%`;
+    document.getElementById('btn-prev').disabled = current === 0;
+
+    const btnNext = document.getElementById('btn-next');
+    if (current === total - 1) {
+      btnNext.innerHTML = `Ir al cuestionario <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+      btnNext.onclick = () => { window.location.href = `cuestionario.html?id=${perfilId}`; };
+    } else {
+      btnNext.innerHTML = `Siguiente <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      btnNext.onclick = () => goTo(current + 1, true);
+    }
+
+    localStorage.setItem(`capsule_pos_${perfilId}`, current);
+    const pct = Math.round(((current + 1) / total) * 100);
+    localStorage.setItem(`progress_${perfilId}`, pct);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goTo(idx, fwd) {
+    forward = fwd;
+    current = Math.max(0, Math.min(total - 1, idx));
+    updateUI();
+  }
+
+  document.getElementById('btn-prev').addEventListener('click', () => goTo(current - 1, false));
+  // btn-next is handled dynamically via onclick in updateUI()
+
+  // keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1, true);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1, false);
+  });
+
+  updateUI();
+</script>
+
+<!-- Footer institucional -->
+<footer style="background:var(--primary-dark);height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 32px;gap:14px;position:fixed;bottom:0;left:0;right:0;z-index:50;">
+  <img src="assets/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:22px;filter:brightness(0) invert(1);opacity:0.85;display:block;" />
+  <div style="width:1px;height:18px;background:rgba(255,255,255,0.2);"></div>
+  <span style="font-size:12px;color:rgba(255,255,255,0.55);"><strong style="color:rgba(255,255,255,0.85);font-weight:600;">Centro Odontológico de Macul</strong> · Corporación Municipal de Macul</span>
+  <div style="margin-left:auto;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:3px 12px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.5);">REG 1.1 — Versión 3 · 2026</div>
+</footer>
+
+</body>
+</html>

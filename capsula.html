@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cápsula de Capacitación — COM Macul</title>
+  <link rel="stylesheet" href="com-styles.css" />
+  <style>
+    html, body { background: var(--bg); min-height: 100vh; overflow: hidden; }
+
+    /* ─── Header ─── */
+    .cap-header {
+      background: var(--primary-dark);
+      min-height: 60px;
+      display: flex; align-items: center;
+      padding: 0 32px;
+      gap: 20px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.25);
+    }
+    .cap-header-logo {
+      display: flex; align-items: center; gap: 14px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .cap-header-logo img { height: 32px; display: block; }
+    .cap-header-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
+    .cap-header-context { font-size: 14px; color: rgba(255,255,255,0.85); }
+    .cap-header-context strong { color: white; font-weight: 600; }
+    .cap-header-actions { margin-left: auto; }
+    .cap-btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 12px 18px; min-height: 44px;
+      border-radius: 8px;
+      font-size: 15px; font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.10);
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .cap-btn-back:hover { background: rgba(255,255,255,0.20); color: white; }
+    .cap-btn-back:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+
+    /* ─── Progress bar ─── */
+    .cap-progress {
+      height: 5px;
+      position: sticky; top: 60px; z-index: 99;
+    }
+    .cap-progress-inner { height: 100%; background: var(--border); position: relative; }
+    .cap-progress-fill {
+      position: absolute; top: 0; left: 0; height: 100%;
+      background: var(--accent); border-radius: 0 2px 2px 0;
+      transition: width 0.45s ease;
+    }
+
+    /* ─── Main wrapper ─── */
+    .cap-wrapper {
+      max-width: 1120px; margin: 0 auto;
+      padding: 28px 32px 148px;
+    }
+
+    /* ─── Slide card ─── */
+    .cap-slide {
+      display: none;
+      position: relative;
+      background: white;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(14,74,97,0.10);
+      overflow: hidden;
+      min-height: auto;
+      aspect-ratio: 16 / 10;
+      max-height: calc(100vh - 228px);
+    }
+    .cap-slide-topbar {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 4px; z-index: 5; pointer-events: none;
+    }
+    .cap-slide.active {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      grid-template-areas: "mascot content";
+      animation: slideIn 0.3s ease;
+    }
+    .cap-content { grid-area: content; }
+    .cap-mascot-panel { grid-area: mascot; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .cap-slide.slide-back {
+      animation: slideBack 0.3s ease;
+    }
+    @keyframes slideBack {
+      from { opacity: 0; transform: translateX(-18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ─── Content panel ─── */
+    .cap-content {
+      padding: 20px 24px;
+      display: flex; flex-direction: column;
+      gap: 0;
+      justify-content: center;
+      justify-content: safe center;
+      border-left: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 0;
+    }
+    /* Banners al fondo: slides 4/10 y 10/10 */
+    .cap-content > .bk-wrap:last-child:has(.bk-banner-transicion),
+    .cap-content > .bk-wrap:last-child:has(.bk-banner-cuestionario) {
+      margin-top: auto;
+    }
+
+    /* Portada */
+    .cap-version-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--primary-light); color: var(--primary-dark);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 10px; width: fit-content;
+    }
+    .cap-profile-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 10px; padding: 8px 18px;
+      font-size: 14px; font-weight: 700;
+      margin-bottom: 22px; width: fit-content;
+    }
+    .cap-title-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.05em;
+      margin-bottom: 10px; width: fit-content;
+    }
+    .cap-title-badge-num { opacity: 0.7; }
+    /* Badge + title on one row */
+    .cap-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .cap-title-row .cap-title-badge,
+    .cap-title-row .cap-profile-badge { margin-bottom: 0; flex-shrink: 0; }
+    .cap-title-row .cap-title { margin-bottom: 0; line-height: 1.2; }
+    .cap-title {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 700;
+      color: var(--text); line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .cap-lead {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.6; margin-bottom: 28px;
+    }
+    .cap-temas {
+      background: var(--bg);
+      border-radius: 14px; border: 1px solid var(--border);
+      padding: 22px 26px;
+    }
+    .cap-temas-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
+    }
+    .cap-temas-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 164px auto 164px;
+      gap: 6px;
+    }
+    .cap-temas-row { display: contents; }
+    .cap-tema {
+      display: flex; flex-direction: column;
+      font-size: 15px; color: var(--text-mid); line-height: 1.4;
+      background: white; border: 1px solid var(--border);
+      border-radius: 8px; min-width: 0; overflow: hidden;
+      box-sizing: border-box;
+    }
+    .cap-tema-n {
+      font-family: var(--font-display); font-size: 14px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .cap-tema-sep { display: none; }
+    .cap-portada-subtitulo {
+      font-size: 17px; font-weight: 500; line-height: 1.55;
+      margin-bottom: 24px;
+    }
+    .cap-tema-body {
+      word-wrap: break-word; overflow-wrap: break-word; min-width: 0;
+    }
+    .cap-tema.cap-tema-critico { border-left-width: 3px; }
+    .cap-temas-sep-row { grid-column: 1 / -1; height: 1px; background: var(--border); align-self: center; }
+    .cap-encuadre {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .cap-encuadre-col {
+      background: var(--bg); border-radius: 12px;
+      border: 1px solid var(--border); padding: 14px 16px;
+    }
+    .cap-encuadre-title {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.11em;
+      text-transform: uppercase; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .cap-encuadre-item {
+      font-size: 14px; color: var(--text-mid); line-height: 1.5;
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 8px; align-items: baseline;
+    }
+    .cap-encuadre-item:last-child { border-bottom: none; }
+    .cap-encuadre-dot { flex-shrink: 0; font-size: 8px; margin-top: 2px; }
+
+    /* Contenido */
+    .cap-intro {
+      font-size: 15px; color: var(--text-mid);
+      line-height: 1.4; margin-bottom: 6px;
+    }
+    .cap-steps { display: flex; flex-direction: column; margin-bottom: 16px; }
+    .cap-step {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 12px 0; border-bottom: 1px solid var(--surface);
+    }
+    .cap-step:last-child { border-bottom: none; }
+    .cap-step-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .cap-step-body { font-size: 16px; color: var(--text-mid); line-height: 1.55; }
+    .cap-step-body strong { color: var(--text); font-weight: 700; }
+    /* Bullet list (viñetas) — para slides informativos, sin numeración */
+    .cap-bullets { display: flex; flex-direction: column; margin-bottom: 16px; }
+    .cap-bullet {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--surface);
+    }
+    .cap-bullet:last-child { border-bottom: none; }
+    .cap-bullet-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 8px;
+    }
+    .cap-bullet-body { font-size: 16px; color: var(--text-mid); line-height: 1.55; }
+    .cap-bullet-body strong { color: var(--text); font-weight: 700; }
+    .cap-callout {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 16px 18px; border-radius: 12px;
+      border-left: 3px solid; margin-top: auto;
+    }
+    .cap-callout-warn    { background: #fffbea; border-color: #f0c040; }
+    .cap-callout-info    { background: var(--primary-light); border-color: var(--primary); }
+    .cap-callout-danger  { background: #fdf0ef; border-left-width: 4px; border-color: #e74c3c; }
+    .cap-callout-danger .cap-callout-text,
+    .cap-callout-danger .cap-callout-text strong { color: #c0392b; }
+    .cap-callout-success { background: #eafaf1; border-color: #27ae60; }
+    .cap-callout-success .cap-callout-text,
+    .cap-callout-success .cap-callout-text strong { color: #1a7a44; }
+    .cap-callout-icon { font-size: 19px; flex-shrink: 0; margin-top: 1px; }
+    .cap-callout-text { font-size: 15px; color: var(--text-mid); line-height: 1.55; }
+    .cap-callout-text strong { color: var(--text); font-weight: 700; }
+
+    /* ─── Cápsula común: tipografía y espaciado escalado (50–65 años) ─── */
+    .cap-slide-comun .cap-content {
+      padding: 40px; gap: 0; justify-content: center;
+    }
+    .cap-slide-comun .cap-profile-badge {
+      font-size: 14px; padding: 7px 14px; gap: 8px; letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .cap-slide-comun .cap-title {
+      font-size: 36px; line-height: 1.12; margin-bottom: 12px;
+    }
+    .cap-slide-comun .cap-intro,
+    .cap-slide-comun .cap-portada-subtitulo {
+      font-size: 19px; line-height: 1.4; color: var(--text-mid); margin-bottom: 32px;
+    }
+    .cap-slide-comun .cap-bubble {
+      font-size: 18px; line-height: 1.45; padding: 14px 18px; max-width: 220px;
+    }
+    .cap-slide-comun .cap-mascot-img { width: 220px; }
+
+    /* Wrapper que separa cada bloque */
+    .bk-wrap { margin-bottom: 14px; }
+    .bk-wrap:last-child { margin-bottom: 0; }
+
+    /* ─── Bloques de cápsula común ─── */
+    .bk-frase-ancla {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 700; color: var(--primary-dark);
+      line-height: 1.18; text-align: center;
+      padding: 0;
+    }
+    .bk-tres-iconos {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .bk-icono {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 20px; background: var(--bg);
+      border-radius: 12px; border: 1px solid var(--border);
+    }
+    .bk-icono-head { display: flex; align-items: center; gap: 10px; min-height: 28px; }
+    .bk-icono-titulo {
+      font-size: 18px; font-weight: 700; color: var(--text);
+      line-height: 1.25;
+    }
+    .bk-icono-texto {
+      font-size: 16px; color: var(--text-mid); line-height: 1.5;
+    }
+    .bk-callout-azul {
+      background: #E8F1FA; border-left: 4px solid var(--primary);
+      padding: 12px 16px; border-radius: 10px;
+    }
+    .bk-callout-azul-head {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+    }
+    .bk-callout-azul-etiqueta {
+      font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--primary-dark);
+    }
+    .bk-callout-azul-text {
+      font-size: 16px; color: var(--text); font-style: italic; line-height: 1.4;
+    }
+    .bk-respuesta-titulo {
+      font-size: 17px; font-weight: 600; color: var(--text);
+      margin-bottom: 10px;
+    }
+    .bk-respuesta-partes {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
+    .bk-parte {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; background: #F9FAFB; border-radius: 10px;
+      min-width: 0;
+    }
+    .bk-parte-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .bk-parte-texto { font-size: 16px; color: var(--text); line-height: 1.4; }
+    .bk-callout-amarillo {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: #FFF8E1; border-left: 4px solid #f0c040;
+      padding: 12px 16px; border-radius: 10px;
+    }
+    .bk-callout-amarillo-text { font-size: 15px; color: var(--text-mid); line-height: 1.4; }
+    .bk-callout-amarillo-text strong { color: var(--text); font-weight: 700; }
+
+    /* Lámina 3/4 — comparativa dos cards */
+    .bk-comparativa { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .bk-card-comp {
+      padding: 20px; border-radius: 12px; display: flex; flex-direction: column;
+      gap: 10px;
+    }
+    .bk-card-comp.bk-card-verde {
+      background: #E8F5E9; border: 1px solid #4CAF50;
+    }
+    .bk-card-comp.bk-card-roja {
+      background: #FFEBEE; border: 1px solid #E53935;
+    }
+    .bk-card-comp-head { display: flex; align-items: center; gap: 10px; }
+    .bk-card-comp-icon { flex-shrink: 0; }
+    .bk-card-comp-titulo {
+      font-size: 16px; font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase; line-height: 1.15;
+    }
+    .bk-card-verde .bk-card-comp-titulo { color: #1B5E20; }
+    .bk-card-roja .bk-card-comp-titulo { color: #B71C1C; }
+    .bk-card-comp-items {
+      display: flex; flex-direction: column; gap: 6px; padding: 0; margin: 0;
+      list-style: none;
+    }
+    .bk-card-comp-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; line-height: 1.4; color: var(--text);
+    }
+    .bk-card-comp-mark {
+      flex-shrink: 0; font-weight: 800; font-size: 14px;
+      width: 16px; text-align: center; margin-top: 1px;
+    }
+    .bk-card-verde .bk-card-comp-mark { color: #2E7D32; }
+    .bk-card-roja .bk-card-comp-mark { color: #C62828; }
+
+    .bk-callout-legal {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: #F5F5F7; border-left: 4px solid #7B1FA2;
+      padding: 16px 20px; border-radius: 10px;
+    }
+    .bk-callout-legal-text {
+      font-size: 15px; line-height: 1.5; color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Lámina 3/4 — lista prohibiciones */
+    .bk-lista-prohibiciones-titulo {
+      font-size: 18px; font-weight: 700; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .bk-lista-prohibiciones-items { list-style: none; padding: 0; margin: 0; }
+    .bk-lista-prohibiciones-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 18px; line-height: 1.6; color: var(--text);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .bk-lista-prohibiciones-item:last-child { border-bottom: none; }
+
+    /* Lámina 4/4 — tres reglas */
+    .bk-tres-reglas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .bk-regla {
+      padding: 20px 18px; border: 1px solid var(--border);
+      border-radius: 12px; background: white;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      gap: 8px;
+    }
+    .bk-regla-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: white;
+      background: var(--primary-dark); flex-shrink: 0;
+    }
+    .bk-regla-icono { color: var(--primary); }
+    .bk-regla-titulo {
+      font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.2;
+    }
+    .bk-regla-texto {
+      font-size: 15px; color: var(--text-mid); line-height: 1.4;
+    }
+
+    /* Banner transición lámina 4/4 */
+    .bk-banner-transicion {
+      display: flex; gap: 14px; align-items: center;
+      padding: 20px 24px; border-radius: 12px;
+    }
+    .bk-banner-icon { flex-shrink: 0; }
+    .bk-banner-text { font-size: 16px; font-weight: 600; color: var(--text); }
+    .bk-banner-subtexto { font-size: 13px; color: var(--text-muted); }
+    .bk-banner-perfil {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700; line-height: 1.2;
+      margin-left: auto;
+    }
+
+    /* ─── grilla-temas ─── */
+    .bk-grilla-temas { display: grid; gap: 12px; }
+    .bk-tema-card {
+      padding: 16px 14px; background: var(--bg); border-radius: 12px;
+      border: 1px solid var(--border); cursor: pointer;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: all 0.18s ease;
+    }
+    .bk-tema-card:hover { background: var(--primary-light); border-color: var(--primary); transform: translateY(-1px); }
+    .bk-tema-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .bk-tema-titulo { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+    /* ─── pasos-horizontal ─── */
+    .bk-pasos-h { display: grid; gap: 10px; }
+    .bk-paso-h {
+      padding: 8px 12px; background: var(--bg); border-radius: 12px;
+      border: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px;
+    }
+    .bk-paso-h-header { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+    .bk-paso-h-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .bk-paso-h-titulo { font-size: 14px; font-weight: 700; color: var(--text); }
+    .bk-paso-h-texto { font-size: 13px; color: var(--text-mid); line-height: 1.4; }
+
+    /* ─── pasos-horizontal-5 (3+2 layout) ─── */
+    .bk-pasos-h-5 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-areas:
+        "p1 p2 p3"
+        ". p4 p5";
+      gap: 6px;
+    }
+    .bk-pasos-h-5 .bk-paso-h:nth-child(1) { grid-area: p1; }
+    .bk-pasos-h-5 .bk-paso-h:nth-child(2) { grid-area: p2; }
+    .bk-pasos-h-5 .bk-paso-h:nth-child(3) { grid-area: p3; }
+    .bk-pasos-h-5 .bk-paso-h:nth-child(4) { grid-area: p4; }
+    .bk-pasos-h-5 .bk-paso-h:nth-child(5) { grid-area: p5; }
+
+    /* ─── pasos-horizontal-compactos ─── */
+    .bk-paso-h-compact {
+      padding: 8px 12px; background: var(--bg); border-radius: 10px;
+      border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px;
+    }
+    .bk-paso-h-compact-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: white; flex-shrink: 0; margin-top: 1px;
+    }
+    .bk-paso-h-compact-texto { font-size: 13px; color: var(--text); line-height: 1.4; }
+
+    /* ─── callout-rojo ─── */
+    .bk-callout-rojo {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: #fdf0ef; border-left: 4px solid #e74c3c;
+      padding: 12px 14px; border-radius: 10px;
+    }
+    .bk-callout-rojo-text { font-size: 15px; color: #7b241c; line-height: 1.5; }
+    .bk-callout-rojo-text strong { font-weight: 700; }
+
+    /* ─── lista-permitidas ─── */
+    .bk-lista-permitidas-titulo { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .bk-lista-perm-items { list-style: none; padding: 0; margin: 0; }
+    .bk-lista-perm-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--text); padding: 7px 0;
+      border-bottom: 1px solid var(--border); line-height: 1.5;
+    }
+    .bk-lista-perm-item:last-child { border-bottom: none; }
+
+    /* ─── cuatro-reglas-cards ─── */
+    .bk-cuatro-reglas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .bk-cuatro-reglas-compact { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .bk-regla-compact {
+      padding: 9px; border: 1px solid var(--border); border-radius: 10px;
+      background: white; display: flex; flex-direction: column;
+      align-items: center; text-align: center; gap: 4px;
+    }
+    .bk-regla-compact-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; color: white; flex-shrink: 0;
+    }
+    .bk-regla-compact-titulo { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .bk-regla-compact-texto { font-size: 12px; color: var(--text-mid); line-height: 1.3; }
+
+    /* ─── frase-ancla-mediana ─── */
+    .bk-frase-ancla-mediana {
+      font-family: var(--font-display); font-size: 19px; font-weight: 700;
+      color: var(--primary-dark); line-height: 1.3; margin-bottom: 0;
+    }
+
+    /* ─── seccion-doble-vertical ─── */
+    .bk-seccion-doble { display: flex; flex-direction: column; gap: 0; }
+    .bk-seccion-parte { padding-bottom: 5px; }
+    .bk-seccion-parte + .bk-seccion-parte { padding-top: 5px; border-top: 1px solid var(--border); padding-bottom: 0; }
+    .bk-seccion-titulo {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;
+    }
+    .bk-seccion-inner > .bk-wrap:last-child { margin-bottom: 0 !important; }
+
+    /* ─── banner-cuestionario ─── */
+    .bk-banner-cuestionario {
+      display: flex; align-items: center; gap: 14px;
+      background: #E8F1FA; border: 1px solid #C5D9EC;
+      border-radius: 14px; padding: 14px 18px;
+    }
+    .bk-banner-cuestionario-text {
+      font-size: 14px; color: var(--text); line-height: 1.4; flex: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .cap-slide-comun .cap-content { padding: 32px; }
+      .cap-slide-comun .cap-title { font-size: 32px; }
+      .cap-slide-comun .cap-intro { font-size: 18px; margin-bottom: 24px; }
+      .bk-frase-ancla { font-size: 26px; }
+      .bk-tres-iconos { gap: 12px; }
+      .bk-icono { padding: 16px; }
+      .bk-icono-titulo { font-size: 17px; }
+      .bk-icono-texto { font-size: 15px; }
+      .bk-callout-azul, .bk-callout-amarillo { padding: 16px; }
+      .bk-callout-azul-text { font-size: 16px; }
+      .bk-respuesta-titulo { font-size: 16px; }
+      .bk-parte { padding: 14px 16px; }
+      .bk-parte-texto { font-size: 15px; }
+      .bk-card-comp { padding: 20px; }
+      .bk-card-comp-icon { font-size: 28px; }
+      .bk-card-comp-item { font-size: 14px; }
+      .bk-tres-reglas { gap: 12px; }
+      .bk-regla { padding: 20px; }
+      .bk-regla-num { width: 48px; height: 48px; font-size: 24px; }
+      .bk-regla-titulo { font-size: 17px; }
+      .bk-regla-texto { font-size: 15px; }
+      .bk-banner-transicion { padding: 20px; }
+      .bk-banner-perfil { font-size: 22px; }
+      .bk-wrap { margin-bottom: 24px; }
+    }
+    @media (max-width: 768px) {
+      .cap-slide-comun .cap-content { padding: 24px 20px; }
+      .cap-slide-comun .cap-title { font-size: 30px; line-height: 1.18; }
+      .cap-slide-comun .cap-intro { font-size: 17px; margin-bottom: 22px; }
+      .bk-frase-ancla { font-size: 22px; padding: 0; }
+      .bk-tres-iconos { grid-template-columns: 1fr; gap: 12px; }
+      .bk-callout-azul-text { font-size: 16px; }
+      .bk-respuesta-partes { grid-template-columns: 1fr; }
+      .bk-parte { padding: 14px 16px; }
+      .bk-parte-texto { font-size: 16px; }
+      .bk-callout-amarillo-text { font-size: 15px; }
+      .bk-comparativa { grid-template-columns: 1fr; gap: 16px; }
+      .bk-tres-reglas { grid-template-columns: 1fr; gap: 12px; }
+      .bk-regla { padding: 20px; }
+      .bk-banner-transicion { flex-direction: column; align-items: center; text-align: center; }
+      .bk-banner-perfil { margin-left: 0; }
+      .bk-wrap { margin-bottom: 22px; }
+    }
+
+    /* ─── comun-nosabe layout (legacy, conservado) ─── */
+    .cn-top    { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px; }
+    .cn-steps  { display:flex; gap:8px; margin-bottom:6px; }
+    .cn-step   { flex:1; background:#F9FAFB; border-radius:10px; padding:10px 12px; min-width:0; }
+    @media (max-width: 600px) {
+      .cn-top   { grid-template-columns: 1fr; }
+      .cn-steps { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .cn-nota, .cn-ejemplo, .cn-callout2, .cn-callout1 { display: none; }
+      .cn-steps    { flex-direction: row !important; gap: 4px; margin-bottom: 2px; }
+      .cn-step     { padding: 5px 7px; }
+      .cn-top      { gap: 5px; margin-bottom: 4px; }
+      .cn-frase    { padding: 8px 14px !important; }
+      .cn-subtitulo{ margin-bottom: 5px !important; }
+    }
+
+    /* Pregunta del evaluador (drcom) */
+    .cap-drcom {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 14px 16px; border-radius: 10px; margin-top: 12px;
+      background: #eaf3fb; border-left: 3px solid var(--primary);
+    }
+    .cap-drcom-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+    .cap-drcom-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: #0e4a61; margin-bottom: 6px;
+    }
+    .cap-drcom-q { font-size: 15px; color: var(--text); line-height: 1.55; font-weight: 500; }
+
+    /* Cierre */
+    .cap-cierre-msg {
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--text); line-height: 1.3;
+      margin-bottom: 14px; margin-top: 8px;
+    }
+    .cap-cierre-sub {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.6; margin-bottom: 28px;
+    }
+
+    /* ─── Right: mascot panel ─── */
+    .cap-mascot-panel {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 20px 16px;
+      background: linear-gradient(170deg, var(--bg) 0%, #eef6fb 60%, white 100%);
+      position: relative; overflow: hidden;
+    }
+    .cap-mascot-panel::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: radial-gradient(ellipse 90% 60% at 50% 100%,
+        rgba(26,107,138,0.08) 0%, transparent 70%);
+    }
+    .cap-slide-num {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 12px; font-weight: 700; color: var(--text-muted);
+      background: white; border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    .cap-bubble {
+      position: relative; z-index: 1;
+      background: var(--primary-dark); color: white;
+      border-radius: 14px; border-bottom-left-radius: 4px;
+      padding: 13px 16px; font-size: 15px; font-weight: 600;
+      text-align: center; line-height: 1.5;
+      max-width: 230px; margin-bottom: 18px;
+      box-shadow: 0 4px 16px rgba(14,74,97,0.20);
+    }
+    .cap-bubble::after {
+      content: '';
+      position: absolute; bottom: -9px; left: 18px;
+      border-right: 9px solid transparent;
+      border-top: 9px solid var(--primary-dark);
+    }
+    .cap-mascot-img {
+      position: relative; z-index: 1;
+      width: 220px; height: auto;
+      max-height: 72%; object-fit: contain;
+      filter: drop-shadow(0 10px 28px rgba(14,74,97,0.18));
+      transition: transform 0.4s ease;
+    }
+    .cap-slide.active .cap-mascot-img {
+      animation: mascotPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes mascotPop {
+      from { transform: scale(0.88) translateY(16px); opacity: 0.6; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* ─── Nav footer ─── */
+    .cap-nav {
+      position: fixed; bottom: 44px; left: 0; right: 0;
+      background: white; border-top: 1px solid var(--border);
+      box-shadow: 0 -4px 20px rgba(14,74,97,0.07);
+      z-index: 200;
+    }
+    .cap-nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: 12px 32px;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .cap-nav-center { flex: 1; text-align: center; }
+    .cap-nav-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted);
+      display: block; margin-bottom: 6px;
+    }
+    .cap-tema:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+    .cap-dots {
+      display: flex; align-items: center; gap: 6px; justify-content: center;
+    }
+    .cap-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); transition: all 0.25s ease; cursor: pointer;
+    }
+    .cap-dot:hover { background: var(--primary-light); transform: scale(1.2); }
+    .cap-dot.done { background: var(--accent); }
+    .cap-dot.active { width: 22px; border-radius: 4px; }
+
+    /* ─── Responsive ─── */
+    /* TABLET (769–1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .cap-slide.active { grid-template-columns: 240px 1fr; }
+      .cap-content { padding: 32px 32px 24px; }
+      .cap-title { font-size: 24px; }
+      .cap-temas { padding: 18px 20px; }
+      .cap-tema { font-size: 14px; }
+      .cap-mascot-img { width: 154px; }
+      .cap-bubble { max-width: 200px; font-size: 14px; }
+      /* Cápsula común: 2 columnas en tablet */
+      .cap-temas-flow[data-comun] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: auto !important;
+      }
+      .cap-temas-flow[data-comun] > .cap-tema {
+        height: 150px;
+      }
+      .cap-temas-flow[data-comun] > div {
+        grid-column: 1 / -1 !important;
+        height: auto !important;
+        justify-content: flex-start !important;
+      }
+      .cap-temas-flow[data-comun] > div > .cap-tema {
+        width: calc(50% - 3px) !important;
+        height: 150px;
+      }
+    }
+
+    /* MOBILE (≤ 768px) */
+    @media (max-width: 768px) {
+      .cap-header { padding: 0 16px; gap: 10px; min-height: 56px; }
+      .cap-header-context { font-size: 12px; }
+      .cap-btn-back { padding: 10px 12px; font-size: 13px; min-height: 40px; }
+      .cap-wrapper { padding: 16px 12px 180px; }
+      .cap-slide { min-height: auto; aspect-ratio: auto; max-height: none; overflow: visible; }
+      .cap-slide.active {
+        grid-template-columns: 1fr;
+        grid-template-areas: "content" "mascot";
+      }
+      .cap-content { padding: 24px 16px 24px; border-left: none; border-bottom: 1px solid var(--border); }
+      .cap-title-badge { font-size: 11px; padding: 4px 10px; gap: 6px; }
+      .cap-title { font-size: 22px; }
+      .cap-portada-subtitulo { font-size: 16px; }
+      .cap-lead, .cap-intro { font-size: 16px; }
+      /* Grilla 2 col por defecto, 1 col para cápsula común */
+      .cap-temas-flow { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .cap-temas-sep-row { display: none; }
+      /* Cápsula común: 1 col en móvil — los flex wrappers se apilan */
+      .cap-temas-flow[data-comun] {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      .cap-temas-flow[data-comun] > .cap-tema {
+        height: 130px;
+      }
+      .cap-temas-flow[data-comun] > div {
+        grid-column: 1 !important;
+        height: auto !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+      }
+      .cap-temas-flow[data-comun] > div > .cap-tema {
+        width: 100% !important;
+        height: 130px;
+      }
+      .cap-step-body, .cap-bullet-body { font-size: 15px; }
+      .cap-callout { padding: 14px 14px; }
+      .cap-callout-text { font-size: 14px; }
+      /* Mascota: ocultar imagen en panel mantener globo */
+      .cap-mascot-panel { padding: 18px 16px 22px; flex-direction: column; }
+      .cap-mascot-img { display: none; }
+      .cap-bubble { font-size: 15px; padding: 12px 16px; max-width: 100%; margin-bottom: 0; }
+      .cap-bubble::after { display: none; }
+      /* Nav: botones full width apilados */
+      .cap-nav-inner { padding: 10px 14px; gap: 10px; flex-wrap: wrap; }
+      .cap-nav-inner .btn { flex: 1 1 100%; min-width: 0; }
+      .cap-nav-center { order: -1; flex: 1 1 100%; }
+      .cap-nav-label { font-size: 11px; }
+    }
+
+    @media (max-width: 480px) {
+      .cap-header-context { display: none; }
+      .cap-header-divider { display: none; }
+      .cap-content { padding: 12px 14px 12px; }
+      .cap-title { font-size: 22px; }
+      .cap-mascot-panel { padding: 6px 12px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="cap-header">
+  <a href="index.html" class="cap-header-logo">
+    <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:32px;display:block;filter:brightness(0) invert(1);" />
+  </a>
+  <div class="cap-header-divider"></div>
+  <span class="cap-header-context" id="cap-context">Cápsula de Capacitación</span>
+  <div class="cap-header-actions">
+    <a href="#" id="btn-back" class="cap-btn-back">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Volver al perfil
+    </a>
+  </div>
+</header>
+
+<!-- Progress -->
+<div class="cap-progress">
+  <div class="cap-progress-inner">
+    <div class="cap-progress-fill" id="cap-prog-fill"></div>
+  </div>
+</div>
+
+<!-- Slides -->
+<div class="cap-wrapper" id="cap-wrapper">
+  <!-- rendered by JS -->
+</div>
+
+<!-- Nav -->
+<div class="cap-nav">
+  <div class="cap-nav-inner">
+    <button class="btn btn-ghost btn-sm" id="btn-prev" disabled>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Anterior
+    </button>
+    <div class="cap-nav-center">
+      <span class="cap-nav-label" id="nav-label">LÁMINA 1 DE 8</span>
+      <div class="cap-dots" id="cap-dots"></div>
+    </div>
+    <button class="btn btn-primary btn-sm" id="btn-next">
+      Siguiente
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<script src="com-data.js"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script>
+  // ── Params ──
+  const params   = new URLSearchParams(window.location.search);
+  const perfilId = params.get('id') || 'dentista';
+  if (perfilId === 'capsula-comun') { window.location.href = 'index.html'; }
+  const perfil   = COM.getPerfilById(perfilId);
+  const capsula  = COM.capsulas[perfilId];
+  if (!perfil || !capsula) { window.location.href = 'index.html'; }
+
+  document.getElementById('btn-back').href = `perfil.html?id=${perfilId}`;
+
+  // ── Mascot maps ──
+  const MASCOT_MAP = {
+    dentista: [
+      'assets/images/muela_saludo.png',       // lám 1: ¿Qué es esta visita?
+      'assets/images/muela_atencion.png',      // lám 2: micro-presentacion (fallback; poseDrCom toma precedencia)
+      'assets/images/muela_formulario.png',    // lám 3: registro en RAYEN
+      'assets/images/muela_computador.png',    // lám 4: si RAYEN se cae
+      'assets/images/muela_radiografia.png',   // lám 5: Hospital Digital
+      'assets/images/muela_lupa.png',          // lám 6: consentimiento
+      'assets/images/muela_animo.png',         // lám 7: GES
+      'assets/images/muela_victoria.png',      // lám 8: radiografías + cierre
+    ],
+  };
+  const MASCOT_DEFAULT = [
+    'assets/images/muela_saludo.png',
+    'assets/images/muela_atencion.png',
+    'assets/images/muela_formulario.png',
+    'assets/images/muela_lupa.png',
+    'assets/images/muela_computador.png',
+    'assets/images/muela_union.png',
+    'assets/images/muela_animo.png',
+    'assets/images/muela_radiografia.png',
+    'assets/images/muela_formulario.png',
+    'assets/images/muela_animo.png',
+    'assets/images/muela_victoria.png',
+  ];
+  const MASCOT_COMUN = [
+    'assets/images/poses-clean/dr-com-saludando.png',
+    'assets/images/poses-clean/dr-com-explicando.png',
+    'assets/images/poses-clean/dr-com-pensando.png',
+    'assets/images/poses-clean/dr-com-celebrando.png',
+  ];
+  function getMascot(idx, pId, lam) {
+    if (lam && lam.poseDrCom) return `assets/images/poses-clean/${lam.poseDrCom}.png`;
+    const map = MASCOT_MAP[pId] || MASCOT_DEFAULT;
+    return map[idx] || map[map.length - 1];
+  }
+
+  // ── Bubble messages ──
+  function getBubble(lamina) {
+    if (lamina.mensajeDrCom)              return lamina.mensajeDrCom;
+    if (lamina.tipo === 'micro-presentacion') return 'Practica tu<br>presentación<br>en voz alta.';
+    if (lamina.tipo === 'portada')        return lamina.mensajeMuela || 'Revisemos esto juntos.<br>Son 10 minutos que valen la pena.';
+    if (lamina.tipo === 'identificacion') return 'Cuéntame cómo te presentas.<br>Practica en voz alta.';
+    if (lamina.tipo === 'cierre')         return '¡Bien hecho! Ya tienes todo<br>lo que necesitas.';
+    if (lamina.tipo === 'placeholder')    return 'Este contenido<br>llegará muy pronto.';
+    if (lamina.bubble) return lamina.bubble;
+    if (lamina.alerta) return lamina.alerta.texto.length > 80
+      ? lamina.alerta.texto.substring(0, 80) + '…'
+      : lamina.alerta.texto;
+    return 'Tómate un momento para<br>fijar este punto.';
+  }
+
+  // ── Slide content builder ──
+  function buildSlideContent(lam, idx, total, prf, pId) {
+    if (lam.tipo === 'portada') {
+      const tList = lam.temas || [];
+      const SH = 22;
+      const SB = `height:${SH}px;line-height:${SH}px;padding:0 10px;display:flex;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;overflow:hidden;flex-shrink:0`;
+      const CA = `flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 12px;overflow:hidden;min-width:0`;
+      const buildTemaCard = (t, ws) => {
+        const esInicio = t.num === '01';
+        const ico = t.icono || '';
+        const icoHtml = ico ? `<i data-lucide="${ico}" style="width:16px;height:16px;flex-shrink:0;color:${prf.color}"></i>` : '';
+        const numRow = `<div style="display:flex;align-items:center;gap:6px;margin-bottom:8px"><span class="cap-tema-n" style="color:${prf.color}">${t.num}</span>${icoHtml}</div>`;
+        const txtDiv = `<div class="cap-tema-body">${t.texto}</div>`;
+        const cont = `<div style="${CA}">${numRow}${txtDiv}</div>`;
+        if (esInicio) {
+          const stripe = `<div style="${SB};background:${prf.color};color:white"><i data-lucide="play-circle" style="width:10px;height:10px;flex-shrink:0"></i>EMPIEZA AQUÍ</div>`;
+          return `<div class="cap-tema" style="border:3px solid ${prf.color}${ws ? ';' + ws : ''}">${stripe}${cont}</div>`;
+        } else {
+          return `<div class="cap-tema"${ws ? ` style="${ws}"` : ''}><div style="height:${SH}px;flex-shrink:0"></div>${cont}</div>`;
+        }
+      };
+      const temasItems = tList.map(t => buildTemaCard(t, ''));
+      const temasHTML = `${temasItems.slice(0,4).join('')}<div class="cap-temas-sep-row"></div>${temasItems.slice(4).join('')}`;
+      const versionTagHTML = lam.version ? `
+        <div class="cap-version-tag">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          ${lam.version}
+        </div>` : '';
+      const infoBadgeHTML = !lam.ocultarInfo ? `
+        <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ${prf.tiempo} · ${total} láminas
+        </div>` : '';
+      const subtituloText = lam.subtitulo || lam.contenido;
+      return `
+        ${versionTagHTML}
+        <div class="cap-title-row">
+          ${infoBadgeHTML}
+          <h2 class="cap-title">${lam.titulo}</h2>
+        </div>
+        <p class="cap-portada-subtitulo" style="color:${prf.color}">${subtituloText}</p>
+        <div class="cap-temas">
+          <div class="cap-temas-label">¿Qué vamos a ver?</div>
+          <div class="cap-temas-flow">${temasHTML}</div>
+        </div>`;
+
+    } else if (lam.tipo === 'cierre') {
+      const stepsHTML = (lam.puntos || []).map(p => `
+        <div class="cap-step">
+          <div class="cap-step-num" style="background:${prf.color}">${p.num}</div>
+          <div class="cap-step-body">${p.texto} <strong>${p.destacado}</strong></div>
+        </div>`).join('');
+      return `
+        <div class="cap-title-row">
+          <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Resumen final
+          </div>
+          <h2 class="cap-title">${lam.titulo}</h2>
+        </div>
+        <p class="cap-intro">${lam.intro}</p>
+        <div class="cap-steps">${stepsHTML}</div>
+        <div style="margin-top:20px;">
+          <p class="cap-cierre-sub">${lam.cierre.texto}</p>
+          <a href="cuestionario.html?id=${pId}" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            ${lam.cierre.cta}
+          </a>
+        </div>`;
+
+    } else if (lam.tipo === 'micro-presentacion') {
+      return `
+        <div class="cap-title-row" style="margin-bottom:8px">
+          <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Antes de continuar
+          </div>
+        </div>
+        <h2 class="cap-title" style="font-size:22px;margin-bottom:8px">Recuerda cómo presentarte</h2>
+        <p class="cap-intro" style="margin-bottom:14px">El evaluador suele preguntar al inicio o en cualquier momento de la visita:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:11px 16px;border-radius:8px;border:1px solid var(--border)">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">1</div>
+            <div style="font-size:15px;color:var(--text-mid)">Mi nombre es: <strong style="color:var(--text)">________________________________</strong></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:11px 16px;border-radius:8px;border:1px solid var(--border)">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">2</div>
+            <div style="font-size:15px;color:var(--text-mid)">Mi RUT es: <strong style="color:var(--text)">________________________________</strong></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:11px 16px;border-radius:8px;border:1px solid var(--border)">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">3</div>
+            <div style="font-size:15px;color:var(--text-mid)">Mi rol en el COM es: <strong style="color:${prf.color}">${prf.nombre}</strong></div>
+          </div>
+        </div>
+        <a href="index.html?ver=antes" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:${prf.color};font-weight:600;text-decoration:none;padding:7px 13px;border-radius:8px;background:${prf.colorLight};border:1px solid ${prf.color}22">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Ver guía completa
+        </a>`;
+
+    } else if (lam.tipo === 'identificacion') {
+      return `
+        <div class="cap-title-row">
+          <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Identificación del perfil
+          </div>
+          <h2 class="cap-title">¿Cómo me presento frente al examinador?</h2>
+        </div>
+        <p class="cap-intro">Cuando llegue el evaluador, es probable que te pregunte:</p>
+        <div class="cap-callout cap-callout-warn" style="margin:16px 0 20px;background:${prf.colorLight};border-color:${prf.color}30">
+          <span class="cap-callout-icon" style="font-size:20px">💬</span>
+          <div class="cap-callout-text" style="font-size:15px;font-style:italic;color:var(--text-dark)">
+            "¿Cuál es su nombre completo, cuál es su RUT y qué rol tiene en el Centro Odontológico de Macul?"
+          </div>
+        </div>
+        <p class="cap-intro" style="margin-bottom:12px">Prepara tu respuesta:</p>
+        <div class="cap-steps">
+          <div class="cap-step">
+            <div class="cap-step-num" style="background:${prf.color}">1</div>
+            <div class="cap-step-body">Mi nombre es: <strong>________________________________</strong></div>
+          </div>
+          <div class="cap-step">
+            <div class="cap-step-num" style="background:${prf.color}">2</div>
+            <div class="cap-step-body">Mi RUT es: <strong>________________________________</strong></div>
+          </div>
+          <div class="cap-step">
+            <div class="cap-step-num" style="background:${prf.color}">3</div>
+            <div class="cap-step-body">Mi rol en el COM es: <strong>${lam.rol}</strong></div>
+          </div>
+        </div>
+        <div class="cap-callout cap-callout-warn" style="margin-top:16px">
+          <div class="cap-callout-text">⚠️ <strong>Recuerda:</strong> Practica tu respuesta en voz alta. El evaluador puede preguntarte esto al inicio o en cualquier momento de la visita.</div>
+        </div>`;
+
+    } else if (Array.isArray(lam.bloques) && lam.tipo !== 'placeholder') {
+      const userP = perfil;
+      const renderBloque = (b) => {
+        if (b.tipo === 'frase-ancla') {
+          return `<p class="bk-frase-ancla">${b.texto || ''}</p>`;
+        }
+        if (b.tipo === 'tres-iconos') {
+          const items = (b.items || []).map(d => `
+            <div class="bk-icono">
+              <div class="bk-icono-head">
+                <i data-lucide="${d.icono}" style="width:26px;height:26px;color:${prf.color};flex-shrink:0"></i>
+                <span class="bk-icono-titulo">${d.titulo}</span>
+              </div>
+              <div class="bk-icono-texto">${d.texto}</div>
+            </div>`).join('');
+          return `<div class="bk-tres-iconos">${items}</div>`;
+        }
+        if (b.tipo === 'callout-azul') {
+          const icoHTML = b.icono
+            ? `<i data-lucide="${b.icono}" style="width:18px;height:18px;color:${prf.color};flex-shrink:0"></i>`
+            : '';
+          return `
+            <div class="bk-callout-azul">
+              <div class="bk-callout-azul-head">
+                ${icoHTML}
+                <span class="bk-callout-azul-etiqueta">${b.etiqueta || ''}</span>
+              </div>
+              <div class="bk-callout-azul-text">${b.texto || ''}</div>
+            </div>`;
+        }
+        if (b.tipo === 'respuesta-tres-partes') {
+          const partes = (b.partes || []).map(p => {
+            const din = p.dinamico === 'nombrePerfil'
+              ? ` <strong style="color:${userP.color};font-weight:700">${userP.nombre}</strong>`
+              : '';
+            return `
+              <div class="bk-parte">
+                <div class="bk-parte-num" style="background:${prf.color}">${p.numero}</div>
+                <div class="bk-parte-texto">${p.texto}${din}</div>
+              </div>`;
+          }).join('');
+          return `
+            <p class="bk-respuesta-titulo">${b.titulo || ''}</p>
+            <div class="bk-respuesta-partes">${partes}</div>`;
+        }
+        if (b.tipo === 'callout-amarillo') {
+          return `
+            <div class="bk-callout-amarillo">
+              <i data-lucide="${b.icono || 'alert-triangle'}" style="width:20px;height:20px;color:#a07a00;flex-shrink:0;margin-top:2px"></i>
+              <div class="bk-callout-amarillo-text"><strong>${b.titulo || ''}</strong> ${b.texto || ''}</div>
+            </div>`;
+        }
+        if (b.tipo === 'comparativa-dos-cards') {
+          const buildCard = (card, variante) => {
+            const mark = variante === 'verde' ? '✓' : '✕';
+            const items = (card.items || []).map(it => `
+              <li class="bk-card-comp-item">
+                <span class="bk-card-comp-mark">${mark}</span>
+                <span>${it}</span>
+              </li>`).join('');
+            const iconColor = variante === 'verde' ? '#2E7D32' : '#C62828';
+            return `
+              <div class="bk-card-comp bk-card-${variante}">
+                <div class="bk-card-comp-head">
+                  <i class="bk-card-comp-icon" data-lucide="${card.icono}" style="width:24px;height:24px;color:${iconColor}"></i>
+                  <h3 class="bk-card-comp-titulo">${card.titulo}</h3>
+                </div>
+                <ul class="bk-card-comp-items">${items}</ul>
+              </div>`;
+          };
+          return `
+            <div class="bk-comparativa">
+              ${buildCard(b.cardVerde || {}, 'verde')}
+              ${buildCard(b.cardRoja || {}, 'roja')}
+            </div>`;
+        }
+        if (b.tipo === 'lista-prohibiciones') {
+          const items = (b.items || []).map(it => `
+            <li class="bk-lista-prohibiciones-item">
+              <i data-lucide="x-circle" style="width:20px;height:20px;color:#C62828;flex-shrink:0"></i>
+              <span>${it}</span>
+            </li>`).join('');
+          return `
+            <p class="bk-lista-prohibiciones-titulo">${b.titulo || ''}</p>
+            <ul class="bk-lista-prohibiciones-items">${items}</ul>`;
+        }
+        if (b.tipo === 'callout-legal') {
+          return `
+            <div class="bk-callout-legal">
+              <i data-lucide="${b.icono || 'scale'}" style="width:20px;height:20px;color:#7B1FA2;flex-shrink:0;margin-top:2px"></i>
+              <div class="bk-callout-legal-text">${b.texto || ''}</div>
+            </div>`;
+        }
+        if (b.tipo === 'tres-reglas-cards') {
+          const reglas = (b.reglas || []).map(r => `
+            <div class="bk-regla">
+              <div class="bk-regla-num" style="background:${prf.color}">${r.numero}</div>
+              <i class="bk-regla-icono" data-lucide="${r.icono}" style="width:30px;height:30px;color:${prf.color}"></i>
+              <h3 class="bk-regla-titulo">${r.titulo}</h3>
+              <p class="bk-regla-texto">${r.texto}</p>
+            </div>`).join('');
+          return `<div class="bk-tres-reglas">${reglas}</div>`;
+        }
+        if (b.tipo === 'banner-transicion') {
+          const perfilHTML = b.perfilDinamico
+            ? `<span class="bk-banner-perfil" style="color:${userP.color}">${userP.nombre}</span>`
+            : '';
+          const subtextoHTML = b.subtexto
+            ? `<div class="bk-banner-subtexto">${b.subtexto}</div>`
+            : '';
+          return `
+            <div class="bk-banner-transicion" style="background:${userP.colorLight}">
+              <i class="bk-banner-icon" data-lucide="${b.icono || 'sparkles'}" style="width:26px;height:26px;color:${userP.color};flex-shrink:0"></i>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <span class="bk-banner-text">${b.texto || ''}</span>
+                ${perfilHTML}
+                ${subtextoHTML}
+              </div>
+            </div>`;
+        }
+        if (b.tipo === 'grilla-temas') {
+          const cols = b.columnas || 4;
+          const cards = (b.items || []).map(item => `
+            <div class="bk-tema-card" data-nav-to="${item.num}">
+              <div class="bk-tema-num" style="background:${prf.color}">${item.num}</div>
+              <i data-lucide="${item.icono}" style="width:20px;height:20px;color:${prf.color}"></i>
+              <div class="bk-tema-titulo">${item.titulo}</div>
+            </div>`).join('');
+          return `<div class="bk-grilla-temas" style="grid-template-columns:repeat(${cols},1fr)">${cards}</div>`;
+        }
+        if (b.tipo === 'pasos-horizontal' || b.tipo === 'pasos-horizontal-5') {
+          const pasos = (b.pasos || []).map(p => `
+            <div class="bk-paso-h">
+              <div class="bk-paso-h-header">
+                <div class="bk-paso-h-num" style="background:${prf.color}">${p.n}</div>
+                <i data-lucide="${p.icono}" style="width:15px;height:15px;color:${prf.color};flex-shrink:0"></i>
+                <span class="bk-paso-h-titulo">${p.titulo}</span>
+              </div>
+              <p class="bk-paso-h-texto">${p.texto}</p>
+            </div>`).join('');
+          if (b.tipo === 'pasos-horizontal-5') {
+            return `<div class="bk-pasos-h-5">${pasos}</div>`;
+          }
+          const cols = (b.pasos || []).length;
+          return `<div class="bk-pasos-h" style="grid-template-columns:repeat(${cols},1fr)">${pasos}</div>`;
+        }
+        if (b.tipo === 'pasos-horizontal-compactos') {
+          const pasos = (b.pasos || []).map(p => `
+            <div class="bk-paso-h-compact">
+              <div class="bk-paso-h-compact-num" style="background:${prf.color}">${p.n}</div>
+              <i data-lucide="${p.icono}" style="width:15px;height:15px;color:${prf.color};flex-shrink:0;margin-top:2px"></i>
+              <span class="bk-paso-h-compact-texto">${p.texto}</span>
+            </div>`).join('');
+          return `<div style="display:flex;flex-direction:column;gap:6px">${pasos}</div>`;
+        }
+        if (b.tipo === 'callout-rojo') {
+          return `
+            <div class="bk-callout-rojo">
+              <i data-lucide="${b.icono || 'alert-octagon'}" style="width:20px;height:20px;color:#e74c3c;flex-shrink:0;margin-top:2px"></i>
+              <div class="bk-callout-rojo-text"><strong>${b.titulo || ''}</strong> ${b.texto || ''}</div>
+            </div>`;
+        }
+        if (b.tipo === 'lista-permitidas') {
+          const titulo = b.titulo ? `<p class="bk-lista-permitidas-titulo">${b.titulo}</p>` : '';
+          const items = (b.items || []).map(it => `
+            <li class="bk-lista-perm-item">
+              <i data-lucide="check-circle" style="width:20px;height:20px;color:#2E7D32;flex-shrink:0;margin-top:1px"></i>
+              <span>${it}</span>
+            </li>`).join('');
+          return `${titulo}<ul class="bk-lista-perm-items">${items}</ul>`;
+        }
+        if (b.tipo === 'cuatro-reglas-cards' || b.tipo === 'cuatro-reglas-cards-compactas') {
+          const compact = b.tipo === 'cuatro-reglas-cards-compactas';
+          const reglas = (b.reglas || []).map(r => `
+            <div class="${compact ? 'bk-regla-compact' : 'bk-regla'}">
+              <div class="${compact ? 'bk-regla-compact-num' : 'bk-regla-num'}" style="background:${prf.color}">${r.numero}</div>
+              <i data-lucide="${r.icono}" style="width:${compact ? '18' : '30'}px;height:${compact ? '18' : '30'}px;color:${prf.color}"></i>
+              <h3 class="${compact ? 'bk-regla-compact-titulo' : 'bk-regla-titulo'}">${r.titulo}</h3>
+              <p class="${compact ? 'bk-regla-compact-texto' : 'bk-regla-texto'}">${r.texto}</p>
+            </div>`).join('');
+          return `<div class="${compact ? 'bk-cuatro-reglas-compact' : 'bk-cuatro-reglas'}">${reglas}</div>`;
+        }
+        if (b.tipo === 'frase-ancla-mediana') {
+          return `<p class="bk-frase-ancla-mediana">${b.texto}</p>`;
+        }
+        if (b.tipo === 'seccion-doble-vertical') {
+          const renderSeccion = (sec) => {
+            const inner = (sec.bloques || []).map(ib => `<div class="bk-wrap" style="margin-bottom:8px">${renderBloque(ib)}</div>`).join('');
+            return `
+              <div class="bk-seccion-parte">
+                <div class="bk-seccion-titulo">${sec.tituloSeccion || ''}</div>
+                <div class="bk-seccion-inner">${inner}</div>
+              </div>`;
+          };
+          return `
+            <div class="bk-seccion-doble">
+              ${renderSeccion(b.seccionSuperior || {})}
+              ${renderSeccion(b.seccionInferior || {})}
+            </div>`;
+        }
+        if (b.tipo === 'banner-cuestionario') {
+          return `
+            <div class="bk-banner-cuestionario">
+              <i data-lucide="${b.icono || 'sparkles'}" style="width:28px;height:28px;color:${prf.color};flex-shrink:0"></i>
+              <span class="bk-banner-cuestionario-text">${b.texto || ''}</span>
+            </div>`;
+        }
+        return '';
+      };
+      const tagHTML = lam.tagCategoria ? `
+        <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color}">
+          <i data-lucide="${lam.tagCategoria.icono}" style="width:16px;height:16px"></i>
+          ${lam.tagCategoria.texto}
+        </div>` : '';
+      const subtituloHTML = lam.subtitulo
+        ? `<p class="cap-intro">${lam.subtitulo}</p>`
+        : '';
+      const bloquesHTML = (lam.bloques || []).map(b => `<div class="bk-wrap">${renderBloque(b)}</div>`).join('');
+      return `
+        ${tagHTML}
+        <h2 class="cap-title">${lam.titulo}</h2>
+        ${subtituloHTML}
+        ${bloquesHTML}`;
+
+    } else if (lam.tipo === 'comun-presento') {
+      const userP = perfil;
+      return `
+        <div style="margin-bottom:6px">
+          <div class="cap-profile-badge" style="background:${prf.colorLight};color:${prf.color};display:inline-flex;margin-bottom:0">
+            <i data-lucide="user-circle" style="width:14px;height:14px"></i>
+            Identificación del perfil
+          </div>
+        </div>
+        <h2 class="cap-title" style="margin-bottom:6px">¿Cómo me presento?</h2>
+        <p class="cap-intro" style="margin-bottom:10px">Cuando llegue el evaluador, lo primero que hará es identificarte.</p>
+
+        <hr style="border:none;border-top:1px solid #E5E7EB;margin:10px 0">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:${prf.color};margin-bottom:6px">Pregunta del evaluador</div>
+          <div class="cap-callout" style="background:${prf.colorLight};border-color:${prf.color};margin-top:0;padding:12px 14px">
+            <i data-lucide="message-circle" style="width:18px;height:18px;color:${prf.color};flex-shrink:0;margin-top:2px"></i>
+            <div class="cap-callout-text" style="color:var(--text);font-style:italic;font-size:15px">
+              "¿Cuál es su nombre completo, su RUT y qué rol tiene en el Centro Odontológico de Macul?"
+            </div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #E5E7EB;margin:10px 0">
+
+        <p style="font-size:17px;font-weight:600;color:var(--text);margin-bottom:8px">Prepara tu respuesta:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px">
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:12px 16px;border-radius:8px">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">1</div>
+            <div style="font-size:16px;color:var(--text-mid);line-height:1.4">Mi nombre completo</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:12px 16px;border-radius:8px">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">2</div>
+            <div style="font-size:16px;color:var(--text-mid);line-height:1.4">Mi RUT</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;background:#F9FAFB;padding:12px 16px;border-radius:8px">
+            <div class="cap-step-num" style="background:${prf.color};flex-shrink:0">3</div>
+            <div style="font-size:16px;color:var(--text-mid);line-height:1.4">Mi rol en el COM: <strong style="color:${userP.color};font-weight:700">${userP.nombre}</strong></div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #E5E7EB;margin:10px 0">
+
+        <div class="cap-callout cap-callout-warn" style="margin-top:0;padding:10px 14px">
+          <i data-lucide="alert-triangle" style="width:18px;height:18px;color:#a07a00;flex-shrink:0;margin-top:2px"></i>
+          <div class="cap-callout-text">
+            <strong>Recuerda:</strong> practícalo en voz alta antes de la visita. La primera vez que lo dices nervioso suena distinto a la quinta.
+          </div>
+        </div>`;
+
+    } else if (lam.tipo === 'comun-nosabe') {
+      const B = lam.bloques || [];
+      const [c1, fm, ph, c2, ej] = B;
+
+      const calloutRojo = (b) => `
+        <div style="display:flex;gap:10px;align-items:flex-start;background:#fdf0ef;border-left:3px solid #e74c3c;border-radius:10px;padding:10px 12px">
+          <i data-lucide="${b.icono}" style="width:16px;height:16px;color:#c0392b;flex-shrink:0;margin-top:2px"></i>
+          <div style="font-size:15px;color:#7b241c;line-height:1.4">${b.texto}</div>
+        </div>`;
+
+      const fraseMagica = (b) => `
+        <div class="cn-frase" style="background:var(--primary-dark);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;justify-content:center">
+          <div style="font-size:20px;font-weight:800;color:white;font-family:var(--font-display);line-height:1.2;margin-bottom:5px">${b.texto}</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.78);line-height:1.4">${b.subtexto}</div>
+        </div>`;
+
+      const pasosH = (b) => {
+        const ps = b.pasos.map(p => `
+          <div class="cn-step">
+            <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px">
+              <div style="width:20px;height:20px;border-radius:50%;background:var(--primary-dark);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700;color:white">${p.n}</div>
+              <i data-lucide="${p.icono}" style="width:13px;height:13px;color:var(--primary);flex-shrink:0"></i>
+              <span style="font-size:13px;font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.titulo}</span>
+            </div>
+            <div style="font-size:13px;color:var(--text-mid);line-height:1.35">${p.texto}</div>
+          </div>`).join('');
+        return `<div>
+          <div class="cn-steps">${ps}</div>
+          ${b.nota ? `<p class="cn-nota" style="font-size:12px;color:var(--text-muted);font-style:italic;margin-top:0;margin-bottom:6px">${b.nota}</p>` : ''}
+        </div>`;
+      };
+
+      const ejemplo = (b) => {
+        const chips = (b.chips || []).map(c => `
+          <span style="display:inline-flex;align-items:center;gap:4px;background:#eafaf1;color:#1a7a44;border-radius:100px;padding:3px 10px;font-size:12px;font-weight:600;white-space:nowrap">
+            <i data-lucide="check-circle" style="width:11px;height:11px"></i>${c}
+          </span>`).join('');
+        return `
+          <div class="cn-ejemplo" style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
+            <div style="background:#F9FAFB;border-bottom:1px solid var(--border);padding:8px 12px">
+              <span style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted)">Ejemplo</span>
+              <p style="font-size:14px;font-style:italic;color:var(--text);margin-top:2px;line-height:1.4">"${b.pregunta}"</p>
+            </div>
+            <div style="padding:8px 12px">
+              <p style="font-size:13px;color:var(--text-mid);line-height:1.45;margin-bottom:6px">${b.respuesta}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:4px">${chips}</div>
+            </div>
+          </div>`;
+      };
+
+      return `
+        <div style="margin-bottom:4px">
+          <div class="cap-title-badge" style="background:${prf.colorLight};color:${prf.color}">
+            <span class="cap-title-badge-num">03</span>
+          </div>
+        </div>
+        <h2 class="cap-title" style="margin-bottom:4px">${lam.titulo}</h2>
+        <p class="cn-subtitulo" style="font-size:15px;color:var(--text-muted);line-height:1.4;margin-bottom:10px">${lam.subtitulo || ''}</p>
+        <div class="cn-top">
+          <div class="cn-callout1">${c1 ? calloutRojo(c1) : ''}</div>
+          ${fm ? fraseMagica(fm) : ''}
+        </div>
+        ${ph ? pasosH(ph) : ''}
+        <div class="cn-callout2" style="margin-bottom:8px">${c2 ? calloutRojo(c2) : ''}</div>
+        ${ej ? ejemplo(ej) : ''}`;
+
+    } else if (lam.tipo === 'placeholder') {
+      return `
+        <div class="cap-title-row">
+          <div class="cap-title-badge" style="background:${prf.colorLight};color:${prf.color}">${String(idx + 1).padStart(2, '0')}</div>
+          <h2 class="cap-title">${lam.titulo}</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 0;gap:14px">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:${prf.color};opacity:0.35"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <p style="font-size:16px;font-weight:600;color:var(--text-dark)">Contenido pendiente</p>
+          <p style="font-size:13px;color:var(--text-muted);text-align:center">Lámina ${idx + 1} — este tema se completará próximamente.</p>
+        </div>`;
+
+    } else {
+      const esPasos = lam.pasos === true;
+      const listaHTML = (lam.puntos || []).map(p => esPasos ? `
+        <div class="cap-step">
+          <div class="cap-step-num" style="background:${prf.color}">${p.num}</div>
+          <div class="cap-step-body">${p.texto}${p.destacado ? ` <strong>${p.destacado}</strong>` : ''}</div>
+        </div>` : `
+        <div class="cap-bullet">
+          <div class="cap-bullet-dot" style="background:${prf.color}"></div>
+          <div class="cap-bullet-body">${p.texto}${p.destacado ? ` <strong>${p.destacado}</strong>` : ''}</div>
+        </div>`).join('');
+      const alertaTipo = (lam.alerta && lam.alerta.tipo) || 'warn';
+      const alertaPrefix = alertaTipo === 'warn' ? '<strong>¿Por qué importa?</strong> ' : '';
+      const alertaHTML = lam.alerta ? `
+        <div class="cap-callout cap-callout-${alertaTipo}" style="margin-top:16px">
+          <div class="cap-callout-text">${lam.alerta.icono} ${alertaPrefix}${lam.alerta.texto}</div>
+        </div>` : '';
+      const introHTML = lam.intro ? `<p class="cap-intro">${lam.intro}</p>` : '';
+      const drcomHTML = lam.drcom ? `
+        <div class="cap-drcom">
+          <span class="cap-drcom-icon">💬</span>
+          <div>
+            <div class="cap-drcom-label">Pregunta del evaluador</div>
+            <div class="cap-drcom-q">${lam.drcom}</div>
+          </div>
+        </div>` : '';
+      return `
+        <div class="cap-title-row">
+          <div class="cap-title-badge" style="background:${prf.colorLight};color:${prf.color}">
+            ${String(idx + 1).padStart(2, '0')}
+          </div>
+          <h2 class="cap-title">${lam.icono ? lam.icono + ' ' : ''}${lam.titulo}</h2>
+        </div>
+        ${introHTML}
+        <div class="${esPasos ? 'cap-steps' : 'cap-bullets'}">${listaHTML}</div>
+        ${alertaHTML}
+        ${drcomHTML}`;
+    }
+  }
+
+  function buildSlide(lam, idx, total, prf, pId) {
+    const div = document.createElement('div');
+    div.className = 'cap-slide';
+    div.dataset.idx = idx;
+    const mascotBody = lam.tipo === 'micro-presentacion'
+      ? `<div style="font-size:52px;margin:auto;text-align:center;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15))">🦷</div>`
+      : `<img class="cap-mascot-img" src="${getMascot(idx, pId, lam)}" alt="Dr. Com" />`;
+    div.innerHTML = `
+      <div class="cap-slide-topbar" style="background:${prf.color}"></div>
+      <div class="cap-mascot-panel">
+        <div class="cap-slide-num">${idx + 1} / ${total}</div>
+        <div class="cap-bubble">${getBubble(lam)}</div>
+        ${mascotBody}
+      </div>
+      <div class="cap-content">${buildSlideContent(lam, idx, total, prf, pId)}</div>`;
+    return div;
+  }
+
+  // ── Build slides ──
+  const wrapper = document.getElementById('cap-wrapper');
+  const group = document.createElement('div');
+  group.id = 'group-slides';
+
+  // Excluir láminas de presentación (tipo identificacion y micro-presentacion eliminados en CAMBIO 1)
+  const allLaminas = capsula.laminas.filter(l => l.tipo !== 'identificacion' && l.tipo !== 'micro-presentacion');
+
+  allLaminas.forEach((lam, idx) => {
+    group.appendChild(buildSlide(lam, idx, allLaminas.length, perfil, perfilId));
+  });
+  wrapper.appendChild(group);
+
+  lucide.createIcons();
+
+  // ── Dots ──
+  const dotsEl = document.getElementById('cap-dots');
+  function buildDots(count) {
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('div');
+      d.className = 'cap-dot';
+      d.addEventListener('click', () => goTo(i, i >= current));
+      dotsEl.appendChild(d);
+    }
+  }
+
+  // ── State ──
+  let current = 0;
+  let forward = true;
+  const total = allLaminas.length;
+
+  const SVG_NEXT = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+  const SVG_REP  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
+
+  function updateUI() {
+    group.querySelectorAll('.cap-slide').forEach((s, i) => {
+      s.classList.remove('active', 'slide-back');
+      if (i === current) {
+        s.classList.add('active');
+        if (!forward) s.classList.add('slide-back');
+      }
+    });
+
+    dotsEl.querySelectorAll('.cap-dot').forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      d.style.background = '';
+      d.style.opacity = '';
+      if (i < current)   { d.classList.add('done');   d.style.background = perfil.color; d.style.opacity = '0.4'; }
+      if (i === current) { d.classList.add('active');  d.style.background = perfil.color; d.style.opacity = '1';   }
+    });
+
+    const curLam = allLaminas[current];
+    document.getElementById('nav-label').textContent = `LÁMINA ${current + 1} DE ${total}`;
+    document.getElementById('cap-prog-fill').style.width = `${((current + 1) / total) * 100}%`;
+    document.getElementById('cap-context').innerHTML = `<strong>${perfil.nombre}</strong> · Cápsula de capacitación`;
+
+    document.getElementById('btn-prev').disabled = current === 0;
+
+    const btnNext = document.getElementById('btn-next');
+    btnNext.style.background = perfil.color;
+    btnNext.style.borderColor = perfil.color;
+    if (current === total - 1) {
+      const lastLam = allLaminas[current];
+      if (lastLam && lastLam.ctaFinal && lastLam.ctaFinal.accion === 'irAlCuestionario') {
+        btnNext.innerHTML = `${lastLam.ctaFinal.texto || 'Ir al cuestionario'} ${SVG_NEXT}`;
+        btnNext.onclick = () => { window.location.href = `cuestionario.html?id=${perfilId}`; };
+      } else {
+        btnNext.innerHTML = `Repetir desde el inicio ${SVG_REP}`;
+        btnNext.onclick = () => goTo(0, false);
+      }
+    } else {
+      btnNext.innerHTML = `Siguiente ${SVG_NEXT}`;
+      btnNext.onclick = () => goTo(current + 1, true);
+    }
+
+    localStorage.setItem(`capsule_pos_${perfilId}`, current);
+    localStorage.setItem(`progress_${perfilId}`, Math.round(((current + 1) / total) * 100));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goTo(idx, fwd) {
+    forward = fwd;
+    current = Math.max(0, Math.min(total - 1, idx));
+    updateUI();
+  }
+
+  document.getElementById('btn-prev').addEventListener('click', () => goTo(current - 1, false));
+  wrapper.addEventListener('click', e => {
+    const card = e.target.closest('[data-nav-to]');
+    if (card) goTo(parseInt(card.dataset.navTo), true);
+  });
+  document.addEventListener('keydown', e => {
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1, true); }
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1, false); }
+  });
+
+  buildDots(total);
+  updateUI();
+</script>
+
+<!-- Footer institucional -->
+<footer style="background:var(--primary-dark);height:44px;flex-shrink:0;display:flex;align-items:center;padding:0 32px;gap:14px;position:fixed;bottom:0;left:0;right:0;z-index:50;">
+  <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" style="height:22px;filter:brightness(0) invert(1);opacity:0.85;display:block;" />
+  <div style="width:1px;height:18px;background:rgba(255,255,255,0.2);"></div>
+  <span style="font-size:12px;color:rgba(255,255,255,0.55);"><strong style="color:rgba(255,255,255,0.85);font-weight:600;">Centro Odontológico de Macul</strong> · Corporación Municipal de Macul</span>
+  <div style="margin-left:auto;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:100px;padding:3px 12px;font-size:10px;font-weight:600;color:rgba(255,255,255,0.5);">REG 1.1 — Versión 3 · 2026</div>
+</footer>
+
+</body>
+</html>
