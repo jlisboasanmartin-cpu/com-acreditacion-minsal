@@ -3,3 +3,8 @@
 node_modules/
 .vercel/
 *.log
+.vercel
+*.zip
+*.docx
+*.xlsx
+Informacion/NUEVO*
