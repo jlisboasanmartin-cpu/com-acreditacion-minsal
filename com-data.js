@@ -541,16 +541,15 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Ocho láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+          subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
-            { num: '02', texto: 'Cómo presentarse al evaluador', icono: 'user-circle' },
-            { num: '03', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
-            { num: '04', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
-            { num: '05', texto: 'Interconsultas y Trakcare', icono: 'send' },
-            { num: '06', texto: 'Hospital Digital — 5 pasos + Causal 19', icono: 'globe', critico: true },
-            { num: '07', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '08', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
+            { num: '02', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
+            { num: '03', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
+            { num: '04', texto: 'Interconsultas y Trakcare', icono: 'send' },
+            { num: '05', texto: 'Hospital Digital — 5 pasos + Causal 19', icono: 'globe', critico: true },
+            { num: '06', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
+            { num: '07', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
           ]
         },
         {

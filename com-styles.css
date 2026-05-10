@@ -391,3 +391,15 @@ input:focus-visible,
 .form-input:focus { border-color: var(--primary); }
 .form-input::placeholder { color: var(--text-light); }
 .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
+
+/* ─── Dr. COM — animación flotante ─── */
+@keyframes flotarDrCom {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+.dr-com-personaje {
+  animation: flotarDrCom 3s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dr-com-personaje { animation: none; }
+}
