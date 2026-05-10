@@ -541,20 +541,19 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+          subtitulo: 'Seis láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
             { num: '02', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
             { num: '03', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
-            { num: '04', texto: 'Interconsultas y Trakcare', icono: 'send' },
-            { num: '05', texto: 'Hospital Digital — 5 pasos + Causal 19', icono: 'globe', critico: true },
-            { num: '06', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '07', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
+            { num: '04', texto: 'Interconsultas y derivación a especialista', icono: 'send', critico: true },
+            { num: '05', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
+            { num: '06', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
           ]
         },
         {
           // LÁMINA 3 — RAYEN y registro clínico
-          id: 'dentista_01', numero: '3/8',
+          id: 'dentista_01', numero: '2/6',
           titulo: '¿Cómo registro la atención del paciente?',
           subtitulo: 'Todo va en RAYEN. En el mismo acto o inmediatamente después.',
           bloques: [
@@ -571,7 +570,7 @@ const COM = {
         },
         {
           // LÁMINA 4 — Ficha en papel (Plan B)
-          id: 'dentista_02', numero: '4/8',
+          id: 'dentista_02', numero: '3/6',
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo para emergencias.',
           bloques: [
@@ -588,44 +587,29 @@ const COM = {
           mensajeDrCom: 'El papel nunca sale<br>del establecimiento.<br>Nunca.'
         },
         {
-          // LÁMINA 5 — Interconsultas y Trakcare
-          id: 'dentista_interconsultas', numero: '5/8',
-          titulo: 'Interconsultas y Trakcare',
-          subtitulo: 'Registre la indicación en RAYEN antes de derivar. Sin excepción.',
+          // LÁMINA 4 — Interconsultas y derivación a especialista (fusión de láminas 4+5 anteriores)
+          id: 'dentista_interconsultas',
+          numero: '4/6',
+          titulo: 'Interconsultas y derivación a especialista',
+          subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
           bloques: [
-            { tipo: 'frase-ancla', texto: 'La indicación de derivar va en RAYEN. Sin ese registro, la derivación no existe para el evaluador.', tamano: 'grande' },
-            { tipo: 'tres-iconos', items: [
-              { icono: 'clipboard', titulo: '1. Anote en RAYEN', texto: 'La indicación clínica que motiva la derivación, antes de crearla en el sistema.' },
-              { icono: 'globe', titulo: '2. Gestione la interconsulta', texto: 'En Hospital Digital para especialistas externos (se detalla en la lámina siguiente).' },
-              { icono: 'check-circle', titulo: '3. Registre la respuesta', texto: 'En RAYEN dentro de 10 días hábiles desde que llega la respuesta del especialista.' }
-            ]},
-            { tipo: 'callout-azul', etiqueta: 'TRAKCARE', icono: 'monitor', texto: 'Trakcare es el sistema de gestión de la red de salud. Permite monitorear garantías GES, interconsultas en tránsito y plazos de oportunidad. El evaluador puede preguntarle si sabe para qué se usa.' }
-          ],
-          poseDrCom: 'dr-com-explicando',
-          mensajeDrCom: 'Sin registro,<br>la derivación<br>no existe.'
-        },
-        {
-          // LÁMINA 6 — Hospital Digital (5 pasos + Causal 19)
-          id: 'dentista_03', numero: '6/8',
-          titulo: '¿Cómo derivo y cierro un caso en Hospital Digital?',
-          subtitulo: 'Plataforma del MINSAL. La derivación tiene 5 pasos.',
-          bloques: [
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Cuando el paciente presenta patología oral, trastornos de ortodoncia o trastorno temporomandibular que excede el alcance de la atención primaria, derive a especialista vía Hospital Digital para que orienten su manejo en APS.' },
             { tipo: 'pasos-horizontal-5', pasos: [
-              { n: 1, icono: 'globe', titulo: 'Entre', texto: 'A interconsulta.minsal.cl con su RUT y clave única.' },
-              { n: 2, icono: 'user-plus', titulo: 'Cree el caso', texto: 'Con el RUT del paciente. Elija especialidad.' },
-              { n: 3, icono: 'clock', titulo: 'Espere respuesta', texto: 'Del especialista. Llega aviso por correo.' },
-              { n: 4, icono: 'edit-3', titulo: 'Registre en RAYEN', texto: 'La respuesta dentro de 10 días hábiles.' },
-              { n: 5, icono: 'check-circle', titulo: 'Cierre el caso', texto: 'Vuelva a Hospital Digital. Seguimiento → Sin datos → Causal N°19 → Guardar.' }
+              { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'Entre a interconsulta.minsal.cl con su RUT y clave única. Cree el caso con el RUT del paciente, elija la especialidad (patología oral, ortodoncia o TTM) y describa el motivo clínico.' },
+              { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega aviso al correo institucional. La encargada de adultos y especialidades chequea Hospital Digital frecuentemente para asegurar que los casos no queden sin respuesta ni sin cierre.' },
+              { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: 'Una vez recibida la respuesta del especialista, tiene 10 días hábiles para contactar al paciente y aplicar las indicaciones recibidas.' },
+              { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne en la ficha clínica la respuesta del especialista y las acciones realizadas. Sin este registro, el caso queda incompleto en la ficha clínica del paciente.' },
+              { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Vuelva a Hospital Digital → Seguimiento de caso → seleccione la especialidad → "Sin datos" → Causal de Egreso "(N°19) Telemedicina por Hospital Digital" → Guardar y salir.' }
             ]},
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Si no aplica la Causal 19, el caso queda abierto', texto: 'Y figura como pendiente. Es un hallazgo común en auditoría.' },
-            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Si adjunta fotos clínicas:', texto: 'Use solo cámara y computador institucionales. Bórrelas del dispositivo después.' }
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Si no aplica la Causal 19, el caso queda abierto.', texto: 'Y figura como pendiente. La encargada de adultos y especialidades lo detecta en su chequeo, pero el cierre debe hacerlo usted.' },
+            { tipo: 'callout-amarillo', icono: 'camera', titulo: 'Si adjunta fotos clínicas a la interconsulta:', texto: '<br>• Use SOLO cámara institucional, nunca celular personal.<br>• Procese y adjunte SOLO desde computadores institucionales.<br>• Borre las fotos del dispositivo después de adjuntarlas.<br><br>La privacidad del paciente es responsabilidad del profesional que toma y maneja la imagen.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'La derivación tiene 5 pasos.<br>Si se salta el último,<br>queda incompleta.'
         },
         {
           // LÁMINA 7 — Consentimiento informado
-          id: 'dentista_04', numero: '7/8',
+          id: 'dentista_04', numero: '5/6',
           titulo: '¿Cuándo necesito consentimiento informado del paciente?',
           subtitulo: 'Para procedimientos invasivos. En papel, firmado.',
           bloques: [
@@ -640,7 +624,7 @@ const COM = {
         },
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre)
-          id: 'dentista_cierre', numero: '8/8',
+          id: 'dentista_cierre', numero: '6/6',
           titulo: 'GES y radiografías externas RISPAC',
           subtitulo: 'Documentación al kárdex. Imágenes en el sistema del CRS.',
           bloques: [
