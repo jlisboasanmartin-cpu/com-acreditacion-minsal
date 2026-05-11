@@ -607,7 +607,7 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Ocho láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+          subtitulo: 'Ocho láminas con lo que ya hace todos los días.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
             { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
@@ -622,16 +622,14 @@ const COM = {
         {
           // LÁMINA 3 — RAYEN y registro clínico
           id: 'dentista_01', numero: '2/8',
-          titulo: '¿Cómo registro la atención del paciente?',
-          subtitulo: 'Todo va en RAYEN. En el mismo acto o inmediatamente después.',
+          titulo: 'RAYEN: la ficha oficial',
+          subtitulo: 'Todo va en RAYEN, en el momento o inmediatamente después.',
           bloques: [
-            { tipo: 'frase-ancla', texto: 'Si lo hizo, regístrelo. El registro completo es parte de la calidad de atención.', tamano: 'grande' },
             { tipo: 'tres-iconos', items: [
-              { icono: 'monitor', titulo: 'RAYEN es la ficha oficial', texto: 'Es ficha clínica electrónica desde 2007.' },
-              { icono: 'clock', titulo: 'Registre en el momento', texto: 'En el mismo acto de atención o inmediatamente después.' },
-              { icono: 'pen-tool', titulo: 'Cada registro lleva su firma', texto: 'RAYEN identifica quién escribió y cuándo.' }
-            ]},
-            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Recuerde:', texto: 'Si el paciente le dio información verbal importante, también debe quedar registrada. No basta con que usted la sepa.' }
+              { icono: 'monitor', titulo: '💻 Ficha electrónica', texto: 'RAYEN es la ficha oficial desde 2007.' },
+              { icono: 'clock', titulo: '🕐 Registre en el acto', texto: 'En el mismo momento o inmediatamente después.' },
+              { icono: 'pen-tool', titulo: '✍️ Cada registro lleva firma', texto: 'RAYEN identifica quién escribió y cuándo.' }
+            ]}
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Sin registro,<br>el caso queda<br>incompleto.'
@@ -640,19 +638,23 @@ const COM = {
           // LÁMINA 4 — Ficha en papel (Plan B)
           id: 'dentista_02', numero: '3/8',
           titulo: '¿Qué hago si RAYEN no funciona?',
-          subtitulo: 'Existe la ficha en papel (REG 1.2). Solo para emergencias.',
+          subtitulo: 'Existe la ficha en papel (REG 1.2). Solo en contingencia.',
           bloques: [
-            { tipo: 'frase-ancla', texto: 'La ficha en papel es el plan B. Nunca el plan A.', tamano: 'grande' },
-            { tipo: 'pasos-y-doc-preview', pasos: [
-              { n: 1, icono: 'printer',     titulo: 'Imprima',    texto: 'La ficha REG 1.2 desde el computador de sala.' },
-              { n: 2, icono: 'edit-3',      titulo: 'Registre',   texto: 'Todo lo que iría en RAYEN, claro y legible.' },
-              { n: 3, icono: 'refresh-cw',  titulo: 'Traspase',   texto: 'Cuando vuelva RAYEN, copie todo a digital.' },
-              { n: 4, icono: 'send',        titulo: 'Entregue',   texto: 'El papel al Encargado de Calidad para eliminación.' }
-            ]},
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Importante:', texto: 'Si termina la jornada y RAYEN sigue caído, NO se lleve la ficha. Entréguela al Encargado de Calidad para resguardo.' }
+            { tipo: 'pasos-y-doc-preview',
+              pasos: [
+                { n: 1, icono: 'printer',     titulo: 'Imprima',    texto: 'La ficha REG 1.2 desde sala.' },
+                { n: 2, icono: 'edit-3',      titulo: 'Registre',   texto: 'Todo lo que iría en RAYEN.' },
+                { n: 3, icono: 'refresh-cw',  titulo: 'Traspase',   texto: 'Copie a digital al volver RAYEN.' },
+                { n: 4, icono: 'send',        titulo: 'Entregue',   texto: 'El papel al Encargado de Calidad.' }
+              ],
+              imagen: 'assets/images/reg-1-2-formulario.png',
+              imagenAlt: 'Formulario REG 1.2 — Ficha clínica en papel (contingencia)',
+              imagenCaption: 'Formulario REG 1.2'
+            },
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca se lleve la ficha.', texto: 'Si RAYEN sigue caído al cierre, entréguela al Encargado de Calidad.' }
           ],
           poseDrCom: 'dr-com-alerta',
-          mensajeDrCom: 'El papel nunca sale<br>del establecimiento.<br>Nunca.'
+          mensajeDrCom: 'El papel es plan B,<br>nunca plan A.'
         },
         {
           // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
@@ -663,15 +665,15 @@ const COM = {
           bloques: [
             { tipo: 'pasos-y-doc-preview',
               pasos: [
-                { n: 1, icono: 'search', titulo: '¿Cuándo lo necesita?', texto: 'Ficha JUNAEB antigua, consentimiento archivado o documentación GES guardada.' },
-                { n: 2, icono: 'file-text', titulo: '¿Cómo lo pide?', texto: 'Complete el REG 1.2, indique la justificación, firme y entregue al Encargado de Calidad.' },
-                { n: 3, icono: 'check-circle', titulo: '¿Qué pasa después?', texto: 'Calidad y Dirección aprueban. Plazo de devolución: 2 días hábiles.' },
+                { n: 1, icono: 'search', titulo: '¿Cuándo?', texto: 'Ficha JUNAEB antigua, consentimiento archivado, documentación GES.' },
+                { n: 2, icono: 'file-text', titulo: '¿Cómo?', texto: 'Complete REG 1.2, justifique, firme y entregue.' },
+                { n: 3, icono: 'check-circle', titulo: '¿Después?', texto: 'Calidad y Dirección aprueban. Devolución en 2 días.' },
               ],
               imagen: 'assets/images/reg-1-2-solicitud.png',
               imagenAlt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad',
               imagenCaption: 'Formulario REG 1.2',
             },
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección en el archivador REG.' }
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Sin formulario,<br>las fichas antiguas<br>no salen.'
@@ -681,7 +683,7 @@ const COM = {
           id: 'dentista_interconsultas',
           numero: '5/8',
           titulo: 'Interconsultas y derivación a especialista',
-          subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
+          subtitulo: '5 pasos desde la consulta hasta el cierre.',
           bloques: [
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera la atención primaria: derive vía Hospital Digital.' },
             { tipo: 'banner-pasos-vertical',
@@ -689,17 +691,16 @@ const COM = {
               imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
               imagenCaption: 'interconsulta.minsal.cl — ingrese con su ClaveÚnica',
               pasos: [
-                { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'interconsulta.minsal.cl con su RUT y ClaveÚnica. Elija especialidad y describa el motivo clínico.' },
-                { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega al correo institucional. La encargada de adultos chequea que ningún caso quede sin cierre.' },
-                { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: '10 días hábiles desde la respuesta para contactar y aplicar las indicaciones.' },
-                { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne la respuesta del especialista en la ficha del paciente.' },
-                { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Hospital Digital → Seguimiento → Sin datos → Causal N°19 → Guardar.' }
+                { n: 1, icono: 'globe',        titulo: 'Genere',  texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
+                { n: 2, icono: 'mail',         titulo: 'Espere',  texto: 'Respuesta llega al correo institucional.' },
+                { n: 3, icono: 'phone',        titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
+                { n: 4, icono: 'edit-3',       titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
+                { n: 5, icono: 'check-circle', titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
               ]
-            },
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Sin Causal 19, el caso queda abierto.', texto: 'Figura como pendiente. El cierre debe hacerlo usted.' }
+            }
           ],
           poseDrCom: 'dr-com-explicando',
-          mensajeDrCom: 'La derivación tiene 5 pasos.<br>Si se salta el último,<br>queda incompleta.'
+          mensajeDrCom: 'Si se salta el cierre,<br>queda incompleta.'
         },
         {
           // LÁMINA 6 — Consentimiento informado (REFORZADA)
@@ -743,33 +744,33 @@ const COM = {
           id: 'dentista_imagenes',
           numero: '7/8',
           titulo: 'Imágenes clínicas: fotos y radiografías externas',
-          subtitulo: 'Dos reglas distintas, una misma lógica: resguardar al paciente.',
+          subtitulo: 'Dos reglas, una lógica: resguardar al paciente.',
           bloques: [
             { tipo: 'seccion-doble-vertical',
               seccionSuperior: {
-                tituloSeccion: '📷 Fotografías para interconsulta',
+                tituloSeccion: '📷 Fotografías Hospital Digital',
                 bloques: [
                   { tipo: 'pasos-horizontal',
                     pasos: [
-                      { n: 1, icono: 'camera', titulo: 'Dispositivos institucionales', texto: 'Solo cámara fotográfica COM + computador COM. Procesamiento exclusivo en equipos del establecimiento.' },
-                      { n: 2, icono: 'trash-2', titulo: 'Eliminar después del envío', texto: 'Tras enviar la interconsulta a Hospital Digital, elimine las imágenes de cámara y computador.' }
+                      { n: 1, icono: 'camera', titulo: 'Cámara y computador COM', texto: 'Procesamiento exclusivo en equipos del establecimiento.' },
+                      { n: 2, icono: 'trash-2', titulo: 'Elimine después del envío', texto: 'Tras enviar la interconsulta, borre cámara y computador.' }
                     ]
                   },
-                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Nunca con celular personal.', texto: 'Nunca con computador personal.' }
+                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Nunca celular personal.', texto: 'Nunca computador personal.' }
                 ]
               },
               seccionInferior: {
-                tituloSeccion: '🦷 Radiografías externas — CRS Cordillera Oriente (RISPAC)',
-                subtituloSeccion: 'Para panorámicas o telerradiografías laterales, derive al CRS de Peñalolén. Acceda online en RISPAC con su usuario y clave.',
+                tituloSeccion: '🦷 Radiografías externas — RISPAC',
+                subtituloSeccion: 'Derive al CRS Cordillera Oriente. Consulte online en RISPAC con su clave.',
                 bloques: [
                   { tipo: 'pasos-horizontal-compactos',
                     pasos: [
-                      { n: 1, icono: 'search', texto: 'Pestaña <strong>"Examen"</strong> → ingrese el RUT del paciente en <strong>"ID Paciente"</strong>.' },
-                      { n: 2, icono: 'eraser', texto: 'Borre el contenido del campo <strong>"Fecha desde"</strong> → Buscar.' },
-                      { n: 3, icono: 'monitor', texto: 'Seleccione la atención → Acciones → <strong>Visualizador DICOM</strong>.' }
+                      { n: 1, icono: 'search', texto: 'RUT en <strong>"ID Paciente"</strong>.' },
+                      { n: 2, icono: 'eraser', texto: 'Borrar <strong>"Fecha desde"</strong> → Buscar.' },
+                      { n: 3, icono: 'monitor', texto: 'Acciones → <strong>Visualizador DICOM</strong>.' }
                     ]
                   },
-                  { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⛔ El COM no recibe radiografías externas.', texto: 'Ni físico, ni por correo, ni por mano del paciente. La única vía es consultar online en RISPAC.' }
+                  { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⛔ El COM NO recibe radiografías externas.', texto: 'Ni físicas, ni por correo, ni por mano. Solo en RISPAC.' }
                 ]
               }
             }
@@ -781,21 +782,18 @@ const COM = {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre — REENFOCAR EN BLOQUE 4)
           id: 'dentista_cierre', numero: '8/8',
           titulo: 'GES: Garantías Explícitas en Salud',
-          subtitulo: 'Plazos legales. Documentación física. Trazabilidad completa.',
+          subtitulo: 'Plazos legales. Documentación física. Trazabilidad.',
           bloques: [
-            { tipo: 'frase-ancla-mediana', texto: 'GES tiene plazos legales. Atrasarse vulnera un derecho del paciente.' },
             { tipo: 'tres-iconos', items: [
-              { icono: 'file-plus', titulo: '1. Notificación GES', texto: 'Al iniciar el caso. Se entrega al paciente y queda <strong>anexada a la ficha clínica</strong>.' },
-              { icono: 'activity', titulo: '2. Trazadora GES', texto: 'Durante el tratamiento. Registra el cumplimiento de las <strong>garantías de oportunidad</strong>.' },
-              { icono: 'file-check', titulo: '3. Cierre de caso GES', texto: 'Al finalizar. Cierra el episodio GES en la documentación física.' }
+              { icono: 'file-plus', titulo: '1. Notificación GES', texto: 'Al iniciar el caso.' },
+              { icono: 'activity', titulo: '2. Trazadora GES', texto: 'Durante el tratamiento.' },
+              { icono: 'file-check', titulo: '3. Cierre de caso', texto: 'Al finalizar.' }
             ]},
-            { tipo: 'callout-azul', icono: 'workflow', etiqueta: 'Flujo de la documentación GES',
-              texto: 'Usted completa el documento físico → lo entrega al <strong>Referente SIGGES</strong> → el Referente lo carga en plataforma SIGGES → se archiva en el <strong>kárdex del 2do piso, ordenado por RUT</strong>.' },
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Ningún documento GES se queda con usted. Va al Referente SIGGES el mismo día.' },
             { tipo: 'banner-cuestionario', icono: 'sparkles', texto: 'Ya está listo/a. El cuestionario confirma lo que usted ya sabe.' }
           ],
           poseDrCom: 'dr-com-celebrando',
-          mensajeDrCom: 'Tres documentos GES.<br>Todos al Referente.<br>Todos al kárdex.',
+          mensajeDrCom: 'Atrasarse en GES vulnera<br>un derecho del paciente.',
           ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' }
         }
       ]
