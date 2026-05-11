@@ -576,11 +576,11 @@ const COM = {
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo para emergencias.',
           bloques: [
             { tipo: 'frase-ancla', texto: 'La ficha en papel es el plan B. Nunca el plan A.', tamano: 'grande' },
-            { tipo: 'pasos-horizontal', pasos: [
-              { n: 1, icono: 'printer', titulo: 'Imprima', texto: 'La ficha en papel REG 1.2 desde el computador de sala.' },
-              { n: 2, icono: 'edit-3', titulo: 'Registre', texto: 'Todo lo que correspondería a RAYEN, claro y legible.' },
-              { n: 3, icono: 'refresh-cw', titulo: 'Traspase', texto: 'Cuando vuelva RAYEN, copie todo a digital.' },
-              { n: 4, icono: 'send', titulo: 'Entregue', texto: 'El papel al Encargado de Calidad para eliminación.' }
+            { tipo: 'pasos-y-doc-preview', pasos: [
+              { n: 1, icono: 'printer',     titulo: 'Imprima',    texto: 'La ficha REG 1.2 desde el computador de sala.' },
+              { n: 2, icono: 'edit-3',      titulo: 'Registre',   texto: 'Todo lo que iría en RAYEN, claro y legible.' },
+              { n: 3, icono: 'refresh-cw',  titulo: 'Traspase',   texto: 'Cuando vuelva RAYEN, copie todo a digital.' },
+              { n: 4, icono: 'send',        titulo: 'Entregue',   texto: 'El papel al Encargado de Calidad para eliminación.' }
             ]},
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Importante:', texto: 'Si termina la jornada y RAYEN sigue caído, NO se lleve la ficha. Entréguela al Encargado de Calidad para resguardo.' }
           ],
