@@ -83,7 +83,7 @@ const COM = {
           { num: 1, texto: 'La ficha clínica es un', destacado: 'dato sensible (Ley 19.628), regulado por Decreto 41 y Ley 21.084' },
           { num: 2, texto: 'Usted es responsable de que', destacado: 'nadie ajeno a la atención acceda a esa información' },
           { num: 3, texto: 'Toda decisión suya sobre acceso o entrega debe quedar', destacado: 'por escrito y archivada' },
-        ], alerta: { icono: '🔒', texto: 'Si no quedó escrito, no ocurrió. Y si ocurrió sin escribirse, es un problema.' }, drcom: '¿Qué ley clasifica la información de la ficha clínica como dato sensible?', bubble: '💡 ¿Esperaría este cuidado sobre su propia información?' },
+        ], alerta: { icono: '🔒', texto: 'El registro es parte del acto clínico. La ficha incompleta afecta la continuidad del cuidado del paciente.' }, drcom: '¿Qué ley clasifica la información de la ficha clínica como dato sensible?', bubble: '💡 ¿Esperaría este cuidado sobre su propia información?' },
       { titulo: 'Cierre', tipo: 'cierre', mascotGesto: 'wave', intro: 'Repaso de los Puntos Claves',
         puntos: [
           { num: 1, texto: 'Su firma autoriza:', destacado: 'accesos, entregas, eliminación y unificación de fichas' },
@@ -416,7 +416,7 @@ const COM = {
             enunciado: '¿Cuándo debe registrar la atención del paciente en RAYEN?',
             opciones: ['Al final del día, cuando tenga tiempo', 'Al día siguiente, antes de la siguiente cita', 'En el mismo acto de atención o inmediatamente después', 'Cuando el paciente pida copia de su ficha'],
             correcta: 2,
-            explicacion: 'REG 1.1 establece registro en el mismo acto o inmediatamente después. Lo que no está escrito no existe para el evaluador.' },
+            explicacion: 'REG 1.1 establece registro en el mismo acto o inmediatamente después. El registro oportuno es parte de la calidad de atención y derecho del paciente.' },
           { id: 2, tipo: 'seleccion-unica',
             enunciado: 'Si RAYEN se cae y termina su turno sin que vuelva, ¿qué hace con la ficha en papel?',
             opciones: ['Se la lleva a casa para completarla', 'La deja en su escritorio para mañana', 'La entrega al Encargado de Calidad para resguardo', 'La elimina y registra después en RAYEN'],
@@ -483,7 +483,7 @@ const COM = {
           { id: 15, tipo: 'verdadero-falso',
             enunciado: 'Si un paciente le da información verbal importante durante la consulta, basta con que usted la recuerde para la próxima cita.',
             correcta: false,
-            explicacion: 'Toda información verbal relevante debe quedar registrada en RAYEN. Lo que no está escrito no existe para el evaluador.' },
+            explicacion: 'Toda información verbal relevante debe quedar registrada en RAYEN. El registro completo es derecho del paciente y parte de la calidad de atención.' },
           { id: 16, tipo: 'verdadero-falso',
             enunciado: 'El sistema RAYEN respalda automáticamente la información cada vez que se guarda, en servidores remotos certificados ISO 27001.',
             correcta: true,
@@ -524,7 +524,7 @@ const COM = {
           { norma: 'Ley 19.966', proposito: 'Régimen GES' }
         ],
         reglasOro: [
-          'Si lo hizo, escríbalo en RAYEN. Si no está escrito, no ocurrió.',
+          'Si lo hizo, regístrelo en RAYEN. Es parte de la calidad de atención y derecho del paciente.',
           'Su clave es suya. No se presta, no se comparte, nunca.',
           'Procedimiento invasivo = consentimiento firmado. Sin excepción.',
           'GES tiene plazos. Documentación al kárdex, derecho del paciente.'
@@ -541,11 +541,12 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Seis láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+          subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
-            { num: '02', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
-            { num: '03', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
+            { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
+            { num: '02', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
+            { num: '03', texto: 'Solicitar fichas o consentimientos del kárdex', icono: 'archive' },
             { num: '04', texto: 'Interconsultas y derivación a especialista', icono: 'send', critico: true },
             { num: '05', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
             { num: '06', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
@@ -553,11 +554,11 @@ const COM = {
         },
         {
           // LÁMINA 3 — RAYEN y registro clínico
-          id: 'dentista_01', numero: '2/6',
+          id: 'dentista_01', numero: '2/7',
           titulo: '¿Cómo registro la atención del paciente?',
           subtitulo: 'Todo va en RAYEN. En el mismo acto o inmediatamente después.',
           bloques: [
-            { tipo: 'frase-ancla', texto: 'Si lo hizo, debe quedar escrito. Si no lo escribió, para el evaluador no ocurrió.', tamano: 'grande' },
+            { tipo: 'frase-ancla', texto: 'Si lo hizo, regístrelo. El registro completo es parte de la calidad de atención.', tamano: 'grande' },
             { tipo: 'tres-iconos', items: [
               { icono: 'monitor', titulo: 'RAYEN es la ficha oficial', texto: 'Es ficha clínica electrónica desde 2007.' },
               { icono: 'clock', titulo: 'Registre en el momento', texto: 'En el mismo acto de atención o inmediatamente después.' },
@@ -566,11 +567,11 @@ const COM = {
             { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Recuerde:', texto: 'Si el paciente le dio información verbal importante, también debe quedar registrada. No basta con que usted la sepa.' }
           ],
           poseDrCom: 'dr-com-explicando',
-          mensajeDrCom: 'Lo que no está escrito,<br>no existe para<br>el evaluador.'
+          mensajeDrCom: 'Sin registro,<br>el caso queda<br>incompleto.'
         },
         {
           // LÁMINA 4 — Ficha en papel (Plan B)
-          id: 'dentista_02', numero: '3/6',
+          id: 'dentista_02', numero: '3/7',
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo para emergencias.',
           bloques: [
@@ -587,29 +588,46 @@ const COM = {
           mensajeDrCom: 'El papel nunca sale<br>del establecimiento.<br>Nunca.'
         },
         {
-          // LÁMINA 4 — Interconsultas y derivación a especialista (fusión de láminas 4+5 anteriores)
+          // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
+          id: 'dentista_kardex',
+          numero: '4/7',
+          titulo: '¿Cómo pido una ficha JUNAEB o un consentimiento antiguo?',
+          subtitulo: 'Todo lo archivado en el kárdex se solicita con el formulario REG 1.2.',
+          bloques: [
+            { tipo: 'tres-iconos', items: [
+              { icono: 'search', titulo: 'PASO 1 — ¿Cuándo lo necesita?', texto: '• Ficha clínica JUNAEB antigua<br>• Consentimiento informado archivado<br>• Documentación GES guardada' },
+              { icono: 'file-text', titulo: 'PASO 2 — ¿Cómo lo pide?', texto: '• Complete el formulario REG 1.2<br>• Indique la justificación<br>• Firme y entregue al Encargado de Calidad' },
+              { icono: 'check-circle', titulo: 'PASO 3 — ¿Qué pasa después?', texto: '• Encargado de Calidad y Dirección aprueban<br>• Le entregan el documento<br>• Plazo de devolución: 2 días hábiles' }
+            ]},
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección en el archivador REG.' }
+          ],
+          poseDrCom: 'dr-com-explicando',
+          mensajeDrCom: 'Las fichas antiguas y los<br>consentimientos no salen<br>sin formulario.'
+        },
+        {
+          // LÁMINA 5 — Interconsultas y derivación a especialista
           id: 'dentista_interconsultas',
-          numero: '4/6',
+          numero: '5/7',
           titulo: 'Interconsultas y derivación a especialista',
           subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Cuando el paciente presenta patología oral, trastornos de ortodoncia o trastorno temporomandibular que excede el alcance de la atención primaria, derive a especialista vía Hospital Digital para que orienten su manejo en APS.' },
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, trastornos de ortodoncia o TTM que excede la atención primaria: derive a especialista vía Hospital Digital.' },
             { tipo: 'pasos-horizontal-5', pasos: [
-              { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'Entre a interconsulta.minsal.cl con su RUT y clave única. Cree el caso con el RUT del paciente, elija la especialidad (patología oral, ortodoncia o TTM) y describa el motivo clínico.' },
-              { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega aviso al correo institucional. La encargada de adultos y especialidades chequea Hospital Digital frecuentemente para asegurar que los casos no queden sin respuesta ni sin cierre.' },
-              { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: 'Una vez recibida la respuesta del especialista, tiene 10 días hábiles para contactar al paciente y aplicar las indicaciones recibidas.' },
-              { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne en la ficha clínica la respuesta del especialista y las acciones realizadas. Sin este registro, el caso queda incompleto en la ficha clínica del paciente.' },
-              { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Vuelva a Hospital Digital → Seguimiento de caso → seleccione la especialidad → "Sin datos" → Causal de Egreso "(N°19) Telemedicina por Hospital Digital" → Guardar y salir.' }
+              { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'Entre a interconsulta.minsal.cl (RUT + clave única). Cree el caso con el RUT del paciente, elija especialidad y describa el motivo clínico.' },
+              { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega aviso al correo institucional. La encargada de adultos revisa Hospital Digital para que ningún caso quede sin respuesta.' },
+              { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: 'Tiene 10 días hábiles desde recibida la respuesta para contactar al paciente y aplicar las indicaciones del especialista.' },
+              { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne la respuesta del especialista y las acciones realizadas. Sin este paso, el caso queda incompleto en la ficha.' },
+              { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Hospital Digital → Seguimiento de caso → especialidad → "Sin datos" → Causal N°19 Telemedicina → Guardar y salir.' }
             ]},
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Si no aplica la Causal 19, el caso queda abierto.', texto: 'Y figura como pendiente. La encargada de adultos y especialidades lo detecta en su chequeo, pero el cierre debe hacerlo usted.' },
-            { tipo: 'callout-amarillo', icono: 'camera', titulo: 'Si adjunta fotos clínicas a la interconsulta:', texto: '<br>• Use SOLO cámara institucional, nunca celular personal.<br>• Procese y adjunte SOLO desde computadores institucionales.<br>• Borre las fotos del dispositivo después de adjuntarlas.<br><br>La privacidad del paciente es responsabilidad del profesional que toma y maneja la imagen.' }
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Sin Causal 19, el caso queda abierto.', texto: 'Figura como pendiente. La encargada lo detecta, pero el cierre debe hacerlo usted.' },
+            { tipo: 'callout-amarillo', icono: 'camera', titulo: 'Si adjunta fotos clínicas:', texto: '• Solo cámara institucional — nunca celular personal.<br>• Procese desde computadores institucionales.<br>• Borre las fotos del dispositivo al terminar.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'La derivación tiene 5 pasos.<br>Si se salta el último,<br>queda incompleta.'
         },
         {
           // LÁMINA 7 — Consentimiento informado
-          id: 'dentista_04', numero: '5/6',
+          id: 'dentista_04', numero: '6/7',
           titulo: '¿Cuándo necesito consentimiento informado del paciente?',
           subtitulo: 'Para procedimientos invasivos. En papel, firmado.',
           bloques: [
@@ -624,7 +642,7 @@ const COM = {
         },
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre)
-          id: 'dentista_cierre', numero: '6/6',
+          id: 'dentista_cierre', numero: '7/7',
           titulo: 'GES y radiografías externas RISPAC',
           subtitulo: 'Documentación al kárdex. Imágenes en el sistema del CRS.',
           bloques: [
@@ -716,7 +734,7 @@ const COM = {
           { num: 1, texto: 'A personal externo solicitante: registre en el', destacado: 'formulario de solicitud de fichas y radiografías' },
           { num: 2, texto: 'A establecimiento externo: registre en el', destacado: 'libro de actas de envío (computador de la sala)' },
           { num: 3, texto: 'Consigne', destacado: 'fecha, RUT del paciente, tipo de imagen, destino, responsable y firma' },
-        ], alerta: { icono: '📝', texto: 'Lo que no se registra, no existe. Y lo que no existe no se defiende en auditoría.' }, drcom: '¿Qué datos consigna al registrar un envío a un establecimiento de salud externo?', bubble: '💡 El registro convierte un envío en trazabilidad.' },
+        ], alerta: { icono: '📝', texto: 'Sin registro, el caso queda incompleto en la ficha del paciente.' }, drcom: '¿Qué datos consigna al registrar un envío a un establecimiento de salud externo?', bubble: '💡 El registro convierte un envío en trazabilidad.' },
       { titulo: 'Eliminación de la carpeta local', tipo: 'contenido', icono: '🗑️', pasos: true, mascotGesto: 'think',
         puntos: [
           { num: 1, texto: 'Tras el envío,', destacado: 'elimine la carpeta local identificada con el RUT del paciente' },
