@@ -637,19 +637,41 @@ const COM = {
           mensajeDrCom: 'La derivación tiene 5 pasos.<br>Si se salta el último,<br>queda incompleta.'
         },
         {
-          // LÁMINA 7 — Consentimiento informado
-          id: 'dentista_04', numero: '6/7',
-          titulo: '¿Cuándo necesito consentimiento informado del paciente?',
-          subtitulo: 'Para procedimientos invasivos. En papel, firmado.',
+          // LÁMINA 6 — Consentimiento informado (REFORZADA)
+          id: 'dentista_consentimiento', numero: '6/7',
+          titulo: 'Consentimiento informado',
+          subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
           bloques: [
-            { tipo: 'frase-ancla', texto: 'Cirugía, exodoncia, endodoncia, implante: consentimiento firmado. Siempre.', tamano: 'grande' },
-            { tipo: 'lista-permitidas', titulo: 'Procedimientos que requieren consentimiento firmado:',
-              items: ['Cirugía oral', 'Exodoncia (extracción)', 'Tratamiento periodontal', 'Implantes oseointegrados', 'Endodoncia (con su propio formato)']
+            { tipo: 'dos-columnas-info',
+              columnaIzq: {
+                titulo: '¿Por qué firma el paciente?',
+                items: [
+                  { icono: '⚖️', titulo: 'Es un derecho del paciente', texto: 'La Ley 20.584 garantiza que toda persona reciba información antes de aceptar un procedimiento.' },
+                  { icono: '📋', titulo: 'Es parte de la ficha clínica', texto: 'El consentimiento es un componente obligatorio del registro clínico (REG 1.1, sección 7.1.1).' },
+                  { icono: '🛡️', titulo: 'Protege al paciente y al profesional', texto: 'Deja constancia escrita de la información entregada y de la voluntad libre del paciente.' }
+                ]
+              },
+              columnaDer: {
+                titulo: '¿Cuándo se firma?',
+                items: [
+                  { icono: '✅', texto: 'Exodoncia' },
+                  { icono: '✅', texto: 'Endodoncia' },
+                  { icono: '✅', texto: 'Cirugía oral' },
+                  { icono: '✅', texto: 'Periodontal' },
+                  { icono: '✅', texto: 'Implantes oseointegrados' }
+                ],
+                destacado: '📌 El paciente debe conocer: <strong>diagnóstico, alternativas, riesgos y pronóstico</strong> antes de firmar.'
+              }
             },
-            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Sin consentimiento firmado, el procedimiento no se realiza.', texto: 'El documento físico queda en el kárdex bajo llave.' }
+            { tipo: 'imagen-y-texto-lateral',
+              imagen: 'assets/images/consentimiento-informado-anexo-3.png',
+              imagenAlt: 'Formulario Anexo 3 — Consentimiento informado Ley 20.584',
+              imagenCaption: 'Formulario Anexo 3',
+              texto: '<strong>Este es el formulario oficial.</strong><br>Lo encuentra en salas de procedimientos.<br>Se archiva en el kárdex del 2do piso.'
+            }
           ],
-          poseDrCom: 'dr-com-explicando',
-          mensajeDrCom: 'Ley 20.584: el paciente<br>tiene derecho a entender<br>antes de aceptar.'
+          poseDrCom: 'dr-com-alerta',
+          mensajeDrCom: 'Sin consentimiento firmado,<br>no se realiza<br>el procedimiento invasivo.'
         },
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre)

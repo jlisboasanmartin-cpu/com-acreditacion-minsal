@@ -662,6 +662,72 @@
     }
     .bk-seccion-inner > .bk-wrap:last-child { margin-bottom: 0 !important; }
 
+    /* ─── dos-columnas-info (¿Por qué? + ¿Cuándo?) ─── */
+    .bk-dos-cols-info {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    }
+    .bk-dos-cols-info-col {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .bk-dos-cols-info-titulo {
+      font-size: 15px; font-weight: 700; color: var(--text);
+      margin-bottom: 2px; line-height: 1.25;
+    }
+    .bk-dos-cols-info-item {
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .bk-dos-cols-info-icono { font-size: 17px; flex-shrink: 0; line-height: 1.25; }
+    .bk-dos-cols-info-cuerpo { flex: 1; }
+    .bk-dos-cols-info-item-titulo {
+      font-size: 13.5px; font-weight: 700; color: var(--text); line-height: 1.25;
+      margin-bottom: 1px;
+    }
+    .bk-dos-cols-info-item-texto {
+      font-size: 12.5px; color: var(--text-mid); line-height: 1.35;
+    }
+    .bk-dos-cols-info-item-simple {
+      font-size: 14px; color: var(--text); line-height: 1.3; font-weight: 500;
+    }
+    .bk-dos-cols-info-destacado {
+      background: #fff8e6;
+      border-left: 3px solid #d4a017;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: var(--text);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+    @media (max-width: 820px) {
+      .bk-dos-cols-info { grid-template-columns: 1fr; gap: 14px; }
+    }
+
+    /* ─── imagen-y-texto-lateral ─── */
+    .bk-img-texto-lateral {
+      display: grid; grid-template-columns: 0.75fr 1fr; gap: 14px;
+      align-items: center;
+    }
+    .bk-img-texto-img-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .bk-img-texto-img {
+      width: 100%; max-width: 240px;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      display: block;
+      mix-blend-mode: multiply;
+      background: transparent;
+    }
+    .bk-img-texto-caption {
+      font-size: 11.5px; color: var(--text-muted); font-style: italic;
+      text-align: center; line-height: 1.3;
+    }
+    .bk-img-texto-cuerpo {
+      font-size: 14px; color: var(--text); line-height: 1.45;
+    }
+    @media (max-width: 820px) {
+      .bk-img-texto-lateral { grid-template-columns: 1fr; gap: 12px; }
+      .bk-img-texto-img { max-width: 260px; }
+    }
+
     /* ─── iconos-suma (4 docs en fila con + entre ellos) ─── */
     .bk-iconos-suma {
       display: flex; align-items: center; justify-content: center;
@@ -1499,6 +1565,54 @@
             <div class="bk-banner-cuestionario">
               <i data-lucide="${b.icono || 'sparkles'}" style="width:28px;height:28px;color:${prf.color};flex-shrink:0"></i>
               <span class="bk-banner-cuestionario-text">${b.texto || ''}</span>
+            </div>`;
+        }
+        if (b.tipo === 'dos-columnas-info') {
+          const renderItem = (it) => {
+            const ico = it.icono ? `<span class="bk-dos-cols-info-icono">${it.icono}</span>` : '';
+            if (it.titulo) {
+              return `
+                <div class="bk-dos-cols-info-item">
+                  ${ico}
+                  <div class="bk-dos-cols-info-cuerpo">
+                    <div class="bk-dos-cols-info-item-titulo">${it.titulo}</div>
+                    <div class="bk-dos-cols-info-item-texto">${it.texto || ''}</div>
+                  </div>
+                </div>`;
+            }
+            return `
+              <div class="bk-dos-cols-info-item">
+                ${ico}
+                <div class="bk-dos-cols-info-item-simple">${it.texto || ''}</div>
+              </div>`;
+          };
+          const renderCol = (col) => {
+            if (!col) return '';
+            const items = (col.items || []).map(renderItem).join('');
+            const destacado = col.destacado
+              ? `<div class="bk-dos-cols-info-destacado">${col.destacado}</div>`
+              : '';
+            return `
+              <div class="bk-dos-cols-info-col">
+                <div class="bk-dos-cols-info-titulo">${col.titulo || ''}</div>
+                ${items}
+                ${destacado}
+              </div>`;
+          };
+          return `
+            <div class="bk-dos-cols-info">
+              ${renderCol(b.columnaIzq)}
+              ${renderCol(b.columnaDer)}
+            </div>`;
+        }
+        if (b.tipo === 'imagen-y-texto-lateral') {
+          return `
+            <div class="bk-img-texto-lateral">
+              <div class="bk-img-texto-img-wrap">
+                <img class="bk-img-texto-img" src="${b.imagen || ''}" alt="${b.imagenAlt || ''}" />
+                ${b.imagenCaption ? `<div class="bk-img-texto-caption">${b.imagenCaption}</div>` : ''}
+              </div>
+              <div class="bk-img-texto-cuerpo">${b.texto || ''}</div>
             </div>`;
         }
         if (b.tipo === 'iconos-suma') {
