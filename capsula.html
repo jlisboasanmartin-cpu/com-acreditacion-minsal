@@ -309,6 +309,23 @@
     .bk-icono-texto {
       font-size: 16px; color: var(--text-mid); line-height: 1.5;
     }
+    /* ─── miniatura inline dentro de bk-icono (anclada a un paso) ─── */
+    .bk-icono-img-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      margin-top: 4px;
+    }
+    .bk-icono-img {
+      width: 100%; max-width: 200px;
+      border: 1px solid #e2e8f0; border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      display: block;
+      mix-blend-mode: multiply;
+      background: transparent;
+    }
+    .bk-icono-img-caption {
+      font-size: 11.5px; color: var(--text-muted); font-style: italic;
+      text-align: center; line-height: 1.3;
+    }
     .bk-callout-azul {
       background: #E8F1FA; border-left: 4px solid var(--primary);
       padding: 14px 18px; border-radius: 10px;
@@ -1215,14 +1232,22 @@
           return `<p class="bk-frase-ancla">${b.texto || ''}</p>`;
         }
         if (b.tipo === 'tres-iconos') {
-          const items = (b.items || []).map(d => `
-            <div class="bk-icono">
-              <div class="bk-icono-head">
-                <i data-lucide="${d.icono}" style="width:26px;height:26px;color:${prf.color};flex-shrink:0"></i>
-                <span class="bk-icono-titulo">${d.titulo}</span>
-              </div>
-              <div class="bk-icono-texto">${d.texto}</div>
-            </div>`).join('');
+          const items = (b.items || []).map(d => {
+            const imgHTML = d.imagen ? `
+              <div class="bk-icono-img-wrap">
+                <img class="bk-icono-img" src="${d.imagen}" alt="${d.imagenAlt || ''}" />
+                ${d.imagenCaption ? `<div class="bk-icono-img-caption">${d.imagenCaption}</div>` : ''}
+              </div>` : '';
+            return `
+              <div class="bk-icono">
+                <div class="bk-icono-head">
+                  <i data-lucide="${d.icono}" style="width:26px;height:26px;color:${prf.color};flex-shrink:0"></i>
+                  <span class="bk-icono-titulo">${d.titulo}</span>
+                </div>
+                <div class="bk-icono-texto">${d.texto}</div>
+                ${imgHTML}
+              </div>`;
+          }).join('');
           return `<div class="bk-tres-iconos">${items}</div>`;
         }
         if (b.tipo === 'callout-azul') {

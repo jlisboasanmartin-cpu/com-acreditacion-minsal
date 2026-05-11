@@ -600,10 +600,12 @@ const COM = {
           bloques: [
             { tipo: 'tres-iconos', items: [
               { icono: 'search', titulo: 'PASO 1 — ¿Cuándo lo necesita?', texto: '• Ficha clínica JUNAEB antigua<br>• Consentimiento informado archivado<br>• Documentación GES guardada' },
-              { icono: 'file-text', titulo: 'PASO 2 — ¿Cómo lo pide?', texto: '• Complete el formulario REG 1.2<br>• Indique la justificación<br>• Firme y entregue al Encargado de Calidad' },
+              { icono: 'file-text', titulo: 'PASO 2 — ¿Cómo lo pide?', texto: '• Complete el formulario REG 1.2<br>• Indique la justificación<br>• Firme y entregue al Encargado de Calidad',
+                imagen: 'assets/images/reg-1-2-solicitud.png',
+                imagenAlt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad',
+                imagenCaption: 'Formulario REG 1.2' },
               { icono: 'check-circle', titulo: 'PASO 3 — ¿Qué pasa después?', texto: '• Encargado de Calidad y Dirección aprueban<br>• Le entregan el documento<br>• Plazo de devolución: 2 días hábiles' }
             ]},
-            { tipo: 'doc-preview-simple', imagen: 'assets/images/reg-1-2-solicitud.png', alt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad', caption: '← Formulario de solicitud al Encargado de Calidad' },
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección en el archivador REG.' }
           ],
           poseDrCom: 'dr-com-explicando',
