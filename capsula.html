@@ -294,12 +294,14 @@
       padding: 0;
     }
     .bk-tres-iconos {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+      align-items: start;
     }
     .bk-icono {
       display: flex; flex-direction: column; gap: 10px;
       padding: 22px; background: var(--bg);
       border-radius: 12px; border: 1px solid var(--border);
+      min-width: 0;
     }
     .bk-icono-head { display: flex; align-items: center; gap: 10px; min-height: 28px; }
     .bk-icono-titulo {
@@ -482,7 +484,9 @@
     .bk-paso-h {
       padding: 12px 14px; background: var(--bg); border-radius: 12px;
       border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px;
+      min-width: 0;
     }
+    .bk-paso-h-titulo, .bk-paso-h-texto { overflow-wrap: break-word; word-wrap: break-word; }
     .bk-paso-h-header { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
     .bk-paso-h-num {
       width: 26px; height: 26px; border-radius: 50%;
@@ -1503,7 +1507,7 @@
             return `<div class="bk-pasos-h-5">${pasos}</div>`;
           }
           const cols = (b.pasos || []).length;
-          return `<div class="bk-pasos-h" style="grid-template-columns:repeat(${cols},1fr)">${pasos}</div>`;
+          return `<div class="bk-pasos-h" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${pasos}</div>`;
         }
         if (b.tipo === 'pasos-horizontal-compactos') {
           const pasos = (b.pasos || []).map(p => `
