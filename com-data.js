@@ -37,9 +37,9 @@ const COM = {
         subtitulo: 'Sin aprobación escrita, ningún acceso, entrega ni eliminación tiene validez.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '🔑', titulo: 'ACCESOS RAYEN', texto: 'Usted define quién entra a la ficha y con qué permisos. Cada perfil exige resolución firmada.' },
-            { emoji: '📤', titulo: 'ENTREGAS', texto: 'Aprueba la entrega de información clínica a externos, después de que Calidad verifica la documentación.' },
-            { emoji: '🗑️', titulo: 'ELIMINACIONES', texto: 'Firma la resolución administrativa y el acta antes de destruir cualquier ficha clínica.' },
+            { icono: 'key', titulo: 'ACCESOS RAYEN', texto: 'Usted define quién entra a la ficha y con qué permisos. Cada perfil exige resolución firmada.' },
+            { icono: 'share-2', titulo: 'ENTREGAS', texto: 'Aprueba la entrega de información clínica a externos, después de que Calidad verifica la documentación.' },
+            { icono: 'trash-2', titulo: 'ELIMINACIONES', texto: 'Firma la resolución administrativa y el acta antes de destruir cualquier ficha clínica.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Sin su firma, nada tiene respaldo formal.', texto: 'Una entrega sin aprobación escrita o un acceso sin resolución son hallazgos que recaen sobre Dirección.' },
         ],
@@ -49,9 +49,9 @@ const COM = {
         subtitulo: 'Cada cambio de personal o de función obliga a actualizar.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '💻', titulo: 'PERFILES RAYEN', texto: 'Permisos asignados según la función real de cada funcionario. Deben estar al día.' },
-            { emoji: '📋', titulo: 'DESIGNACIONES', texto: 'SIGGES, Trakcare, OIRS, operador de radiografías y contralor. Todos con resolución.' },
-            { emoji: '🔄', titulo: 'ACTUALIZACIONES', texto: 'Cambio de cargo, licencia prolongada, renuncia: la resolución se actualiza de inmediato.' },
+            { icono: 'monitor', titulo: 'PERFILES RAYEN', texto: 'Permisos asignados según la función real de cada funcionario. Deben estar al día.' },
+            { icono: 'clipboard-list', titulo: 'DESIGNACIONES', texto: 'SIGGES, Trakcare, OIRS, operador de radiografías y contralor. Todos con resolución.' },
+            { icono: 'refresh-cw', titulo: 'ACTUALIZACIONES', texto: 'Cambio de cargo, licencia prolongada, renuncia: la resolución se actualiza de inmediato.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Una resolución desactualizada es un hallazgo seguro.', texto: 'Si el nombre en la resolución ya no corresponde al cargo o al funcionario, el acceso no tiene respaldo.' },
         ],
@@ -136,9 +136,9 @@ const COM = {
         subtitulo: 'Ley 19.628, Decreto 41 y Ley 21.084. Toda decisión queda por escrito.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '📋', titulo: 'MARCO LEGAL', texto: 'La ficha clínica es dato sensible. Ley 19.628, Decreto 41 y Ley 21.084 la protegen.' },
-            { emoji: '🚪', titulo: 'ACCESO RESTRINGIDO', texto: 'Nadie ajeno a la atención del paciente puede acceder, sin importar el cargo.' },
-            { emoji: '✍️', titulo: 'TODO POR ESCRITO', texto: 'Toda decisión sobre acceso o entrega debe quedar archivada. Sin registro no hay respaldo.' },
+            { icono: 'scale', titulo: 'MARCO LEGAL', texto: 'La ficha clínica es dato sensible. Ley 19.628, Decreto 41 y Ley 21.084 la protegen.' },
+            { icono: 'lock', titulo: 'ACCESO RESTRINGIDO', texto: 'Nadie ajeno a la atención del paciente puede acceder, sin importar el cargo.' },
+            { icono: 'pen-tool', titulo: 'TODO POR ESCRITO', texto: 'Toda decisión sobre acceso o entrega debe quedar archivada. Sin registro no hay respaldo.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'La ficha incompleta o con accesos no autorizados afecta al paciente y al establecimiento.', texto: 'El registro es parte del acto clínico. Protegerlo es su responsabilidad directa.' },
         ],
@@ -693,9 +693,9 @@ const COM = {
           subtitulo: 'Todo va en RAYEN, en el momento o inmediatamente después.',
           bloques: [
             { tipo: 'tres-iconos', items: [
-              { icono: 'monitor', titulo: '💻 Ficha electrónica', texto: 'RAYEN es la ficha oficial desde 2007.' },
-              { icono: 'clock', titulo: '🕐 Registre en el acto', texto: 'En el mismo momento o inmediatamente después.' },
-              { icono: 'pen-tool', titulo: '✍️ Cada registro lleva firma', texto: 'RAYEN identifica quién escribió y cuándo.' }
+              { icono: 'monitor', titulo: 'Ficha electrónica', texto: 'RAYEN es la ficha oficial desde 2007.' },
+              { icono: 'clock', titulo: 'Registre en el acto', texto: 'En el mismo momento o inmediatamente después.' },
+              { icono: 'pen-tool', titulo: 'Cada registro lleva firma', texto: 'RAYEN identifica quién escribió y cuándo.' }
             ]}
           ],
           poseDrCom: 'dr-com-explicando',
@@ -885,9 +885,9 @@ const COM = {
         subtitulo: 'Tomo, digitalizo y cuido. Cada imagen va vinculada al RUT del paciente en DBSWIN.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '📸', titulo: 'MI ROL', texto: 'Responsable de tomar, digitalizar y resguardar las radiografías. La imagen es del paciente.' },
-            { emoji: '💻', titulo: 'DBSWIN', texto: 'Toda imagen queda vinculada al perfil del paciente por RUT. Sin RUT no hay trazabilidad.' },
-            { emoji: '🔑', titulo: 'CREDENCIALES', texto: 'Usuario y clave personal intransferible autorizado por Dirección. Nunca se presta.' },
+            { icono: 'camera', titulo: 'MI ROL', texto: 'Responsable de tomar, digitalizar y resguardar las radiografías. La imagen es del paciente.' },
+            { icono: 'monitor', titulo: 'DBSWIN', texto: 'Toda imagen queda vinculada al perfil del paciente por RUT. Sin RUT no hay trazabilidad.' },
+            { icono: 'key', titulo: 'CREDENCIALES', texto: 'Usuario y clave personal intransferible autorizado por Dirección. Nunca se presta.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Si presta su clave, presta su responsabilidad. Y eso no se presta.', texto: 'Usted es la última barrera entre la imagen del paciente y un envío incorrecto o no autorizado.' },
         ],
@@ -1200,9 +1200,9 @@ const COM = {
         subtitulo: 'Tres situaciones distintas, tres combinaciones de documentos.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { icono: 'credit-card', titulo: '📇 Titular', texto: 'Solo la cédula de identidad del propio paciente.' },
-            { icono: 'users', titulo: '👥 Tercero autorizado', texto: 'Cédula propia + poder notarial simple del titular.' },
-            { icono: 'baby', titulo: '👶 Menor de edad', texto: 'Cédula del adulto + cédula del menor + certificado de nacimiento o representación legal.' },
+            { icono: 'credit-card', titulo: 'Titular', texto: 'Solo la cédula de identidad del propio paciente.' },
+            { icono: 'users', titulo: 'Tercero autorizado', texto: 'Cédula propia + poder notarial simple del titular.' },
+            { icono: 'baby', titulo: 'Menor de edad', texto: 'Cédula del adulto + cédula del menor + certificado de nacimiento o representación legal.' },
           ]},
         ],
         poseDrCom: 'dr-com-explicando',
@@ -1448,9 +1448,9 @@ const COM = {
         subtitulo: 'Mi registro preventivo tiene el mismo valor legal que cualquier anotación clínica.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '🦷', titulo: 'MI ROL', texto: 'Registro las atenciones preventivas que ejecuto. Claro, legible, fechado y firmado.' },
-            { emoji: '⏱️', titulo: 'CUÁNDO', texto: 'En el mismo acto de atención o inmediatamente después. No al final del día.' },
-            { emoji: '🔑', titulo: 'CREDENCIALES', texto: 'Usuario y clave personal intransferible. Si presta su clave, presta su responsabilidad.' },
+            { icono: 'user-check', titulo: 'MI ROL', texto: 'Registro las atenciones preventivas que ejecuto. Claro, legible, fechado y firmado.' },
+            { icono: 'clock', titulo: 'CUÁNDO', texto: 'En el mismo acto de atención o inmediatamente después. No al final del día.' },
+            { icono: 'key', titulo: 'CREDENCIALES', texto: 'Usuario y clave personal intransferible. Si presta su clave, presta su responsabilidad.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Si lo dejó para el final de la jornada, ya empezó mal.', texto: 'Su registro forma parte de la historia clínica única del paciente, vinculada al RUT. Después es ahora.' },
         ],
@@ -1673,9 +1673,9 @@ const COM = {
         subtitulo: 'Monitoreo, cargo y registro las garantías GES. Ley 19.966.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '⚖️', titulo: 'LEY 19.966', texto: 'Regula las Garantías Explícitas en Salud: Acceso, Calidad, Protección Financiera y Oportunidad.' },
-            { emoji: '📊', titulo: 'MI ROL', texto: 'Monitor y digitador designado por resolución de Dirección. Sin ella no hay acceso ni atribuciones.' },
-            { emoji: '⏱️', titulo: 'GARANTÍAS GES', texto: 'Las 4 garantías son derechos del paciente. Incumplirlas es una infracción legal del establecimiento.' },
+            { icono: 'scale', titulo: 'LEY 19.966', texto: 'Regula las Garantías Explícitas en Salud: Acceso, Calidad, Protección Financiera y Oportunidad.' },
+            { icono: 'bar-chart-2', titulo: 'MI ROL', texto: 'Monitor y digitador designado por resolución de Dirección. Sin ella no hay acceso ni atribuciones.' },
+            { icono: 'timer', titulo: 'GARANTÍAS GES', texto: 'Las 4 garantías son derechos del paciente. Incumplirlas es una infracción legal del establecimiento.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Una garantía vencida es un derecho vulnerado.', texto: 'No hay excepción. El COM responde ante la ley, y usted es la barrera que evita el incumplimiento.' },
         ],
@@ -1685,9 +1685,9 @@ const COM = {
         subtitulo: 'Resolución de Dirección + credenciales personales + atribución RAYEN.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '📋', titulo: 'RESOLUCIÓN', texto: 'Firmada por Dirección. Formaliza su rol y habilita el acceso a SIGGES y RAYEN.' },
-            { emoji: '💻', titulo: 'SIGGES Y RAYEN', texto: 'Usuario y clave personales e intransferibles para ambos sistemas.' },
-            { emoji: '🔑', titulo: 'ATRIBUCIÓN RAYEN', texto: 'Lectura de ficha clínica para vincular información GES + registro de gestiones de contactabilidad.' },
+            { icono: 'file-text', titulo: 'RESOLUCIÓN', texto: 'Firmada por Dirección. Formaliza su rol y habilita el acceso a SIGGES y RAYEN.' },
+            { icono: 'monitor', titulo: 'SIGGES Y RAYEN', texto: 'Usuario y clave personales e intransferibles para ambos sistemas.' },
+            { icono: 'key', titulo: 'ATRIBUCIÓN RAYEN', texto: 'Lectura de ficha clínica para vincular información GES + registro de gestiones de contactabilidad.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Sus credenciales no se prestan. Jamás.', texto: 'Durante vacaciones, la subrogación requiere resolución propia. No hay excepciones.' },
         ],
@@ -1753,9 +1753,9 @@ const COM = {
         subtitulo: 'Ley 19.628, Decreto 41 y Ley 21.084. La protección es máxima.',
         bloques: [
           { tipo: 'tres-iconos', items: [
-            { emoji: '📋', titulo: 'MARCO LEGAL', texto: 'Ley 19.628, Decreto 41 y Ley 21.084 regulan el uso y resguardo de la información GES.' },
-            { emoji: '👤', titulo: 'ACCESO RESTRINGIDO', texto: 'Solo el personal directamente vinculado a la atención y gestión GES puede acceder.' },
-            { emoji: '🚫', titulo: 'SIN COMENTARIOS', texto: 'No comente casos clínicos fuera del contexto formal de trabajo. Ni en pasillos ni en reuniones informales.' },
+            { icono: 'scale', titulo: 'MARCO LEGAL', texto: 'Ley 19.628, Decreto 41 y Ley 21.084 regulan el uso y resguardo de la información GES.' },
+            { icono: 'shield', titulo: 'ACCESO RESTRINGIDO', texto: 'Solo el personal directamente vinculado a la atención y gestión GES puede acceder.' },
+            { icono: 'x-circle', titulo: 'SIN COMENTARIOS', texto: 'No comente casos clínicos fuera del contexto formal de trabajo. Ni en pasillos ni en reuniones informales.' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'GES no tiene protección especial: tiene la misma que cualquier ficha. Que es la máxima.', texto: 'La ley no hace distinciones. Infringir la confidencialidad GES tiene las mismas consecuencias que infringir cualquier secreto clínico.' },
         ],
