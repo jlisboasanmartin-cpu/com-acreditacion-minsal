@@ -716,48 +716,22 @@ const COM = {
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre — REENFOCAR EN BLOQUE 4)
           id: 'dentista_cierre', numero: '8/8',
-          titulo: 'GES, fotografías clínicas y radiografías RISPAC',
-          subtitulo: 'Documentación al kárdex. Fotos en Hospital Digital. Imágenes en el sistema del CRS.',
+          titulo: 'GES: Garantías Explícitas en Salud',
+          subtitulo: 'Plazos legales. Documentación física. Trazabilidad completa.',
           bloques: [
-            { tipo: 'seccion-doble-vertical',
-              seccionSuperior: {
-                tituloSeccion: 'Casos GES — 3 documentos',
-                bloques: [
-                  { tipo: 'frase-ancla-mediana', texto: 'GES tiene plazos legales. Atrasarse es vulnerar un derecho del paciente.' },
-                  { tipo: 'lista-permitidas', titulo: 'Los 3 documentos GES que entrega al Referente SIGGES:',
-                    items: ['Notificación GES — al iniciar el caso', 'Trazadora GES — durante el tratamiento', 'Cierre de caso GES — al finalizar']
-                  },
-                  { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Toda documentación GES va al Referente SIGGES → kárdex del 2do piso, ordenado por RUT.' }
-                ]
-              },
-              seccionMedia: {
-                tituloSeccion: '📷 Fotografías clínicas para Hospital Digital',
-                subtituloSeccion: 'La plataforma exige mínimo 3 fotos clínicas para aceptar la interconsulta.',
-                bloques: [
-                  { tipo: 'tres-iconos', items: [
-                    { icono: 'camera', titulo: 'Cámara institucional', texto: 'Solo con la cámara del establecimiento. Nunca con celular personal.' },
-                    { icono: 'monitor', titulo: 'Computador institucional', texto: 'Transfiera y adjunte a Hospital Digital solo desde equipos del COM.' },
-                    { icono: 'trash-2', titulo: 'Borre después de adjuntar', texto: 'Elimine las fotos del dispositivo una vez adjuntadas en la plataforma.' }
-                  ]},
-                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: '⚠ La foto clínica es dato sensible del paciente.', texto: 'No se almacena en dispositivos personales ni se envía por WhatsApp o correo personal.' }
-                ]
-              },
-              seccionInferior: {
-                tituloSeccion: 'Radiografías externas (CRS Cordillera Oriente)',
-                bloques: [
-                  { tipo: 'frase-ancla-mediana', texto: 'COM no toma panorámicas ni telerradiografías. Esas vienen del CRS.' },
-                  { tipo: 'pasos-horizontal-compactos', pasos: [
-                    { n: 1, icono: 'globe', texto: 'Entre a RISPAC con usuario y clave del CRS' },
-                    { n: 2, icono: 'search', texto: 'Busque al paciente por RUT en pestaña Examen' },
-                    { n: 3, icono: 'monitor', texto: 'Acciones > Ver radiografía' }
-                  ]}
-                ]
-              }
-            },
+            { tipo: 'frase-ancla-mediana', texto: 'GES tiene plazos legales. Atrasarse vulnera un derecho del paciente.' },
+            { tipo: 'tres-iconos', items: [
+              { icono: 'file-plus', titulo: '1. Notificación GES', texto: 'Al iniciar el caso. Se entrega al paciente y queda <strong>anexada a la ficha clínica</strong>.' },
+              { icono: 'activity', titulo: '2. Trazadora GES', texto: 'Durante el tratamiento. Registra el cumplimiento de las <strong>garantías de oportunidad</strong>.' },
+              { icono: 'file-check', titulo: '3. Cierre de caso GES', texto: 'Al finalizar. Cierra el episodio GES en la documentación física.' }
+            ]},
+            { tipo: 'callout-azul', icono: 'workflow', etiqueta: 'Flujo de la documentación GES',
+              texto: 'Usted completa el documento físico → lo entrega al <strong>Referente SIGGES</strong> → el Referente lo carga en plataforma SIGGES → se archiva en el <strong>kárdex del 2do piso, ordenado por RUT</strong>.' },
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Ningún documento GES se queda con usted. Va al Referente SIGGES el mismo día.' },
             { tipo: 'banner-cuestionario', icono: 'sparkles', texto: 'Ya está listo/a. El cuestionario confirma lo que usted ya sabe.' }
           ],
           poseDrCom: 'dr-com-celebrando',
-          mensajeDrCom: 'Usted ya hace todo esto.<br>El cuestionario<br>solo lo confirma.',
+          mensajeDrCom: 'Tres documentos GES.<br>Todos al Referente.<br>Todos al kárdex.',
           ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' }
         }
       ]
