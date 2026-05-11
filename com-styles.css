@@ -400,6 +400,7 @@ input:focus-visible,
   display: inline-block;
   flex-shrink: 0;
   position: relative; top: -1px;
+  mix-blend-mode: multiply;
 }
 
 /* ─── Dr. COM — animación flotante ─── */

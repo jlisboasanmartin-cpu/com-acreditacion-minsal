@@ -611,16 +611,20 @@ const COM = {
           titulo: 'Interconsultas y derivación a especialista',
           subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, trastornos de ortodoncia o TTM que excede la atención primaria: derive a especialista vía Hospital Digital.' },
-            { tipo: 'pasos-horizontal-5', pasos: [
-              { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'Entre a interconsulta.minsal.cl (RUT + clave única). Cree el caso con el RUT del paciente, elija especialidad y describa el motivo clínico.' },
-              { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega aviso al correo institucional. La encargada de adultos revisa Hospital Digital para que ningún caso quede sin respuesta.' },
-              { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: 'Tiene 10 días hábiles desde recibida la respuesta para contactar al paciente y aplicar las indicaciones del especialista.' },
-              { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne la respuesta del especialista y las acciones realizadas. Sin este paso, el caso queda incompleto en la ficha.' },
-              { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Hospital Digital → Seguimiento de caso → especialidad → "Sin datos" → Causal N°19 Telemedicina → Guardar y salir.' }
-            ]},
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Sin Causal 19, el caso queda abierto.', texto: 'Figura como pendiente. La encargada lo detecta, pero el cierre debe hacerlo usted.' },
-            { tipo: 'callout-amarillo', icono: 'camera', titulo: 'Si adjunta fotos clínicas:', texto: '• Solo cámara institucional — nunca celular personal.<br>• Procese desde computadores institucionales.<br>• Borre las fotos del dispositivo al terminar.' }
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera la atención primaria: derive vía Hospital Digital.' },
+            { tipo: 'split-pasos-imagen',
+              imagen: 'assets/images/hospital-digital-plataforma.png',
+              imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
+              imagenCaption: 'interconsulta.minsal.cl — ingrese con su ClaveÚnica',
+              pasos: [
+                { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'interconsulta.minsal.cl con su RUT y ClaveÚnica. Elija especialidad y describa el motivo.' },
+                { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega al correo institucional. La encargada chequea que ningún caso quede sin cierre.' },
+                { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: '10 días hábiles desde la respuesta para contactar y aplicar las indicaciones.' },
+                { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne la respuesta del especialista en la ficha del paciente.' },
+                { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Hospital Digital → Seguimiento → Sin datos → Causal N°19 → Guardar.' }
+              ]
+            },
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ Sin Causal 19, el caso queda abierto.', texto: 'Figura como pendiente. El cierre debe hacerlo usted.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'La derivación tiene 5 pasos.<br>Si se salta el último,<br>queda incompleta.'
@@ -643,8 +647,8 @@ const COM = {
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre)
           id: 'dentista_cierre', numero: '7/7',
-          titulo: 'GES y radiografías externas RISPAC',
-          subtitulo: 'Documentación al kárdex. Imágenes en el sistema del CRS.',
+          titulo: 'GES, fotografías clínicas y radiografías RISPAC',
+          subtitulo: 'Documentación al kárdex. Fotos en Hospital Digital. Imágenes en el sistema del CRS.',
           bloques: [
             { tipo: 'seccion-doble-vertical',
               seccionSuperior: {
@@ -655,6 +659,18 @@ const COM = {
                     items: ['Notificación GES — al iniciar el caso', 'Trazadora GES — durante el tratamiento', 'Cierre de caso GES — al finalizar']
                   },
                   { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Toda documentación GES va al Referente SIGGES → kárdex del 2do piso, ordenado por RUT.' }
+                ]
+              },
+              seccionMedia: {
+                tituloSeccion: '📷 Fotografías clínicas para Hospital Digital',
+                subtituloSeccion: 'La plataforma exige mínimo 3 fotos clínicas para aceptar la interconsulta.',
+                bloques: [
+                  { tipo: 'tres-iconos', items: [
+                    { icono: 'camera', titulo: 'Cámara institucional', texto: 'Solo con la cámara del establecimiento. Nunca con celular personal.' },
+                    { icono: 'monitor', titulo: 'Computador institucional', texto: 'Transfiera y adjunte a Hospital Digital solo desde equipos del COM.' },
+                    { icono: 'trash-2', titulo: 'Borre después de adjuntar', texto: 'Elimine las fotos del dispositivo una vez adjuntadas en la plataforma.' }
+                  ]},
+                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: '⚠ La foto clínica es dato sensible del paciente.', texto: 'No se almacena en dispositivos personales ni se envía por WhatsApp o correo personal.' }
                 ]
               },
               seccionInferior: {
