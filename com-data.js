@@ -545,7 +545,7 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+          subtitulo: 'Ocho láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
             { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
@@ -553,12 +553,13 @@ const COM = {
             { num: '03', texto: 'Solicitar fichas o consentimientos del kárdex', icono: 'archive' },
             { num: '04', texto: 'Interconsultas y derivación a especialista', icono: 'send', critico: true },
             { num: '05', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '06', texto: 'GES y radiografías externas RISPAC', icono: 'activity' },
+            { num: '06', texto: 'Imágenes clínicas: fotos y RISPAC', icono: 'camera' },
+            { num: '07', texto: 'GES — Garantías Explícitas en Salud', icono: 'activity' },
           ]
         },
         {
           // LÁMINA 3 — RAYEN y registro clínico
-          id: 'dentista_01', numero: '2/7',
+          id: 'dentista_01', numero: '2/8',
           titulo: '¿Cómo registro la atención del paciente?',
           subtitulo: 'Todo va en RAYEN. En el mismo acto o inmediatamente después.',
           bloques: [
@@ -575,7 +576,7 @@ const COM = {
         },
         {
           // LÁMINA 4 — Ficha en papel (Plan B)
-          id: 'dentista_02', numero: '3/7',
+          id: 'dentista_02', numero: '3/8',
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo para emergencias.',
           bloques: [
@@ -594,7 +595,7 @@ const COM = {
         {
           // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
           id: 'dentista_kardex',
-          numero: '4/7',
+          numero: '4/8',
           titulo: '¿Cómo pido una ficha JUNAEB o un consentimiento antiguo?',
           subtitulo: 'Todo lo archivado en el kárdex se solicita con el formulario REG 1.2.',
           bloques: [
@@ -614,7 +615,7 @@ const COM = {
         {
           // LÁMINA 5 — Interconsultas y derivación a especialista
           id: 'dentista_interconsultas',
-          numero: '5/7',
+          numero: '5/8',
           titulo: 'Interconsultas y derivación a especialista',
           subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
           bloques: [
@@ -638,7 +639,7 @@ const COM = {
         },
         {
           // LÁMINA 6 — Consentimiento informado (REFORZADA)
-          id: 'dentista_consentimiento', numero: '6/7',
+          id: 'dentista_consentimiento', numero: '6/8',
           titulo: 'Consentimiento informado',
           subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
           bloques: [
@@ -674,8 +675,47 @@ const COM = {
           mensajeDrCom: 'Sin consentimiento firmado,<br>no se realiza<br>el procedimiento invasivo.'
         },
         {
-          // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre)
-          id: 'dentista_cierre', numero: '7/7',
+          // LÁMINA 7 — Imágenes clínicas (fotografías HD + radiografías RISPAC)
+          id: 'dentista_imagenes',
+          numero: '7/8',
+          titulo: 'Imágenes clínicas: fotos y radiografías externas',
+          subtitulo: 'Dos reglas distintas, una misma lógica: resguardar al paciente.',
+          bloques: [
+            { tipo: 'seccion-doble-vertical',
+              seccionSuperior: {
+                tituloSeccion: '📷 Fotografías para interconsulta',
+                bloques: [
+                  { tipo: 'pasos-horizontal',
+                    pasos: [
+                      { n: 1, icono: 'camera', titulo: 'Dispositivos institucionales', texto: 'Solo cámara fotográfica COM + computador COM. Procesamiento exclusivo en equipos del establecimiento.' },
+                      { n: 2, icono: 'trash-2', titulo: 'Eliminar después del envío', texto: 'Tras enviar la interconsulta a Hospital Digital, elimine las imágenes de cámara y computador.' }
+                    ]
+                  },
+                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Nunca con celular personal.', texto: 'Nunca con computador personal.' }
+                ]
+              },
+              seccionInferior: {
+                tituloSeccion: '🦷 Radiografías externas — CRS Cordillera Oriente (RISPAC)',
+                subtituloSeccion: 'Para panorámicas o telerradiografías laterales, derive al CRS de Peñalolén. Acceda online en RISPAC con su usuario y clave.',
+                bloques: [
+                  { tipo: 'pasos-horizontal-compactos',
+                    pasos: [
+                      { n: 1, icono: 'search', texto: 'Pestaña <strong>"Examen"</strong> → ingrese el RUT del paciente en <strong>"ID Paciente"</strong>.' },
+                      { n: 2, icono: 'eraser', texto: 'Borre el contenido del campo <strong>"Fecha desde"</strong> → Buscar.' },
+                      { n: 3, icono: 'monitor', texto: 'Seleccione la atención → Acciones → <strong>Visualizador DICOM</strong>.' }
+                    ]
+                  },
+                  { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⛔ El COM no recibe radiografías externas.', texto: 'Ni físico, ni por correo, ni por mano del paciente. La única vía es consultar online en RISPAC.' }
+                ]
+              }
+            }
+          ],
+          poseDrCom: 'dr-com-alerta',
+          mensajeDrCom: 'Foto con cámara COM.<br>Radiografía externa,<br>solo en RISPAC.'
+        },
+        {
+          // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre — REENFOCAR EN BLOQUE 4)
+          id: 'dentista_cierre', numero: '8/8',
           titulo: 'GES, fotografías clínicas y radiografías RISPAC',
           subtitulo: 'Documentación al kárdex. Fotos en Hospital Digital. Imágenes en el sistema del CRS.',
           bloques: [
