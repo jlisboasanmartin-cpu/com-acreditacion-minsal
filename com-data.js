@@ -790,6 +790,7 @@ const COM = {
               { icono: 'file-check', titulo: '3. Cierre de caso', texto: 'Al finalizar.' }
             ]},
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Ningún documento GES se queda con usted. Va al Referente SIGGES el mismo día.' },
+            { tipo: 'frase-ancla', texto: 'Lo que no está registrado, no ocurrió.', tamano: 'grande' },
             { tipo: 'banner-cuestionario', icono: 'sparkles', texto: 'Ya está listo/a. El cuestionario confirma lo que usted ya sabe.' }
           ],
           poseDrCom: 'dr-com-celebrando',
