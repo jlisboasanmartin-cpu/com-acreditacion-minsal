@@ -1355,7 +1355,7 @@
                 <span>Imprima desde el computador de sala</span>
               </div>
               <img class="bk-doc-img" src="assets/images/reg-1-2-formulario.png" alt="Formulario REG 1.2 — Registro Clínico en Papel" />
-              <div class="bk-doc-preview-caption">← Así se ve la ficha al imprimirla</div>
+              <div class="bk-doc-preview-caption">${b.imagenCaption || '← Así se ve la ficha al imprimirla'}</div>
             </div>`;
           return `<div class="bk-pasos-y-preview"><div class="bk-pasos-2x2">${pasosHTML}</div>${previewHTML}</div>`;
         }
