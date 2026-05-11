@@ -734,6 +734,16 @@
       .bk-img-texto-img { max-width: 260px; }
     }
 
+    /* ─── lista-documentos-vertical ─── */
+    .bk-lista-docs { display: flex; flex-direction: column; gap: 10px; }
+    .bk-lista-doc-item {
+      display: flex; align-items: center; gap: 14px;
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .bk-lista-doc-num { font-size: 14px; font-weight: 800; color: var(--text-muted); min-width: 22px; flex-shrink: 0; }
+    .bk-lista-doc-texto { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
     /* ─── iconos-suma (4 docs en fila con + entre ellos) ─── */
     .bk-iconos-suma {
       display: flex; align-items: center; justify-content: center;
@@ -1631,6 +1641,15 @@
             return i < arr.length - 1 ? card + `<span class="bk-suma-sep">+</span>` : card;
           }).join('');
           return `<div class="bk-iconos-suma">${partes}</div>`;
+        }
+        if (b.tipo === 'lista-documentos-vertical') {
+          const items = (b.items || []).map((item, i) => `
+            <div class="bk-lista-doc-item">
+              <span class="bk-lista-doc-num">${i + 1}.</span>
+              <i data-lucide="${item.icono}" style="width:28px;height:28px;color:${prf.color};flex-shrink:0"></i>
+              <span class="bk-lista-doc-texto">${item.texto}</span>
+            </div>`).join('');
+          return `<div class="bk-lista-docs">${items}</div>`;
         }
         if (b.tipo === 'escenarios-semaforo') {
           const items = (b.escenarios || []).map(e => `

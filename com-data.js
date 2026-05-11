@@ -679,10 +679,10 @@ const COM = {
           temas: [
             { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
             { num: '02', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
-            { num: '03', texto: 'Solicitar fichas o consentimientos del kárdex', icono: 'archive' },
-            { num: '04', texto: 'Interconsultas y derivación a especialista', icono: 'send', critico: true },
-            { num: '05', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '06', texto: 'Imágenes clínicas: fotos y RISPAC', icono: 'camera' },
+            { num: '03', texto: 'Solicitar fichas del kárdex', icono: 'archive' },
+            { num: '04', texto: 'Interconsultas y derivación', icono: 'send', critico: true },
+            { num: '05', texto: 'Radiografías externas RISPAC', icono: 'scan-line' },
+            { num: '06', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
             { num: '07', texto: 'GES — Garantías Explícitas en Salud', icono: 'activity' },
           ]
         },
@@ -752,7 +752,7 @@ const COM = {
           titulo: 'Interconsultas y derivación a especialista',
           subtitulo: '5 pasos desde la consulta hasta el cierre.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera la atención primaria: derive vía Hospital Digital.' },
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera APS: derive vía Hospital Digital.' },
             { tipo: 'banner-pasos-vertical',
               imagen: 'assets/images/hospital-digital-plataforma.png',
               imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
@@ -764,14 +764,33 @@ const COM = {
                 { n: 4, icono: 'edit-3',       titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
                 { n: 5, icono: 'check-circle', titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
               ]
-            }
+            },
+            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Fotografías clínicas para interconsulta',
+              texto: '1. Use solo cámara y computador del establecimiento. Nunca celular personal, nunca computador personal.<br>2. Después de enviar la interconsulta, elimine las imágenes de la cámara y del computador.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Si se salta el cierre,<br>queda incompleta.'
         },
         {
-          // LÁMINA 6 — Consentimiento informado (REFORZADA)
-          id: 'dentista_consentimiento', numero: '6/8',
+          // LÁMINA 6 — Radiografías externas RISPAC
+          id: 'dentista_rispac', numero: '6/8',
+          titulo: 'Radiografías externas — RISPAC',
+          subtitulo: 'Las imágenes del CRS no se reciben en mano. Se consultan online.',
+          bloques: [
+            { tipo: 'callout-azul', icono: 'info', titulo: 'Para panorámica o telerradiografía lateral', texto: 'Derive al CRS Cordillera Oriente de Peñalolén. Acceda online en RISPAC con su usuario y clave.' },
+            { tipo: 'pasos-horizontal-compactos', pasos: [
+              { n: 1, icono: 'search', texto: 'RUT en <strong>"ID Paciente"</strong>.' },
+              { n: 2, icono: 'eraser', texto: 'Borrar <strong>"Fecha desde"</strong> → Buscar.' },
+              { n: 3, icono: 'monitor', texto: 'Acciones → <strong>Visualizador DICOM</strong>.' }
+            ]},
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⛔ El COM NO recibe radiografías externas en ningún formato.', texto: 'Ni físico, ni por correo, ni por mano del paciente. La única vía es RISPAC.' }
+          ],
+          poseDrCom: 'dr-com-alerta',
+          mensajeDrCom: 'Radiografía externa,<br>solo en RISPAC.'
+        },
+        {
+          // LÁMINA 7 — Consentimiento informado (era L6)
+          id: 'dentista_consentimiento', numero: '7/8',
           titulo: 'Consentimiento informado',
           subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
           bloques: [
@@ -805,45 +824,6 @@ const COM = {
           ],
           poseDrCom: 'dr-com-alerta',
           mensajeDrCom: 'Sin consentimiento firmado,<br>no se realiza<br>el procedimiento invasivo.'
-        },
-        {
-          // LÁMINA 7 — Imágenes clínicas (fotografías HD + radiografías RISPAC)
-          id: 'dentista_imagenes',
-          numero: '7/8',
-          titulo: 'Imágenes clínicas: fotos y radiografías externas',
-          subtitulo: 'Dos reglas, una lógica: resguardar al paciente.',
-          bloques: [
-            { tipo: 'seccion-doble-vertical',
-              seccionSuperior: {
-                tituloSeccion: '📷 Fotografías Hospital Digital',
-                bloques: [
-                  { tipo: 'pasos-horizontal',
-                    pasos: [
-                      { n: 1, icono: 'camera', titulo: 'Cámara y computador COM', texto: 'Procesamiento exclusivo en equipos del establecimiento.' },
-                      { n: 2, icono: 'trash-2', titulo: 'Elimine después del envío', texto: 'Tras enviar la interconsulta, borre cámara y computador.' }
-                    ]
-                  },
-                  { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Nunca celular personal.', texto: 'Nunca computador personal.' }
-                ]
-              },
-              seccionInferior: {
-                tituloSeccion: '🦷 Radiografías externas — RISPAC',
-                subtituloSeccion: 'Derive al CRS Cordillera Oriente. Consulte online en RISPAC con su clave.',
-                bloques: [
-                  { tipo: 'pasos-horizontal-compactos',
-                    pasos: [
-                      { n: 1, icono: 'search', texto: 'RUT en <strong>"ID Paciente"</strong>.' },
-                      { n: 2, icono: 'eraser', texto: 'Borrar <strong>"Fecha desde"</strong> → Buscar.' },
-                      { n: 3, icono: 'monitor', texto: 'Acciones → <strong>Visualizador DICOM</strong>.' }
-                    ]
-                  },
-                  { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⛔ El COM NO recibe radiografías externas.', texto: 'Ni físicas, ni por correo, ni por mano. Solo en RISPAC.' }
-                ]
-              }
-            }
-          ],
-          poseDrCom: 'dr-com-alerta',
-          mensajeDrCom: 'Foto con cámara COM.<br>Radiografía externa,<br>solo en RISPAC.'
         },
         {
           // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre — REENFOCAR EN BLOQUE 4)
@@ -1212,11 +1192,11 @@ const COM = {
         titulo: 'Si el paciente falleció',
         subtitulo: 'Solo el heredero directo puede gestionar. Cuatro documentos. Siempre los cuatro.',
         bloques: [
-          { tipo: 'iconos-suma', items: [
-            { emoji: '📇', etiqueta: 'Cédula propia' },
-            { emoji: '📇', etiqueta: 'Cédula del fallecido' },
-            { emoji: '📜', etiqueta: 'Certificado de vínculo' },
-            { emoji: '📃', etiqueta: 'Certificado de defunción' },
+          { tipo: 'lista-documentos-vertical', items: [
+            { icono: 'credit-card', texto: 'Cédula propia del heredero' },
+            { icono: 'credit-card', texto: 'Cédula del paciente fallecido' },
+            { icono: 'scroll', texto: 'Certificado de vínculo (nacimiento o matrimonio)' },
+            { icono: 'file-text', texto: 'Certificado de defunción' },
           ]},
           { tipo: 'callout-rojo', icono: 'alert-octagon',
             titulo: 'Cuatro papeles. Si falta uno, no se recibe la solicitud.', texto: '' },
