@@ -464,6 +464,25 @@
       color: #1a6b8a; margin-bottom: 3px;
     }
 
+    /* ─── Review tabs ─── */
+    .qz-review-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .qz-review-header .qz-review-title { margin-bottom: 0; }
+    .qz-review-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+    .qz-tab {
+      padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
+      border: 1px solid var(--border); background: white; color: var(--text-muted);
+      cursor: pointer; transition: all 0.15s ease; display: flex; align-items: center; gap: 5px;
+    }
+    .qz-tab:hover { background: var(--surface); }
+    .qz-tab.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
+    .qz-tab-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 16px; height: 16px; border-radius: 8px; padding: 0 4px;
+      font-size: 10px; font-weight: 700; background: rgba(0,0,0,0.08);
+    }
+    .qz-tab.active .qz-tab-badge { background: rgba(255,255,255,0.25); }
+    .rv-ok .qz-rv-exp { color: #4A5568; }
+
     /* Responsive */
     @media (max-width: 700px) {
       .qz-wrapper { padding: 16px 16px 60px; }
@@ -663,7 +682,14 @@
       </div>
     </div>
     <div class="qz-res-review">
-      <div class="qz-review-title">Revisión detallada</div>
+      <div class="qz-review-header">
+        <div class="qz-review-title">Revisión detallada</div>
+        <div class="qz-review-tabs" id="qz-review-tabs">
+          <button class="qz-tab active" data-filter="all">Todas</button>
+          <button class="qz-tab" data-filter="bad" id="tab-btn-bad">Para repasar <span class="qz-tab-badge" id="tab-bad-n">0</span></button>
+          <button class="qz-tab" data-filter="ok" id="tab-btn-ok">Correctas <span class="qz-tab-badge" id="tab-ok-n">0</span></button>
+        </div>
+      </div>
       <div id="qz-review-list"></div>
     </div>
   </div>
@@ -1049,20 +1075,35 @@
       actionsEl.insertBefore(guiaBtn, actionsEl.querySelector('#btn-repaso'));
     }
 
-    // Review list
-    const reviewHTML = results.map((r, i) => {
+    // Sort: wrong first, correct second, open last
+    const badRes  = results.filter(r => r.tipo !== 'respuesta-abierta' && !r.isOk);
+    const okRes   = results.filter(r => r.tipo !== 'respuesta-abierta' &&  r.isOk);
+    const openRes = results.filter(r => r.tipo === 'respuesta-abierta');
+
+    // Tab counts
+    const tabBadN = document.getElementById('tab-bad-n');
+    const tabOkN  = document.getElementById('tab-ok-n');
+    if (tabBadN) tabBadN.textContent = badRes.length;
+    if (tabOkN)  tabOkN.textContent  = okRes.length;
+    const tabBtnBad = document.getElementById('tab-btn-bad');
+    if (tabBtnBad && badRes.length === 0) tabBtnBad.style.display = 'none';
+
+    const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    const badSvg   = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
+    const infoSvg  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+
+    function buildItem(r) {
+      const idx  = results.indexOf(r);
+      const qNum = idx + 1;
       if (r.tipo === 'respuesta-abierta') {
-        return `
-          <div class="qz-review-item rv-abierta">
-            <div class="qz-rv-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div>
-              <div class="qz-rv-header">Pregunta abierta — referencia</div>
-              <div class="qz-rv-q">${i + 1}. ${r.q.enunciado || ''}</div>
-              <div class="qz-rv-exp">${r.q.respuestaEjemplo || ''}</div>
-            </div>
-          </div>`;
+        return `<div class="qz-review-item rv-abierta" data-filter="open">
+          <div class="qz-rv-icon">${infoSvg}</div>
+          <div>
+            <div class="qz-rv-header">Pregunta abierta — referencia</div>
+            <div class="qz-rv-q">${qNum}. ${r.q.enunciado || ''}</div>
+            <div class="qz-rv-exp">${r.q.respuestaEjemplo || ''}</div>
+          </div>
+        </div>`;
       }
       const isOk = r.isOk;
       const enunciado = r.q.enunciado || r.q.texto || '';
@@ -1077,25 +1118,31 @@
           ? `<span>Correcto: ${(r.q.opciones || [])[r.q.correcta]}</span>`
           : `Su respuesta: ${r.selectedLabel} — <span>Correcta: ${(r.q.opciones || [])[r.q.correcta]}</span>`;
       }
-      const badIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>';
-      return `
-        <div class="qz-review-item ${isOk ? 'rv-ok' : 'rv-bad'}">
-          <div class="qz-rv-icon">
-            ${isOk
-              ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
-              : badIcon
-            }
-          </div>
-          <div>
-            ${!isOk ? '<div class="qz-rv-header">Para repasar</div>' : ''}
-            <div class="qz-rv-q">${i + 1}. ${enunciado}</div>
-            <div class="qz-rv-a">${answerLine}</div>
-            ${!isOk ? `<div class="qz-rv-exp">${r.q.explicacion || ''}</div>` : ''}
-          </div>
-        </div>`;
-    }).join('');
+      return `<div class="qz-review-item ${isOk ? 'rv-ok' : 'rv-bad'}" data-filter="${isOk ? 'ok' : 'bad'}">
+        <div class="qz-rv-icon">${isOk ? checkSvg : badSvg}</div>
+        <div>
+          ${!isOk ? '<div class="qz-rv-header">Para repasar</div>' : ''}
+          <div class="qz-rv-q">${qNum}. ${enunciado}</div>
+          <div class="qz-rv-a">${answerLine}</div>
+          <div class="qz-rv-exp">${r.q.explicacion || ''}</div>
+        </div>
+      </div>`;
+    }
 
-    document.getElementById('qz-review-list').innerHTML = reviewHTML;
+    document.getElementById('qz-review-list').innerHTML =
+      [...badRes, ...okRes, ...openRes].map(buildItem).join('');
+
+    // Tab filter
+    document.querySelectorAll('#qz-review-tabs .qz-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('#qz-review-tabs .qz-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        document.querySelectorAll('#qz-review-list .qz-review-item').forEach(item => {
+          item.style.display = (filter === 'all' || item.dataset.filter === filter) ? 'flex' : 'none';
+        });
+      });
+    });
   }
 
     function restartQuiz() {
