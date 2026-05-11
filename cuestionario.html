@@ -716,7 +716,8 @@
   function seleccionarSesion(pool) {
     const abiertas  = pool.filter(p => p.tipo === 'respuesta-abierta');
     const cerradas  = pool.filter(p => p.tipo !== 'respuesta-abierta');
-    const mezcladas = [...cerradas].sort(() => Math.random() - 0.5).slice(0, 6);
+    const nCerradas = Math.min(cerradas.length, Math.max(0, 10 - abiertas.length));
+    const mezcladas = [...cerradas].sort(() => Math.random() - 0.5).slice(0, nCerradas);
     return [...mezcladas, ...abiertas].sort(() => Math.random() - 0.5);
   }
 
