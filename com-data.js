@@ -1900,75 +1900,118 @@ const COM = {
     },
 
     tecnico: { titulo: 'Cápsula de Capacitación: TONS Asistencial', laminas: [
-      { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave', contenido: 'Su rol como apoyo clínico en procedimientos, consentimientos, documentación y confidencialidad.',
-        subtitulo: 'Su apoyo clínico es parte del proceso de atención. Lo que no se documenta correctamente también es responsabilidad suya.',
-        mensajeMuela: 'Usted está en la sala cuando todo ocurre. Sepa exactamente qué hacer en cada momento.',
+      { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
+        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
         temas: [
-        { num: '01', texto: 'Su rol junto al profesional', icono: 'play-circle' },
-        { num: '02', texto: '¿Cómo prepara el sillón y el material?', icono: 'package' },
-        { num: '03', texto: '¿Cómo toma los signos vitales?', icono: 'activity' },
-        { num: '04', texto: '¿Cuándo verifica el consentimiento?', icono: 'clipboard-list', critico: true },
-        { num: '05', texto: '¿Cómo asiste durante la atención?', icono: 'hand' },
-        { num: '06', texto: '¿Qué hace después del paciente?', icono: 'check-square' },
-        { num: '07', texto: '¿Qué información clínica no comparte?', icono: 'shield', critico: true },
-        { num: '08', texto: '¿Cuándo cierra la sala con paciente?', icono: 'lock' },
-      ] },
-      { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'TONS Asistencial (Asistente Dental)' },
-      { titulo: 'Rol en el equipo', tipo: 'contenido', icono: '🤝', mascotGesto: 'point',
-        puntos: [
-          { num: 1, texto: 'Usted es el', destacado: 'apoyo directo del profesional durante la atención del paciente' },
-          { num: 2, texto: 'Su trabajo permite que la atención sea', destacado: 'fluida, segura y bien documentada' },
-          { num: 3, texto: 'Aunque no es el autor del registro clínico, su rol cuida la', destacado: 'integridad del proceso' },
-        ], alerta: { icono: '🤝', texto: 'El profesional registra, pero el TONS sostiene todo lo que pasa alrededor. Su orden es parte de la calidad.' }, drcom: '¿Es usted como TONS el autor del registro clínico del paciente?', bubble: '💡 Lo que prepara forma parte de la atención.' },
-      { titulo: 'Apoyo al profesional', tipo: 'contenido', icono: '🙌', mascotGesto: 'think', intro: 'Prepare, asista y confirme la identidad del paciente en cada atención.',
-        puntos: [
-          { num: 1, texto: 'Prepara el', destacado: 'material e instrumental para cada atención' },
-          { num: 2, texto: 'Asiste durante el procedimiento siguiendo las', destacado: 'instrucciones del profesional' },
-          { num: 3, texto: 'Asegura que cada paciente sea atendido con su', destacado: 'identificación correcta vinculada a su RUT' },
-        ], alerta: { icono: '👤', texto: 'Confirmar el paciente correcto al inicio de la atención previene errores que después no se pueden borrar.' }, drcom: '¿Por qué dato confirma la identidad del paciente al inicio de cada atención?', bubble: '💡 ¿Cómo se sentiría si atendieran al paciente equivocado?' },
-      { titulo: 'Consentimientos', tipo: 'contenido', icono: '✍️', mascotGesto: 'point',
-        puntos: [
-          { num: 1, texto: 'Ley 21.084: verifique que el consentimiento esté', destacado: 'firmado por el paciente antes de cualquier procedimiento invasivo' },
-          { num: 2, texto: 'Apoye al profesional para que el documento sea entregado al', destacado: 'Encargado de Calidad al cierre del día' },
-          { num: 3, texto: 'Nunca deje consentimientos firmados en', destacado: 'escritorios, cajones o salas no autorizadas' },
-        ], alerta: { icono: '📋', texto: 'Un consentimiento firmado es un documento legal. No es papel suelto que pueda quedar por ahí.' }, drcom: '¿Cuándo debe entregarse el consentimiento firmado al Encargado de Calidad?', bubble: '💡 Esa firma es una decisión que merece cuidado.' },
-      { titulo: 'Acceso a RAYEN', tipo: 'contenido', icono: '🔑', mascotGesto: 'think', intro: 'Si tiene acceso a RAYEN, úselo solo dentro de las atribuciones asignadas por resolución.',
-        puntos: [
-          { num: 1, texto: 'Si tiene acceso a RAYEN, su uso está', destacado: 'limitado a las atribuciones asignadas por resolución' },
-          { num: 2, texto: 'Sus credenciales son', destacado: 'personales e intransferibles' },
-          { num: 3, texto: 'Nunca comparta su clave ni', destacado: 'use la de otra persona' },
-        ], alerta: { icono: '🔑', texto: 'Su acceso es del tamaño de su rol. No se exceda, no se preste.' }, drcom: '¿Puede acceder en RAYEN a información fuera de las atribuciones de su resolución?', bubble: '💡 ¿Le gustaría que alguien excediera su acceso?' },
-      { titulo: 'Ficha en papel', tipo: 'contenido', icono: '📄', mascotGesto: 'point',
-        puntos: [
-          { num: 1, texto: 'Cuando RAYEN no opera, ayude al profesional a', destacado: 'imprimir el formato físico de emergencia' },
-          { num: 2, texto: 'Cuide que el registro quede', destacado: 'claro, legible y completo durante la atención' },
-          { num: 3, texto: 'Una vez restablecido el sistema, recuerde al profesional', destacado: 'traspasar la información a RAYEN' },
-        ], alerta: { icono: '📄', texto: 'El papel salva la jornada. Pero su recordatorio salva el traspaso a RAYEN.' }, drcom: 'Una vez que RAYEN vuelve, ¿quién es responsable de hacer el traspaso de la ficha en papel?', bubble: '💡 Su recordatorio salva la trazabilidad de alguien.' },
-      { titulo: 'Fotografías clínicas', tipo: 'contenido', icono: '📷', mascotGesto: 'think',
-        puntos: [
-          { num: 1, texto: 'Si asiste en la toma de fotografías clínicas, use exclusivamente', destacado: 'cámara y computador institucionales' },
-          { num: 2, texto: 'Nunca use', destacado: 'su celular personal ni el de otra persona' },
-          { num: 3, texto: 'Una vez utilizada la imagen,', destacado: 'elimínela de la cámara y del computador' },
-        ], alerta: { icono: '📷', texto: 'Una foto en su celular personal es un riesgo legal que no vale la pena correr.' }, drcom: '¿Puede usar el celular del paciente para tomar la fotografía clínica si él da su permiso?', bubble: '💡 ¿Querría que custodiaran así una imagen suya?' },
-      { titulo: 'Confidencialidad y dato sensible', tipo: 'contenido', icono: '🔒', mascotGesto: 'point',
-        puntos: [
-          { num: 1, texto: 'La ficha clínica es', destacado: 'dato sensible (Ley 19.628), regulado por Decreto 41 y Ley 21.084' },
-          { num: 2, texto: 'No comente la información clínica del paciente', destacado: 'fuera del contexto de atención' },
-          { num: 3, texto: 'Solo personas', destacado: 'directamente vinculadas a la atención pueden acceder a esa información' },
-        ], alerta: { icono: '🔒', tipo: 'danger', texto: 'Lo que pasa en la sala, queda en la sala clínica. No es tema de cafetería ni de WhatsApp.' }, drcom: '¿Puede compartir detalles del caso de un paciente con un colega de otro servicio del COM?', bubble: '💡 Lo que pasa en la sala, ahí queda.' },
-      { titulo: 'Coordinación de equipo', tipo: 'contenido', icono: '🤝', mascotGesto: 'think', intro: 'Usted trabaja con todo el equipo clínico — comunique hallazgos oportunamente.',
-        puntos: [
-          { num: 1, texto: 'Trabaja con el', destacado: 'cirujano dentista, higienista, operador de radiografía y administrativos' },
-          { num: 2, texto: 'Si necesita un documento del kárdex, debe pedirlo', destacado: 'el profesional responsable mediante el formulario' },
-          { num: 3, texto: 'Comunique oportunamente al equipo', destacado: 'cualquier hallazgo o necesidad relacionada con la atención' },
-        ], alerta: { icono: '🤝', texto: 'Usted ve cosas que el profesional no ve. Hable cuando algo no encaje.' }, drcom: 'Si necesita un documento del kárdex para apoyar al profesional, ¿puede pedirlo directamente a Calidad?', bubble: '💡 ¿Esperaría que callaran algo importante sobre usted?' },
-      { titulo: 'Cierre', tipo: 'cierre', mascotGesto: 'wave', intro: 'Repaso de los Puntos Claves',
-        puntos: [
-          { num: 1, texto: 'Apoyo clínico:', destacado: 'sin asumir responsabilidades que no le corresponden' },
-          { num: 2, texto: 'Consentimientos:', destacado: 'verifique firma antes y entréguelos a Calidad al cierre del día' },
-          { num: 3, texto: 'Credenciales:', destacado: 'solo dentro de las atribuciones de su rol; nunca prestar' },
-          { num: 4, texto: 'Fotografías clínicas:', destacado: 'solo dispositivos institucionales, eliminadas tras el uso' },
-        ], cierre: { texto: '¡Está listo/a para el cuestionario de práctica!', cta: 'Ir al cuestionario' } },
+          { num: '01', texto: 'Mi rol junto al profesional', icono: 'play-circle', critico: true },
+          { num: '02', texto: 'Consentimientos informados', icono: 'clipboard-list', critico: true },
+          { num: '03', texto: 'Acceso a RAYEN y credenciales', icono: 'key' },
+          { num: '04', texto: 'Contingencia — ficha en papel', icono: 'cloud-off' },
+          { num: '05', texto: 'Fotografías clínicas', icono: 'camera' },
+          { num: '06', texto: 'Confidencialidad y coordinación', icono: 'shield' },
+          { num: '07', texto: 'Cierre', icono: 'check-circle' },
+        ] },
+      { tipo: 'identificacion', rol: 'TONS Asistencial (Asistente Dental)' },
+      { id: 'tons_rol', titulo: 'Soy el apoyo del profesional. No el autor del registro.',
+        subtitulo: 'Mi apoyo es parte de la atención. La identidad del paciente me importa desde el inicio.',
+        bloques: [
+          { tipo: 'tres-iconos', items: [
+            { icono: 'users', titulo: 'MI ROL', texto: 'Apoyo directo al profesional durante la atención. Mi orden es parte de la calidad.' },
+            { icono: 'tool', titulo: 'APOYO CLÍNICO', texto: 'Preparo el material, asisto en el procedimiento y cuido el flujo de la atención.' },
+            { icono: 'user-check', titulo: 'IDENTIDAD DEL PACIENTE', texto: 'Confirmo que cada paciente sea atendido con su identificación vinculada al RUT.' },
+          ] },
+          { tipo: 'callout-rojo', titulo: 'El profesional registra, pero el TONS sostiene todo lo que pasa alrededor. Su orden es parte de la calidad.' },
+        ],
+        poseDrCom: 'dr-com-pensando', mensajeDrCom: '¿Es el TONS el autor del registro clínico del paciente?' },
+      { id: 'tons_consentimientos', titulo: 'Sin firma no hay procedimiento.',
+        subtitulo: 'Ley 21.084: sin consentimiento firmado, no se inicia ningún procedimiento invasivo.',
+        bloques: [
+          { tipo: 'tres-iconos', items: [
+            { icono: 'pen-tool', titulo: 'FIRMA PREVIA', texto: 'Verifique que el consentimiento esté firmado antes de cualquier procedimiento invasivo.' },
+            { icono: 'archive', titulo: 'ENTREGA AL CIERRE', texto: 'Apoye al profesional para entregar el documento firmado al Encargado de Calidad al cierre del día.' },
+            { icono: 'lock', titulo: 'CUSTODIA SEGURA', texto: 'Nunca deje consentimientos en escritorios, cajones ni salas no autorizadas.' },
+          ] },
+          { tipo: 'callout-rojo', titulo: 'Un consentimiento firmado es un documento legal. No es papel suelto que pueda quedar por ahí.' },
+        ],
+        poseDrCom: 'dr-com-explicando', mensajeDrCom: '¿Cuándo debe entregarse el consentimiento al Encargado de Calidad?' },
+      { id: 'tons_rayen', titulo: 'RAYEN: acceso según mi rol y contingencia.',
+        subtitulo: 'Mi clave es mía. El papel, solo en emergencia.',
+        bloques: [
+          { tipo: 'seccion-doble-vertical',
+            seccionSuperior: {
+              tituloSeccion: '🔑 Acceso a RAYEN',
+              bloques: [
+                { tipo: 'tres-iconos', items: [
+                  { icono: 'file-text', titulo: 'POR RESOLUCIÓN', texto: 'Su acceso está asignado por resolución. Úselo solo dentro de ese marco.' },
+                  { icono: 'sliders', titulo: 'USO RESTRINGIDO', texto: 'No acceda a información fuera de sus atribuciones, aunque técnicamente pueda verla.' },
+                  { icono: 'key', titulo: 'CREDENCIALES', texto: 'Su usuario y clave son personales e intransferibles. Nunca las preste.' },
+                ] },
+              ],
+            },
+            seccionInferior: {
+              tituloSeccion: '📄 Contingencia — si RAYEN no opera',
+              bloques: [
+                { tipo: 'pasos-horizontal', pasos: [
+                  { numero: '1', titulo: 'FORMATO FÍSICO', texto: 'Ayude al profesional a imprimir el formato de emergencia.' },
+                  { numero: '2', titulo: 'REGISTRO COMPLETO', texto: 'Cuide que quede claro, legible y completo durante la atención.' },
+                  { numero: '3', titulo: 'RECORDAR TRASPASO', texto: 'Cuando RAYEN vuelva, recuerde al profesional traspasar la información.' },
+                ] },
+              ],
+            },
+          },
+          { tipo: 'callout-rojo', titulo: 'Su acceso es del tamaño de su rol. Y el papel, solo en contingencia.' },
+        ],
+        poseDrCom: 'dr-com-pensando', mensajeDrCom: '¿Puede acceder en RAYEN a información fuera de las atribuciones de su resolución?' },
+      { id: 'tons_fotos', titulo: 'Las fotos clínicas son de la institución.',
+        subtitulo: 'Solo cámara y computador institucionales. Eliminadas tras su uso.',
+        bloques: [
+          { tipo: 'escenarios-semaforo', escenarios: [
+            { icono: '📷', descripcion: 'Cámara y computador institucionales del COM. Imagen eliminada tras su uso.', resultado: 'verde', texto: 'Correcto. Trazabilidad clínica resguardada.' },
+            { icono: '📱', descripcion: 'Celular personal o de otra persona. Aunque el paciente lo autorice.', resultado: 'rojo', texto: 'Problema legal. La imagen queda fuera del control del COM.' },
+          ] },
+          { tipo: 'callout-rojo', titulo: 'Una foto en su celular personal es un riesgo legal que no vale la pena correr.' },
+        ],
+        poseDrCom: 'dr-com-pensando', mensajeDrCom: '¿Puede usar el celular del paciente para la fotografía clínica si él lo autoriza?' },
+      { id: 'tons_confidencialidad', titulo: 'Lo que pasa en la sala, queda en la sala clínica.',
+        subtitulo: 'Confidencialidad del dato sensible y coordinación oportuna con el equipo.',
+        bloques: [
+          { tipo: 'seccion-doble-vertical',
+            seccionSuperior: {
+              tituloSeccion: '🔒 Confidencialidad del dato sensible',
+              bloques: [
+                { tipo: 'tres-iconos', items: [
+                  { icono: 'shield', titulo: 'MARCO LEGAL', texto: 'Ley 19.628, Decreto 41 y Ley 21.084. La ficha clínica es dato sensible con máxima protección.' },
+                  { icono: 'message-square', titulo: 'SIN COMENTARIOS', texto: 'No comente información clínica fuera del contexto de atención. Ni en pasillo ni en cafetería.' },
+                  { icono: 'user-check', titulo: 'SOLO ATENCIÓN', texto: 'Solo personas directamente vinculadas a la atención del paciente pueden acceder a esa información.' },
+                ] },
+              ],
+            },
+            seccionInferior: {
+              tituloSeccion: '🤝 Coordinación con el equipo',
+              bloques: [
+                { tipo: 'tres-iconos', items: [
+                  { icono: 'users', titulo: 'EQUIPO CLÍNICO', texto: 'Trabaja con dentista, higienista, operador de radiografía y administrativos.' },
+                  { icono: 'eye', titulo: 'HALLAZGOS', texto: 'Comunique oportunamente al equipo cualquier hallazgo o necesidad relacionada con la atención.' },
+                  { icono: 'file', titulo: 'DOCUMENTOS KÁRDEX', texto: 'Si se necesita un documento del kárdex, debe pedirlo el profesional responsable mediante formulario.' },
+                ] },
+              ],
+            },
+          },
+        ],
+        poseDrCom: 'dr-com-explicando', mensajeDrCom: '¿Puede compartir detalles del caso de un paciente con un colega de otro servicio?' },
+      { id: 'tons_cierre', titulo: 'Lo esencial de mi rol',
+        bloques: [
+          { tipo: 'cuatro-reglas-cards-compactas', reglas: [
+            { numero: '1', titulo: 'Apoyo clínico', texto: 'Sin asumir responsabilidades que no me corresponden.' },
+            { numero: '2', titulo: 'Consentimientos', texto: 'Firma antes del procedimiento. Entrega a Calidad al cierre del día.' },
+            { numero: '3', titulo: 'Credenciales', texto: 'Solo dentro de mis atribuciones. Nunca prestar mi clave.' },
+            { numero: '4', titulo: 'Fotos y confidencialidad', texto: 'Solo equipos institucionales. Lo clínico queda en lo clínico.' },
+          ] },
+          { tipo: 'frase-ancla', texto: 'Yo apoyo, yo verifico, yo protejo.' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
+        ],
+        poseDrCom: 'dr-com-celebrando',
+        ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
       preguntas: [
