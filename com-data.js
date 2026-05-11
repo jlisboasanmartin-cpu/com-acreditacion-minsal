@@ -816,8 +816,8 @@ const COM = {
               }
             },
             { tipo: 'imagen-y-texto-lateral',
-              imagen: 'assets/images/consentimiento-informado-anexo-3.png',
-              imagenAlt: 'Formulario Anexo 3 — Consentimiento informado Ley 20.584',
+              imagen: 'assets/images/consentimiento-informado-anexo-3-completo.png',
+              imagenAlt: 'Formulario Anexo 3 — Consentimiento informado Ley 20.584 (completo)',
               imagenCaption: 'Formulario Anexo 3',
               texto: '<strong>Este es el formulario oficial.</strong><br>Lo encuentra en salas de procedimientos.<br>Se archiva en el kárdex del 2do piso.'
             }
