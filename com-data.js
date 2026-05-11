@@ -21,7 +21,7 @@ const COM = {
   capsulas: {
     direccion: { titulo: 'Cápsula de Capacitación: Dirección y Equipo Gestor', laminas: [
       { titulo: 'Dirección y Equipo Gestor', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
+        subtitulo: 'Ocho láminas sobre lo que usted firma, autoriza y protege.',
         mensajeMuela: 'Su firma tiene peso legal. En 10 minutos repasamos cuándo y cómo usarla.',
         temas: [
           { num: '01', texto: 'Su firma como autoridad institucional', icono: 'play-circle' },
@@ -154,7 +154,7 @@ const COM = {
               { numero: 4, icono: 'file-check', titulo: 'Trazabilidad', texto: 'Actas, planillas y doble firma siempre.' },
             ],
           },
-          { tipo: 'frase-ancla', texto: 'Yo autorizo, yo firmo, yo respondo.', tamano: 'grande' },
+          { tipo: 'frase-ancla', texto: 'Sin resolución firmada, no hay acceso.', tamano: 'grande' },
           { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
@@ -287,7 +287,7 @@ const COM = {
     calidad: { titulo: 'Cápsula de Capacitación: Encargado de Calidad', laminas: [
       { titulo: 'Encargado de Calidad', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
         contenido: 'El custodio del kárdex y garante del orden documental del COM.',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su perfil.',
+        subtitulo: 'Ocho láminas sobre el kárdex que custodia y los documentos que gestiona.',
         mensajeMuela: 'Cada documento del COM pasa por sus manos. Ordenemos juntos las reglas.',
         temas: [
           { num: '01', texto: 'Soy el custodio del kárdex', icono: 'play-circle' },
@@ -869,7 +869,7 @@ const COM = {
 
     radiografia: { titulo: 'Cápsula de Capacitación: Operador de Radiografía', laminas: [
       { titulo: 'Operador de Radiografía', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
+        subtitulo: 'Ocho láminas sobre trazabilidad, envío y confidencialidad de imágenes.',
         mensajeMuela: 'Sus imágenes tienen un protocolo exacto. Lo vemos juntos en 10 minutos.',
         temas: [
           { num: '01', texto: 'Mi rol con las radiografías', icono: 'play-circle' },
@@ -999,7 +999,7 @@ const COM = {
               { numero: 4, icono: 'file-text', titulo: 'Registro', texto: 'Siempre · dos formatos distintos.' },
             ],
           },
-          { tipo: 'frase-ancla', texto: 'Yo tomo, yo cuido, yo registro.', tamano: 'grande' },
+          { tipo: 'frase-ancla', texto: 'Cada imagen tiene un RUT, cada RUT tiene un dueño.', tamano: 'grande' },
           { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
@@ -1130,7 +1130,7 @@ const COM = {
     administrativo: { titulo: 'Cápsula de Capacitación: Administrativo SOME/OIRS', laminas: [
       { titulo: 'Administrativo SOME/OIRS', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
         contenido: 'Su rol como primer filtro en la ventanilla: atención en Hora Salud y gestión de solicitudes de ficha clínica.',
-        subtitulo: 'Lo que el paciente ve primero lo maneja usted. Ocho temas, una idea central.',
+        subtitulo: 'Lo que el paciente ve primero lo maneja usted. Nueve temas, una idea central.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.',
         temas: [
           { num: '01', texto: 'Mi rol en la ventanilla', icono: 'play-circle' },
@@ -1141,6 +1141,7 @@ const COM = {
           { num: '06', texto: 'Antes de derivar', icono: 'check-circle' },
           { num: '07', texto: 'Hora Salud en ventanilla', icono: 'monitor' },
           { num: '08', texto: 'Lo que digo y lo que no digo', icono: 'lock', critico: true },
+          { num: '09', texto: 'Cierre', icono: 'check-circle' },
         ] },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
@@ -1431,7 +1432,7 @@ const COM = {
 
     higienista: { titulo: 'Cápsula de Capacitación: Higienista', laminas: [
       { titulo: 'Higienista', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
+        subtitulo: 'Siete láminas sobre registro, contingencia y confidencialidad en su atención.',
         mensajeMuela: 'Su rol en la ficha clínica es tan importante como el del dentista. Aquí está todo.',
         temas: [
           { num: '01', texto: 'Mi rol, RAYEN y credenciales', icono: 'play-circle', critico: true },
@@ -1525,7 +1526,7 @@ const COM = {
               { numero: 4, icono: 'file-text', titulo: 'Kárdex', texto: 'Formulario + 2 días hábiles.' },
             ],
           },
-          { tipo: 'frase-ancla', texto: 'Yo registro, yo cuido, yo protejo.', tamano: 'grande' },
+          { tipo: 'frase-ancla', texto: 'Lo que hago en el sillón, queda en la ficha.', tamano: 'grande' },
           { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
@@ -1656,7 +1657,7 @@ const COM = {
 
     sigges: { titulo: 'Cápsula de Capacitación: Referente SIGGES', laminas: [
       { titulo: 'Referente SIGGES', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
+        subtitulo: 'Ocho láminas sobre garantías GES, triple consistencia y monitoreo de plazos.',
         mensajeMuela: 'Una garantía GES vencida es un derecho vulnerado. Aprendamos a evitarlo.',
         temas: [
           { num: '01', texto: 'Su rol en las garantías GES', icono: 'play-circle' },
@@ -1770,7 +1771,7 @@ const COM = {
               { numero: 4, icono: 'archive', titulo: 'Kárdex GES', texto: 'Bajo llave · 2do piso · ordenado por RUT' },
             ],
           },
-          { tipo: 'frase-ancla', texto: 'Yo monitoreo, yo cargo, yo registro.', tamano: 'grande' },
+          { tipo: 'frase-ancla', texto: 'Tres fuentes, una sola verdad: papel, RAYEN, SIGGES.', tamano: 'grande' },
           { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
@@ -1901,7 +1902,7 @@ const COM = {
 
     tecnico: { titulo: 'Cápsula de Capacitación: TONS Asistencial', laminas: [
       { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas. Todo lo que el evaluador puede preguntarle sobre su rol.',
+        subtitulo: 'Siete láminas sobre apoyo clínico, consentimientos y acceso a RAYEN.',
         temas: [
           { num: '01', texto: 'Mi rol junto al profesional', icono: 'play-circle', critico: true },
           { num: '02', texto: 'Consentimientos informados', icono: 'clipboard-list', critico: true },
@@ -2007,7 +2008,7 @@ const COM = {
             { numero: '3', titulo: 'Credenciales', texto: 'Solo dentro de mis atribuciones. Nunca prestar mi clave.' },
             { numero: '4', titulo: 'Fotos y confidencialidad', texto: 'Solo equipos institucionales. Lo clínico queda en lo clínico.' },
           ] },
-          { tipo: 'frase-ancla', texto: 'Yo apoyo, yo verifico, yo protejo.' },
+          { tipo: 'frase-ancla', texto: 'Asisto al profesional, resguardo al paciente.' },
           { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
