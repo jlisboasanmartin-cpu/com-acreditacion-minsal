@@ -392,6 +392,16 @@ input:focus-visible,
 .form-input::placeholder { color: var(--text-light); }
 .form-actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 24px; }
 
+/* ─── RAYEN inline logo ─── */
+.rayen-logo {
+  width: 18px; height: 18px;
+  vertical-align: middle;
+  margin-right: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative; top: -1px;
+}
+
 /* ─── Dr. COM — animación flotante ─── */
 @keyframes flotarDrCom {
   0%, 100% { transform: translateY(0px); }

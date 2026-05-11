@@ -258,6 +258,12 @@
 
 <script src="com-data.js"></script>
 <script>
+  /* ── RAYEN logo helper ── */
+  const _RAYEN_LOGO = '<img src="assets/images/rayen-logo.png" class="rayen-logo" alt="" aria-hidden="true">';
+  function injectRayenLogo(html) {
+    return (html || '').replace(/\bRAYEN\b(?![^<]*?>)/g, _RAYEN_LOGO + 'RAYEN');
+  }
+
   const params   = new URLSearchParams(window.location.search);
   const perfilId = params.get('id') || 'dentista';
   const perfil   = COM.getPerfilById(perfilId);
@@ -283,7 +289,7 @@
       <div class="gs-seccion">
         <div class="gs-seccion-titulo">${sec.titulo}</div>
         <ul class="gs-seccion-list">
-          ${(sec.items || []).map(item => `<li class="gs-seccion-item">${item}</li>`).join('')}
+          ${(sec.items || []).map(item => `<li class="gs-seccion-item">${injectRayenLogo(item)}</li>`).join('')}
         </ul>
       </div>`).join('');
     body.innerHTML += `
@@ -296,8 +302,8 @@
   if (guia.marcoLegal && guia.marcoLegal.length) {
     const rows = guia.marcoLegal.map(m => `
       <tr>
-        <td class="gs-legal-norma" style="color:${perfil.color}">${m.norma}</td>
-        <td>${m.proposito}</td>
+        <td class="gs-legal-norma" style="color:${perfil.color}">${injectRayenLogo(m.norma)}</td>
+        <td>${injectRayenLogo(m.proposito)}</td>
       </tr>`).join('');
     body.innerHTML += `
       <div class="gs-divider"></div>
@@ -313,7 +319,7 @@
     const reglas = guia.reglasOro.map((r, i) => `
       <div class="gs-regla">
         <div class="gs-regla-num" style="background:${perfil.color}">${i + 1}</div>
-        <div class="gs-regla-text">${r}</div>
+        <div class="gs-regla-text">${injectRayenLogo(r)}</div>
       </div>`).join('');
     body.innerHTML += `
       <div class="gs-divider"></div>
@@ -327,8 +333,8 @@
       <div class="gs-divider"></div>
       <div class="gs-frase-magica">
         <div class="gs-frase-label">Si no sabe la respuesta</div>
-        <div class="gs-frase-text">"${guia.fraseMagica}"</div>
-        ${guia.fraseMagicaSubtexto ? `<div class="gs-frase-subtexto">${guia.fraseMagicaSubtexto}</div>` : ''}
+        <div class="gs-frase-text">"${injectRayenLogo(guia.fraseMagica)}"</div>
+        ${guia.fraseMagicaSubtexto ? `<div class="gs-frase-subtexto">${injectRayenLogo(guia.fraseMagicaSubtexto)}</div>` : ''}
       </div>`;
   }
 

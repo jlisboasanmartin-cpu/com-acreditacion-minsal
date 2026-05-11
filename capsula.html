@@ -947,6 +947,12 @@
     'assets/images/poses-clean/dr-com-pensando.png',
     'assets/images/poses-clean/dr-com-celebrando.png',
   ];
+  /* ── RAYEN logo helper ── */
+  const _RAYEN_LOGO = '<img src="assets/images/rayen-logo.png" class="rayen-logo" alt="" aria-hidden="true">';
+  function injectRayenLogo(html) {
+    return (html || '').replace(/\bRAYEN\b(?![^<]*?>)/g, _RAYEN_LOGO + 'RAYEN');
+  }
+
   function getMascot(idx, pId, lam) {
     if (lam && lam.poseDrCom) return `assets/images/poses-clean/${lam.poseDrCom}.png`;
     const map = MASCOT_MAP[pId] || MASCOT_DEFAULT;
@@ -1527,10 +1533,10 @@
       <div class="cap-slide-topbar" style="background:${prf.color}"></div>
       <div class="cap-mascot-panel">
         <div class="cap-slide-num">${idx + 1} / ${total}</div>
-        <div class="cap-bubble">${getBubble(lam)}</div>
+        <div class="cap-bubble">${injectRayenLogo(getBubble(lam))}</div>
         ${mascotBody}
       </div>
-      <div class="cap-content">${buildSlideContent(lam, idx, total, prf, pId)}</div>`;
+      <div class="cap-content">${injectRayenLogo(buildSlideContent(lam, idx, total, prf, pId))}</div>`;
     return div;
   }
 

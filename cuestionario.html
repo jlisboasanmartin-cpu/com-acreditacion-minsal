@@ -672,6 +672,12 @@
 
 <script src="com-data.js"></script>
 <script>
+  /* ── RAYEN logo helper ── */
+  const _RAYEN_LOGO = '<img src="assets/images/rayen-logo.png" class="rayen-logo" alt="" aria-hidden="true">';
+  function injectRayenLogo(html) {
+    return (html || '').replace(/\bRAYEN\b(?![^<]*?>)/g, _RAYEN_LOGO + 'RAYEN');
+  }
+
   /* ── Setup ── */
   const params   = new URLSearchParams(window.location.search);
   const perfilId = params.get('id') || 'dentista';
@@ -733,7 +739,7 @@
 
     document.getElementById('q-counter').textContent = `PREGUNTA ${current + 1} DE ${total}`;
     document.getElementById('q-type').textContent = TIPO_LABEL[q.tipo] || q.tipo;
-    document.getElementById('q-text').textContent = q.enunciado || q.texto || '';
+    document.getElementById('q-text').innerHTML = injectRayenLogo(q.enunciado || q.texto || '');
     document.getElementById('sc-ok').textContent  = correctCount;
     document.getElementById('sc-bad').textContent = wrongCount;
 
@@ -759,7 +765,7 @@
         const btn = document.createElement('button');
         btn.className = 'qz-opt';
         btn.dataset.idx = i;
-        btn.innerHTML = `<div class="qz-opt-letter">${LETTERS[i]}</div><div class="qz-opt-text">${opt}</div>`;
+        btn.innerHTML = `<div class="qz-opt-letter">${LETTERS[i]}</div><div class="qz-opt-text">${injectRayenLogo(opt)}</div>`;
         btn.addEventListener('click', () => handleAnswer(i));
         optEl.appendChild(btn);
       });
@@ -799,8 +805,8 @@
         </button>
         <div class="qz-abierta-answer" id="abierta-answer">
           <div class="qz-abierta-answer-label">Respuesta esperada</div>
-          <div class="qz-abierta-answer-text">${q.respuestaEjemplo || ''}</div>
-          <div class="qz-abierta-answer-exp">${q.explicacion || ''}</div>
+          <div class="qz-abierta-answer-text">${injectRayenLogo(q.respuestaEjemplo || '')}</div>
+          <div class="qz-abierta-answer-exp">${injectRayenLogo(q.explicacion || '')}</div>
         </div>`;
       optEl.appendChild(wrap);
       wrap.querySelector('#btn-reveal-abierta').addEventListener('click', () => {
@@ -836,9 +842,9 @@
     document.getElementById('fb-title').textContent = isOk ? '¡Correcto!' : 'Para repasar:';
     const fbText = document.getElementById('fb-text');
     if (!isOk && correctLabel) {
-      fbText.innerHTML = `<span style="color:#2E7D32;font-weight:600">✓ Lo correcto era: ${correctLabel}</span><br><span style="color:var(--text-mid)">${q.explicacion || ''}</span>`;
+      fbText.innerHTML = `<span style="color:#2E7D32;font-weight:600">✓ Lo correcto era: ${injectRayenLogo(correctLabel)}</span><br><span style="color:var(--text-mid)">${injectRayenLogo(q.explicacion || '')}</span>`;
     } else {
-      fbText.textContent = q.explicacion || '';
+      fbText.innerHTML = injectRayenLogo(q.explicacion || '');
     }
     const reviewLink = document.getElementById('fb-review-link');
     reviewLink.href = `capsula.html?id=${perfilId}`;
