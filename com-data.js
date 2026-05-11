@@ -52,7 +52,9 @@ const COM = {
           { num: 2, texto: 'Usted aprueba después de que el Encargado de Calidad', destacado: 'verifica la documentación' },
           { num: 3, texto: 'El plazo total de respuesta es de', destacado: '10 días hábiles desde la solicitud' },
           { num: 4, texto: 'La entrega se formaliza con', destacado: 'firma de quien entrega y firma de quien recibe — sin esto no hay trazabilidad' },
-        ], alerta: { icono: '📋', texto: 'Si falta una copia de cédula o un poder notarial, no se aprueba. Punto.' }, drcom: '¿Cuántos días hábiles tiene el establecimiento para responder a una solicitud externa de ficha?', bubble: '💡 Cada requisito protege a una persona real.' },
+        ], alerta: { icono: '📋', texto: 'Si falta una copia de cédula o un poder notarial, no se aprueba. Punto.' },
+        docPreview: { imagen: 'assets/images/reg-1-2-solicitud.png', alt: 'Formulario REG 1.2 — Solicitud de información clínica', caption: '← Requiere su firma después del Encargado de Calidad' },
+        drcom: '¿Cuántos días hábiles tiene el establecimiento para responder a una solicitud externa de ficha?', bubble: '💡 Cada requisito protege a una persona real.' },
       { titulo: 'Eliminación de fichas clínicas', tipo: 'contenido', icono: '🗑️', mascotGesto: 'think', intro: 'La eliminación es un proceso formal con varios pasos antes de destruir cualquier documento.',
         puntos: [
           { num: 1, texto: 'Solo se eliminan fichas con', destacado: 'más de 15 años desde el último ingreso de información' },
@@ -242,7 +244,9 @@ const COM = {
           { num: 1, texto: 'El profesional debe completar el', destacado: 'formulario de solicitud con todos sus datos' },
           { num: 2, texto: 'Usted verifica los datos y aprueba con timbre y firma, luego gestiona la', destacado: 'autorización de Dirección' },
           { num: 3, texto: 'Cada entrega y devolución se registra en la planilla con', destacado: 'firma de quien entrega y de quien recibe' },
-        ], alerta: { icono: '📋', texto: 'Sin formulario completo, no hay entrega. Es la regla más simple del kárdex.' }, drcom: 'Un profesional llega sin formulario y dice que es urgente. ¿Qué hace?', bubble: '💡 ¿Querría que accedieran así a la suya?' },
+        ], alerta: { icono: '📋', texto: 'Sin formulario completo, no hay entrega. Es la regla más simple del kárdex.' },
+        docPreview: { imagen: 'assets/images/reg-1-2-solicitud.png', alt: 'Formulario REG 1.2 — Solicitud de registros', caption: '← El formulario que debe revisar y firmar' },
+        drcom: 'Un profesional llega sin formulario y dice que es urgente. ¿Qué hace?', bubble: '💡 ¿Querría que accedieran así a la suya?' },
       { titulo: 'Plazos de devolución y resguardo', tipo: 'contenido', icono: '⏰', mascotGesto: 'point', intro: 'Los plazos son cortos y firmes; ningún documento puede salir del establecimiento.',
         puntos: [
           { num: 1, texto: 'El profesional debe devolver el documento en un', destacado: 'máximo de 2 días hábiles' },
@@ -599,6 +603,7 @@ const COM = {
               { icono: 'file-text', titulo: 'PASO 2 — ¿Cómo lo pide?', texto: '• Complete el formulario REG 1.2<br>• Indique la justificación<br>• Firme y entregue al Encargado de Calidad' },
               { icono: 'check-circle', titulo: 'PASO 3 — ¿Qué pasa después?', texto: '• Encargado de Calidad y Dirección aprueban<br>• Le entregan el documento<br>• Plazo de devolución: 2 días hábiles' }
             ]},
+            { tipo: 'doc-preview-simple', imagen: 'assets/images/reg-1-2-solicitud.png', alt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad', caption: '← Formulario de solicitud al Encargado de Calidad' },
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección en el archivador REG.' }
           ],
           poseDrCom: 'dr-com-explicando',
@@ -612,13 +617,13 @@ const COM = {
           subtitulo: 'El flujo correcto: 5 pasos desde la consulta hasta el cierre del caso.',
           bloques: [
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera la atención primaria: derive vía Hospital Digital.' },
-            { tipo: 'split-pasos-imagen',
+            { tipo: 'banner-pasos-vertical',
               imagen: 'assets/images/hospital-digital-plataforma.png',
               imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
               imagenCaption: 'interconsulta.minsal.cl — ingrese con su ClaveÚnica',
               pasos: [
-                { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'interconsulta.minsal.cl con su RUT y ClaveÚnica. Elija especialidad y describa el motivo.' },
-                { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega al correo institucional. La encargada chequea que ningún caso quede sin cierre.' },
+                { n: 1, icono: 'globe',        titulo: 'Genere la interconsulta',  texto: 'interconsulta.minsal.cl con su RUT y ClaveÚnica. Elija especialidad y describa el motivo clínico.' },
+                { n: 2, icono: 'mail',         titulo: 'Espere la respuesta',      texto: 'Llega al correo institucional. La encargada de adultos chequea que ningún caso quede sin cierre.' },
                 { n: 3, icono: 'phone',        titulo: 'Contacte al paciente',     texto: '10 días hábiles desde la respuesta para contactar y aplicar las indicaciones.' },
                 { n: 4, icono: 'edit-3',       titulo: 'Registre en RAYEN',        texto: 'Consigne la respuesta del especialista en la ficha del paciente.' },
                 { n: 5, icono: 'check-circle', titulo: 'Cierre con Causal N°19',   texto: 'Hospital Digital → Seguimiento → Sin datos → Causal N°19 → Guardar.' }
