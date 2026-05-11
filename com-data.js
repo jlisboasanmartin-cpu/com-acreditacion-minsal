@@ -21,7 +21,7 @@ const COM = {
   capsulas: {
     direccion: { titulo: 'Cápsula de Capacitación: Dirección y Equipo Gestor', laminas: [
       { titulo: 'Dirección y Equipo Gestor', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Ocho láminas sobre lo que usted firma, autoriza y protege.',
+        subtitulo: 'Nueve láminas sobre lo que usted firma, autoriza y protege.',
         mensajeMuela: 'Su firma tiene peso legal. En 10 minutos repasamos cuándo y cómo usarla.',
         temas: [
           { num: '01', texto: 'Su firma como autoridad institucional', icono: 'play-circle' },
@@ -30,10 +30,11 @@ const COM = {
           { num: '04', texto: 'Eliminación y unificación de fichas', icono: 'trash-2' },
           { num: '05', texto: 'Radiografías y contingencia RAYEN', icono: 'send' },
           { num: '06', texto: 'Confidencialidad y dato sensible', icono: 'lock', critico: true },
-          { num: '07', texto: 'Cierre', icono: 'check-circle' },
+          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
+          { num: '08', texto: 'Cierre', icono: 'check-circle' },
         ] },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Dirección o parte del Equipo Gestor' },
-      { id: 'dir_rol', numero: '2/8', titulo: 'Mi firma respalda cada decisión sobre la ficha.',
+      { id: 'dir_rol', numero: '2/9', titulo: 'Mi firma respalda cada decisión sobre la ficha.',
         subtitulo: 'Sin aprobación escrita, ningún acceso, entrega ni eliminación tiene validez.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -45,7 +46,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Su firma<br>cuida al<br>paciente.' },
-      { id: 'dir_resoluciones', numero: '3/8', titulo: 'Mis resoluciones deben estar vigentes.',
+      { id: 'dir_resoluciones', numero: '3/9', titulo: 'Mis resoluciones deben estar vigentes.',
         subtitulo: 'Cada cambio de personal o de función obliga a actualizar.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -57,7 +58,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Resolución<br>vigente,<br>siempre.' },
-      { id: 'dir_entrega', numero: '4/8', titulo: 'La entrega de información tiene pasos que no se saltan.',
+      { id: 'dir_entrega', numero: '4/9', titulo: 'La entrega de información tiene pasos que no se saltan.',
         subtitulo: '10 días hábiles. Documentación completa. Doble firma.',
         bloques: [
           { tipo: 'pasos-y-doc-preview',
@@ -75,7 +76,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Cada requisito<br>protege a<br>una persona.' },
-      { id: 'dir_eliminacion', numero: '5/8', titulo: 'Eliminar y unificar fichas son procesos formales.',
+      { id: 'dir_eliminacion', numero: '5/9', titulo: 'Eliminar y unificar fichas son procesos formales.',
         subtitulo: 'Actas, resoluciones y planillas. Nada se destruye ni fusiona sin registro.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -104,7 +105,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin acta,<br>sin resolución,<br>no se destruye.' },
-      { id: 'dir_radiografias', numero: '6/8', titulo: 'Las radiografías y el papel siguen sus propias normas.',
+      { id: 'dir_radiografias', numero: '6/9', titulo: 'Las radiografías y el papel siguen sus propias normas.',
         subtitulo: 'Control en el envío, trazabilidad en la contingencia.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -132,7 +133,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'El papel es<br>transitorio.<br>RAYEN, siempre.' },
-      { id: 'dir_confidencialidad', numero: '7/8', titulo: 'Usted es el garante institucional de la confidencialidad.',
+      { id: 'dir_confidencialidad', numero: '7/9', titulo: 'Usted es el garante institucional de la confidencialidad.',
         subtitulo: 'Ley 19.628, Decreto 41 y Ley 21.084. Toda decisión queda por escrito.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -144,7 +145,23 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Confidencial<br>siempre.<br>Por escrito.' },
-      { id: 'dir_cierre', numero: '8/8', titulo: 'Lo esencial de mi rol',
+      { id: 'dir_unificacion', numero: '8/9',
+        titulo: 'Unificación de Fichas Clínicas',
+        subtitulo: '1 paciente = 1 ficha única. Siempre.',
+        bloques: [
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, icono: 'inbox', titulo: 'Reciba el correo del funcionario COM', texto: 'Con RUT provisorio o pasaporte, nombre, fecha de nacimiento y RUT definitivo.' },
+            { n: 2, icono: 'mail', titulo: 'Envíe datos al referente SOME/OIRS del CESFAM de origen', texto: 'Con copia a Dirección de ese CESFAM. Si ausente: referente SIDRA de Corporación Municipal.' },
+            { n: 3, icono: 'clipboard-list', titulo: 'Actualice la planilla de registro de unificación RAYEN', texto: 'Solo en el computador de Dirección. No compartir.' },
+            { n: 4, icono: 'check-circle', titulo: 'Confirme al funcionario', texto: 'Que la gestión fue procesada.' },
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'La planilla de unificación RAYEN está solo en el computador de Dirección.',
+            texto: 'No compartir con otros funcionarios ni trasladar a carpetas compartidas.' },
+        ],
+        poseDrCom: 'dr-com-pensando',
+        mensajeDrCom: 'Sin la planilla<br>actualizada,<br>no hay trazabilidad.' },
+      { id: 'dir_cierre', numero: '9/9', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
@@ -287,7 +304,7 @@ const COM = {
     calidad: { titulo: 'Cápsula de Capacitación: Encargado de Calidad', laminas: [
       { titulo: 'Encargado de Calidad', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
         contenido: 'El custodio del kárdex y garante del orden documental del COM.',
-        subtitulo: 'Ocho láminas sobre el kárdex que custodia y los documentos que gestiona.',
+        subtitulo: 'Nueve láminas sobre el kárdex que custodia y los documentos que gestiona.',
         mensajeMuela: 'Cada documento del COM pasa por sus manos. Ordenemos juntos las reglas.',
         temas: [
           { num: '01', texto: 'Soy el custodio del kárdex', icono: 'play-circle' },
@@ -296,14 +313,15 @@ const COM = {
           { num: '04', texto: 'Seguimiento mensual de consentimientos', icono: 'badge-check' },
           { num: '05', texto: 'Eliminación de fichas clínicas', icono: 'trash-2' },
           { num: '06', texto: 'Contraloría de interconsultas', icono: 'monitor' },
-          { num: '07', texto: 'Lo esencial de mi rol', icono: 'check-circle' },
+          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
+          { num: '08', texto: 'Lo esencial de mi rol', icono: 'check-circle' },
         ] },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
         rol: 'Encargado de Calidad',
         mensajeDrCom: 'Bienvenido.<br>Aprenderemos lo justo<br>y necesario.' },
 
-      { id: 'calidad_rol', numero: '2/8',
+      { id: 'calidad_rol', numero: '2/9',
         titulo: 'Soy el custodio del kárdex',
         subtitulo: 'Todo movimiento documental del COM pasa por usted.',
         bloques: [
@@ -318,7 +336,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin formulario,<br>no hay entrega.<br>Sin firma, no hay rastro.' },
 
-      { id: 'calidad_interna', numero: '3/8',
+      { id: 'calidad_interna', numero: '3/9',
         titulo: 'Cuando un profesional pide ficha del kárdex',
         subtitulo: 'El formulario REG 1.2 es el inicio del trámite.',
         bloques: [
@@ -335,7 +353,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'El kárdex es la casa<br>de los documentos.<br>Nadie se los lleva.' },
 
-      { id: 'calidad_externa', numero: '4/8',
+      { id: 'calidad_externa', numero: '4/9',
         titulo: 'Cuando un usuario externo pide su ficha',
         subtitulo: 'OIRS recibe el Anexo 6 y usted gestiona la respuesta en 10 días hábiles.',
         bloques: [
@@ -355,7 +373,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: '¿Cuánto esperaría usted<br>por su propia<br>historia clínica?' },
 
-      { id: 'calidad_seguimiento', numero: '5/8',
+      { id: 'calidad_seguimiento', numero: '5/9',
         titulo: 'Seguimiento mensual de consentimientos',
         subtitulo: 'Cirugía y endodoncia: una revisión al mes, tres fuentes que deben coincidir.',
         bloques: [
@@ -370,7 +388,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Si no hay consentimiento firmado,<br>no debió haber<br>procedimiento.' },
 
-      { id: 'calidad_eliminacion', numero: '6/8',
+      { id: 'calidad_eliminacion', numero: '6/9',
         titulo: 'Eliminación de fichas clínicas',
         subtitulo: 'Solo con 15 años sin actividad, acta detallada y resolución firmada.',
         bloques: [
@@ -387,7 +405,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: 'Cada hoja destruida<br>tuvo un dueño real.<br>Por eso el acta.' },
 
-      { id: 'calidad_contraloria', numero: '7/8',
+      { id: 'calidad_contraloria', numero: '7/9',
         titulo: 'Contraloría de interconsultas',
         subtitulo: 'Semanal, junto con la Encargada de Ciclo Vital Adulto.',
         bloques: [
@@ -401,7 +419,26 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Persiga el cierre.<br>Cada caso<br>es una persona.' },
 
-      { id: 'calidad_cierre', numero: '8/8',
+      { id: 'calidad_unificacion', numero: '8/9',
+        titulo: 'Unificación de Fichas Clínicas',
+        subtitulo: '1 paciente = 1 ficha única. Siempre.',
+        bloques: [
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, icono: 'search', titulo: 'Detecte la duplicidad', texto: 'Al revisar solicitudes internas o el kárdex, identifique fichas con el mismo paciente bajo dos identificadores distintos.' },
+            { n: 2, icono: 'mail', titulo: 'Notifique a Dirección', texto: 'Envíe un correo con RUT provisorio o pasaporte, nombre, fecha de nacimiento y RUT definitivo.' },
+            { n: 3, icono: 'check-circle', titulo: 'Haga seguimiento', texto: 'Verifique que Dirección haya procesado la unificación. No queden duplicados activos en el sistema.' },
+          ]},
+          { tipo: 'callout-azul', icono: 'info',
+            titulo: 'Si detecta un caso típico',
+            texto: 'Paciente atendido como extranjero con RUT provisorio, luego regularizado con RUT chileno. Ambas fichas deben fusionarse.' },
+          { tipo: 'callout-amarillo', icono: 'alert-triangle',
+            titulo: 'Por qué importa',
+            texto: 'Una duplicidad significa que el historial del paciente está incompleto. Dos fichas para el mismo paciente rompen la trazabilidad de su atención.' },
+        ],
+        poseDrCom: 'dr-com-pensando',
+        mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.' },
+
+      { id: 'calidad_cierre', numero: '9/9',
         titulo: 'Lo esencial de mi rol',
         subtitulo: '"Yo custodio, yo autorizo, yo registro."',
         bloques: [
@@ -674,7 +711,7 @@ const COM = {
           tipo: 'portada',
           mascotGesto: 'wave',
           contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Ocho láminas con lo que ya hace todos los días.',
+          subtitulo: 'Nueve láminas con lo que ya hace todos los días.',
           mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
           temas: [
             { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
@@ -683,12 +720,13 @@ const COM = {
             { num: '04', texto: 'Interconsultas y derivación', icono: 'send', critico: true },
             { num: '05', texto: 'Radiografías externas RISPAC', icono: 'scan-line' },
             { num: '06', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '07', texto: 'GES — Garantías Explícitas en Salud', icono: 'activity' },
+            { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
+            { num: '08', texto: 'GES — Garantías Explícitas en Salud', icono: 'activity' },
           ]
         },
         {
           // LÁMINA 3 — RAYEN y registro clínico
-          id: 'dentista_01', numero: '2/8',
+          id: 'dentista_01', numero: '2/9',
           titulo: 'RAYEN: la ficha oficial',
           subtitulo: 'Todo va en RAYEN, en el momento o inmediatamente después.',
           bloques: [
@@ -703,7 +741,7 @@ const COM = {
         },
         {
           // LÁMINA 4 — Ficha en papel (Plan B)
-          id: 'dentista_02', numero: '3/8',
+          id: 'dentista_02', numero: '3/9',
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo en contingencia.',
           bloques: [
@@ -726,7 +764,7 @@ const COM = {
         {
           // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
           id: 'dentista_kardex',
-          numero: '4/8',
+          numero: '4/9',
           titulo: '¿Cómo pido una ficha JUNAEB o un consentimiento?',
           subtitulo: 'Todo lo archivado en el kárdex se solicita con el formulario REG 1.2.',
           bloques: [
@@ -748,7 +786,7 @@ const COM = {
         {
           // LÁMINA 5 — Interconsultas y derivación a especialista
           id: 'dentista_interconsultas',
-          numero: '5/8',
+          numero: '5/9',
           titulo: 'Interconsultas y derivación a especialista',
           subtitulo: '5 pasos desde la consulta hasta el cierre.',
           bloques: [
@@ -773,7 +811,7 @@ const COM = {
         },
         {
           // LÁMINA 6 — Radiografías externas RISPAC
-          id: 'dentista_rispac', numero: '6/8',
+          id: 'dentista_rispac', numero: '6/9',
           titulo: 'Radiografías externas — RISPAC',
           subtitulo: 'Las imágenes del CRS no se reciben en mano. Se consultan online.',
           bloques: [
@@ -790,7 +828,7 @@ const COM = {
         },
         {
           // LÁMINA 7 — Consentimiento informado (era L6)
-          id: 'dentista_consentimiento', numero: '7/8',
+          id: 'dentista_consentimiento', numero: '7/9',
           titulo: 'Consentimiento informado',
           subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
           bloques: [
@@ -826,8 +864,28 @@ const COM = {
           mensajeDrCom: 'Sin consentimiento firmado,<br>no se realiza<br>el procedimiento invasivo.'
         },
         {
-          // LÁMINA 8 — GES + Radiografías externas RISPAC (cierre — REENFOCAR EN BLOQUE 4)
-          id: 'dentista_cierre', numero: '8/8',
+          id: 'dentista_unificacion', numero: '8/9',
+          titulo: 'Unificación de Fichas Clínicas',
+          subtitulo: '1 paciente = 1 ficha única. Siempre.',
+          bloques: [
+            { tipo: 'pasos-vertical', pasos: [
+              { n: 1, icono: 'search', titulo: 'Detecte la duplicidad', texto: 'Durante la atención, si el paciente tiene dos RUT o aparece registrado dos veces en RAYEN.' },
+              { n: 2, icono: 'mail', titulo: 'Notifique a Dirección del CESFAM', texto: 'Envíe correo con RUT provisorio o pasaporte, nombre, fecha de nacimiento y RUT definitivo.' },
+              { n: 3, icono: 'check-circle', titulo: 'Continúe la atención normalmente', texto: 'La unificación la gestiona Dirección. Usted no interrumpe la atención del paciente.' },
+            ]},
+            { tipo: 'callout-azul', icono: 'info',
+              titulo: 'Caso más frecuente',
+              texto: 'Paciente extranjero atendido con RUT provisorio, luego regularizado con RUT chileno. Ambas fichas deben unificarse.' },
+            { tipo: 'callout-amarillo', icono: 'alert-triangle',
+              titulo: 'Por qué importa',
+              texto: 'Una duplicidad significa que el historial del paciente está incompleto. Dos fichas para el mismo paciente rompen la trazabilidad de su atención.' },
+          ],
+          poseDrCom: 'dr-com-pensando',
+          mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.'
+        },
+        {
+          // LÁMINA 9 — GES
+          id: 'dentista_cierre', numero: '9/9',
           titulo: 'GES: Garantías Explícitas en Salud',
           subtitulo: 'Plazos legales. Documentación física. Trazabilidad.',
           bloques: [
@@ -1412,7 +1470,7 @@ const COM = {
 
     higienista: { titulo: 'Cápsula de Capacitación: Higienista', laminas: [
       { titulo: 'Higienista', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas sobre registro, contingencia y confidencialidad en su atención.',
+        subtitulo: 'Ocho láminas sobre registro, contingencia y confidencialidad en su atención.',
         mensajeMuela: 'Su rol en la ficha clínica es tan importante como el del dentista. Aquí está todo.',
         temas: [
           { num: '01', texto: 'Mi rol, RAYEN y credenciales', icono: 'play-circle', critico: true },
@@ -1421,7 +1479,8 @@ const COM = {
           { num: '04', texto: 'Fotografías clínicas — solo institucional', icono: 'camera' },
           { num: '05', texto: 'Coordinación clínica con el equipo', icono: 'users' },
           { num: '06', texto: 'Confidencialidad y dato sensible', icono: 'shield', critico: true },
-          { num: '07', texto: 'Cierre', icono: 'check-circle' },
+          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
+          { num: '08', texto: 'Cierre', icono: 'check-circle' },
         ] },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Higienista' },
       { id: 'hig_rol', numero: '2/8', titulo: 'Registro en el momento. Clave solo mía.',
@@ -1496,6 +1555,24 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Equipo<br>y silencio<br>son uno.' },
+      { id: 'hig_unificacion', numero: '7/8',
+        titulo: 'Unificación de Fichas Clínicas',
+        subtitulo: '1 paciente = 1 ficha única. Siempre.',
+        bloques: [
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, icono: 'search', titulo: 'Detecte la duplicidad', texto: 'Durante la atención, si el paciente aparece con dos RUT o dos registros distintos en RAYEN.' },
+            { n: 2, icono: 'mail', titulo: 'Notifique a Dirección del CESFAM', texto: 'Envíe correo con RUT provisorio o pasaporte, nombre, fecha de nacimiento y RUT definitivo.' },
+            { n: 3, icono: 'check-circle', titulo: 'Continúe la atención normalmente', texto: 'La unificación la gestiona Dirección. Usted no interrumpe la atención del paciente.' },
+          ]},
+          { tipo: 'callout-azul', icono: 'info',
+            titulo: 'Caso más frecuente',
+            texto: 'Paciente extranjero atendido con RUT provisorio, luego regularizado con RUT chileno. Ambas fichas deben unificarse.' },
+          { tipo: 'callout-amarillo', icono: 'alert-triangle',
+            titulo: 'Por qué importa',
+            texto: 'Una duplicidad significa que el historial del paciente está incompleto. Dos fichas para el mismo paciente rompen la trazabilidad de su atención.' },
+        ],
+        poseDrCom: 'dr-com-pensando',
+        mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.' },
       { id: 'hig_cierre', numero: '8/8', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
@@ -1882,7 +1959,7 @@ const COM = {
 
     tecnico: { titulo: 'Cápsula de Capacitación: TONS Asistencial', laminas: [
       { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Siete láminas sobre apoyo clínico, consentimientos y acceso a RAYEN.',
+        subtitulo: 'Ocho láminas sobre apoyo clínico, consentimientos y acceso a RAYEN.',
         temas: [
           { num: '01', texto: 'Mi rol junto al profesional', icono: 'play-circle', critico: true },
           { num: '02', texto: 'Consentimientos informados', icono: 'clipboard-list', critico: true },
@@ -1890,7 +1967,8 @@ const COM = {
           { num: '04', texto: 'Contingencia — ficha en papel', icono: 'cloud-off' },
           { num: '05', texto: 'Fotografías clínicas', icono: 'camera' },
           { num: '06', texto: 'Confidencialidad y coordinación', icono: 'shield' },
-          { num: '07', texto: 'Cierre', icono: 'check-circle' },
+          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
+          { num: '08', texto: 'Cierre', icono: 'check-circle' },
         ] },
       { tipo: 'identificacion', rol: 'TONS Asistencial (Asistente Dental)' },
       { id: 'tons_rol', titulo: 'Soy el apoyo del profesional. No el autor del registro.',
@@ -1980,6 +2058,23 @@ const COM = {
           },
         ],
         poseDrCom: 'dr-com-explicando', mensajeDrCom: '¿Puede compartir detalles del caso de un paciente con un colega de otro servicio?' },
+      { id: 'tons_unificacion', titulo: 'Unificación de Fichas Clínicas',
+        subtitulo: '1 paciente = 1 ficha única. Siempre.',
+        bloques: [
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, icono: 'search', titulo: 'Detecte la duplicidad', texto: 'Durante la atención, si el paciente aparece con dos RUT o dos registros distintos en RAYEN.' },
+            { n: 2, icono: 'mail', titulo: 'Avise al profesional o a Dirección', texto: 'Informe de inmediato al dentista o higienista responsable, o notifique directamente a Dirección del CESFAM.' },
+            { n: 3, icono: 'check-circle', titulo: 'No resuelva usted la duplicidad', texto: 'La unificación la gestiona Dirección. Usted detecta y avisa, no modifica registros.' },
+          ]},
+          { tipo: 'callout-azul', icono: 'info',
+            titulo: 'Caso más frecuente',
+            texto: 'Paciente extranjero atendido con RUT provisorio, luego regularizado con RUT chileno. Ambas fichas deben unificarse.' },
+          { tipo: 'callout-amarillo', icono: 'alert-triangle',
+            titulo: 'Por qué importa',
+            texto: 'Una duplicidad significa que el historial del paciente está incompleto. Dos fichas para el mismo paciente rompen la trazabilidad de su atención.' },
+        ],
+        poseDrCom: 'dr-com-pensando',
+        mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.' },
       { id: 'tons_cierre', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas', reglas: [

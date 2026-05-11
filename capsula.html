@@ -734,6 +734,15 @@
       .bk-img-texto-img { max-width: 260px; }
     }
 
+    /* ─── pasos-vertical ─── */
+    .bk-pv-list { display: flex; flex-direction: column; gap: 10px; }
+    .bk-pv-step { display: flex; align-items: flex-start; gap: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 13px 16px; }
+    .bk-pv-num { width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: white; }
+    .bk-pv-icono { flex-shrink: 0; margin-top: 2px; }
+    .bk-pv-body { flex: 1; }
+    .bk-pv-titulo { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .bk-pv-texto { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
     /* ─── lista-documentos-vertical ─── */
     .bk-lista-docs { display: flex; flex-direction: column; gap: 10px; }
     .bk-lista-doc-item {
@@ -1641,6 +1650,18 @@
             return i < arr.length - 1 ? card + `<span class="bk-suma-sep">+</span>` : card;
           }).join('');
           return `<div class="bk-iconos-suma">${partes}</div>`;
+        }
+        if (b.tipo === 'pasos-vertical') {
+          const steps = (b.pasos || []).map((p, i) => `
+            <div class="bk-pv-step">
+              <div class="bk-pv-num" style="background:${prf.color}">${p.n || i + 1}</div>
+              <i class="bk-pv-icono" data-lucide="${p.icono}" style="width:18px;height:18px;color:${prf.color}"></i>
+              <div class="bk-pv-body">
+                <div class="bk-pv-titulo">${p.titulo}</div>
+                ${p.texto ? `<div class="bk-pv-texto">${p.texto}</div>` : ''}
+              </div>
+            </div>`).join('');
+          return `<div class="bk-pv-list">${steps}</div>`;
         }
         if (b.tipo === 'lista-documentos-vertical') {
           const items = (b.items || []).map((item, i) => `
