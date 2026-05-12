@@ -745,16 +745,15 @@ const COM = {
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo en contingencia.',
           bloques: [
-            { tipo: 'pasos-fila-y-doc-grande',
+            { tipo: 'pasos-split-formulario',
               pasos: [
-                { n: 1, icono: 'printer',     titulo: 'Imprima',    texto: 'La ficha REG 1.2 desde sala.' },
-                { n: 2, icono: 'edit-3',      titulo: 'Registre',   texto: 'Todo lo que iría en RAYEN.' },
-                { n: 3, icono: 'refresh-cw',  titulo: 'Traspase',   texto: 'Copie a digital al volver RAYEN.' },
-                { n: 4, icono: 'send',        titulo: 'Entregue',   texto: 'El papel al Encargado de Calidad.' }
+                { n: 1, titulo: 'Imprima',   texto: 'La ficha REG 1.2 desde el computador de sala.' },
+                { n: 2, titulo: 'Registre',  texto: 'Todo lo que iría en RAYEN: diagnóstico, procedimiento, firma.' },
+                { n: 3, titulo: 'Traspase',  texto: 'Copie la información a RAYEN en cuanto vuelva el sistema.' },
+                { n: 4, titulo: 'Entregue',  texto: 'El papel al Encargado de Calidad al cierre del día.' }
               ],
               imagen: 'assets/images/reg-1-2-formulario.png',
               imagenAlt: 'Formulario REG 1.2 — Ficha clínica en papel (contingencia)',
-              imagenCaption: 'Formulario REG 1.2'
             },
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca se lleve la ficha.', texto: 'Si RAYEN sigue caído al cierre, entréguela al Encargado de Calidad.' }
           ],
