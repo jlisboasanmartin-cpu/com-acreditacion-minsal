@@ -1281,18 +1281,18 @@ const COM = {
         mensajeDrCom: 'El comprobante<br>no es opcional.<br>Es el respaldo.' },
 
       { id: 'some_hora_salud', numero: '8/10',
-        titulo: 'El tótem solo empieza el trámite. Usted lo continúa.',
+        titulo: 'La máquina de números solo empieza el trámite. Usted lo continúa.',
         subtitulo: 'Tres momentos desde que el paciente toma número hasta que usted completa su parte.',
         bloques: [
           { tipo: 'pasos-vertical', pasos: [
-            { n: 1, titulo: 'Veo el listado en pantalla',  texto: 'Los pacientes que tomaron número en el tótem aparecen en Hora Salud. Los llamo en orden.' },
+            { n: 1, titulo: 'Veo el listado en pantalla',  texto: 'Los pacientes que tomaron número en la máquina aparecen en pantalla. Los llamo en orden.' },
             { n: 2, titulo: 'Los atiendo en ventanilla',   texto: 'Escucho la gestión que necesitan y verifico su identidad antes de proceder.' },
             { n: 3, titulo: 'Los ingreso si corresponde',  texto: 'Si es lista de espera: ingreso con RUT y registro observaciones. Si es solicitud de ficha: inicio el flujo del Anexo 6.' }
           ]},
           { tipo: 'callout-azul', icono: 'info', texto: 'Hora Salud es la plataforma. Usted es quien atiende. No son lo mismo.' },
         ],
         poseDrCom: 'dr-com-explicando',
-        mensajeDrCom: 'El tótem solo<br>empieza el trámite.<br>Yo lo continúo.' },
+        mensajeDrCom: 'La máquina de números<br>solo empieza.<br>Yo continúo.' },
 
       { id: 'some_confidencialidad', numero: '9/10',
         titulo: 'Lo que digo y lo que no digo',
