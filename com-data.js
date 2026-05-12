@@ -1217,7 +1217,7 @@ const COM = {
         mensajeDrCom: 'Si no calza en<br>la lista verde,<br>no inicio el trámite.' },
 
       { id: 'some_docs_vivo', numero: '4/10',
-        titulo: 'Papeles según quién pide',
+        titulo: 'Qué debe traer cada persona que viene a pedir una ficha clínica',
         subtitulo: 'Antes de recibir cualquier solicitud, verifique que trae todo según su caso.',
         bloques: [
           { tipo: 'lista-casos-vertical', casos: [
