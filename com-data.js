@@ -1218,13 +1218,14 @@ const COM = {
 
       { id: 'some_docs_vivo', numero: '4/10',
         titulo: 'Papeles según quién pide',
-        subtitulo: 'Tres situaciones distintas, tres combinaciones de documentos.',
+        subtitulo: 'Antes de recibir cualquier solicitud, verifique que trae todo según su caso.',
         bloques: [
           { tipo: 'lista-casos-vertical', casos: [
             { titulo: 'Titular', items: ['Cédula de identidad del paciente'] },
             { titulo: 'Tercero autorizado', items: ['Cédula propia', 'Poder notarial simple del titular'] },
             { titulo: 'Menor de edad', items: ['Cédula del adulto solicitante', 'Cédula del menor', 'Certificado de nacimiento o documento de representación legal'] }
           ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Si falta cualquier documento, no se recibe la solicitud. Sin excepciones.', texto: '' },
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin todos los papeles,<br>no recibo<br>la solicitud.' },
