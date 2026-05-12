@@ -765,9 +765,8 @@ const COM = {
           id: 'dentista_kardex',
           numero: '4/9',
           titulo: '¿Cómo accedo a documentos archivados?',
-          subtitulo: 'Fichas antiguas, consentimientos y documentación GES están en el kárdex. Solo se retiran con formulario.',
+          subtitulo: 'Fichas anteriores a 2007, consentimientos firmados y documentación GES están en el kárdex. Solo se retiran con formulario REG 1.2.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo lo pido?', texto: 'Cuando necesitas revisar una ficha anterior a 2007, verificar un consentimiento firmado de cirugía o endodoncia, o revisar documentación GES archivada.' },
             { tipo: 'pasos-split-formulario',
               pasos: [
                 { n: 1, titulo: 'Solicita',  texto: 'Llena el REG 1.2 con tus datos y el motivo. Fírmalo y entrégalo al Encargado de Calidad.' },
