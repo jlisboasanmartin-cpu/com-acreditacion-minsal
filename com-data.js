@@ -789,18 +789,13 @@ const COM = {
           subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva vía Hospital Digital?', items: ['Patología oral', 'Trastornos Temporomandibulares (TTM)', 'Ortodoncia'] },
-            { tipo: 'banner-pasos-vertical',
-              imagen: 'assets/images/hospital-digital-plataforma.png',
-              imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
-              imagenCaption: 'interconsulta.minsal.cl — ingrese con su ClaveÚnica',
-              pasos: [
-                { n: 1, titulo: 'Genere',   texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
-                { n: 2, titulo: 'Espere',   texto: 'Respuesta llega al correo institucional.' },
-                { n: 3, titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
-                { n: 4, titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
-                { n: 5, titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
-              ]
-            },
+            { tipo: 'pasos-vertical', pasos: [
+              { n: 1, titulo: 'Genere',   texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
+              { n: 2, titulo: 'Espere',   texto: 'Respuesta llega al correo institucional.' },
+              { n: 3, titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
+              { n: 4, titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
+              { n: 5, titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
+            ]},
             { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Fotografías clínicas para interconsulta',
               items: ['Use solo cámara y computador del establecimiento. Nunca celular ni computador personal.', 'Después de enviar, elimine las imágenes de la cámara y del computador.'] }
           ],
