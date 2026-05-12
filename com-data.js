@@ -789,7 +789,7 @@ const COM = {
           subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva vía Hospital Digital?', items: ['Patología oral', 'Trastornos Temporomandibulares (TTM)', 'Ortodoncia'] },
-            { tipo: 'pasos-vertical', pasos: [
+            { tipo: 'banner-pasos-vertical', pasos: [
               { n: 1, titulo: 'Genere',   texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
               { n: 2, titulo: 'Espere',   texto: 'Respuesta llega al correo institucional.' },
               { n: 3, titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
