@@ -786,7 +786,7 @@ const COM = {
           id: 'dentista_interconsultas',
           numero: '5/9',
           titulo: 'Interconsultas y derivación a especialista',
-          subtitulo: '5 pasos desde la consulta hasta el cierre.',
+          subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera APS: derive vía Hospital Digital.' },
             { tipo: 'banner-pasos-vertical',
@@ -794,15 +794,15 @@ const COM = {
               imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
               imagenCaption: 'interconsulta.minsal.cl — ingrese con su ClaveÚnica',
               pasos: [
-                { n: 1, icono: 'globe',        titulo: 'Genere',  texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
-                { n: 2, icono: 'mail',         titulo: 'Espere',  texto: 'Respuesta llega al correo institucional.' },
-                { n: 3, icono: 'phone',        titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
-                { n: 4, icono: 'edit-3',       titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
-                { n: 5, icono: 'check-circle', titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
+                { n: 1, titulo: 'Genere',   texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
+                { n: 2, titulo: 'Espere',   texto: 'Respuesta llega al correo institucional.' },
+                { n: 3, titulo: 'Contacte', texto: '10 días hábiles para contactar al paciente.' },
+                { n: 4, titulo: 'Registre', texto: 'Consigne la respuesta en RAYEN.' },
+                { n: 5, titulo: 'Cierre',   texto: 'Causal N°19 en Hospital Digital.' }
               ]
             },
             { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Fotografías clínicas para interconsulta',
-              texto: '1. Use solo cámara y computador del establecimiento. Nunca celular personal, nunca computador personal.<br>2. Después de enviar la interconsulta, elimine las imágenes de la cámara y del computador.' }
+              texto: '• Use solo cámara y computador del establecimiento. Nunca celular ni computador personal.<br>• Después de enviar, elimine las imágenes de la cámara y del computador.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Si se salta el cierre,<br>queda incompleta.'
