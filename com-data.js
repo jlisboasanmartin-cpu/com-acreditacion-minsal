@@ -788,7 +788,7 @@ const COM = {
           titulo: 'Hospital Digital: derivación cuando el caso supera la capacidad resolutiva de APS',
           subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva vía Hospital Digital?', items: ['Patología oral', 'Trastornos Temporomandibulares (TTM)', 'Ortodoncia'] },
+            { tipo: 'tag-contexto', texto: 'Para: Patología oral · Trastornos Temporomandibulares (TTM) · Ortodoncia' },
             { tipo: 'pasos-vertical', pasos: [
               { n: 1, titulo: 'Genere',   texto: 'interconsulta.minsal.cl con su ClaveÚnica.' },
               { n: 2, titulo: 'Espere',   texto: 'Respuesta llega al correo institucional.' },
