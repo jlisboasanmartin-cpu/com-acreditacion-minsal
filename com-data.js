@@ -1265,7 +1265,7 @@ const COM = {
         mensajeDrCom: 'Lo lleno con<br>el paciente.<br>No por él.' },
 
       { id: 'some_derivar', numero: '7/10',
-        titulo: 'Antes de derivar',
+        titulo: 'Lo que hago antes de pasar el formulario Anexo 6 al Encargado de Calidad',
         subtitulo: 'Cuatro pasos. En orden. Siempre.',
         bloques: [
           { tipo: 'pasos-vertical', pasos: [
