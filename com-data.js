@@ -1257,7 +1257,7 @@ const COM = {
               { n: 3, titulo: 'Formato de retiro', texto: 'Copia física, digital o retiro en el establecimiento.' },
               { n: 4, titulo: 'Firma del solicitante', texto: 'Sin firma, el formulario no tiene validez.' }
             ],
-            imagen: 'assets/images/reg-1-6-anexo-6.png',
+            imagen: 'assets/images/formulario-anexo-6.png',
             imagenAlt: 'Formulario Anexo 6 — Solicitud de ficha clínica y radiografía'
           },
         ],
