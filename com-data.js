@@ -767,11 +767,11 @@ const COM = {
           titulo: '¿Cómo accedo a documentos archivados?',
           subtitulo: 'Fichas antiguas, consentimientos y documentación GES están en el kárdex. Solo se retiran con formulario.',
           bloques: [
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo lo pido?', texto: 'Cuando necesitas revisar una ficha anterior a 2007, verificar un consentimiento firmado de cirugía o endodoncia, o revisar documentación GES archivada.' },
             { tipo: 'pasos-split-formulario',
               pasos: [
-                { n: 1, titulo: '¿Cuándo lo pido?',   chips: ['Paciente atendido antes de 2007', 'Consentimiento de cirugía o endodoncia', 'Revisión de documentación GES'] },
-                { n: 2, titulo: '¿Cómo lo solicito?', texto: 'Completa el REG 1.2, fírmalo y entrégalo al Encargado de Calidad.' },
-                { n: 3, titulo: '¿Qué pasa después?', texto: 'Aprobación ese mismo día. Devuelves en máximo 2 días hábiles.' }
+                { n: 1, titulo: 'Solicita',          texto: 'Llena el REG 1.2 con tus datos y el motivo. Fírmalo y entrégalo al Encargado de Calidad.' },
+                { n: 2, titulo: 'Recibe y devuelve', texto: 'Te entregan el documento ese mismo día. Tienes máximo 2 días hábiles para devolverlo.' }
               ],
               imagen: 'assets/images/reg-1-2-solicitud.png',
               imagenAlt: 'Formulario REG 1.2 — Solicitud de registros clínicos en papel',
