@@ -1376,13 +1376,17 @@
           const icoHTML = b.icono
             ? `<i data-lucide="${b.icono}" style="width:18px;height:18px;color:${prf.color};flex-shrink:0"></i>`
             : '';
+          const label = b.etiqueta || b.titulo || '';
+          const bodyHTML = b.items && b.items.length
+            ? b.items.map(it => `<div>• ${it}</div>`).join('')
+            : (b.texto || '');
           return `
             <div class="bk-callout-azul">
               <div class="bk-callout-azul-head">
                 ${icoHTML}
-                <span class="bk-callout-azul-etiqueta">${b.etiqueta || ''}</span>
+                <span class="bk-callout-azul-etiqueta">${label}</span>
               </div>
-              <div class="bk-callout-azul-text">${b.texto || ''}</div>
+              <div class="bk-callout-azul-text">${bodyHTML}</div>
             </div>`;
         }
         if (b.tipo === 'respuesta-tres-partes') {
@@ -1401,10 +1405,13 @@
             <div class="bk-respuesta-partes">${partes}</div>`;
         }
         if (b.tipo === 'callout-amarillo') {
+          const bodyHTML = b.items && b.items.length
+            ? '<br>' + b.items.map(it => `• ${it}`).join('<br>')
+            : ' ' + (b.texto || '');
           return `
             <div class="bk-callout-amarillo">
               <i data-lucide="${b.icono || 'alert-triangle'}" style="width:20px;height:20px;color:#a07a00;flex-shrink:0;margin-top:2px"></i>
-              <div class="bk-callout-amarillo-text"><strong>${b.titulo || ''}</strong> ${b.texto || ''}</div>
+              <div class="bk-callout-amarillo-text"><strong>${b.titulo || ''}</strong>${bodyHTML}</div>
             </div>`;
         }
         if (b.tipo === 'comparativa-dos-cards') {

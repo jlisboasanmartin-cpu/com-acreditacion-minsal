@@ -785,10 +785,10 @@ const COM = {
           // LÁMINA 5 — Interconsultas y derivación a especialista
           id: 'dentista_interconsultas',
           numero: '5/9',
-          titulo: 'Interconsultas y derivación a especialista',
+          titulo: 'Hospital Digital: derivación cuando el caso supera la capacidad resolutiva de APS',
           subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
-            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva?', texto: 'Patología oral, ortodoncia o TTM que supera APS: derive vía Hospital Digital.' },
+            { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo se deriva vía Hospital Digital?', items: ['Patología oral', 'Trastornos Temporomandibulares (TTM)', 'Ortodoncia'] },
             { tipo: 'banner-pasos-vertical',
               imagen: 'assets/images/hospital-digital-plataforma.png',
               imagenAlt: 'Plataforma interconsulta.minsal.cl — Iniciar sesión con ClaveÚnica',
@@ -802,7 +802,7 @@ const COM = {
               ]
             },
             { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'Fotografías clínicas para interconsulta',
-              texto: '• Use solo cámara y computador del establecimiento. Nunca celular ni computador personal.<br>• Después de enviar, elimine las imágenes de la cámara y del computador.' }
+              items: ['Use solo cámara y computador del establecimiento. Nunca celular ni computador personal.', 'Después de enviar, elimine las imágenes de la cámara y del computador.'] }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Si se salta el cierre,<br>queda incompleta.'
