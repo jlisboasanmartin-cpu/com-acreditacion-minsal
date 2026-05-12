@@ -248,8 +248,9 @@
       position: relative; z-index: 1;
       background: var(--primary-dark); color: white;
       border-radius: 14px; border-bottom-right-radius: 4px;
-      padding: 11px 15px; font-size: 13px; font-weight: 600;
-      text-align: center; line-height: 1.45; max-width: 210px;
+      padding: 13px 16px; font-size: 16px; font-weight: 600;
+      text-align: left; line-height: 1.5; max-width: 230px;
+      max-height: 280px; overflow-y: auto;
       margin-bottom: 18px;
       box-shadow: 0 4px 16px rgba(14,74,97,0.20);
     }
@@ -259,31 +260,16 @@
       border-left: 8px solid transparent;
       border-top: 8px solid var(--primary-dark);
     }
+    .qz-side-bubble.sb-ok  { background: #1a7a44; }
+    .qz-side-bubble.sb-ok::after  { border-top-color: #1a7a44; }
+    .qz-side-bubble.sb-bad { background: #c0392b; }
+    .qz-side-bubble.sb-bad::after { border-top-color: #c0392b; }
     .qz-side-mascot {
       position: relative; z-index: 1;
       width: 220px; height: auto;
       filter: drop-shadow(0 10px 28px rgba(14,74,97,0.18));
       transition: all 0.35s ease;
     }
-
-    /* Feedback box */
-    .qz-feedback {
-      display: none; align-items: flex-start; gap: 14px;
-      margin: 0 28px 28px;
-      padding: 16px 20px; border-radius: 12px; border: 1px solid;
-      animation: qFadeIn 0.3s ease;
-    }
-    .qz-feedback.show { display: flex; }
-    .qz-feedback.fb-ok  { background: #eafaf1; border-color: #abebc6; }
-    .qz-feedback.fb-bad { background: #FFF8E1; border-color: #FFA726; border-left: 4px solid #FFA726; }
-    .qz-fb-icon { font-size: 22px; flex-shrink: 0; }
-    .qz-fb-title {
-      font-family: var(--font-display); font-size: 15px; font-weight: 700; margin-bottom: 4px;
-    }
-    .fb-ok  .qz-fb-title { color: #1a7a44; }
-    .fb-bad .qz-fb-title { color: #37474F; }
-    .fb-bad .qz-fb-icon  { color: #F57C00; }
-    .qz-fb-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
 
     /* Footer */
     .qz-qfoot {
@@ -608,17 +594,6 @@
           <div class="qz-qtext" id="q-text"></div>
           <div class="qz-options" id="q-options"></div>
         </div>
-        <div class="qz-feedback" id="qz-feedback">
-          <div class="qz-fb-icon" id="fb-icon"></div>
-          <div style="flex:1">
-            <div class="qz-fb-title" id="fb-title"></div>
-            <div class="qz-fb-text" id="fb-text"></div>
-            <a id="fb-review-link" href="#" style="display:none;margin-top:8px;font-size:12px;font-weight:600;color:var(--primary);text-decoration:none;align-items:center;gap:5px">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              Revisar la cápsula
-            </a>
-          </div>
-        </div>
         <div class="qz-qfoot">
           <button class="btn btn-primary btn-sm" id="btn-next-q" style="display:none">
             Siguiente pregunta
@@ -843,11 +818,10 @@
       });
     }
 
-    /* Reset feedback */
-    const fb = document.getElementById('qz-feedback');
-    fb.classList.remove('show','fb-ok','fb-bad');
+    /* Reset side bubble */
+    const sideBubble = document.getElementById('side-bubble');
+    sideBubble.classList.remove('sb-ok', 'sb-bad');
     document.getElementById('btn-next-q').style.display = 'none';
-    document.getElementById('fb-review-link').style.display = 'none';
 
     /* Re-trigger animation */
     const card = document.getElementById('qz-qcard');
@@ -860,22 +834,18 @@
   function afterAnswer(isOk, q, correctLabel, selectedLabel) {
     results.push({ q, selectedLabel, isOk, tipo: q.tipo });
 
-    document.getElementById('side-mascot').src = isOk ? 'assets/images/muela_animo.png' : 'assets/images/muela_atencion.png';
-    document.getElementById('side-bubble').textContent = isOk ? '¡Excelente! Eso es correcto.' : 'Lea la explicación.';
-
-    const fb = document.getElementById('qz-feedback');
-    fb.classList.add('show', isOk ? 'fb-ok' : 'fb-bad');
-    document.getElementById('fb-icon').textContent  = isOk ? '✅' : '⚠️';
-    document.getElementById('fb-title').textContent = isOk ? '¡Correcto!' : 'Para repasar:';
-    const fbText = document.getElementById('fb-text');
-    if (!isOk && correctLabel) {
-      fbText.innerHTML = `<span style="color:#2E7D32;font-weight:600">✓ Lo correcto era: ${injectRayenLogo(correctLabel)}</span><br><span style="color:var(--text-mid)">${injectRayenLogo(q.explicacion || '')}</span>`;
+    const sideMascot = document.getElementById('side-mascot');
+    const sideBubble = document.getElementById('side-bubble');
+    sideMascot.src = isOk ? 'assets/images/dr-com-celebrando.png' : 'assets/images/dr-com-alerta.png';
+    sideBubble.classList.remove('sb-ok', 'sb-bad');
+    sideBubble.classList.add(isOk ? 'sb-ok' : 'sb-bad');
+    const explHTML = injectRayenLogo(q.explicacion || '');
+    if (isOk) {
+      sideBubble.innerHTML = `<div style="font-size:15px;font-weight:800;margin-bottom:6px">¡Correcto!</div><div style="font-size:15px;font-weight:400;line-height:1.5">${explHTML}</div>`;
     } else {
-      fbText.innerHTML = injectRayenLogo(q.explicacion || '');
+      const correctPart = correctLabel ? `<div style="font-size:14px;font-weight:700;margin-bottom:4px">Lo correcto: ${injectRayenLogo(correctLabel)}</div>` : '';
+      sideBubble.innerHTML = `<div style="font-size:15px;font-weight:800;margin-bottom:6px">¡Incorrecto!</div>${correctPart}<div style="font-size:15px;font-weight:400;line-height:1.5">${explHTML}</div>`;
     }
-    const reviewLink = document.getElementById('fb-review-link');
-    reviewLink.href = `capsula.html?id=${perfilId}`;
-    reviewLink.style.display = isOk ? 'none' : 'inline-flex';
 
     document.getElementById('sc-ok').textContent  = correctCount;
     document.getElementById('sc-bad').textContent = wrongCount;
