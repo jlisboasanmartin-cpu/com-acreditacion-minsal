@@ -1171,11 +1171,11 @@ const COM = {
 
       { id: 'some_rol', numero: '2/10',
         titulo: 'Lo que hago cuando alguien pide una ficha',
-        subtitulo: 'Cuando alguien viene a pedir información de una ficha clínica, su rol tiene tres momentos:',
+        subtitulo: 'Cuando alguien viene a pedir una ficha, usted tiene tres momentos:',
         bloques: [
           { tipo: 'tres-iconos', items: [
             { icono: 'user', titulo: 'RECIBO', texto: 'Al solicitante en ventanilla y verifico que se identifique correctamente.' },
-            { icono: 'clipboard-check', titulo: 'VERIFICO', texto: 'Que los documentos habilitantes estén completos y correctos según quién solicita.' },
+            { icono: 'clipboard-check', titulo: 'VERIFICO', texto: 'Que los documentos requeridos estén completos y correctos.' },
             { icono: 'arrow-right-circle', titulo: 'DERIVO', texto: 'Todo al Encargado de Calidad. Nunca entrego la información yo.' },
           ]},
           { tipo: 'callout-azul', icono: 'alert-circle', etiqueta: '¿Y si pasa esto?',
