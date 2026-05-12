@@ -823,24 +823,24 @@ const COM = {
           // LÁMINA 7 — Consentimiento informado (era L6)
           id: 'dentista_consentimiento', numero: '7/9',
           titulo: 'Consentimiento informado',
-          subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
+          subtitulo: 'Sin firma previa, el procedimiento no puede realizarse.',
           bloques: [
             { tipo: 'tag-contexto', texto: 'Aplica en: Exodoncia · Endodoncia · Cirugía oral · Periodontal · Implantes' },
             { tipo: 'lista-simple', items: [
-              'Es un derecho del paciente (Ley 20.584)',
-              'Es parte obligatoria de la ficha clínica (REG 1.1)',
-              'Deja constancia escrita antes del procedimiento'
+              'Si el paciente reclama, el consentimiento firmado te protege (Ley 20.584)',
+              'Sin él, la ficha clínica está incompleta (REG 1.1)',
+              'No hay consentimiento verbal. Solo escrito y firmado.'
             ]},
-            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'El paciente debe conocer:',
-              texto: 'diagnóstico, alternativas, riesgos y pronóstico antes de firmar.' },
+            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'El paciente debe conocer antes de firmar',
+              items: ['Diagnóstico', 'Alternativas de tratamiento', 'Riesgos', 'Pronóstico'] },
             { tipo: 'pasos-split-formulario',
-              imagen: 'assets/images/consentimiento-informado-anexo-3-completo.png',
-              imagenAlt: 'Formulario Consentimiento Informado — Ley 20.584',
               pasos: [
-                { n: 1, titulo: 'Encuéntrelo',  texto: 'En las salas de procedimientos.' },
-                { n: 2, titulo: 'Fírmelo',       texto: 'Antes del procedimiento, nunca después.' },
-                { n: 3, titulo: 'Entréguelo',    texto: 'Al Encargado de Calidad al cierre del día.' }
-              ]
+                { n: 1, titulo: 'Encuéntrelo', texto: 'En las salas de procedimientos.' },
+                { n: 2, titulo: 'Fírmelo',      texto: 'Antes del procedimiento, nunca después.' },
+                { n: 3, titulo: 'Entréguelo',   texto: 'Al Encargado de Calidad al cierre del día.' }
+              ],
+              imagen: 'assets/images/consentimiento-informado-anexo-3-completo.png',
+              imagenAlt: 'Formulario Anexo 3 — Consentimiento informado Ley 20.584'
             }
           ],
           poseDrCom: 'dr-com-alerta',
