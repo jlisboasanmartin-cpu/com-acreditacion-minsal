@@ -20,19 +20,10 @@ const COM = {
 
   capsulas: {
     direccion: { titulo: 'Cápsula de Capacitación: Dirección y Equipo Gestor', laminas: [
-      { titulo: 'Dirección y Equipo Gestor', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Nueve láminas sobre lo que usted firma, autoriza y protege.',
-        mensajeMuela: 'Su firma tiene peso legal. En 10 minutos repasamos cuándo y cómo usarla.',
-        temas: [
-          { num: '01', texto: 'Su firma como autoridad institucional', icono: 'play-circle' },
-          { num: '02', texto: 'Resoluciones que debe mantener vigentes', icono: 'scroll-text', critico: true },
-          { num: '03', texto: 'Entrega de información a externos', icono: 'mail', critico: true },
-          { num: '04', texto: 'Eliminación y unificación de fichas', icono: 'trash-2' },
-          { num: '05', texto: 'Radiografías y contingencia RAYEN', icono: 'send' },
-          { num: '06', texto: 'Confidencialidad y dato sensible', icono: 'lock', critico: true },
-          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
-          { num: '08', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'Dirección y Equipo Gestor', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Sin resolución firmada, no hay acceso.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Dirección o parte del Equipo Gestor' },
       { id: 'dir_rol', numero: '2/9', titulo: 'Mi firma respalda cada decisión sobre la ficha.',
         subtitulo: 'Sin aprobación escrita, ningún acceso, entrega ni eliminación tiene validez.',
@@ -302,20 +293,10 @@ const COM = {
     },
 
     calidad: { titulo: 'Cápsula de Capacitación: Encargado de Calidad', laminas: [
-      { titulo: 'Encargado de Calidad', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        contenido: 'El custodio del kárdex y garante del orden documental del COM.',
-        subtitulo: 'Nueve láminas sobre el kárdex que custodia y los documentos que gestiona.',
-        mensajeMuela: 'Cada documento del COM pasa por sus manos. Ordenemos juntos las reglas.',
-        temas: [
-          { num: '01', texto: 'Soy el custodio del kárdex', icono: 'play-circle' },
-          { num: '02', texto: 'Solicitud interna (REG 1.2)', icono: 'file-text', critico: true },
-          { num: '03', texto: 'Solicitud externa (Anexo 6)', icono: 'inbox', critico: true },
-          { num: '04', texto: 'Seguimiento mensual de consentimientos', icono: 'badge-check' },
-          { num: '05', texto: 'Eliminación de fichas clínicas', icono: 'trash-2' },
-          { num: '06', texto: 'Contraloría de interconsultas', icono: 'monitor' },
-          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
-          { num: '08', texto: 'Lo esencial de mi rol', icono: 'check-circle' },
-        ] },
+      { titulo: 'Encargado de Calidad', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Yo custodio, yo autorizo, yo registro.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
         rol: 'Encargado de Calidad',
@@ -703,27 +684,10 @@ const COM = {
         fraseMagicaSubtexto: 'Decir "no sé" no es un hallazgo. Inventar, sí.'
       },
       laminas: [
-        {
-          // LÁMINA 1 — Índice del perfil
-          id: 'dentista_portada',
-          titulo: 'Cirujano Dentista',
-          ocultarInfo: true,
-          tipo: 'portada',
-          mascotGesto: 'wave',
-          contenido: 'Su registro clínico, derivaciones, consentimientos y documentación GES.',
-          subtitulo: 'Nueve láminas con lo que ya hace todos los días.',
-          mensajeMuela: 'Usted ya hace todo esto a diario. Solo necesita ordenarlo.',
-          temas: [
-            { num: '01', texto: 'RAYEN y registro clínico', icono: 'monitor', critico: true },
-            { num: '02', texto: 'Ficha en papel — Plan B (REG 1.2)', icono: 'file-text' },
-            { num: '03', texto: 'Solicitar fichas del kárdex', icono: 'archive' },
-            { num: '04', texto: 'Interconsultas y derivación', icono: 'send', critico: true },
-            { num: '05', texto: 'Radiografías externas RISPAC', icono: 'scan-line' },
-            { num: '06', texto: 'Consentimiento informado', icono: 'pen-tool', critico: true },
-            { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
-            { num: '08', texto: 'GES — Garantías Explícitas en Salud', icono: 'activity' },
-          ]
-        },
+        { id: 'dentista_portada', titulo: 'Cirujano Dentista', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+          fraseAncla: 'Lo que no está registrado, no ocurrió.',
+          bajada: '9 láminas para entender exactamente qué significa eso.',
+          mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
         {
           // LÁMINA 3 — RAYEN y registro clínico
           id: 'dentista_01', numero: '2/9',
@@ -889,18 +853,10 @@ const COM = {
     },
 
     radiografia: { titulo: 'Cápsula de Capacitación: Operador de Radiografía', laminas: [
-      { titulo: 'Operador de Radiografía', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Ocho láminas sobre trazabilidad, envío y confidencialidad de imágenes.',
-        mensajeMuela: 'Sus imágenes tienen un protocolo exacto. Lo vemos juntos en 10 minutos.',
-        temas: [
-          { num: '01', texto: 'Mi rol con las radiografías', icono: 'play-circle' },
-          { num: '02', texto: 'La sala y las órdenes bajo llave', icono: 'lock' },
-          { num: '03', texto: 'Trazabilidad y rotulado', icono: 'tag', critico: true },
-          { num: '04', texto: 'El envío institucional', icono: 'send', critico: true },
-          { num: '05', texto: 'Registro del envío', icono: 'file-text', critico: true },
-          { num: '06', texto: 'Carpeta local y confidencialidad', icono: 'shield' },
-          { num: '07', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'Operador de Radiografía', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Cada imagen tiene un RUT, cada RUT tiene un dueño.',
+        bajada: '8 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Operador de Radiografía (TONS)' },
       { id: 'rx_rol', numero: '2/8', titulo: 'Soy el custodio de las imágenes del paciente.',
         subtitulo: 'Tomo, digitalizo y cuido. Cada imagen va vinculada al RUT del paciente en DBSWIN.',
@@ -1149,21 +1105,10 @@ const COM = {
     },
 
     administrativo: { titulo: 'Cápsula de Capacitación: Administrativo SOME/OIRS', laminas: [
-      { titulo: 'Administrativo SOME/OIRS', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        contenido: 'Su rol como primer filtro en la ventanilla: atención en Hora Salud y gestión de solicitudes de ficha clínica.',
-        subtitulo: 'Lo que el paciente ve primero lo maneja usted. Nueve temas, una idea central.',
-        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.',
-        temas: [
-          { num: '01', texto: 'Mi rol en la ventanilla', icono: 'play-circle' },
-          { num: '02', texto: '¿Quién puede pedir una ficha?', icono: 'user-check', critico: true },
-          { num: '03', texto: 'Documentos: paciente vivo', icono: 'clipboard-list', critico: true },
-          { num: '04', texto: 'Documentos: paciente fallecido', icono: 'file-text' },
-          { num: '05', texto: 'El formulario Anexo 6', icono: 'pen-tool' },
-          { num: '06', texto: 'Antes de derivar', icono: 'check-circle' },
-          { num: '07', texto: 'Hora Salud en ventanilla', icono: 'monitor' },
-          { num: '08', texto: 'Lo que digo y lo que no digo', icono: 'lock', critico: true },
-          { num: '09', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'Administrativo SOME/OIRS', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Yo recibo, yo verifico, yo derivo. Nunca yo entrego.',
+        bajada: '10 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
         rol: 'Administrativo SOME/OIRS',
@@ -1451,19 +1396,10 @@ const COM = {
     },
 
     higienista: { titulo: 'Cápsula de Capacitación: Higienista', laminas: [
-      { titulo: 'Higienista', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Ocho láminas sobre registro, contingencia y confidencialidad en su atención.',
-        mensajeMuela: 'Su rol en la ficha clínica es tan importante como el del dentista. Aquí está todo.',
-        temas: [
-          { num: '01', texto: 'Mi rol, RAYEN y credenciales', icono: 'play-circle', critico: true },
-          { num: '02', texto: 'Contingencia RAYEN — ficha en papel', icono: 'cloud-off' },
-          { num: '03', texto: 'Solicitud al Encargado de Calidad', icono: 'archive' },
-          { num: '04', texto: 'Fotografías clínicas — solo institucional', icono: 'camera' },
-          { num: '05', texto: 'Coordinación clínica con el equipo', icono: 'users' },
-          { num: '06', texto: 'Confidencialidad y dato sensible', icono: 'shield', critico: true },
-          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
-          { num: '08', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'Higienista', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Lo que hago en el sillón, queda en la ficha.',
+        bajada: '8 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Higienista' },
       { id: 'hig_rol', numero: '2/8', titulo: 'Registro en el momento. Clave solo mía.',
         subtitulo: 'Mi registro preventivo tiene el mismo valor legal que cualquier anotación clínica.',
@@ -1695,18 +1631,10 @@ const COM = {
     },
 
     sigges: { titulo: 'Cápsula de Capacitación: Referente SIGGES', laminas: [
-      { titulo: 'Referente SIGGES', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Ocho láminas sobre garantías GES, triple consistencia y monitoreo de plazos.',
-        mensajeMuela: 'Una garantía GES vencida es un derecho vulnerado. Aprendamos a evitarlo.',
-        temas: [
-          { num: '01', texto: 'Su rol en las garantías GES', icono: 'play-circle' },
-          { num: '02', texto: 'Designación y acceso a sistemas', icono: 'key', critico: true },
-          { num: '03', texto: 'Triple consistencia', icono: 'link-2', critico: true },
-          { num: '04', texto: 'Monitoreo preventivo', icono: 'timer', critico: true },
-          { num: '05', texto: 'Contactabilidad y documentación', icono: 'phone' },
-          { num: '06', texto: 'Confidencialidad del dato sensible', icono: 'shield' },
-          { num: '07', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'Referente SIGGES', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Tres fuentes, una sola verdad: papel, RAYEN, SIGGES.',
+        bajada: '8 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Referente SIGGES (Monitor / Digitador)' },
       { id: 'sigges_rol', numero: '2/7', titulo: 'Soy el puente entre la clínica y SIGGES',
         subtitulo: 'Monitoreo, cargo y registro las garantías GES. Ley 19.966.',
@@ -1940,18 +1868,10 @@ const COM = {
     },
 
     tecnico: { titulo: 'Cápsula de Capacitación: TONS Asistencial', laminas: [
-      { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada', mascotGesto: 'wave',
-        subtitulo: 'Ocho láminas sobre apoyo clínico, consentimientos y acceso a RAYEN.',
-        temas: [
-          { num: '01', texto: 'Mi rol junto al profesional', icono: 'play-circle', critico: true },
-          { num: '02', texto: 'Consentimientos informados', icono: 'clipboard-list', critico: true },
-          { num: '03', texto: 'Acceso a RAYEN y credenciales', icono: 'key' },
-          { num: '04', texto: 'Contingencia — ficha en papel', icono: 'cloud-off' },
-          { num: '05', texto: 'Fotografías clínicas', icono: 'camera' },
-          { num: '06', texto: 'Confidencialidad y coordinación', icono: 'shield' },
-          { num: '07', texto: 'Unificación de fichas clínicas', icono: 'git-merge' },
-          { num: '08', texto: 'Cierre', icono: 'check-circle' },
-        ] },
+      { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
+        fraseAncla: 'Asisto al profesional, resguardo al paciente.',
+        bajada: '8 láminas para entender exactamente qué significa eso.',
+        mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { tipo: 'identificacion', rol: 'TONS Asistencial (Asistente Dental)' },
       { id: 'tons_rol', titulo: 'Soy el apoyo del profesional. No el autor del registro.',
         subtitulo: 'Mi apoyo es parte de la atención. La identidad del paciente me importa desde el inicio.',

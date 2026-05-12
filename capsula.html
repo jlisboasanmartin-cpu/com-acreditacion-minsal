@@ -1202,7 +1202,7 @@
   function getBubble(lamina) {
     if (lamina.mensajeDrCom)              return lamina.mensajeDrCom;
     if (lamina.tipo === 'micro-presentacion') return 'Practica tu<br>presentación<br>en voz alta.';
-    if (lamina.tipo === 'portada')        return lamina.mensajeMuela || 'Revisemos esto juntos.<br>Son 10 minutos que valen la pena.';
+    if (lamina.tipo === 'portada' || lamina.tipo === 'portada-frase-ancla') return lamina.mensajeMuela || 'Aprenderemos lo justo y necesario para hacer bien su trabajo.';
     if (lamina.tipo === 'identificacion') return 'Cuéntame cómo te presentas.<br>Practica en voz alta.';
     if (lamina.tipo === 'cierre')         return '¡Bien hecho! Ya tienes todo<br>lo que necesitas.';
     if (lamina.tipo === 'placeholder')    return 'Este contenido<br>llegará muy pronto.';
@@ -1257,6 +1257,16 @@
         <div class="cap-temas">
           <div class="cap-temas-label">¿Qué vamos a ver?</div>
           <div class="cap-temas-flow">${temasHTML}</div>
+        </div>`;
+
+    } else if (lam.tipo === 'portada-frase-ancla') {
+      return `
+        <div class="cap-title-row" style="justify-content:center;text-align:center">
+          <h2 class="cap-title">${lam.titulo}</h2>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:32px;padding:16px 40px 48px">
+          <p style="font-size:36px;font-weight:800;color:${prf.color};line-height:1.25;max-width:560px;margin:0">&ldquo;${lam.fraseAncla}&rdquo;</p>
+          <p style="font-size:18px;color:#6B7280;margin:0">${lam.bajada}</p>
         </div>`;
 
     } else if (lam.tipo === 'cierre') {
