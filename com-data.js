@@ -745,7 +745,7 @@ const COM = {
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo en contingencia.',
           bloques: [
-            { tipo: 'pasos-y-doc-preview',
+            { tipo: 'pasos-fila-y-doc-grande',
               pasos: [
                 { n: 1, icono: 'printer',     titulo: 'Imprima',    texto: 'La ficha REG 1.2 desde sala.' },
                 { n: 2, icono: 'edit-3',      titulo: 'Registre',   texto: 'Todo lo que iría en RAYEN.' },

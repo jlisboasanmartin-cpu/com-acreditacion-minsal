@@ -554,6 +554,25 @@
       .bk-doc-preview-wrap { display: none; }
     }
 
+    /* ─── pasos-fila-y-doc-grande (L3 Dentista: pasos en fila + imagen grande abajo) ─── */
+    .bk-pasos-fila-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+    .bk-doc-grande-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .bk-doc-grande-img {
+      width: 100%; max-width: 680px; max-height: 320px;
+      object-fit: contain;
+      border: 1px solid #e2e8f0; border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.07);
+      display: block;
+      mix-blend-mode: multiply;
+      background: transparent;
+    }
+    @media (max-width: 820px) {
+      .bk-pasos-fila-wrap { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .bk-pasos-fila-wrap { grid-template-columns: 1fr; }
+    }
+
     /* ─── doc-preview-simple (miniatura formulario centrada) ─── */
     .bk-doc-preview-simple { display: flex; flex-direction: column; align-items: center; gap: 6px; }
     .bk-doc-img-simple {
@@ -1474,6 +1493,29 @@
               <div class="bk-doc-preview-caption">${b.imagenCaption || '← Así se ve la ficha al imprimirla'}</div>
             </div>`;
           return `<div class="bk-pasos-y-preview"><div class="bk-pasos-2x2">${pasosHTML}</div>${previewHTML}</div>`;
+        }
+        if (b.tipo === 'pasos-fila-y-doc-grande') {
+          const pasosHTML = (b.pasos || []).map(p => `
+            <div class="bk-paso-h">
+              <div class="bk-paso-h-header">
+                <div class="bk-paso-h-num" style="background:${prf.color}">${p.n}</div>
+                <i data-lucide="${p.icono}" style="width:15px;height:15px;color:${prf.color};flex-shrink:0"></i>
+                <span class="bk-paso-h-titulo">${p.titulo}</span>
+              </div>
+              <p class="bk-paso-h-texto">${p.texto}</p>
+            </div>`).join('');
+          return `
+            <div>
+              <div class="bk-pasos-fila-wrap">${pasosHTML}</div>
+              <div class="bk-doc-grande-wrap">
+                <div class="bk-doc-print-hint">
+                  <i data-lucide="printer" style="width:12px;height:12px;flex-shrink:0;margin-top:1px;color:var(--text-muted)"></i>
+                  <span>Imprima desde el computador de sala</span>
+                </div>
+                <img class="bk-doc-grande-img" src="${b.imagen}" alt="${b.imagenAlt || 'Formulario'}" />
+                ${b.imagenCaption ? `<div class="bk-doc-preview-caption">${b.imagenCaption}</div>` : ''}
+              </div>
+            </div>`;
         }
         if (b.tipo === 'split-pasos-imagen') {
           const pasosHTML = (b.pasos || []).map(p => `
