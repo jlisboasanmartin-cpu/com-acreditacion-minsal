@@ -1664,7 +1664,7 @@
           const compact = b.tipo === 'cuatro-reglas-cards-compactas';
           const reglas = (b.reglas || []).map(r => `
             <div class="${compact ? 'bk-regla-compact' : 'bk-regla'}">
-              <div class="${compact ? 'bk-regla-compact-num' : 'bk-regla-num'}" style="background:${prf.color}">${r.numero}</div>
+              ${!compact ? `<div class="bk-regla-num" style="background:${prf.color}">${r.numero}</div>` : ''}
               ${r.icono ? `<i data-lucide="${r.icono}" style="width:${compact ? '18' : '30'}px;height:${compact ? '18' : '30'}px;color:${prf.color}"></i>` : ''}
               <h3 class="${compact ? 'bk-regla-compact-titulo' : 'bk-regla-titulo'}">${r.titulo}</h3>
               <p class="${compact ? 'bk-regla-compact-texto' : 'bk-regla-texto'}">${r.texto}</p>
