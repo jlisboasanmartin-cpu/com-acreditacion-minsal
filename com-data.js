@@ -825,32 +825,22 @@ const COM = {
           titulo: 'Consentimiento informado',
           subtitulo: 'Antes de un procedimiento invasivo, el paciente firma.',
           bloques: [
-            { tipo: 'dos-columnas-info',
-              columnaIzq: {
-                titulo: '¿Por qué firma el paciente?',
-                items: [
-                  { icono: '⚖️', titulo: 'Es un derecho del paciente', texto: 'La Ley 20.584 garantiza que toda persona reciba información antes de aceptar un procedimiento.' },
-                  { icono: '📋', titulo: 'Es parte de la ficha clínica', texto: 'El consentimiento es un componente obligatorio del registro clínico (REG 1.1, sección 7.1.1).' },
-                  { icono: '🛡️', titulo: 'Protege al paciente y al profesional', texto: 'Deja constancia escrita de la información entregada y de la voluntad libre del paciente.' }
-                ]
-              },
-              columnaDer: {
-                titulo: '¿Cuándo se firma?',
-                items: [
-                  { icono: '✅', texto: 'Exodoncia' },
-                  { icono: '✅', texto: 'Endodoncia' },
-                  { icono: '✅', texto: 'Cirugía oral' },
-                  { icono: '✅', texto: 'Periodontal' },
-                  { icono: '✅', texto: 'Implantes oseointegrados' }
-                ],
-                destacado: '📌 El paciente debe conocer: <strong>diagnóstico, alternativas, riesgos y pronóstico</strong> antes de firmar.'
-              }
-            },
-            { tipo: 'imagen-y-texto-lateral',
+            { tipo: 'tag-contexto', texto: 'Aplica en: Exodoncia · Endodoncia · Cirugía oral · Periodontal · Implantes' },
+            { tipo: 'lista-simple', items: [
+              'Es un derecho del paciente (Ley 20.584)',
+              'Es parte obligatoria de la ficha clínica (REG 1.1)',
+              'Deja constancia escrita antes del procedimiento'
+            ]},
+            { tipo: 'callout-amarillo', icono: 'alert-triangle', titulo: 'El paciente debe conocer:',
+              texto: 'diagnóstico, alternativas, riesgos y pronóstico antes de firmar.' },
+            { tipo: 'pasos-split-formulario',
               imagen: 'assets/images/consentimiento-informado-anexo-3-completo.png',
-              imagenAlt: 'Formulario Anexo 3 — Consentimiento informado Ley 20.584 (completo)',
-              imagenCaption: 'Formulario Anexo 3',
-              texto: '<strong>Este es el formulario oficial.</strong><br>Lo encuentra en salas de procedimientos.<br>Se archiva en el kárdex del 2do piso.'
+              imagenAlt: 'Formulario Consentimiento Informado — Ley 20.584',
+              pasos: [
+                { n: 1, titulo: 'Encuéntrelo',  texto: 'En las salas de procedimientos.' },
+                { n: 2, titulo: 'Fírmelo',       texto: 'Antes del procedimiento, nunca después.' },
+                { n: 3, titulo: 'Entréguelo',    texto: 'Al Encargado de Calidad al cierre del día.' }
+              ]
             }
           ],
           poseDrCom: 'dr-com-alerta',
