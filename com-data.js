@@ -770,14 +770,14 @@ const COM = {
             { tipo: 'callout-azul', icono: 'info', titulo: '¿Cuándo lo pido?', texto: 'Cuando necesitas revisar una ficha anterior a 2007, verificar un consentimiento firmado de cirugía o endodoncia, o revisar documentación GES archivada.' },
             { tipo: 'pasos-split-formulario',
               pasos: [
-                { n: 1, titulo: 'Solicita',          texto: 'Llena el REG 1.2 con tus datos y el motivo. Fírmalo y entrégalo al Encargado de Calidad.' },
-                { n: 2, titulo: 'Recibe y devuelve', texto: 'Te entregan el documento ese mismo día. Tienes máximo 2 días hábiles para devolverlo.' }
+                { n: 1, titulo: 'Solicita',  texto: 'Llena el REG 1.2 con tus datos y el motivo. Fírmalo y entrégalo al Encargado de Calidad.' },
+                { n: 2, titulo: 'Recibe',    texto: 'Te entregan el documento ese mismo día, aprobado por Calidad y Dirección.' }
               ],
+              calloutRojo: 'El documento NUNCA sale del establecimiento. Plazo máximo de devolución: 2 días hábiles.',
               imagen: 'assets/images/reg-1-2-solicitud.png',
               imagenAlt: 'Formulario REG 1.2 — Solicitud de registros clínicos en papel',
               imagenCaption: 'Formulario REG 1.2'
-            },
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección. Plazo máximo de devolución: 2 días hábiles.' }
+            }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Sin formulario,<br>las fichas antiguas<br>no salen.'
