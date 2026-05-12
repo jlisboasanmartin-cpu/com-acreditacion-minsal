@@ -1170,12 +1170,12 @@ const COM = {
         mensajeDrCom: 'Bienvenido.<br>Aprenderemos lo justo<br>y necesario.' },
 
       { id: 'some_rol', numero: '2/10',
-        titulo: 'Soy el primer filtro',
-        subtitulo: 'El paciente me ve a mí primero.',
+        titulo: 'Lo que hago cuando alguien pide una ficha',
+        subtitulo: 'Cuando alguien viene a pedir información de una ficha clínica, su rol tiene tres momentos:',
         bloques: [
           { tipo: 'tres-iconos', items: [
             { icono: 'user', titulo: 'RECIBO', texto: 'Al solicitante en ventanilla y verifico que se identifique correctamente.' },
-            { icono: 'clipboard-check', titulo: 'VERIFICO', texto: 'Que la documentación esté completa antes de recibir la solicitud.' },
+            { icono: 'clipboard-check', titulo: 'VERIFICO', texto: 'Que los documentos habilitantes estén completos y correctos según quién solicita.' },
             { icono: 'arrow-right-circle', titulo: 'DERIVO', texto: 'Todo al Encargado de Calidad. Nunca entrego la información yo.' },
           ]},
           { tipo: 'callout-azul', icono: 'alert-circle', etiqueta: '¿Y si pasa esto?',
