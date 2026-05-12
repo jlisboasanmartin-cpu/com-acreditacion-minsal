@@ -1512,7 +1512,9 @@
               <div class="bk-psf-num" style="background:${prf.color}">${p.n}</div>
               <div class="bk-psf-body">
                 <div class="bk-psf-titulo">${p.titulo}</div>
-                <div class="bk-psf-texto">${p.texto}</div>
+                ${p.chips
+                  ? `<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${p.chips.map(c => `<span style="background:#EFF6FF;border:1px solid #BFDBFE;color:#1E40AF;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:500">${c}</span>`).join('')}</div>`
+                  : `<div class="bk-psf-texto">${p.texto || ''}</div>`}
               </div>
             </div>`).join('');
           return `

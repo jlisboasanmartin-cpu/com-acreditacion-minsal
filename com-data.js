@@ -764,14 +764,14 @@ const COM = {
           // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
           id: 'dentista_kardex',
           numero: '4/9',
-          titulo: '¿Cómo pido una ficha JUNAEB o un consentimiento?',
-          subtitulo: 'Todo lo archivado en el kárdex se solicita con el formulario REG 1.2.',
+          titulo: '¿Cómo accedo a documentos archivados?',
+          subtitulo: 'Fichas antiguas, consentimientos y documentación GES están en el kárdex. Solo se retiran con formulario.',
           bloques: [
             { tipo: 'pasos-split-formulario',
               pasos: [
-                { n: 1, titulo: '¿Cuándo lo pido?',    texto: 'Cuando necesita revisar el historial de un paciente atendido antes de 2007, verificar un consentimiento firmado de cirugía o endodoncia, o revisar documentación GES archivada.' },
-                { n: 2, titulo: '¿Cómo lo solicito?',  texto: 'Complete el formulario REG 1.2 con sus datos, los del paciente y el motivo. Fírmelo y entréguelo al Encargado de Calidad.' },
-                { n: 3, titulo: '¿Qué pasa después?',  texto: 'El Encargado de Calidad y Dirección aprueban. Tiene el documento ese mismo día. Debe devolverlo en máximo 2 días hábiles.' }
+                { n: 1, titulo: '¿Cuándo lo pido?',   chips: ['Paciente atendido antes de 2007', 'Consentimiento de cirugía o endodoncia', 'Revisión de documentación GES'] },
+                { n: 2, titulo: '¿Cómo lo solicito?', texto: 'Completa el REG 1.2, fírmalo y entrégalo al Encargado de Calidad.' },
+                { n: 3, titulo: '¿Qué pasa después?', texto: 'Aprobación ese mismo día. Devuelves en máximo 2 días hábiles.' }
               ],
               imagen: 'assets/images/reg-1-2-solicitud.png',
               imagenAlt: 'Formulario REG 1.2 — Solicitud de registros clínicos en papel',
