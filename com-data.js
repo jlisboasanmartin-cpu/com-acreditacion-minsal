@@ -22,10 +22,10 @@ const COM = {
     direccion: { titulo: 'Cápsula de Capacitación: Dirección y Equipo Gestor', laminas: [
       { titulo: 'Dirección y Equipo Gestor', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Sin resolución firmada, no hay acceso.',
-        bajada: '9 láminas para entender exactamente qué significa eso.',
+        bajada: '11 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Dirección o parte del Equipo Gestor' },
-      { id: 'dir_rol', numero: '2/9', titulo: 'Mi firma respalda cada decisión sobre la ficha.',
+      { id: 'dir_rol', numero: '2/11', titulo: 'Mi firma respalda cada decisión sobre la ficha.',
         subtitulo: 'Sin aprobación escrita, ningún acceso, entrega ni eliminación tiene validez.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -37,7 +37,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Su firma<br>cuida al<br>paciente.' },
-      { id: 'dir_resoluciones', numero: '3/9', titulo: 'Mis resoluciones deben estar vigentes.',
+      { id: 'dir_resoluciones', numero: '3/11', titulo: 'Mis resoluciones deben estar vigentes.',
         subtitulo: 'Cada cambio de personal o de función obliga a actualizar.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -49,7 +49,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Resolución<br>vigente,<br>siempre.' },
-      { id: 'dir_entrega', numero: '4/9', titulo: 'La entrega de información tiene pasos que no se saltan.',
+      { id: 'dir_entrega', numero: '4/11', titulo: 'La entrega de información tiene pasos que no se saltan.',
         subtitulo: '10 días hábiles. Documentación completa. Doble firma.',
         bloques: [
           { tipo: 'pasos-y-doc-preview',
@@ -67,7 +67,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Cada requisito<br>protege a<br>una persona.' },
-      { id: 'dir_eliminacion', numero: '5/9', titulo: 'Eliminar y unificar fichas son procesos formales.',
+      { id: 'dir_eliminacion', numero: '5/11', titulo: 'Eliminar y unificar fichas son procesos formales.',
         subtitulo: 'Actas, resoluciones y planillas. Nada se destruye ni fusiona sin registro.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -96,7 +96,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin acta,<br>sin resolución,<br>no se destruye.' },
-      { id: 'dir_radiografias', numero: '6/9', titulo: 'Las radiografías y el papel siguen sus propias normas.',
+      { id: 'dir_radiografias', numero: '6/11', titulo: 'Las radiografías y el papel siguen sus propias normas.',
         subtitulo: 'Control en el envío, trazabilidad en la contingencia.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -124,7 +124,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'El papel es<br>transitorio.<br>RAYEN, siempre.' },
-      { id: 'dir_confidencialidad', numero: '7/9', titulo: 'Usted es el garante institucional de la confidencialidad.',
+      { id: 'dir_confidencialidad', numero: '7/11', titulo: 'Usted es el garante institucional de la confidencialidad.',
         subtitulo: 'Ley 19.628, Decreto 41 y Ley 21.084. Toda decisión queda por escrito.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -136,7 +136,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Confidencial<br>siempre.<br>Por escrito.' },
-      { id: 'dir_unificacion', numero: '8/9',
+      { id: 'dir_unificacion', numero: '8/11',
         titulo: 'Unificación de Fichas Clínicas',
         subtitulo: '1 paciente = 1 ficha única. Siempre.',
         bloques: [
@@ -152,7 +152,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Sin la planilla<br>actualizada,<br>no hay trazabilidad.' },
-      { id: 'dir_cierre', numero: '9/9', titulo: 'Lo esencial de mi rol',
+      { id: 'dir_cierre', numero: '9/11', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
@@ -163,10 +163,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Sin resolución firmada, no hay acceso.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Autoriza,<br>firma,<br>responde.',
+        mensajeDrCom: 'Autoriza,<br>firma,<br>responde.' },
+      { id: 'dir_claves', numero: '10/11',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN · Hospital Digital' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -268,14 +283,14 @@ const COM = {
     calidad: { titulo: 'Cápsula de Capacitación: Encargado de Calidad', laminas: [
       { titulo: 'Encargado de Calidad', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Yo custodio, yo autorizo, yo registro.',
-        bajada: '9 láminas para entender exactamente qué significa eso.',
+        bajada: '11 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
         rol: 'Encargado de Calidad',
         mensajeDrCom: 'Bienvenido.<br>Aprenderemos lo justo<br>y necesario.' },
 
-      { id: 'calidad_rol', numero: '2/9',
+      { id: 'calidad_rol', numero: '2/11',
         titulo: 'Soy el custodio del kárdex',
         subtitulo: 'Todo movimiento documental del COM pasa por usted.',
         bloques: [
@@ -290,7 +305,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin formulario,<br>no hay entrega.<br>Sin firma, no hay rastro.' },
 
-      { id: 'calidad_interna', numero: '3/9',
+      { id: 'calidad_interna', numero: '3/11',
         titulo: 'Cuando un profesional pide ficha del kárdex',
         subtitulo: 'El formulario REG 1.2 es el inicio del trámite.',
         bloques: [
@@ -307,7 +322,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'El kárdex es la casa<br>de los documentos.<br>Nadie se los lleva.' },
 
-      { id: 'calidad_externa', numero: '4/9',
+      { id: 'calidad_externa', numero: '4/11',
         titulo: 'Cuando un usuario externo pide su ficha',
         subtitulo: 'OIRS recibe el Anexo 6 y usted gestiona la respuesta en 10 días hábiles.',
         bloques: [
@@ -327,7 +342,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: '¿Cuánto esperaría usted<br>por su propia<br>historia clínica?' },
 
-      { id: 'calidad_seguimiento', numero: '5/9',
+      { id: 'calidad_seguimiento', numero: '5/11',
         titulo: 'Seguimiento mensual de consentimientos',
         subtitulo: 'Cirugía y endodoncia: una revisión al mes, tres fuentes que deben coincidir.',
         bloques: [
@@ -342,7 +357,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Si no hay consentimiento firmado,<br>no debió haber<br>procedimiento.' },
 
-      { id: 'calidad_eliminacion', numero: '6/9',
+      { id: 'calidad_eliminacion', numero: '6/11',
         titulo: 'Eliminación de fichas clínicas',
         subtitulo: 'Solo con 15 años sin actividad, acta detallada y resolución firmada.',
         bloques: [
@@ -359,7 +374,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: 'Cada hoja destruida<br>tuvo un dueño real.<br>Por eso el acta.' },
 
-      { id: 'calidad_contraloria', numero: '7/9',
+      { id: 'calidad_contraloria', numero: '7/11',
         titulo: 'Contraloría de interconsultas',
         subtitulo: 'Semanal, junto con la Encargada de Ciclo Vital Adulto.',
         bloques: [
@@ -373,7 +388,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Persiga el cierre.<br>Cada caso<br>es una persona.' },
 
-      { id: 'calidad_unificacion', numero: '8/9',
+      { id: 'calidad_unificacion', numero: '8/11',
         titulo: 'Unificación de Fichas Clínicas',
         subtitulo: '1 paciente = 1 ficha única. Siempre.',
         bloques: [
@@ -392,7 +407,7 @@ const COM = {
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.' },
 
-      { id: 'calidad_cierre', numero: '9/9',
+      { id: 'calidad_cierre', numero: '9/11',
         titulo: 'Lo esencial de mi rol',
         subtitulo: '"Yo custodio, yo autorizo, yo registro."',
         bloques: [
@@ -405,10 +420,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Yo custodio, yo autorizo, yo registro.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', icono: 'sparkles', texto: '¡Bien hecho! Está listo/a para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Custodio, autorizo,<br>registro.<br>El kárdex en orden.',
+        mensajeDrCom: 'Custodio, autorizo,<br>registro.<br>El kárdex en orden.' },
+      { id: 'calidad_claves', numero: '10/11',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN · Hospital Digital' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -607,11 +637,11 @@ const COM = {
       laminas: [
         { id: 'dentista_portada', titulo: 'Cirujano Dentista', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
           fraseAncla: 'Lo que no está registrado, no ocurrió.',
-          bajada: '9 láminas para entender exactamente qué significa eso.',
+          bajada: '11 láminas para entender exactamente qué significa eso.',
           mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
         {
           // LÁMINA 3 — RAYEN y registro clínico
-          id: 'dentista_01', numero: '2/9',
+          id: 'dentista_01', numero: '2/11',
           titulo: 'RAYEN: la ficha oficial',
           subtitulo: 'Todo va en RAYEN, en el momento o inmediatamente después.',
           bloques: [
@@ -626,7 +656,7 @@ const COM = {
         },
         {
           // LÁMINA 4 — Ficha en papel (Plan B)
-          id: 'dentista_02', numero: '3/9',
+          id: 'dentista_02', numero: '3/11',
           titulo: '¿Qué hago si RAYEN no funciona?',
           subtitulo: 'Existe la ficha en papel (REG 1.2). Solo en contingencia.',
           bloques: [
@@ -648,7 +678,7 @@ const COM = {
         {
           // LÁMINA 4 — Solicitar fichas o consentimientos del kárdex
           id: 'dentista_kardex',
-          numero: '4/9',
+          numero: '4/11',
           titulo: '¿Cómo accedo a documentos archivados?',
           subtitulo: 'Antes de 2007, las fichas clínicas eran en papel. Cuando un paciente de esa época vuelve, o necesitas revisar un consentimiento anterior, esos registros están en el kárdex y tienen un proceso de retiro formal.',
           bloques: [
@@ -669,7 +699,7 @@ const COM = {
         {
           // LÁMINA 5 — Interconsultas y derivación a especialista
           id: 'dentista_interconsultas',
-          numero: '5/9',
+          numero: '5/11',
           titulo: 'Hospital Digital: derivación cuando el caso supera la capacidad resolutiva de APS',
           subtitulo: 'Derivar no es el fin del proceso. El cierre en Hospital Digital es tu responsabilidad y sin él la interconsulta queda incompleta.',
           bloques: [
@@ -689,7 +719,7 @@ const COM = {
         },
         {
           // LÁMINA 6 — Radiografías externas RISPAC
-          id: 'dentista_rispac', numero: '6/9',
+          id: 'dentista_rispac', numero: '6/11',
           titulo: 'Radiografías externas — RISPAC',
           subtitulo: 'Las imágenes del CRS no se reciben en mano. Se consultan online.',
           bloques: [
@@ -706,7 +736,7 @@ const COM = {
         },
         {
           // LÁMINA 7 — Consentimiento informado (era L6)
-          id: 'dentista_consentimiento', numero: '7/9',
+          id: 'dentista_consentimiento', numero: '7/11',
           titulo: 'Consentimiento informado',
           subtitulo: 'Sin firma previa, el procedimiento no puede realizarse.',
           bloques: [
@@ -732,7 +762,7 @@ const COM = {
           mensajeDrCom: 'Sin consentimiento firmado,<br>no se realiza<br>el procedimiento invasivo.'
         },
         {
-          id: 'dentista_unificacion', numero: '8/9',
+          id: 'dentista_unificacion', numero: '8/11',
           titulo: 'Unificación de Fichas Clínicas',
           subtitulo: '1 paciente = 1 ficha única. Siempre.',
           bloques: [
@@ -753,7 +783,7 @@ const COM = {
         },
         {
           // LÁMINA 9 — GES
-          id: 'dentista_cierre', numero: '9/9',
+          id: 'dentista_cierre', numero: '9/11',
           titulo: 'GES: Garantías Explícitas en Salud',
           subtitulo: 'Plazos legales. Documentación física. Trazabilidad.',
           bloques: [
@@ -764,22 +794,37 @@ const COM = {
             ]},
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: 'Nunca en su escritorio.', texto: 'Ningún documento GES se queda con usted. Va al Referente SIGGES el mismo día.' },
             { tipo: 'frase-ancla', texto: 'Lo que no está registrado, no ocurrió.', tamano: 'grande' },
-            { tipo: 'banner-cuestionario', icono: 'sparkles', texto: 'Ya está listo/a. El cuestionario confirma lo que usted ya sabe.' }
           ],
           poseDrCom: 'dr-com-celebrando',
-          mensajeDrCom: 'Atrasarse en GES vulnera<br>un derecho del paciente.',
-          ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' }
-        }
+          mensajeDrCom: 'Atrasarse en GES vulnera<br>un derecho del paciente.' }
+        ,
+        { id: 'dentista_claves', numero: '10/10',
+          titulo: 'Su clave es personal. No se presta, no se pide.',
+          subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+          bloques: [
+            { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN · Hospital Digital · RISPAC' },
+            { tipo: 'lista-simple', items: [
+              'Lo que usted registra con su clave queda a su nombre.',
+              'Si alguien usa su clave y comete un error, usted es el responsable.',
+              'Pedir o prestar claves es una falta grave al protocolo.'
+            ]},
+            { tipo: 'callout-rojo', icono: 'alert-octagon',
+              titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+            { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+          ],
+          poseDrCom: 'dr-com-alerta',
+          mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
+          ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
       ]
     },
 
     radiografia: { titulo: 'Cápsula de Capacitación: Operador de Radiografía', laminas: [
       { titulo: 'Operador de Radiografía', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Cada imagen tiene un RUT, cada RUT tiene un dueño.',
-        bajada: '8 láminas para entender exactamente qué significa eso.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Operador de Radiografía (TONS)' },
-      { id: 'rx_rol', numero: '2/8', titulo: 'Soy el custodio de las imágenes del paciente.',
+      { id: 'rx_rol', numero: '2/9', titulo: 'Soy el custodio de las imágenes del paciente.',
         subtitulo: 'Tomo, digitalizo y cuido. Cada imagen va vinculada al RUT del paciente en DBSWIN.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -791,7 +836,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'La imagen<br>es del<br>paciente.' },
-      { id: 'rx_sala', numero: '3/8', titulo: 'La sala y las órdenes: ambas bajo llave.',
+      { id: 'rx_sala', numero: '3/9', titulo: 'La sala y las órdenes: ambas bajo llave.',
         subtitulo: 'Resguardo físico del espacio y los documentos, todo el tiempo.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -816,7 +861,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sala cerrada,<br>órdenes<br>bajo llave.' },
-      { id: 'rx_rotulado', numero: '4/8', titulo: 'Antes de enviar: trazabilidad y rótulo exacto.',
+      { id: 'rx_rotulado', numero: '4/9', titulo: 'Antes de enviar: trazabilidad y rótulo exacto.',
         subtitulo: 'Sin rótulo la imagen es anónima. Sin autorización, el envío es indebido.',
         bloques: [
           { tipo: 'pasos-horizontal', pasos: [
@@ -828,7 +873,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Rótulo<br>correcto,<br>trazabilidad.' },
-      { id: 'rx_envio', numero: '5/8', titulo: 'El envío: solo desde el correo institucional.',
+      { id: 'rx_envio', numero: '5/9', titulo: 'El envío: solo desde el correo institucional.',
         subtitulo: 'Archivo → Guardar → DBSWIN → rayosdental@corpomunimacul.cl. Siempre.',
         bloques: [
           { tipo: 'pasos-horizontal', pasos: [
@@ -840,7 +885,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Solo correo<br>institucional.<br>Siempre.' },
-      { id: 'rx_registro', numero: '6/8', titulo: 'Registrar el envío: dos destinos, dos registros.',
+      { id: 'rx_registro', numero: '6/9', titulo: 'Registrar el envío: dos destinos, dos registros.',
         subtitulo: 'Fecha, RUT, imagen, destino y firma. Sin eso el envío no queda trazado.',
         bloques: [
           { tipo: 'dos-columnas-info',
@@ -863,7 +908,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Sin registro,<br>sin<br>trazabilidad.' },
-      { id: 'rx_carpeta', numero: '7/8', titulo: 'Eliminar la carpeta local y proteger la confidencialidad.',
+      { id: 'rx_carpeta', numero: '7/9', titulo: 'Eliminar la carpeta local y proteger la confidencialidad.',
         subtitulo: 'Carpeta usada, carpeta eliminada. DBSWIN guarda. El escritorio, no.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -887,7 +932,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Carpeta usada,<br>carpeta<br>eliminada.' },
-      { id: 'rx_cierre', numero: '8/8', titulo: 'Lo esencial de mi rol',
+      { id: 'rx_cierre', numero: '8/9', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
@@ -898,10 +943,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Cada imagen tiene un RUT, cada RUT tiene un dueño.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Toma,<br>cuida,<br>registra.',
+        mensajeDrCom: 'Toma,<br>cuida,<br>registra.' },
+      { id: 'rx_claves', numero: '9/9',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: DBSWIN · RAYEN' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -1003,14 +1063,14 @@ const COM = {
     administrativo: { titulo: 'Cápsula de Capacitación: Administrativo SOME/OIRS', laminas: [
       { titulo: 'Administrativo SOME/OIRS', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Yo recibo, yo verifico, yo derivo. Nunca yo entrego.',
-        bajada: '10 láminas para entender exactamente qué significa eso.',
+        bajada: '11 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
 
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'wave',
         rol: 'Administrativo SOME/OIRS',
         mensajeDrCom: 'Bienvenido.<br>Aprenderemos lo justo<br>y necesario.' },
 
-      { id: 'some_rol', numero: '2/10',
+      { id: 'some_rol', numero: '2/11',
         titulo: 'Lo que hago cuando alguien pide una ficha',
         subtitulo: 'Cuando alguien viene a pedir una ficha, usted tiene tres momentos:',
         bloques: [
@@ -1025,7 +1085,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Yo no entrego<br>información.<br>Solo la canalizo.' },
 
-      { id: 'some_quien', numero: '3/10',
+      { id: 'some_quien', numero: '3/11',
         titulo: '¿Quién puede pedir una ficha clínica?',
         subtitulo: 'La lista es corta. Solo estas personas pueden iniciar el trámite.',
         bloques: [
@@ -1057,7 +1117,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: 'Si no calza en<br>la lista verde,<br>no inicio el trámite.' },
 
-      { id: 'some_docs_vivo', numero: '4/10',
+      { id: 'some_docs_vivo', numero: '4/11',
         titulo: 'Qué debe traer cada persona que viene a pedir una ficha clínica',
         subtitulo: 'Antes de recibir cualquier solicitud, verifique que trae todo según su caso.',
         bloques: [
@@ -1071,7 +1131,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin todos los papeles,<br>no recibo<br>la solicitud.' },
 
-      { id: 'some_docs_fallecido', numero: '5/10',
+      { id: 'some_docs_fallecido', numero: '5/11',
         titulo: 'Si el paciente falleció',
         subtitulo: 'Solo el heredero directo puede gestionar. Cuatro documentos. Siempre los cuatro.',
         bloques: [
@@ -1087,7 +1147,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: 'Cuatro papeles.<br>Si falta uno,<br>no se recibe.' },
 
-      { id: 'some_formulario', numero: '6/10',
+      { id: 'some_formulario', numero: '6/11',
         titulo: 'El formulario Anexo 6',
         subtitulo: 'Lo lleno con el paciente. No por el paciente.',
         bloques: [
@@ -1105,7 +1165,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Lo lleno con<br>el paciente.<br>No por él.' },
 
-      { id: 'some_derivar', numero: '7/10',
+      { id: 'some_derivar', numero: '7/11',
         titulo: 'Lo que hago antes de pasar el formulario Anexo 6 al Encargado de Calidad',
         subtitulo: 'Cuatro pasos. En orden. Siempre.',
         bloques: [
@@ -1121,7 +1181,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'El comprobante<br>no es opcional.<br>Es el respaldo.' },
 
-      { id: 'some_hora_salud', numero: '8/10',
+      { id: 'some_hora_salud', numero: '8/11',
         titulo: 'La máquina de números solo empieza el trámite. Usted lo continúa.',
         subtitulo: 'Tres momentos desde que el paciente toma número hasta que usted completa su parte.',
         bloques: [
@@ -1135,7 +1195,7 @@ const COM = {
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'La máquina de números<br>solo empieza.<br>Yo continúo.' },
 
-      { id: 'some_confidencialidad', numero: '9/10',
+      { id: 'some_confidencialidad', numero: '9/11',
         titulo: 'Lo que digo y lo que no digo',
         subtitulo: 'Tres situaciones reales. Dos respuestas no. Una sí.',
         bloques: [
@@ -1150,7 +1210,7 @@ const COM = {
         poseDrCom: 'dr-com-alerta',
         mensajeDrCom: 'Una conversación<br>informal puede vulnerar<br>datos del paciente.' },
 
-      { id: 'some_cierre', numero: '10/10',
+      { id: 'some_cierre', numero: '10/11',
         titulo: 'Lo esencial del trámite',
         subtitulo: 'Repasemos lo esencial antes de ir al cuestionario.',
         bloques: [
@@ -1163,10 +1223,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Yo recibo, yo verifico, yo derivo. Nunca yo entrego.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Recibe, verifica,<br>deriva.<br>Nunca entrega.',
+        mensajeDrCom: 'Recibe, verifica,<br>deriva.<br>Nunca entrega.' },
+      { id: 'some_claves', numero: '11/11',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -1268,10 +1343,10 @@ const COM = {
     higienista: { titulo: 'Cápsula de Capacitación: Higienista', laminas: [
       { titulo: 'Higienista', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Lo que hago en el sillón, queda en la ficha.',
-        bajada: '8 láminas para entender exactamente qué significa eso.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Higienista' },
-      { id: 'hig_rol', numero: '2/8', titulo: 'Registro en el momento. Clave solo mía.',
+      { id: 'hig_rol', numero: '2/9', titulo: 'Registro en el momento. Clave solo mía.',
         subtitulo: 'Mi registro preventivo tiene el mismo valor legal que cualquier anotación clínica.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -1283,7 +1358,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Su registro<br>es la memoria<br>del cuidado.' },
-      { id: 'hig_contingencia', numero: '3/8', titulo: 'Si RAYEN no funciona: papel, luego traspaso.',
+      { id: 'hig_contingencia', numero: '3/9', titulo: 'Si RAYEN no funciona: papel, luego traspaso.',
         subtitulo: 'El papel salva la atención. RAYEN salva la trazabilidad de toda una vida clínica.',
         bloques: [
           { tipo: 'pasos-horizontal', pasos: [
@@ -1295,7 +1370,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'El papel<br>es transitorio.<br>RAYEN, siempre.' },
-      { id: 'hig_calidad', numero: '4/8', titulo: 'Para pedir un documento del kárdex: formulario.',
+      { id: 'hig_calidad', numero: '4/9', titulo: 'Para pedir un documento del kárdex: formulario.',
         subtitulo: '2 días hábiles. Sin formulario, sin entrega. Sin excepción.',
         bloques: [
           { tipo: 'pasos-horizontal', pasos: [
@@ -1307,7 +1382,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Formulario<br>siempre.<br>2 días.' },
-      { id: 'hig_fotos', numero: '5/8', titulo: 'Las fotos clínicas son de la institución.',
+      { id: 'hig_fotos', numero: '5/9', titulo: 'Las fotos clínicas son de la institución.',
         subtitulo: 'Solo cámara y computador institucionales. Eliminadas tras su uso.',
         bloques: [
           { tipo: 'escenarios-semaforo', escenarios: [
@@ -1318,7 +1393,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Solo<br>institucional.<br>Siempre.' },
-      { id: 'hig_coordinacion', numero: '6/8', titulo: 'Equipo y confidencialidad: dos caras de lo mismo.',
+      { id: 'hig_coordinacion', numero: '6/9', titulo: 'Equipo y confidencialidad: dos caras de lo mismo.',
         subtitulo: 'Trabajo en equipo con el dentista y resguardo del dato sensible.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -1343,7 +1418,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Equipo<br>y silencio<br>son uno.' },
-      { id: 'hig_unificacion', numero: '7/8',
+      { id: 'hig_unificacion', numero: '7/9',
         titulo: 'Unificación de Fichas Clínicas',
         subtitulo: '1 paciente = 1 ficha única. Siempre.',
         bloques: [
@@ -1361,7 +1436,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: '1 paciente,<br>1 ficha.<br>Sin excepciones.' },
-      { id: 'hig_cierre', numero: '8/8', titulo: 'Lo esencial de mi rol',
+      { id: 'hig_cierre', numero: '8/9', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
@@ -1372,10 +1447,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Lo que hago en el sillón, queda en la ficha.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Registra,<br>cuida,<br>protege.',
+        mensajeDrCom: 'Registra,<br>cuida,<br>protege.' },
+      { id: 'hig_claves', numero: '9/9',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -1477,10 +1567,10 @@ const COM = {
     sigges: { titulo: 'Cápsula de Capacitación: Referente SIGGES', laminas: [
       { titulo: 'Referente SIGGES', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Tres fuentes, una sola verdad: papel, RAYEN, SIGGES.',
-        bajada: '8 láminas para entender exactamente qué significa eso.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { titulo: 'Identificación del evaluador', tipo: 'identificacion', mascotGesto: 'point', rol: 'Referente SIGGES (Monitor / Digitador)' },
-      { id: 'sigges_rol', numero: '2/7', titulo: 'Soy el puente entre la clínica y SIGGES',
+      { id: 'sigges_rol', numero: '2/9', titulo: 'Soy el puente entre la clínica y SIGGES',
         subtitulo: 'Monitoreo, cargo y registro las garantías GES. Ley 19.966.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -1492,7 +1582,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Cada caso<br>es un derecho<br>garantizado.' },
-      { id: 'sigges_acceso', numero: '3/7', titulo: 'Mi designación es formal. Mi acceso es responsabilidad mía.',
+      { id: 'sigges_acceso', numero: '3/9', titulo: 'Mi designación es formal. Mi acceso es responsabilidad mía.',
         subtitulo: 'Resolución de Dirección + credenciales personales + atribución RAYEN.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -1504,7 +1594,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Sin resolución,<br>sin acceso.' },
-      { id: 'sigges_consistencia', numero: '4/7', titulo: 'Tres fuentes. Una sola verdad.',
+      { id: 'sigges_consistencia', numero: '4/9', titulo: 'Tres fuentes. Una sola verdad.',
         subtitulo: 'Papel + RAYEN + SIGGES deben coincidir siempre. Si discrepan, hay un hallazgo.',
         bloques: [
           { tipo: 'iconos-suma', items: [
@@ -1521,7 +1611,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Tres fuentes,<br>una historia.' },
-      { id: 'sigges_monitoreo', numero: '5/7', titulo: 'El monitoreo anticipa. No reacciona.',
+      { id: 'sigges_monitoreo', numero: '5/9', titulo: 'El monitoreo anticipa. No reacciona.',
         subtitulo: 'Detectar tarde es no detectar. La alerta es preventiva, no posterior al vencimiento.',
         bloques: [
           { tipo: 'escenarios-semaforo', escenarios: [
@@ -1532,7 +1622,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-explicando',
         mensajeDrCom: 'Anticipe.<br>No reaccione.' },
-      { id: 'sigges_contactabilidad', numero: '6/7', titulo: 'Lo que no está registrado, no ocurrió.',
+      { id: 'sigges_contactabilidad', numero: '6/9', titulo: 'Lo que no está registrado, no ocurrió.',
         subtitulo: 'Cada llamada y cada papel GES debe quedar trazado.',
         bloques: [
           { tipo: 'seccion-doble-vertical',
@@ -1560,7 +1650,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Sin registro,<br>sin trazabilidad.' },
-      { id: 'sigges_confidencialidad', numero: '7/7', titulo: 'La información GES es dato sensible. Sin excepciones.',
+      { id: 'sigges_confidencialidad', numero: '7/9', titulo: 'La información GES es dato sensible. Sin excepciones.',
         subtitulo: 'Ley 19.628, Decreto 41 y Ley 21.084. La protección es máxima.',
         bloques: [
           { tipo: 'tres-iconos', items: [
@@ -1572,7 +1662,7 @@ const COM = {
         ],
         poseDrCom: 'dr-com-pensando',
         mensajeDrCom: 'Confidencial<br>siempre.' },
-      { id: 'sigges_cierre', numero: '8/8', titulo: 'Lo esencial de mi rol',
+      { id: 'sigges_cierre', numero: '8/9', titulo: 'Lo esencial de mi rol',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
@@ -1583,10 +1673,25 @@ const COM = {
             ],
           },
           { tipo: 'frase-ancla', texto: 'Tres fuentes, una sola verdad: papel, RAYEN, SIGGES.', tamano: 'grande' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
         poseDrCom: 'dr-com-celebrando',
-        mensajeDrCom: 'Monitorea,<br>carga,<br>registra.',
+        mensajeDrCom: 'Monitorea,<br>carga,<br>registra.' },
+      { id: 'sigges_claves', numero: '9/9',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN · SIGGES' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
@@ -1688,7 +1793,7 @@ const COM = {
     tecnico: { titulo: 'Cápsula de Capacitación: TONS Asistencial', laminas: [
       { titulo: 'TONS Asistencial', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
         fraseAncla: 'Asisto al profesional, resguardo al paciente.',
-        bajada: '8 láminas para entender exactamente qué significa eso.',
+        bajada: '9 láminas para entender exactamente qué significa eso.',
         mensajeMuela: 'Aprenderemos lo justo y necesario para hacer bien su trabajo.' },
       { tipo: 'identificacion', rol: 'TONS Asistencial (Asistente Dental)' },
       { id: 'tons_rol', titulo: 'Soy el apoyo del profesional. No el autor del registro.',
@@ -1804,9 +1909,24 @@ const COM = {
             { numero: '4', titulo: 'Fotos y confidencialidad', texto: 'Solo equipos institucionales. Lo clínico queda en lo clínico.' },
           ] },
           { tipo: 'frase-ancla', texto: 'Asisto al profesional, resguardo al paciente.' },
-          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' },
         ],
-        poseDrCom: 'dr-com-celebrando',
+        poseDrCom: 'dr-com-celebrando' },
+      { id: 'tons_claves', numero: '9/9',
+        titulo: 'Su clave es personal. No se presta, no se pide.',
+        subtitulo: 'Lo que usted registra con su clave queda a su nombre.',
+        bloques: [
+          { tipo: 'tag-contexto', texto: 'Aplica en: RAYEN' },
+          { tipo: 'lista-simple', items: [
+            'Lo que usted registra con su clave queda a su nombre.',
+            'Si alguien usa su clave y comete un error, usted es el responsable.',
+            'Pedir o prestar claves es una falta grave al protocolo.'
+          ]},
+          { tipo: 'callout-rojo', icono: 'alert-octagon',
+            titulo: 'Prestar su clave es prestar su firma. Las consecuencias son suyas.', texto: '' },
+          { tipo: 'banner-cuestionario', texto: '¡Bien hecho! Está listo para el cuestionario de práctica.' }
+        ],
+        poseDrCom: 'dr-com-alerta',
+        mensajeDrCom: 'Su clave es<br>solo suya.<br>Sin excepciones.',
         ctaFinal: { texto: 'Ir al cuestionario', accion: 'irAlCuestionario' } },
     ],
     cuestionario: {
