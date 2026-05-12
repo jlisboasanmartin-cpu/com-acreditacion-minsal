@@ -1220,10 +1220,10 @@ const COM = {
         titulo: 'Papeles según quién pide',
         subtitulo: 'Tres situaciones distintas, tres combinaciones de documentos.',
         bloques: [
-          { tipo: 'tres-iconos', items: [
-            { icono: 'credit-card', titulo: 'Titular', texto: 'Solo la cédula de identidad del propio paciente.' },
-            { icono: 'users', titulo: 'Tercero autorizado', texto: 'Cédula propia + poder notarial simple del titular.' },
-            { icono: 'baby', titulo: 'Menor de edad', texto: 'Cédula del adulto + cédula del menor + certificado de nacimiento o representación legal.' },
+          { tipo: 'lista-casos-vertical', casos: [
+            { titulo: 'Titular', items: ['Cédula de identidad del paciente'] },
+            { titulo: 'Tercero autorizado', items: ['Cédula propia', 'Poder notarial simple del titular'] },
+            { titulo: 'Menor de edad', items: ['Cédula del adulto solicitante', 'Cédula del menor', 'Certificado de nacimiento o documento de representación legal'] }
           ]},
         ],
         poseDrCom: 'dr-com-explicando',
@@ -1249,16 +1249,15 @@ const COM = {
         titulo: 'El formulario Anexo 6',
         subtitulo: 'Lo lleno con el paciente. No por el paciente.',
         bloques: [
-          { tipo: 'pasos-y-doc-preview',
+          { tipo: 'pasos-split-formulario',
             pasos: [
-              { n: 1, icono: 'user', titulo: 'Datos del solicitante', texto: 'Nombre, RUT y datos de contacto de quien solicita.' },
-              { n: 2, icono: 'file-text', titulo: 'Tipo de documento', texto: 'Ficha clínica, radiografía o ambas.' },
-              { n: 3, icono: 'download', titulo: 'Formato de retiro', texto: 'Copia física, digital o retiro en el establecimiento.' },
-              { n: 4, icono: 'pen-tool', titulo: 'Firma del solicitante', texto: 'Sin firma, el formulario no tiene validez.' },
+              { n: 1, titulo: 'Datos del solicitante', texto: 'Nombre, RUT y datos de contacto de quien solicita.' },
+              { n: 2, titulo: 'Tipo de documento', texto: 'Ficha clínica, radiografía o ambas.' },
+              { n: 3, titulo: 'Formato de retiro', texto: 'Copia física, digital o retiro en el establecimiento.' },
+              { n: 4, titulo: 'Firma del solicitante', texto: 'Sin firma, el formulario no tiene validez.' }
             ],
             imagen: 'assets/images/reg-1-6-anexo-6.png',
-            imagenAlt: 'Formulario Anexo 6 — Solicitud de ficha clínica y radiografía',
-            imagenCaption: 'Formulario Anexo 6',
+            imagenAlt: 'Formulario Anexo 6 — Solicitud de ficha clínica y radiografía'
           },
         ],
         poseDrCom: 'dr-com-explicando',
@@ -1268,14 +1267,12 @@ const COM = {
         titulo: 'Antes de derivar',
         subtitulo: 'Cuatro pasos. En orden. Siempre.',
         bloques: [
-          { tipo: 'pasos-horizontal',
-            pasos: [
-              { n: 1, icono: 'paperclip', titulo: 'Anexo las copias', texto: 'Adjunto al formulario las copias de la documentación habilitante.' },
-              { n: 2, icono: 'receipt', titulo: 'Entrego el comprobante', texto: 'El solicitante se va con su comprobante en mano.' },
-              { n: 3, icono: 'pen-tool', titulo: 'Firmo la recepción', texto: 'Firmo que recibí el formulario completo.' },
-              { n: 4, icono: 'arrow-right-circle', titulo: 'Derivo a Calidad', texto: 'Todo el paquete va al Encargado de Calidad.' },
-            ],
-          },
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, titulo: 'Anexo las copias',       texto: 'Adjunto al formulario las copias de la documentación habilitante.' },
+            { n: 2, titulo: 'Entrego el comprobante', texto: 'El solicitante se va con su comprobante en mano.' },
+            { n: 3, titulo: 'Firmo la recepción',     texto: 'Firmo que recibí el formulario completo.' },
+            { n: 4, titulo: 'Derivo a Calidad',       texto: 'Todo el paquete va al Encargado de Calidad.' }
+          ]},
           { tipo: 'callout-azul', icono: 'info',
             texto: '<strong>El comprobante no es opcional.</strong> Es el respaldo del paciente y la prueba de su gestión.' },
         ],
@@ -1286,10 +1283,10 @@ const COM = {
         titulo: 'Cuando atiendo en ventanilla',
         subtitulo: 'El tótem solo empieza el trámite. Usted lo continúa.',
         bloques: [
-          { tipo: 'tres-iconos', items: [
-            { icono: 'monitor', titulo: '1. Veo el listado del tótem', texto: 'Los pacientes que tomaron número aparecen en la pantalla de Hora Salud.' },
-            { icono: 'megaphone', titulo: '2. Llamo al paciente', texto: 'Le doy atención en ventanilla según la gestión que necesite.' },
-            { icono: 'keyboard', titulo: '3. Lo ingreso si corresponde', texto: 'Si es para lista de espera, lo ingreso con su RUT y registro observaciones cuando aplique.' },
+          { tipo: 'pasos-vertical', pasos: [
+            { n: 1, titulo: 'Veo el listado en pantalla',  texto: 'Los pacientes que tomaron número en el tótem aparecen en Hora Salud. Los llamo en orden.' },
+            { n: 2, titulo: 'Los atiendo en ventanilla',   texto: 'Escucho la gestión que necesitan y verifico su identidad antes de proceder.' },
+            { n: 3, titulo: 'Los ingreso si corresponde',  texto: 'Si es lista de espera: ingreso con RUT y registro observaciones. Si es solicitud de ficha: inicio el flujo del Anexo 6.' }
           ]},
         ],
         poseDrCom: 'dr-com-explicando',
