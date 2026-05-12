@@ -767,15 +767,15 @@ const COM = {
           titulo: '¿Cómo pido una ficha JUNAEB o un consentimiento?',
           subtitulo: 'Todo lo archivado en el kárdex se solicita con el formulario REG 1.2.',
           bloques: [
-            { tipo: 'pasos-y-doc-preview',
+            { tipo: 'pasos-split-formulario',
               pasos: [
-                { n: 1, icono: 'search', titulo: '¿Cuándo?', texto: 'Ficha JUNAEB antigua, consentimiento archivado, documentación GES.' },
-                { n: 2, icono: 'file-text', titulo: '¿Cómo?', texto: 'Complete REG 1.2, justifique, firme y entregue.' },
-                { n: 3, icono: 'check-circle', titulo: '¿Después?', texto: 'Calidad y Dirección aprueban. Devolución en 2 días.' },
+                { n: 1, titulo: '¿Cuándo?',   texto: 'Ficha JUNAEB antigua, consentimiento archivado o documentación GES.' },
+                { n: 2, titulo: '¿Cómo?',     texto: 'Complete el formulario REG 1.2, justifique, firme y entréguelo al Encargado de Calidad.' },
+                { n: 3, titulo: '¿Después?',  texto: 'Calidad y Dirección aprueban. Plazo máximo de devolución: 2 días hábiles.' }
               ],
               imagen: 'assets/images/reg-1-2-solicitud.png',
-              imagenAlt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad',
-              imagenCaption: 'Formulario REG 1.2',
+              imagenAlt: 'Formulario REG 1.2 — Solicitud de registros clínicos en papel',
+              imagenCaption: 'Formulario REG 1.2'
             },
             { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección. Plazo máximo de devolución: 2 días hábiles.' }
           ],
