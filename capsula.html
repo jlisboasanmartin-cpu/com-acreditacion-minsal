@@ -1739,15 +1739,11 @@
         }
         if (b.tipo === 'pasos-vertical') {
           const steps = (b.pasos || []).map((p, i) => `
-            <div class="bk-pv-step">
-              <div class="bk-pv-num" style="background:${prf.color}">${p.n || i + 1}</div>
-              <i class="bk-pv-icono" data-lucide="${p.icono}" style="width:18px;height:18px;color:${prf.color}"></i>
-              <div class="bk-pv-body">
-                <div class="bk-pv-titulo">${p.titulo}</div>
-                ${p.texto ? `<div class="bk-pv-texto">${p.texto}</div>` : ''}
-              </div>
+            <div class="bk-paso-v-item">
+              <div class="bk-paso-v-num" style="background:${prf.color}">${p.n || i + 1}</div>
+              <div class="bk-paso-v-main"><span class="bk-paso-v-titulo">${p.titulo}</span> — ${p.texto || ''}</div>
             </div>`).join('');
-          return `<div class="bk-pv-list">${steps}</div>`;
+          return `<div class="bk-paso-v-lista">${steps}</div>`;
         }
         if (b.tipo === 'lista-documentos-vertical') {
           const items = (b.items || []).map((item, i) => `
