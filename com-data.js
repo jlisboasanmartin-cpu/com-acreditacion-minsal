@@ -1311,14 +1311,14 @@ const COM = {
 
       { id: 'some_cierre', numero: '10/10',
         titulo: 'Lo esencial del trámite',
-        subtitulo: '"Yo recibo, yo verifico, yo derivo. Nunca yo entrego."',
+        subtitulo: 'Repasemos lo esencial antes de ir al cuestionario.',
         bloques: [
           { tipo: 'cuatro-reglas-cards-compactas',
             reglas: [
-              { numero: 1, icono: 'filter', titulo: 'Solo habilitados', texto: 'Documentación completa para pasar.' },
-              { numero: 2, icono: 'file-text', titulo: 'Cuatro papeles', texto: 'Fallecido: los cuatro siempre.' },
-              { numero: 3, icono: 'receipt', titulo: 'Comprobante', texto: 'Sin excepción, sin apuro.' },
-              { numero: 4, icono: 'lock', titulo: 'Dato sensible', texto: 'Nunca en ventanilla sin flujo.' },
+              { numero: 1, titulo: 'Solo habilitados', texto: 'Documentación completa para pasar.' },
+              { numero: 2, titulo: 'Cuatro papeles', texto: 'Fallecido: los cuatro siempre.' },
+              { numero: 3, titulo: 'Comprobante', texto: 'Sin excepción, sin apuro.' },
+              { numero: 4, titulo: 'Dato sensible', texto: 'Nunca en ventanilla sin flujo.' },
             ],
           },
           { tipo: 'frase-ancla', texto: 'Yo recibo, yo verifico, yo derivo. Nunca yo entrego.', tamano: 'grande' },
