@@ -526,7 +526,7 @@
     /* ─── pasos-y-doc-preview (lámina REG 1.2) ─── */
     .bk-pasos-y-preview {
       display: grid;
-      grid-template-columns: 1fr 260px;
+      grid-template-columns: 1fr 220px;
       gap: 16px;
       align-items: start;
     }
@@ -537,8 +537,8 @@
       font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.3; padding: 0 4px;
     }
     .bk-doc-img {
-      width: 260px; max-width: 100%;
-      max-height: 380px; object-fit: contain;
+      width: 220px; max-width: 100%;
+      max-height: 210px; object-fit: contain;
       border: 1px solid #e2e8f0; border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
       display: block;
@@ -1470,7 +1470,7 @@
                 <i data-lucide="printer" style="width:12px;height:12px;flex-shrink:0;margin-top:1px;color:var(--text-muted)"></i>
                 <span>Imprima desde el computador de sala</span>
               </div>
-              <img class="bk-doc-img" src="assets/images/reg-1-2-formulario.png" alt="Formulario REG 1.2 — Registro Clínico en Papel" />
+              <img class="bk-doc-img" src="${b.imagen || 'assets/images/reg-1-2-solicitud.png'}" alt="${b.imagenAlt || 'Formulario REG 1.2'}" />
               <div class="bk-doc-preview-caption">${b.imagenCaption || '← Así se ve la ficha al imprimirla'}</div>
             </div>`;
           return `<div class="bk-pasos-y-preview"><div class="bk-pasos-2x2">${pasosHTML}</div>${previewHTML}</div>`;

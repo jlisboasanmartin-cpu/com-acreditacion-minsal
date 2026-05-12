@@ -778,7 +778,7 @@ const COM = {
               imagenAlt: 'Formulario REG 1.2 — Solicitud al Encargado de Calidad',
               imagenCaption: 'Formulario REG 1.2',
             },
-            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección.' }
+            { tipo: 'callout-rojo', icono: 'alert-octagon', titulo: '⚠ El documento NUNCA sale del establecimiento.', texto: 'Si lo necesita más de un día, lo guarda Dirección. Plazo máximo de devolución: 2 días hábiles.' }
           ],
           poseDrCom: 'dr-com-explicando',
           mensajeDrCom: 'Sin formulario,<br>las fichas antiguas<br>no salen.'
