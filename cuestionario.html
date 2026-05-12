@@ -693,8 +693,6 @@
   const capsulaPreguntas = capsulaData && capsulaData.cuestionario && capsulaData.cuestionario.preguntas;
   const poolTotal = capsulaPreguntas ? capsulaPreguntas.length : (COM.preguntas[perfilId] || []).length;
   document.getElementById('qz-pool').textContent = poolTotal;
-  const hasGuia = !!(capsulaData && capsulaData.guiaEstudio);
-
   /* ── Mascot rotation during questions ── */
   const QMASCOTAS = [
     'assets/images/muela_atencion.png',
@@ -996,7 +994,7 @@
       motMascot = 'assets/images/muela_atencion.png';
     } else if (pctDisplay >= 50) {
       motText = 'Buen primer intento. Identifique los temas a reforzar.';
-      motSub  = 'La guía de estudio y la cápsula le ayudarán a consolidar.';
+      motSub  = 'Repase la cápsula para consolidar los temas que le costaron más.';
       motMascot = 'assets/images/muela_formulario.png';
     } else {
       motText = 'Vamos paso a paso. Repase la cápsula antes del siguiente intento.';
@@ -1033,17 +1031,6 @@
     // Links
     document.getElementById('btn-repaso').href = `capsula.html?id=${perfilId}`;
     document.getElementById('btn-perfil').href  = 'index.html';
-
-    // Guía de estudio button
-    const actionsEl = document.getElementById('qz-res-actions');
-    const existing = actionsEl.querySelector('.btn-guia');
-    if (hasGuia && !existing) {
-      const guiaBtn = document.createElement('a');
-      guiaBtn.href = `guia-estudio.html?id=${perfilId}`;
-      guiaBtn.className = 'btn btn-ghost btn-sm btn-guia';
-      guiaBtn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Guía de estudio`;
-      actionsEl.insertBefore(guiaBtn, actionsEl.querySelector('#btn-repaso'));
-    }
 
     // Sort: wrong first, correct second, open last
     const badRes  = results.filter(r => r.tipo !== 'respuesta-abierta' && !r.isOk);

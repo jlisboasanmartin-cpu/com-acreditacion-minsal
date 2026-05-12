@@ -269,9 +269,7 @@
   const perfil   = COM.getPerfilById(perfilId);
   if (!perfil) { window.location.href = 'index.html'; }
 
-  const capsula  = COM.capsulas[perfilId];
-  const guia     = capsula && capsula.guiaEstudio;
-  if (!guia) { window.location.href = `cuestionario.html?id=${perfilId}`; }
+  window.location.replace(`cuestionario.html?id=${perfilId}`);
 
   document.getElementById('gs-ctx').innerHTML = `<strong>${perfil.nombre}</strong> · Guía de Estudio`;
   document.getElementById('gs-titulo').textContent   = guia.titulo || 'Guía de Estudio';

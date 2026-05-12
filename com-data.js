@@ -263,33 +263,6 @@ const COM = {
           explicacion: 'La honestidad y la verificación documental nunca son un hallazgo; inventar una respuesta sí lo es.' },
       ]
     },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Dirección y Equipo Gestor',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Su firma autoriza siempre por resolución', items: ['Toda autorización (permisos, entregas, eliminación, designaciones) se formaliza por resolución firmada.', 'Los perfiles y permisos en RAYEN solo valen con resolución vigente.', 'Cada cambio de personal o función exige actualizar la resolución.'] },
-        { titulo: '2. Entrega de información a externos', items: ['Solo titular, representante legal, heredero directo, tercero con poder o tribunal.', 'Plazo total de respuesta: 10 días hábiles desde la solicitud.', 'Aprobación final tras verificación de documentación habilitante por Calidad.'] },
-        { titulo: '3. Eliminación de fichas clínicas', items: ['Mínimo 15 años desde el último ingreso de información.', 'Acta detallada con nombre y RUT de cada paciente.', 'Resolución administrativa firmada + autorización de la Dirección de Salud de la Corporación.'] },
-        { titulo: '4. Unificación de fichas', items: ['Aplica cuando hay RUT provisorio o pasaporte y luego RUT definitivo.', 'Gestión con el CESFAM de origen del paciente o referente SIDRA.', 'Cada solicitud queda registrada en la planilla de unificación del computador de Dirección.'] },
-        { titulo: '5. Radiografías a externos', items: ['Aprueba el formulario de solicitud junto al Encargado de Calidad.', 'Envío exclusivo desde rayosdental@corpomunimacul.cl.', 'Procesamiento solo en computadores institucionales y eliminación de carpetas locales.'] },
-        { titulo: '6. Confidencialidad y dato sensible', items: ['La ficha clínica es dato sensible (Ley 19.628), regulado por Decreto 41 y Ley 21.084.', 'Nadie ajeno a la atención accede a la información clínica.', 'Toda decisión sobre acceso o entrega queda por escrito y archivada.'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Ley 19.966', proposito: 'Régimen GES — garantías explícitas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' },
-        { norma: 'Ley 21.084', proposito: 'Modificación de la Ley sobre Derechos y Deberes' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' }
-      ],
-      reglasOro: [
-        'Sin resolución firmada, no hay autorización. Punto.',
-        'La eliminación exige acta detallada con RUT + resolución administrativa.',
-        'Las radiografías a externos salen solo desde rayosdental@corpomunimacul.cl.',
-        'Una persona, una ficha: cada caso de doble identificación se unifica con el CESFAM de origen.'
-      ],
-      fraseMagica: 'Prefiero verificarlo antes de responder.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
-    },
     },
 
     calidad: { titulo: 'Cápsula de Capacitación: Encargado de Calidad', laminas: [
@@ -532,32 +505,6 @@ const COM = {
           explicacion: 'Un caso sin cerrar es un paciente sin respuesta. Persiga ese cierre.' },
       ]
     },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Encargado de Calidad',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Plazos firmes que debe saber de memoria', items: ['Devolución de documentos por profesionales: 2 días hábiles.', 'Respuesta a solicitudes externas: 10 días hábiles.', 'Conservación mínima antes de eliminar: 15 años desde el último ingreso.'] },
-        { titulo: '2. Toda entrega exige', items: ['Formulario de solicitud completo con datos del solicitante.', 'Su verificación con timbre y firma.', 'Aprobación de Dirección.', 'Registro en planilla con firma de quien entrega y quien recibe.'] },
-        { titulo: '3. Eliminación de fichas', items: ['Solo fichas con más de 15 años desde el último ingreso.', 'Acta detallada con nombre y RUT de cada paciente.', 'Resolución administrativa firmada por Dirección.', 'Destrucción en máquina destructora de la sala del equipo gestor.'] },
-        { titulo: '4. Custodia documental', items: ['Ningún documento sale del establecimiento, jamás.', 'Si el profesional lo necesita más de un día, va al archivador REG en Dirección.', 'Kárdex metálico ordenado secuencialmente por RUT y bajo llave.'] },
-        { titulo: '5. Controles periódicos', items: ['Mensual: seguimiento de consentimientos de cirugía y endodoncia.', 'Semanal: revisión de casos pendientes en Hospital Digital con la Encargada de Ciclo Vital Adulto.', 'Notificación por correo a profesionales con casos sin cerrar.'] },
-        { titulo: '6. Confidencialidad', items: ['La ficha clínica es dato sensible (Ley 19.628).', 'Resguardo bajo llave de toda información sensible.', 'Toda decisión sobre acceso o entrega queda por escrito y archivada.'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' },
-        { norma: 'Ley 21.084', proposito: 'Modificación de la Ley sobre Derechos y Deberes' }
-      ],
-      reglasOro: [
-        'Sin formulario completo, no hay entrega. Es la regla más simple del kárdex.',
-        'Ningún documento sale del establecimiento, sin importar la justificación.',
-        'Acta detallada con nombre + RUT y resolución firmada antes de destruir.',
-        'Toda entrega externa exige aprobación de Dirección además de la suya.'
-      ],
-      fraseMagica: 'Permítame verificarlo en el archivo y le confirmo.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
-    },
     },
 
     dentista: { titulo: 'Cápsula de Capacitación: Cirujano Dentista',
@@ -656,32 +603,6 @@ const COM = {
             respuestaEjemplo: 'Orientarlo a OIRS con su cédula de identidad. La copia de ficha no la entrega el odontólogo — se gestiona formalmente en OIRS. Plazo: 10 días hábiles.',
             explicacion: 'Toda solicitud de ficha pasa por OIRS. El odontólogo no entrega copias directamente bajo ninguna circunstancia.' },
         ]
-      },
-      guiaEstudio: {
-        titulo: 'Guía de Estudio — Cirujano Dentista',
-        subtitulo: 'Una hoja para imprimir o consultar',
-        secciones: [
-          { titulo: '1. Registro', items: ['RAYEN es la ficha oficial desde 2007.', 'Registre en el mismo acto o inmediatamente después.', 'Lo verbal importante también se escribe.'] },
-          { titulo: '2. Si se cae RAYEN', items: ['Ficha en papel REG 1.2 solo en emergencia.', 'Cuando vuelve: traspase a digital y entregue papel al Encargado de Calidad.', 'El papel nunca sale del establecimiento.'] },
-          { titulo: '3. Hospital Digital — los 5 pasos', items: ['1. Entrar a interconsulta.minsal.cl (RUT + clave única)', '2. Crear caso con RUT del paciente', '3. Esperar respuesta del especialista', '4. Registrar respuesta en RAYEN (10 días hábiles)', '5. Cerrar caso aplicando Causal de Egreso N°19'] },
-          { titulo: '4. Consentimiento informado', items: ['Cirugía, exodoncia, periodontal, implantes, endodoncia → firmado siempre.', 'Documento físico al kárdex bajo llave.'] },
-          { titulo: '5. GES', items: ['3 documentos: notificación, trazadora, cierre.', 'Se entregan al Referente SIGGES.', 'Kárdex del 2do piso, ordenados por RUT.', 'Garantías de Oportunidad tienen plazos legales.'] },
-          { titulo: '6. Radiografías externas', items: ['COM no toma panorámicas ni telerradiografías → CRS Cordillera Oriente.', 'Se ven en RISPAC (usuario y clave del CRS).', 'COM no recibe imágenes por correo.'] }
-        ],
-        marcoLegal: [
-          { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-          { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' },
-          { norma: 'Ley 19.628', proposito: 'Protección de datos sensibles' },
-          { norma: 'Ley 19.966', proposito: 'Régimen GES' }
-        ],
-        reglasOro: [
-          'Si lo hizo, regístrelo en RAYEN. Es parte de la calidad de atención y derecho del paciente.',
-          'Su clave es suya. No se presta, no se comparte, nunca.',
-          'Procedimiento invasivo = consentimiento firmado. Sin excepción.',
-          'GES tiene plazos. Documentación al kárdex, derecho del paciente.'
-        ],
-        fraseMagica: 'No lo sé con certeza. Eso lo maneja [el Encargado de Calidad / la Dirección / el Referente SIGGES].',
-        fraseMagicaSubtexto: 'Decir "no sé" no es un hallazgo. Inventar, sí.'
       },
       laminas: [
         { id: 'dentista_portada', titulo: 'Cirujano Dentista', ocultarInfo: true, tipo: 'portada-frase-ancla', mascotGesto: 'wave',
@@ -1077,31 +998,6 @@ const COM = {
           explicacion: 'Sin rótulo, la imagen es anónima y no permite identificación al destinatario externo.' },
       ]
     },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Operador de Radiografía',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Lo que debe saber de memoria', items: ['Toda imagen se vincula al RUT del paciente en DBSWIN.', 'Usuario y clave personal e intransferible.', 'Envío exclusivamente desde rayosdental@corpomunimacul.cl.'] },
-        { titulo: '2. Antes de enviar — rotulado y autorización', items: ['Rotulado con apellido, nombre, número de tarjeta, fecha y tipo de objeto.', 'Autorización: aprobación de Calidad/Dirección o indicación de jefatura de ciclo vital.', 'Búsqueda del paciente en DBSWIN por RUT.'] },
-        { titulo: '3. Después de cada envío', items: ['Registro en libro de actas (computador de la sala) o en formulario de solicitud según destino.', 'Eliminación de la carpeta local con el RUT del paciente.', 'Eliminar la carpeta local NO elimina la imagen del visualizador.'] },
-        { titulo: '4. Resguardo de la sala radiográfica', items: ['Cerrada con llave cada vez que el operador se ausenta, sin importar la duración.', 'Las órdenes y registros nunca quedan a la vista de personas no autorizadas.', 'Solo personal autorizado por Dirección accede a equipos y sistema.'] },
-        { titulo: '5. Trazabilidad de órdenes', items: ['Recepción y búsqueda del paciente por RUT en DBSWIN.', 'Almacenamiento en mueble bajo llave de la sala.', 'Trazabilidad posterior a la jornada (no durante).'] },
-        { titulo: '6. Confidencialidad', items: ['La imagen es del paciente, no del operador.', 'Cualquier carpeta usada se elimina del computador local.', 'Información clínica = dato sensible (Ley 19.628).'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' }
-      ],
-      reglasOro: [
-        'Envío solo desde rayosdental@corpomunimacul.cl. Sin excepciones.',
-        'Sin autorización formal (Calidad/Dirección o jefatura), no se envía.',
-        'Después de cada envío: registro en acta + eliminación de carpeta local.',
-        'Sala cerrada con llave cada vez que se ausenta, aunque sea por minutos.'
-      ],
-      fraseMagica: 'Permítame verificar el procedimiento antes de enviarla.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
-    },
     },
 
     administrativo: { titulo: 'Cápsula de Capacitación: Administrativo SOME/OIRS', laminas: [
@@ -1367,32 +1263,6 @@ const COM = {
           explicacion: 'El rol administrativo se limita a la gestión administrativa; la información clínica sigue el flujo formal.' },
       ]
     },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Administrativo SOME/OIRS',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Solicitantes habilitados', items: ['Titular, representante legal, heredero directo, tercero con poder notarial.', 'Cualquier otra persona no puede iniciar el trámite.'] },
-        { titulo: '2. Documentación: paciente vivo', items: ['Titular: su propia cédula de identidad.', 'Tercero: cédula propia + poder notarial simple del titular.', 'Menor: cédulas del adulto y del menor + certificado de nacimiento o representación legal.'] },
-        { titulo: '3. Documentación: paciente fallecido', items: ['Solo el heredero directo puede gestionar.', 'Cédula del solicitante + cédula del fallecido + certificado de vínculo + certificado de defunción.', 'Los cuatro documentos son obligatorios. Si falta uno, no se recibe la solicitud.'] },
-        { titulo: '4. Cierre del trámite (siempre)', items: ['Formulario Anexo 6 firmado por el solicitante.', 'Copias de documentación habilitante anexadas.', 'Comprobante entregado al solicitante.', 'Recepción firmada por usted.', 'Todo derivado al Encargado de Calidad.'] },
-        { titulo: '5. Hora Salud', items: ['Visualice el listado del tótem.', 'Llame al paciente a su ventanilla.', 'Ingréselo a lista de espera con su RUT.', 'Registre observaciones cuando corresponda.'] },
-        { titulo: '6. Confidencialidad', items: ['La información clínica nunca se entrega directamente en ventanilla.', 'No confirme atenciones a terceros por teléfono ni en persona sin flujo formal.', 'Ante duda: "Eso lo gestiona el Encargado de Calidad."'] },
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Decreto Supremo 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 21.084', proposito: 'Establece el sistema de información de salud' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' },
-      ],
-      reglasOro: [
-        'Sin documentación completa, no hay recepción. Punto.',
-        'El comprobante no es opcional. Es el respaldo del paciente.',
-        'Toda la documentación va al Encargado de Calidad.',
-        'Yo recibo, yo verifico, yo derivo. Nunca yo entrego.',
-      ],
-      fraseMagica: 'No lo sé con certeza. Eso lo gestiona el Encargado de Calidad.',
-      fraseMagicaSubtexto: 'Decir "no sé" no es un hallazgo. Inventar, sí.',
-    },
     },
 
     higienista: { titulo: 'Cápsula de Capacitación: Higienista', laminas: [
@@ -1601,32 +1471,6 @@ const COM = {
           respuestaEjemplo: 'No entregar información clínica en el pasillo y indicarle que la información debe gestionarse a través del flujo formal en OIRS, presentando la documentación habilitante correspondiente. La información clínica es dato sensible y no se entrega en conversaciones informales.',
           explicacion: 'Una conversación de pasillo puede ser una vulneración de datos. Mantenga el límite.' },
       ]
-    },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Higienista',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Registro en RAYEN', items: ['Registre en el mismo acto de atención o inmediatamente después.', 'Cada anotación: clara, legible, fechada y firmada con su identificación.', 'Confirme y actualice los datos del paciente en cada atención.', 'La información verbal del paciente se consigna por escrito.'] },
-        { titulo: '2. Acceso a RAYEN', items: ['Credenciales personales e intransferibles, asignadas por resolución de Dirección.', 'Nunca compartir ni prestar la clave a otro funcionario.', 'Usted es responsable de todo registro hecho con su cuenta.'] },
-        { titulo: '3. Contingencia papel', items: ['Solo cuando RAYEN no esté disponible: imprima el formato desde su sala.', 'Registre claro y legible.', 'Apenas vuelva RAYEN: traspaso íntegro vinculado por RUT.'] },
-        { titulo: '4. Solicitud de documentos al kárdex', items: ['Complete el formulario de solicitud y entréguelo al Encargado de Calidad.', 'Plazo máximo de devolución: 2 días hábiles.', 'Ningún documento sale del establecimiento.'] },
-        { titulo: '5. Fotografías clínicas', items: ['Solo cámara y computador institucionales.', 'Nunca usar celular personal ni guardar imágenes en dispositivos propios.', 'Una vez utilizada la imagen, eliminarla de cámara y computador.'] },
-        { titulo: '6. Confidencialidad', items: ['La ficha clínica es dato sensible (Ley 19.628).', 'No comente información clínica fuera del contexto de atención.', 'Solo personas vinculadas a la atención acceden a la información.'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' },
-        { norma: 'Ley 21.084', proposito: 'Modificación de la Ley sobre Derechos y Deberes' }
-      ],
-      reglasOro: [
-        'Registro en el mismo acto. Si lo dejó para después, ya empezó mal.',
-        'Su clave es solo suya. No se presta, ni en emergencias.',
-        'Fotografías clínicas: solo cámara y computador institucionales, eliminadas tras el uso.',
-        'La información clínica es dato sensible. No se comenta en pasillos.'
-      ],
-      fraseMagica: 'Permítame verificarlo en RAYEN antes de responder.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
     },
     },
 
@@ -1838,32 +1682,6 @@ const COM = {
           respuestaEjemplo: 'No comentar el caso clínico fuera del contexto formal de trabajo y explicar que la información clínica es dato sensible regulado por la Ley 19.628. La condición de paciente GES no exime el resguardo de la confidencialidad.',
           explicacion: 'Lo confidencial sigue siendo confidencial aunque sea GES.' },
       ]
-    },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — Referente SIGGES',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Marco legal y designación', items: ['Ley 19.966: régimen GES y sus garantías explícitas (Acceso, Calidad, Protección Financiera, Oportunidad).', 'Su rol está designado por resolución firmada por Dirección.', 'Atribución en RAYEN: lectura de ficha clínica + registros de contactabilidad.'] },
-        { titulo: '2. Triple consistencia obligatoria', items: ['RAYEN ↔ documentación física ↔ SIGGES.', 'Si discrepan, hay que corregir antes de cargar.', 'Cargar SIGGES sin respaldo en RAYEN es un hallazgo.'] },
-        { titulo: '3. Monitoreo preventivo', items: ['Foco en Garantías de Oportunidad en riesgo de incumplimiento.', 'Alertar al equipo clínico antes del vencimiento del plazo GES.', 'Detectar tarde equivale a no detectar.'] },
-        { titulo: '4. Carga en SIGGES', items: ['En los plazos definidos por el régimen GES.', 'Solo con sus credenciales personales (nunca prestadas).', 'Consistencia con las tres fuentes antes de la carga.'] },
-        { titulo: '5. Contactabilidad y documentación física', items: ['Cada llamada, intento de contacto y citación queda en RAYEN con fecha y resultado.', 'Documentación GES física = anexo a la ficha clínica.', 'Almacenamiento: kárdex del segundo piso, bajo llave, ordenado por RUT.'] },
-        { titulo: '6. Confidencialidad', items: ['La información GES es dato sensible (Ley 19.628), regulado por Decreto 41 y Ley 21.084.', 'No comente casos clínicos fuera del contexto formal.', 'Solo personas vinculadas a la atención y gestión GES acceden.'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.966', proposito: 'Régimen GES — Garantías Explícitas en Salud' },
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' }
-      ],
-      reglasOro: [
-        'Sin resolución vigente, no hay acceso. Su clave es solo suya.',
-        'Triple consistencia: RAYEN, papel y SIGGES siempre alineados.',
-        'Monitoreo preventivo de garantías de oportunidad: anticípese al vencimiento.',
-        'Toda documentación GES física vive en el kárdex del segundo piso.'
-      ],
-      fraseMagica: 'Permítame verificar el caso en SIGGES y le confirmo.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
     },
     },
 
@@ -2084,32 +1902,6 @@ const COM = {
           respuestaEjemplo: 'No comentar el caso clínico y explicarle que la información del paciente es dato sensible regulado por la Ley 19.628 y solo se comparte en el contexto formal de atención. Las conversaciones informales sobre pacientes son una vulneración de datos sensibles.',
           explicacion: 'Lo que pasa en la sala, queda en la sala clínica.' },
       ]
-    },
-    guiaEstudio: {
-      titulo: 'Guía de Estudio — TONS Asistencial',
-      subtitulo: 'Una hoja para imprimir o consultar',
-      secciones: [
-        { titulo: '1. Su rol en el equipo clínico', items: ['Apoyo directo al profesional durante la atención.', 'No es el autor del registro clínico, pero cuida la integridad del proceso.', 'Confirme la identidad del paciente vinculada a su RUT al inicio de cada atención.'] },
-        { titulo: '2. Consentimientos informados', items: ['Verifique que esté firmado por el paciente antes del procedimiento invasivo (Ley 21.084).', 'Entréguelos al Encargado de Calidad al cierre del día.', 'Nunca deje consentimientos firmados en escritorios o cajones.'] },
-        { titulo: '3. Acceso a RAYEN', items: ['Si tiene acceso, úselo solo dentro de las atribuciones de su resolución.', 'Credenciales personales e intransferibles.', 'Nunca comparta su clave ni use la de otra persona.'] },
-        { titulo: '4. Apoyo en contingencia', items: ['Cuando RAYEN no opera: ayude a imprimir el formato físico de emergencia.', 'Cuide que el registro quede claro, legible y completo.', 'Recuerde al profesional traspasar a RAYEN apenas se restablezca el sistema.'] },
-        { titulo: '5. Fotografías clínicas como asistencia', items: ['Solo cámara y computador institucionales.', 'Nunca usar celular personal ni el de otra persona.', 'Eliminar la imagen de cámara y computador tras su uso.'] },
-        { titulo: '6. Confidencialidad y coordinación', items: ['La ficha clínica es dato sensible (Ley 19.628). No comente fuera del contexto de atención.', 'Si necesita un documento del kárdex, lo gestiona el profesional responsable, no usted.', 'Comunique oportunamente al equipo cualquier hallazgo durante la atención.'] }
-      ],
-      marcoLegal: [
-        { norma: 'Ley 19.628', proposito: 'Protección de datos personales y datos sensibles' },
-        { norma: 'Ley 21.084', proposito: 'Derechos y deberes — consentimiento informado' },
-        { norma: 'Decreto 41/2012', proposito: 'Reglamento sobre fichas clínicas' },
-        { norma: 'Ley 20.584', proposito: 'Derechos y deberes del paciente' }
-      ],
-      reglasOro: [
-        'Verifique consentimiento firmado antes del procedimiento invasivo. Sin firma, no se procede.',
-        'Sus credenciales son solo suyas. No las preste, no use las de otro.',
-        'Consentimientos al Encargado de Calidad al cierre del día.',
-        'Solo cámara y computador institucionales para fotografías clínicas.'
-      ],
-      fraseMagica: 'Permítame consultarlo con el profesional responsable.',
-      fraseMagicaSubtexto: 'La honestidad nunca es un hallazgo. Inventar, sí.'
     },
     },
     'capsula-comun': { titulo: 'Antes de la visita · Cápsula común', laminas: [
