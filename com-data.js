@@ -765,7 +765,7 @@ const COM = {
           id: 'dentista_kardex',
           numero: '4/9',
           titulo: '¿Cómo accedo a documentos archivados?',
-          subtitulo: 'Fichas anteriores a 2007, consentimientos firmados y documentación GES están en el kárdex. Solo se retiran con formulario REG 1.2.',
+          subtitulo: 'Antes de 2007, las fichas clínicas eran en papel. Cuando un paciente de esa época vuelve, o necesitas revisar un consentimiento anterior, esos registros están en el kárdex y tienen un proceso de retiro formal.',
           bloques: [
             { tipo: 'pasos-split-formulario',
               pasos: [
