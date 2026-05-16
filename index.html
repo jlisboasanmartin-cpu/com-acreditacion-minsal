@@ -4,179 +4,763 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal de Capacitación — Centro Odontológico de Macul</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="com-styles.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+    body { background: var(--bg); display: flex; flex-direction: column; }
 
-    :root {
-      --primary: #1a6b8a;
-      --primary-dark: #0e4a61;
-      --accent: #2ecc71;
-      --font-body: 'Inter', sans-serif;
-      --font-display: 'Quicksand', sans-serif;
+    /* ─── Header ─── */
+    .site-header {
+      background: var(--primary-dark); height: 56px; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 32px; gap: 16px;
+      box-shadow: 0 2px 12px rgba(14,74,97,0.3); z-index: 10;
+    }
+    .site-header-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .site-header-logo img { height: 30px; filter: brightness(0) invert(1); display: block; }
+    .hd { width: 1px; height: 26px; background: rgba(255,255,255,0.2); }
+    .site-header-titles { display: flex; flex-direction: column; gap: 1px; }
+    .site-header-main { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: white; line-height: 1.1; }
+    .site-header-sub  { font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.2; }
+
+    /* ─── Intro band ─── */
+    .intro-band {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1a6b8a 100%);
+      flex-shrink: 0;
+      padding: 16px 32px;
+      display: flex; align-items: center; gap: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .intro-band-text { flex: 1; }
+    .intro-band-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.95);
+      margin-bottom: 10px;
+    }
+    .intro-band-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    .intro-band-title {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      color: white; line-height: 1.2; margin-bottom: 8px;
+    }
+    .intro-band-title span { color: #8af0c0; }
+    .intro-band-desc {
+      font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.55; max-width: 560px;
+    }
+    .intro-band-mascot {
+      flex-shrink: 0; display: flex; align-items: flex-end;
+    }
+    .intro-band-mascot img {
+      height: 100px; width: auto;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+    }
+    .intro-band-stats {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 10px;
+      padding-left: 28px; border-left: 1px solid rgba(255,255,255,0.18);
+    }
+    .intro-stat {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 14px; color: rgba(255,255,255,0.85);
+    }
+    .intro-stat svg { color: var(--accent); flex-shrink: 0; }
+    .intro-stat strong { color: white; font-weight: 700; }
+
+    /* ─── Profiles section ─── */
+    .profiles-section {
+      flex: 1; min-height: 0;
+      padding: 10px 32px 8px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .profiles-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); flex-shrink: 0;
+    }
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px; align-content: start;
     }
 
-    html, body {
-      height: 100%;
-      font-family: var(--font-body);
-      background: linear-gradient(160deg, #0a3548 0%, #0e4a61 45%, #1a6b8a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100dvh;
-      padding: 24px;
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px; align-content: start;
+      align-items: stretch;
     }
 
-    .card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 28px;
-      padding: 56px 52px 52px;
-      max-width: 580px;
-      width: 100%;
-      text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+    /* ─── Profile Card ─── */
+    .profile-card {
+      background: white; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      overflow: hidden; cursor: pointer;
+      transition: all 0.2s ease; text-decoration: none;
+      display: flex; flex-direction: column;
+      box-shadow: 0 1px 4px rgba(14,74,97,0.06);
       position: relative;
     }
-
-    /* mascota */
-    .mascot-wrap {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+    .profile-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(14,74,97,0.15);
+    }
+    .profile-card.proximamente {
+      opacity: 0.65;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .profile-card.proximamente:hover {
+      transform: none;
+      box-shadow: 0 1px 4px rgba(14,74,97,0.06);
+    }
+    .proximamente-badge {
       position: absolute;
-      right: 40px;
-      bottom: 100%;
-      pointer-events: none;
-    }
-    .mascot-wrap img {
-      height: 180px;
-      width: auto;
-      filter: drop-shadow(0 12px 28px rgba(0,0,0,0.35));
-      transform: scaleX(-1); /* apunta hacia adentro de la tarjeta */
-    }
-
-    /* badge */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 100px;
-      padding: 6px 16px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 24px;
-    }
-    .badge-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    h1 {
-      font-family: var(--font-display);
-      font-size: clamp(26px, 5vw, 34px);
-      font-weight: 700;
+      top: 10px; right: 10px;
+      background: #4A5568;
       color: white;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    h1 span { color: #8af0c0; }
-
-    p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.78);
-      line-height: 1.65;
-      max-width: 420px;
-      margin: 0 auto 36px;
-    }
-
-    /* botón principal */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--accent);
-      color: #0a3548;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 16px;
-      text-decoration: none;
-      padding: 16px 36px;
-      border-radius: 14px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-      box-shadow: 0 6px 24px rgba(46,204,113,0.4);
-    }
-    .btn-primary:hover {
-      background: #27ae60;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(46,204,113,0.5);
-    }
-    .btn-primary:active { transform: translateY(0); }
-
-    .arrow {
-      font-size: 20px;
-      line-height: 1;
-    }
-
-    /* url visible */
-    .url-hint {
-      margin-top: 18px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.38);
+      font-size: 11px; font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 100px;
       letter-spacing: 0.02em;
+      z-index: 2;
     }
-
-    /* decoración de fondo */
-    .bg-circle {
-      position: fixed;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.03);
+    .profile-card.en-desarrollo {
+      opacity: 1;
+      cursor: not-allowed;
       pointer-events: none;
     }
-    .bg-circle-1 { width: 500px; height: 500px; top: -180px; right: -160px; }
-    .bg-circle-2 { width: 340px; height: 340px; bottom: -120px; left: -100px; }
+    .profile-card.en-desarrollo:hover {
+      transform: none;
+      box-shadow: 0 1px 4px rgba(14,74,97,0.06);
+    }
+    .en-desarrollo-badge {
+      background: #DBEAFE;
+      color: #1E5A8E;
+    }
+    .profile-card:hover .profile-card-name { color: var(--primary-dark); }
+    .profile-card:hover .profile-arrow { opacity: 1; transform: translateX(0); }
+    .profile-card-bar { height: 4px; width: 100%; flex-shrink: 0; }
+    .profile-card-top {
+      padding: 14px 16px 0;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    .profile-card-icon {
+      width: 40px; height: 40px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .profile-card-icon svg { width: 20px; height: 20px; }
+    .profile-card-name {
+      font-family: var(--font-display); font-size: 16px; font-weight: 700;
+      color: var(--text); line-height: 1.3;
+      transition: color 0.18s ease;
+      min-height: 44px; display: flex; align-items: center;
+    }
+    .profile-card:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+    .profile-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px 12px; border-top: 1px solid var(--surface);
+      margin-top: auto;
+    }
+    .profile-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .profile-meta-item {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--text-mid);
+    }
+    .profile-arrow {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateX(-6px);
+      transition: all 0.2s ease; flex-shrink: 0;
+    }
+    .profile-arrow svg { width: 13px; height: 13px; color: white; }
+
+    /* ─── Profiles footer ─── */
+    .profiles-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0; padding-top: 8px;
+    }
+    .profiles-footer-msg {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--primary-dark); font-weight: 600;
+      background: var(--primary-light); border-radius: 100px;
+      padding: 8px 16px;
+    }
+    .countdown-badge {
+      display: flex; align-items: center; gap: 7px;
+      background: var(--primary-dark); color: white;
+      border-radius: 100px; padding: 8px 16px;
+      font-size: 13px; font-weight: 700;
+    }
+    .countdown-badge svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      background: var(--primary-dark); height: 40px; flex-shrink: 0;
+      display: flex; align-items: center; padding: 0 32px; gap: 14px;
+    }
+    .site-footer img { height: 20px; filter: brightness(0) invert(1); opacity: 0.7; display: block; }
+    .site-footer-div { width: 1px; height: 16px; background: rgba(255,255,255,0.15); }
+    .site-footer-text { font-size: 11px; color: rgba(255,255,255,0.4); }
+    .site-footer-badge {
+      margin-left: auto; background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 100px;
+      padding: 4px 10px; font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ─── Modal "Antes de empezar" ─── */
+    .antes-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(14,74,97,0.48);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.22s ease;
+    }
+    .antes-overlay.open { opacity: 1; pointer-events: all; }
+    .antes-panel {
+      background: white; border-radius: 20px;
+      width: 100%; max-width: 680px;
+      box-shadow: 0 24px 64px rgba(14,74,97,0.22);
+      display: flex; flex-direction: column;
+      transform: translateY(20px);
+      transition: transform 0.22s ease;
+      overflow: hidden;
+    }
+    .antes-overlay.open .antes-panel { transform: translateY(0); }
+    .antes-header {
+      background: var(--primary-dark); padding: 20px 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .antes-header-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 20px;
+    }
+    .antes-header-texts { flex: 1; }
+    .antes-header-title {
+      font-family: var(--font-display); font-size: 18px;
+      font-weight: 700; color: white; line-height: 1.1;
+    }
+    .antes-header-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+    .antes-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; cursor: pointer; flex-shrink: 0;
+      border: none; transition: background 0.15s ease;
+    }
+    .antes-close:hover { background: rgba(255,255,255,0.25); }
+    .antes-body {
+      padding: 20px 24px; display: flex; flex-direction: column; gap: 0;
+    }
+    .antes-item {
+      display: flex; align-items: flex-start; gap: 16px; padding: 13px 0;
+    }
+    .antes-item + .antes-item { border-top: 1px solid var(--border); }
+    .antes-item-icon { font-size: 40px; line-height: 1; flex-shrink: 0; width: 52px; text-align: center; }
+    .antes-item-label { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+    .antes-item-desc { font-size: 14px; color: var(--text-mid); line-height: 1.5; }
+    .antes-divider { height: 1px; background: var(--border); margin: 4px 0; }
+    .antes-rule {
+      display: flex; align-items: flex-start; gap: 14px; padding: 9px 0;
+    }
+    .antes-rule-icon { font-size: 26px; flex-shrink: 0; width: 38px; text-align: center; padding-top: 1px; }
+    .antes-rule-text { font-size: 14px; color: var(--text); line-height: 1.45; padding-top: 3px; }
+    .antes-footer {
+      padding: 16px 24px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: flex-end;
+    }
+    /* Botón disparador en footer de perfiles */
+    .btn-antes-trigger {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 100px;
+      font-size: 13px; font-weight: 600;
+      background: var(--primary-light); color: var(--primary-dark);
+      border: 1px solid var(--primary-light); cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .btn-antes-trigger:hover { background: #c2dcea; border-color: var(--primary); }
+    @media (max-width: 560px) {
+      .antes-body { padding: 14px 16px; }
+      .antes-header { padding: 16px; }
+      .antes-footer { padding: 12px 16px; }
+      .antes-item-icon { font-size: 32px; width: 42px; }
+    }
+
+    /* ─── Responsive ─── */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .profiles-grid { grid-template-columns: repeat(3, 1fr); }
+      .intro-band-mascot img { height: 80px; }
+      .intro-band-title { font-size: 24px; }
+    }
+    @media (max-width: 768px) {
+      html, body { overflow: auto; }
+      .site-header { padding: 0 16px; gap: 10px; }
+      .intro-band {
+        flex-wrap: wrap; padding: 16px; gap: 14px;
+      }
+      .intro-band-title { font-size: 22px; }
+      .intro-band-stats { padding-left: 0; border-left: none; flex-direction: row; flex-wrap: wrap; gap: 14px; }
+      .intro-band-mascot { display: none; }
+      .profiles-section { padding: 16px; }
+      .profiles-grid { grid-template-columns: 1fr; gap: 12px; }
+      .profiles-footer { flex-wrap: wrap; gap: 10px; }
+      .site-footer { padding: 0 16px; height: auto; padding: 8px 16px; flex-wrap: wrap; }
+      .site-footer-text { font-size: 11px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="bg-circle bg-circle-1"></div>
-  <div class="bg-circle bg-circle-2"></div>
+<!-- ═══════════════════════════════
+     TWEAKS PANEL
+════════════════════════════════ -->
+<div id="tweaks-panel" style="
+  display:none; position:fixed; bottom:24px; right:24px; z-index:9999;
+  background:white; border-radius:16px; box-shadow:0 8px 32px rgba(14,74,97,0.18);
+  border:1.5px solid var(--border); width:280px; overflow:hidden;
+  font-family:var(--font-body);
+">
+  <div style="background:var(--primary-dark);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-family:var(--font-display);font-weight:700;font-size:14px;color:white;">Tweaks</span>
+    <button onclick="closeTweaks()" style="background:rgba(255,255,255,0.15);border:none;border-radius:6px;color:white;cursor:pointer;width:24px;height:24px;font-size:16px;display:flex;align-items:center;justify-content:center;">×</button>
+  </div>
+  <div style="padding:16px;display:flex;flex-direction:column;gap:16px;">
 
-  <div class="card">
-
-    <div class="mascot-wrap">
-      <img src="assets/images/poses-clean/dr-com-explicando.png" alt="Dr. COM" />
+    <!-- Densidad -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Densidad visual</div>
+      <div style="display:flex;gap:6px;">
+        <button class="tw-btn" onclick="setDensity('compact')" data-density="compact">Compacto</button>
+        <button class="tw-btn" onclick="setDensity('normal')" data-density="normal">Normal</button>
+        <button class="tw-btn" onclick="setDensity('airy')" data-density="airy">Amplio</button>
+      </div>
     </div>
 
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Plataforma actualizada
+    <!-- Paleta tarjetas -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Estilo de tarjetas</div>
+      <div style="display:flex;gap:6px;">
+        <button class="tw-btn" onclick="setCardStyle('color')" data-cardstyle="color">Por perfil</button>
+        <button class="tw-btn" onclick="setCardStyle('mono')" data-cardstyle="mono">Monocromático</button>
+        <button class="tw-btn" onclick="setCardStyle('bold')" data-cardstyle="bold">Bold</button>
+      </div>
     </div>
 
-    <h1>¡Nos <span>mudamos</span>!<br>El programa sigue aquí</h1>
-
-    <p>
-      Esta versión del portal ya no está activa.<br>
-      El programa de capacitación continúa en una nueva plataforma mejorada. Haga clic para acceder.
-    </p>
-
-    <a href="https://com-acreditacion-minsal.vercel.app/" class="btn-primary">
-      Ir al nuevo portal
-      <span class="arrow">→</span>
-    </a>
-
-    <p class="url-hint">com-acreditacion-minsal.vercel.app</p>
+    <!-- Fecha acreditación -->
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;">Fecha de acreditación</div>
+      <input type="date" id="tw-date" style="
+        width:100%;padding:8px 12px;border-radius:8px;
+        border:1.5px solid var(--border);font-size:13px;
+        font-family:var(--font-body);outline:none;color:var(--text);
+        transition:border-color 0.18s;
+      " oninput="setAcredDate(this.value)" />
+    </div>
 
   </div>
+</div>
 
+<style>
+.tw-btn {
+  flex:1; padding:7px 6px; border-radius:8px;
+  border:1.5px solid var(--border); background:white;
+  font-size:12px; font-weight:600; color:var(--text-mid);
+  cursor:pointer; font-family:var(--font-body);
+  transition:all 0.15s ease;
+}
+.tw-btn:hover { background:var(--surface); }
+.tw-btn.active {
+  background:var(--primary-dark); color:white;
+  border-color:var(--primary-dark);
+}
+</style>
+
+<!-- ═══ Modal: Antes de empezar ═══ -->
+<div id="modal-antes" class="antes-overlay" role="dialog" aria-modal="true" aria-labelledby="antes-title">
+  <div class="antes-panel">
+
+    <div class="antes-header">
+      <div class="antes-header-icon">📋</div>
+      <div class="antes-header-texts">
+        <div class="antes-header-title" id="antes-title">Antes de empezar</div>
+        <div class="antes-header-sub">Guía de presentación y marco normativo común</div>
+      </div>
+      <button class="antes-close" onclick="cerrarAntes(false)" aria-label="Cerrar">×</button>
+    </div>
+
+    <div class="antes-body">
+
+      <!-- ¿Qué es? -->
+      <div class="antes-item">
+        <div class="antes-item-icon">🏛️</div>
+        <div>
+          <div class="antes-item-label">¿Qué es?</div>
+          <div class="antes-item-desc">Una visita para confirmar que trabajamos con estándares de calidad. No es un examen.</div>
+        </div>
+      </div>
+
+      <!-- Cómo presentarse -->
+      <div class="antes-item">
+        <div class="antes-item-icon">👤</div>
+        <div>
+          <div class="antes-item-label">Cómo presentarse</div>
+          <div class="antes-item-desc">Nombre · RUT · <strong id="antes-perfil-nombre" style="color:var(--primary-dark)">su rol en el COM</strong></div>
+        </div>
+      </div>
+
+      <div class="antes-divider"></div>
+
+      <!-- Dos -->
+      <div class="antes-rule">
+        <div class="antes-rule-icon">✅</div>
+        <div class="antes-rule-text">Responda solo lo que le preguntan. Menos es más.</div>
+      </div>
+      <div class="antes-rule">
+        <div class="antes-rule-icon">✅</div>
+        <div class="antes-rule-text">Si se equivoca, corríjase y siga adelante.</div>
+      </div>
+
+      <div class="antes-divider"></div>
+
+      <!-- Don'ts -->
+      <div class="antes-rule">
+        <div class="antes-rule-icon">❌</div>
+        <div class="antes-rule-text">No comente casos de pacientes fuera del contexto formal.</div>
+      </div>
+      <div class="antes-rule">
+        <div class="antes-rule-icon">❌</div>
+        <div class="antes-rule-text">No comparta su clave de <img src="assets/images/rayen-logo.png" class="rayen-logo" alt="" aria-hidden="true">RAYEN u otros sistemas.</div>
+      </div>
+      <div class="antes-rule">
+        <div class="antes-rule-icon">❌</div>
+        <div class="antes-rule-text">No fotografíe pantallas con su celular personal.</div>
+      </div>
+
+    </div>
+
+    <div class="antes-footer">
+      <button class="btn btn-primary" onclick="cerrarAntes(true)">
+        Ir a mi cápsula
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="index.html" class="site-header-logo">
+    <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+  </a>
+  <div class="hd"></div>
+  <div class="site-header-titles">
+    <span class="site-header-main">Portal de Capacitación</span>
+    <span class="site-header-sub">Centro Odontológico de Macul</span>
+  </div>
+</header>
+
+<!-- Intro band -->
+<div class="intro-band">
+  <div class="intro-band-text">
+    <div class="intro-band-eyebrow">
+      <div class="intro-band-dot"></div>
+      Preparación para Acreditación
+    </div>
+    <h1 class="intro-band-title">Capacitación para Acreditación <span>MINSAL</span></h1>
+    <p class="intro-band-desc">Selecciona tu perfil para acceder a la cápsula educativa y al cuestionario de práctica.</p>
+  </div>
+  <div class="intro-band-stats">
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+      <span><strong>8</strong> perfiles disponibles</span>
+    </div>
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <span><strong>10</strong> láminas por perfil</span>
+    </div>
+    <div class="intro-stat">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span><strong>≈ 15 min</strong> por perfil</span>
+    </div>
+  </div>
+  <div class="intro-band-mascot">
+    <img src="assets/images/muela_saludo.png" alt="Dr. Com" class="dr-com-personaje" />
+  </div>
+</div>
+
+<!-- Profiles -->
+<div class="profiles-section">
+  <div class="profiles-label">Selecciona tu perfil</div>
+  <div class="profiles-grid" id="profiles-grid"></div>
+  <div class="profiles-footer">
+    <button class="btn-antes-trigger" onclick="abrirAntes()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Antes de empezar
+    </button>
+    <div class="countdown-badge" id="countdown-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span id="countdown-text">Calculando fecha...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <img src="assets/images/corpo-macul-blanco.svg" alt="Corporación Municipal de Macul" />
+  <div class="site-footer-div"></div>
+  <span class="site-footer-text">Centro Odontológico de Macul · Corporación Municipal de Macul</span>
+  <div class="site-footer-badge">REG 1.1 — Versión 3 · 2026</div>
+</footer>
+
+<script src="com-data.js"></script>
+<script>
+  const icons = {
+    tooth:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 5 5 5 9c0 2.5 1 5 3 6.5v4a1 1 0 001 1h6a1 1 0 001-1v-4c2-1.5 3-4 3-6.5 0-4-3-7-7-7z"/></svg>`,
+    tools:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>`,
+    shield:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+    desk:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>`,
+    xray:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>`,
+    check:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+    chart:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    building: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/><line x1="9" y1="7" x2="9.01" y2="7"/><line x1="15" y1="7" x2="15.01" y2="7"/><line x1="9" y1="12" x2="15" y2="12"/></svg>`,
+  };
+
+  const grid = document.getElementById('profiles-grid');
+
+  const ORDEN_PERFILES = ['dentista', 'administrativo', 'direccion', 'calidad', 'radiografia', 'higienista', 'sigges', 'tecnico'];
+
+  ORDEN_PERFILES.forEach(perfilId => {
+    const perfil = COM.perfiles.find(p => p.id === perfilId);
+    if (!perfil) return;
+    const activo = true;
+    const enDesarrollo = false;
+    const prog = parseInt(localStorage.getItem(`progress_${perfil.id}`) || '0');
+    const done = activo && (localStorage.getItem(`quiz_done_${perfil.id}`) === '1' || prog >= 100);
+
+    // Contar láminas reales (excluyendo tipo identificacion, igual que capsula.html)
+    const capsData = COM.capsulas[perfil.id];
+    const lamCount = capsData ? capsData.laminas.filter(l => l.tipo !== 'identificacion').length : 0;
+
+    const card = document.createElement('a');
+    card.href = activo ? `capsula.html?id=${perfil.id}` : '#';
+    card.dataset.perfilId = perfil.id;
+    let cardClass = 'profile-card';
+    if (enDesarrollo) cardClass += ' en-desarrollo';
+    else if (!activo) cardClass += ' proximamente';
+    card.className = cardClass;
+
+    let badge = '';
+    if (enDesarrollo) badge = '<div class="proximamente-badge en-desarrollo-badge">En desarrollo</div>';
+    else if (!activo) badge = '<div class="proximamente-badge">Próximamente</div>';
+
+    card.innerHTML = `
+      ${badge}
+      <div class="profile-card-bar" style="background:${perfil.color}"></div>
+      <div class="profile-card-top">
+        <div class="profile-card-icon" style="background:${perfil.colorLight};color:${perfil.color}">
+          ${icons[perfil.icon]}
+        </div>
+        <div class="profile-card-name">${perfil.nombre}</div>
+      </div>
+      <div class="profile-card-footer">
+        <div class="profile-meta">
+          <div class="profile-meta-item">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ${perfil.tiempo}
+          </div>
+          <div class="profile-meta-item">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            ${lamCount} lám.
+          </div>
+          ${done ? `<div class="profile-meta-item" style="color:#1a7a44;font-weight:700">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Completado
+          </div>` : ''}
+        </div>
+        <div class="profile-arrow" style="background:${perfil.color}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+    `;
+    if (done) card.style.borderColor = '#abebc6';
+    grid.appendChild(card);
+  });
+
+  // ── Contador de días para acreditación ──
+  const ACRED_DATE = new Date((COM.fechaAcreditacion || '2026-06-02') + 'T00:00:00');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const diff = Math.ceil((ACRED_DATE - today) / (1000 * 60 * 60 * 24));
+  const txt = document.getElementById('countdown-text');
+  if (diff > 0) {
+    txt.textContent = `${diff} día${diff !== 1 ? 's' : ''} para la Acreditación`;
+  } else if (diff === 0) {
+    txt.textContent = '¡Hoy es el día de la Acreditación!';
+  } else {
+    txt.textContent = 'Acreditación completada';
+  }
+
+  /* ════ TWEAKS ════ */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "density": "airy",
+    "cardStyle": "color",
+    "acredDate": "2026-06-02"
+  }/*EDITMODE-END*/;
+
+  let T = Object.assign({}, TWEAK_DEFAULTS);
+
+  // Density
+  const DENSITY = {
+    compact: { gap:'6px',  cardPad:'8px 14px 0',  footerPad:'6px 14px 8px',  bannerPad:'12px 32px', mascotH:'80px'  },
+    normal:  { gap:'10px', cardPad:'14px 16px 0', footerPad:'10px 16px 12px', bannerPad:'18px 32px', mascotH:'100px' },
+    airy:    { gap:'12px', cardPad:'16px 18px 0', footerPad:'11px 18px 13px', bannerPad:'18px 32px', mascotH:'110px' },
+  };
+
+  function applyDensity(d) {
+    const D = DENSITY[d] || DENSITY.normal;
+    document.getElementById('profiles-grid').style.gap = D.gap;
+    document.querySelectorAll('.profile-card-top').forEach(el => el.style.padding = D.cardPad);
+    document.querySelectorAll('.profile-card-footer').forEach(el => el.style.padding = D.footerPad);
+    document.querySelector('.intro-band').style.padding = D.bannerPad;
+    const mascot = document.querySelector('.intro-band-mascot img');
+    if (mascot) mascot.style.height = D.mascotH;
+    document.querySelectorAll('[data-density]').forEach(b => b.classList.toggle('active', b.dataset.density === d));
+  }
+
+  // Card style
+  function applyCardStyle(s) {
+    document.querySelectorAll('.profile-card').forEach((card, i) => {
+      const perfil = COM.perfiles.find(p => p.id === card.dataset.perfilId) || COM.perfiles[i];
+      const bar = card.querySelector('.profile-card-bar');
+      const icon = card.querySelector('.profile-card-icon');
+      if (s === 'color') {
+        card.style.background = 'white';
+        bar.style.background = perfil.color;
+        icon.style.background = perfil.colorLight;
+        icon.style.color = perfil.color;
+        card.style.borderColor = '';
+      } else if (s === 'mono') {
+        card.style.background = 'white';
+        bar.style.background = 'var(--primary)';
+        icon.style.background = 'var(--primary-light)';
+        icon.style.color = 'var(--primary)';
+        card.style.borderColor = '';
+      } else if (s === 'bold') {
+        card.style.background = perfil.colorLight;
+        bar.style.background = perfil.color;
+        icon.style.background = 'white';
+        icon.style.color = perfil.color;
+        card.style.borderColor = perfil.color + '44';
+      }
+    });
+    document.querySelectorAll('[data-cardstyle]').forEach(b => b.classList.toggle('active', b.dataset.cardstyle === s));
+  }
+
+  // Acred date
+  function applyAcredDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const hoy = new Date(); hoy.setHours(0,0,0,0);
+    const diff2 = Math.ceil((d - hoy) / (1000*60*60*24));
+    const txt2 = document.getElementById('countdown-text');
+    if (diff2 > 0) txt2.textContent = `${diff2} día${diff2!==1?'s':''} para la Acreditación`;
+    else if (diff2===0) txt2.textContent = '¡Hoy es el día!';
+    else txt2.textContent = 'Acreditación completada';
+    const inp = document.getElementById('tw-date');
+    if (inp) inp.value = dateStr;
+  }
+
+  function setDensity(d) { T.density = d; applyDensity(d); saveTweaks(); }
+  function setCardStyle(s) { T.cardStyle = s; applyCardStyle(s); saveTweaks(); }
+  function setAcredDate(v) { T.acredDate = v; applyAcredDate(v); saveTweaks(); }
+
+  function saveTweaks() {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: T }, '*');
+  }
+
+  function closeTweaks() {
+    document.getElementById('tweaks-panel').style.display = 'none';
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  }
+
+  // Host protocol
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaks-panel').style.display = 'block';
+    if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').style.display = 'none';
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  // Init
+  applyDensity(T.density);
+  applyCardStyle(T.cardStyle);
+  applyAcredDate(T.acredDate);
+  document.getElementById('tw-date').value = T.acredDate;
+
+  /* ════ MODAL "ANTES DE EMPEZAR" ════ */
+  const modalAntes = document.getElementById('modal-antes');
+  const antesPerfilNombre = document.getElementById('antes-perfil-nombre');
+  let _antesPendingUrl = null;
+
+  function abrirAntes(perfilNombre) {
+    if (perfilNombre) antesPerfilNombre.textContent = perfilNombre;
+    modalAntes.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarAntes(navegar) {
+    modalAntes.classList.remove('open');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('antes_visto', '1');
+    if (navegar && _antesPendingUrl) {
+      const url = _antesPendingUrl;
+      _antesPendingUrl = null;
+      window.location.href = url;
+    } else {
+      _antesPendingUrl = null;
+    }
+  }
+
+  // Cerrar con Escape o click en overlay (sin navegar)
+  modalAntes.addEventListener('click', e => {
+    if (e.target === modalAntes) cerrarAntes(false);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modalAntes.classList.contains('open')) cerrarAntes(false);
+  });
+
+  // Interceptar clic en tarjetas activas: primera vez → banner con nombre del perfil
+  grid.querySelectorAll('a.profile-card:not(.proximamente):not(.en-desarrollo)').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      const perfil = COM.perfiles.find(p => p.id === card.dataset.perfilId);
+      const url = card.href;
+      if (!sessionStorage.getItem('antes_visto')) {
+        _antesPendingUrl = url;
+        abrirAntes(perfil ? perfil.nombre : '');
+      } else {
+        window.location.href = url;
+      }
+    });
+  });
+
+  // Auto-abrir solo si viene explícitamente desde ?ver=antes (enlace desde cápsula)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('ver') === 'antes') {
+    setTimeout(() => abrirAntes(), 300);
+  }
+</script>
 </body>
 </html>
