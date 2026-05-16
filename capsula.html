@@ -26,7 +26,7 @@
     .cap-header-divider { width: 1px; height: 28px; background: rgba(255,255,255,0.2); }
     .cap-header-context { font-size: 14px; color: rgba(255,255,255,0.85); }
     .cap-header-context strong { color: white; font-weight: 600; }
-    .cap-header-actions { margin-left: auto; }
+    .cap-header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
     .cap-btn-back {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 12px 18px; min-height: 44px;
@@ -1092,6 +1092,95 @@
       .cap-title { font-size: 22px; }
       .cap-mascot-panel { padding: 6px 12px 8px; }
     }
+
+    /* ─── Botón Presentación ─── */
+    .btn-presentacion {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 12px 18px; min-height: 44px;
+      border-radius: 8px; font-size: 15px; font-weight: 500;
+      color: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.10);
+      cursor: pointer; font-family: inherit;
+      transition: all 0.18s ease;
+    }
+    .btn-presentacion:hover { background: rgba(255,255,255,0.20); color: white; }
+    .btn-presentacion:focus-visible { outline: 3px solid white; outline-offset: 2px; }
+    .btn-presentacion.activo {
+      background: rgba(255,255,255,0.22);
+      border-color: rgba(255,255,255,0.70);
+      color: white;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.25);
+    }
+    @media (max-width: 768px) {
+      .btn-pres-texto { display: none; }
+      .btn-presentacion { padding: 10px 12px; }
+    }
+
+    /* ─── Transiciones suaves al entrar/salir del modo ─── */
+    .cap-slide {
+      transition: box-shadow 0.25s ease, border-radius 0.25s ease,
+                  background-color 0.25s ease, border-color 0.25s ease;
+    }
+    .cap-mascot-img { transition: transform 0.4s ease, width 0.25s ease; }
+    .cap-bubble     { transition: font-size 0.25s ease, max-width 0.25s ease; }
+
+    /* ─── Modo Presentación ─── */
+    body.presentation-mode .cap-wrapper {
+      max-width: 100%;
+      padding: 12px 16px 24px;
+    }
+    body.presentation-mode .cap-slide {
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      border: none;
+      max-height: calc(100vh - 104px);
+    }
+    body.presentation-mode .cap-slide.active {
+      grid-template-columns: 28% 1fr;
+    }
+    body.presentation-mode .cap-content,
+    body.presentation-mode .cap-slide-comun .cap-content {
+      padding: 28px 44px;
+    }
+    body.presentation-mode .cap-mascot-img,
+    body.presentation-mode .cap-slide-comun .cap-mascot-img {
+      width: 280px; max-width: 280px;
+    }
+    body.presentation-mode .cap-bubble,
+    body.presentation-mode .cap-slide-comun .cap-bubble {
+      font-size: 20px; max-width: 280px;
+    }
+    body.presentation-mode .cap-title,
+    body.presentation-mode .cap-slide-comun .cap-title { font-size: 42px; line-height: 1.15; }
+    body.presentation-mode .cap-intro,
+    body.presentation-mode .cap-portada-subtitulo,
+    body.presentation-mode .cap-slide-comun .cap-intro { font-size: 22px; }
+    body.presentation-mode .cap-profile-badge  { font-size: 16px; padding: 9px 20px; }
+    body.presentation-mode .cap-step-body      { font-size: 21px; }
+    body.presentation-mode .cap-bullet-body    { font-size: 21px; }
+    body.presentation-mode .bk-paso-h-titulo   { font-size: 22px; font-weight: 700; }
+    body.presentation-mode .bk-paso-h-texto    { font-size: 20px; }
+    body.presentation-mode .cap-callout-text   { font-size: 20px; }
+    body.presentation-mode .cap-drcom-q        { font-size: 20px; }
+    body.presentation-mode .bk-icono-titulo    { font-size: 22px; }
+    body.presentation-mode .bk-icono-texto     { font-size: 20px; }
+    body.presentation-mode .bk-callout-azul-text    { font-size: 20px; }
+    body.presentation-mode .bk-callout-amarillo-text { font-size: 20px; }
+    body.presentation-mode .bk-callout-rojo-text    { font-size: 20px; }
+    body.presentation-mode .bk-callout-legal-text   { font-size: 20px; }
+    body.presentation-mode .bk-frase-ancla          { font-size: 36px; }
+    body.presentation-mode .bk-frase-ancla-mediana  { font-size: 26px; }
+    body.presentation-mode .bk-regla-titulo   { font-size: 20px; }
+    body.presentation-mode .bk-regla-texto    { font-size: 18px; }
+    body.presentation-mode .bk-banner-text    { font-size: 20px; }
+    body.presentation-mode .bk-lista-prohibiciones-item { font-size: 21px; }
+    body.presentation-mode .bk-parte-texto    { font-size: 20px; }
+    body.presentation-mode .bk-semaforo-pregunta { font-size: 17px; }
+    body.presentation-mode .bk-semaforo-resp     { font-size: 17px; }
+    body.presentation-mode .cap-nav  { display: none; }
+    body.presentation-mode footer    { display: none; }
   </style>
 </head>
 <body>
@@ -1108,6 +1197,10 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Volver al inicio
     </a>
+    <button id="btn-presentacion" class="btn-presentacion" title="Modo presentación (tecla F)">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      <span class="btn-pres-texto">Presentación</span>
+    </button>
   </div>
 </header>
 
@@ -2093,14 +2186,39 @@
     const card = e.target.closest('[data-nav-to]');
     if (card) goTo(parseInt(card.dataset.navTo), true);
   });
+  // ── Modo Presentación ──
+  const PRES_KEY = 'com_presentation_mode';
+  let isPresentationMode = false;
+  const btnPres = document.getElementById('btn-presentacion');
+
+  const SVG_EXPAND   = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`;
+  const SVG_COLLAPSE = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="10" y1="14" x2="3" y2="21"/><line x1="21" y1="3" x2="14" y2="10"/></svg>`;
+
+  function setPresentationMode(active) {
+    isPresentationMode = active;
+    document.body.classList.toggle('presentation-mode', active);
+    btnPres.classList.toggle('activo', active);
+    btnPres.innerHTML = active
+      ? `${SVG_COLLAPSE}<span class="btn-pres-texto">Salir</span>`
+      : `${SVG_EXPAND}<span class="btn-pres-texto">Presentación</span>`;
+    if (active) { sessionStorage.setItem(PRES_KEY, '1'); }
+    else        { sessionStorage.removeItem(PRES_KEY); }
+  }
+
+  function togglePresentationMode() { setPresentationMode(!isPresentationMode); }
+
+  btnPres.addEventListener('click', togglePresentationMode);
+
   document.addEventListener('keydown', e => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    if (e.key === 'f' || e.key === 'F') { togglePresentationMode(); return; }
     if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1, true); }
     if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1, false); }
   });
 
   buildDots(total);
   updateUI();
+  if (sessionStorage.getItem(PRES_KEY) === '1') setPresentationMode(true);
 </script>
 
 <!-- Footer institucional -->
