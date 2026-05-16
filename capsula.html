@@ -1152,9 +1152,13 @@
     body.presentation-mode .cap-slide-comun .cap-bubble {
       font-size: 22px; max-width: 300px;
     }
-    /* Título principal */
+    /* Título principal — min-height reserva 2 líneas (52px × 1.2 × 2 ≈ 125px) */
+    body.presentation-mode .cap-title-row { align-items: flex-start; }
     body.presentation-mode .cap-title,
-    body.presentation-mode .cap-slide-comun .cap-title { font-size: 52px; line-height: 1.1; }
+    body.presentation-mode .cap-slide-comun .cap-title {
+      font-size: 52px; line-height: 1.2;
+      min-height: 125px;
+    }
     /* Subtítulo */
     body.presentation-mode .cap-intro,
     body.presentation-mode .cap-portada-subtitulo,
@@ -1193,6 +1197,12 @@
     body.presentation-mode .bk-semaforo-resp     { font-size: 22px; }
     body.presentation-mode .cap-nav  { display: none; }
     body.presentation-mode footer    { display: none; }
+    /* Logo RAYEN inline — escala proporcional al texto circundante */
+    body.presentation-mode .rayen-logo {
+      height: 1.1em;
+      width: auto;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body class="presentation-mode">
