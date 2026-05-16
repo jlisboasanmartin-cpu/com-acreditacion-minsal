@@ -1146,44 +1146,56 @@
     }
     body.presentation-mode .cap-mascot-img,
     body.presentation-mode .cap-slide-comun .cap-mascot-img {
-      width: 280px; max-width: 280px;
+      width: 320px; max-width: 320px;
     }
     body.presentation-mode .cap-bubble,
     body.presentation-mode .cap-slide-comun .cap-bubble {
-      font-size: 20px; max-width: 280px;
+      font-size: 22px; max-width: 300px;
     }
+    /* Título principal */
     body.presentation-mode .cap-title,
-    body.presentation-mode .cap-slide-comun .cap-title { font-size: 42px; line-height: 1.15; }
+    body.presentation-mode .cap-slide-comun .cap-title { font-size: 52px; line-height: 1.1; }
+    /* Subtítulo */
     body.presentation-mode .cap-intro,
     body.presentation-mode .cap-portada-subtitulo,
-    body.presentation-mode .cap-slide-comun .cap-intro { font-size: 22px; }
-    body.presentation-mode .cap-profile-badge  { font-size: 16px; padding: 9px 20px; }
-    body.presentation-mode .cap-step-body      { font-size: 21px; }
-    body.presentation-mode .cap-bullet-body    { font-size: 21px; }
-    body.presentation-mode .bk-paso-h-titulo   { font-size: 22px; font-weight: 700; }
-    body.presentation-mode .bk-paso-h-texto    { font-size: 20px; }
-    body.presentation-mode .cap-callout-text   { font-size: 20px; }
-    body.presentation-mode .cap-drcom-q        { font-size: 20px; }
-    body.presentation-mode .bk-icono-titulo    { font-size: 22px; }
-    body.presentation-mode .bk-icono-texto     { font-size: 20px; }
-    body.presentation-mode .bk-callout-azul-text    { font-size: 20px; }
-    body.presentation-mode .bk-callout-amarillo-text { font-size: 20px; }
-    body.presentation-mode .bk-callout-rojo-text    { font-size: 20px; }
-    body.presentation-mode .bk-callout-legal-text   { font-size: 20px; }
-    body.presentation-mode .bk-frase-ancla          { font-size: 36px; }
-    body.presentation-mode .bk-frase-ancla-mediana  { font-size: 26px; }
-    body.presentation-mode .bk-regla-titulo   { font-size: 20px; }
-    body.presentation-mode .bk-regla-texto    { font-size: 18px; }
-    body.presentation-mode .bk-banner-text    { font-size: 20px; }
-    body.presentation-mode .bk-lista-prohibiciones-item { font-size: 21px; }
-    body.presentation-mode .bk-parte-texto    { font-size: 20px; }
-    body.presentation-mode .bk-semaforo-pregunta { font-size: 17px; }
-    body.presentation-mode .bk-semaforo-resp     { font-size: 17px; }
+    body.presentation-mode .cap-slide-comun .cap-intro { font-size: 26px; }
+    /* Tag de contexto */
+    body.presentation-mode .cap-profile-badge  { font-size: 22px; padding: 9px 20px; }
+    /* Bullets y párrafos */
+    body.presentation-mode .cap-step-body      { font-size: 26px; }
+    body.presentation-mode .cap-bullet-body    { font-size: 26px; }
+    /* Títulos de pasos */
+    body.presentation-mode .bk-paso-h-titulo   { font-size: 26px; font-weight: 700; }
+    body.presentation-mode .bk-icono-titulo    { font-size: 26px; }
+    body.presentation-mode .bk-regla-titulo    { font-size: 26px; }
+    body.presentation-mode .bk-lista-prohibiciones-item { font-size: 26px; }
+    body.presentation-mode .bk-parte-texto     { font-size: 26px; }
+    /* Descripción debajo de pasos */
+    body.presentation-mode .bk-paso-h-texto    { font-size: 24px; }
+    body.presentation-mode .bk-icono-texto     { font-size: 24px; }
+    body.presentation-mode .bk-regla-texto     { font-size: 24px; }
+    /* Callouts / advertencias */
+    body.presentation-mode .cap-callout-text        { font-size: 24px; }
+    body.presentation-mode .cap-drcom-q             { font-size: 24px; }
+    body.presentation-mode .bk-callout-azul-text    { font-size: 24px; }
+    body.presentation-mode .bk-callout-amarillo-text { font-size: 24px; }
+    body.presentation-mode .bk-callout-rojo-text    { font-size: 24px; }
+    body.presentation-mode .bk-callout-legal-text   { font-size: 24px; }
+    body.presentation-mode .bk-banner-text          { font-size: 24px; }
+    /* Números de pasos (círculos) */
+    body.presentation-mode .cap-step-num  { font-size: 26px; width: 44px; height: 44px; }
+    body.presentation-mode .bk-paso-h-num { font-size: 20px; width: 36px; height: 36px; }
+    /* Frases ancla */
+    body.presentation-mode .bk-frase-ancla         { font-size: 46px; }
+    body.presentation-mode .bk-frase-ancla-mediana { font-size: 32px; }
+    /* Semáforo */
+    body.presentation-mode .bk-semaforo-pregunta { font-size: 22px; }
+    body.presentation-mode .bk-semaforo-resp     { font-size: 22px; }
     body.presentation-mode .cap-nav  { display: none; }
     body.presentation-mode footer    { display: none; }
   </style>
 </head>
-<body>
+<body class="presentation-mode">
 
 <!-- Header -->
 <header class="cap-header">
@@ -2218,7 +2230,7 @@
 
   buildDots(total);
   updateUI();
-  if (sessionStorage.getItem(PRES_KEY) === '1') setPresentationMode(true);
+  setPresentationMode(true);
 </script>
 
 <!-- Footer institucional -->
