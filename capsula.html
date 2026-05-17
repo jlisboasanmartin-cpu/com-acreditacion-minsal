@@ -1229,8 +1229,17 @@
     /* Temas portada: llenar espacio */
     body.presentation-mode .cap-temas,
     body.presentation-mode .cap-temas-flow { flex: 1; min-height: 0; }
-    /* Anti-desbordamiento global */
-    body.presentation-mode * { max-width: 100%; box-sizing: border-box; }
+    /* Anti-desbordamiento: solo contenedores de layout */
+    body.presentation-mode .cap-wrapper,
+    body.presentation-mode .cap-slide,
+    body.presentation-mode .cap-mascot-panel,
+    body.presentation-mode .cap-content,
+    body.presentation-mode .pres-zona-titulo,
+    body.presentation-mode .pres-zona-contenido,
+    body.presentation-mode .bk-wrap {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
     body.presentation-mode .cap-mascot-img,
     body.presentation-mode .cap-slide-comun .cap-mascot-img {
       width: auto; max-width: 100%; max-height: 70%; object-fit: contain;
