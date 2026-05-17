@@ -1146,14 +1146,16 @@
       justify-content: flex-start;
       overflow: hidden;
     }
-    /* ── Zonas fijas: zona-titulo siempre ocupa el mismo espacio ── */
+    /* ── Zonas fijas ── */
     body.presentation-mode .pres-zona-titulo {
-      flex: 0 0 175px;
+      min-height: 18vh;
+      max-height: 28vh;
+      flex: 0 0 auto;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      gap: 6px;
+      margin-bottom: 16px;
     }
     body.presentation-mode .pres-zona-contenido {
       flex: 1;
@@ -1161,59 +1163,80 @@
       min-height: 0;
       padding-top: 8px;
     }
+    /* Anti-desbordamiento global */
+    body.presentation-mode * { max-width: 100%; box-sizing: border-box; }
     body.presentation-mode .cap-mascot-img,
     body.presentation-mode .cap-slide-comun .cap-mascot-img {
       width: 320px; max-width: 320px;
     }
+    /* Bocadillo Dr. COM */
     body.presentation-mode .cap-bubble,
     body.presentation-mode .cap-slide-comun .cap-bubble {
-      font-size: 22px; max-width: 300px;
+      font-size: clamp(15px, 1.4vw, 19px); max-width: 280px;
     }
-    /* Título principal — min-height reserva 2 líneas (52px × 1.2 × 2 ≈ 125px) */
+    /* Título principal */
     body.presentation-mode .cap-title-row { align-items: flex-start; }
     body.presentation-mode .cap-title,
     body.presentation-mode .cap-slide-comun .cap-title {
-      font-size: clamp(28px, 3.5vw, 48px); line-height: 1.15;
+      font-size: clamp(32px, 3.2vw, 46px); line-height: 1.2; font-weight: 700;
     }
     /* Subtítulo */
     body.presentation-mode .cap-intro,
     body.presentation-mode .cap-portada-subtitulo,
-    body.presentation-mode .cap-slide-comun .cap-intro { font-size: 26px; }
+    body.presentation-mode .cap-slide-comun .cap-intro {
+      font-size: clamp(18px, 1.8vw, 24px); line-height: 1.3; font-weight: 400;
+    }
     /* Tag de contexto */
-    body.presentation-mode .cap-profile-badge  { font-size: 22px; padding: 9px 20px; }
-    /* Bullets y párrafos */
-    body.presentation-mode .cap-step-body      { font-size: 26px; }
-    body.presentation-mode .cap-bullet-body    { font-size: 26px; }
-    /* Títulos de pasos */
-    body.presentation-mode .bk-paso-h-titulo   { font-size: 26px; font-weight: 700; }
-    body.presentation-mode .bk-icono-titulo    { font-size: 26px; }
-    body.presentation-mode .bk-regla-titulo    { font-size: 26px; }
-    body.presentation-mode .bk-lista-prohibiciones-item { font-size: 26px; }
-    body.presentation-mode .bk-parte-texto     { font-size: 26px; }
-    /* Descripción debajo de pasos */
-    body.presentation-mode .bk-paso-h-texto    { font-size: 24px; }
-    body.presentation-mode .bk-icono-texto     { font-size: 24px; }
-    body.presentation-mode .bk-regla-texto     { font-size: 24px; }
-    /* Callouts / advertencias */
-    body.presentation-mode .cap-callout-text        { font-size: 24px; }
-    body.presentation-mode .cap-drcom-q             { font-size: 24px; }
-    body.presentation-mode .bk-callout-azul-text    { font-size: 24px; }
-    body.presentation-mode .bk-callout-amarillo-text { font-size: 24px; }
-    body.presentation-mode .bk-callout-rojo-text    { font-size: 24px; }
-    body.presentation-mode .bk-callout-legal-text   { font-size: 24px; }
-    body.presentation-mode .bk-banner-text          { font-size: 24px; }
-    /* Números de pasos (círculos) */
-    body.presentation-mode .cap-step-num  { font-size: 26px; width: 44px; height: 44px; }
-    body.presentation-mode .bk-paso-h-num { font-size: 20px; width: 36px; height: 36px; }
+    body.presentation-mode .cap-profile-badge { font-size: clamp(14px, 1.3vw, 18px); padding: 6px 14px; }
+    body.presentation-mode .bk-tag-contexto   { font-size: clamp(14px, 1.3vw, 18px) !important; font-style: italic; }
+    /* Bullets y párrafos de contenido */
+    body.presentation-mode .cap-step-body   { font-size: clamp(16px, 1.5vw, 21px); line-height: 1.5; }
+    body.presentation-mode .cap-bullet-body { font-size: clamp(16px, 1.5vw, 21px); line-height: 1.5; }
+    /* Títulos de paso */
+    body.presentation-mode .bk-paso-h-titulo            { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
+    body.presentation-mode .bk-psf-titulo               { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
+    body.presentation-mode .bk-icono-titulo             { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
+    body.presentation-mode .bk-regla-titulo             { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
+    body.presentation-mode .bk-lista-prohibiciones-item { font-size: clamp(16px, 1.5vw, 21px); }
+    body.presentation-mode .bk-parte-texto              { font-size: clamp(16px, 1.5vw, 21px); }
+    /* Descripción de paso */
+    body.presentation-mode .bk-paso-h-texto { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-psf-texto    { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-icono-texto  { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-regla-texto  { font-size: clamp(15px, 1.4vw, 19px); }
+    /* Callouts — título del bloque */
+    body.presentation-mode .bk-callout-azul-etiqueta         { font-size: clamp(16px, 1.5vw, 20px); font-weight: 700; }
+    body.presentation-mode .bk-callout-amarillo-text strong,
+    body.presentation-mode .bk-callout-rojo-text strong      { font-size: clamp(16px, 1.5vw, 20px); font-weight: 700; }
+    /* Callouts — cuerpo */
+    body.presentation-mode .cap-callout-text         { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.5; }
+    body.presentation-mode .cap-drcom-q              { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-callout-azul-text     { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-callout-amarillo-text { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-callout-rojo-text     { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-callout-legal-text    { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-banner-text           { font-size: clamp(15px, 1.4vw, 19px); }
+    /* Números de pasos */
+    body.presentation-mode .cap-step-num  { font-size: clamp(14px, 1.4vw, 18px); width: 36px; height: 36px; }
+    body.presentation-mode .bk-paso-h-num { font-size: clamp(13px, 1.3vw, 17px); width: 32px; height: 32px; }
     /* Frases ancla */
-    body.presentation-mode .bk-frase-ancla         { font-size: 46px; }
-    body.presentation-mode .bk-frase-ancla-mediana { font-size: 32px; }
+    body.presentation-mode .bk-frase-ancla         { font-size: clamp(22px, 2.2vw, 30px); }
+    body.presentation-mode .bk-frase-ancla-mediana { font-size: clamp(18px, 1.8vw, 24px); }
     /* Semáforo */
-    body.presentation-mode .bk-semaforo-pregunta { font-size: 22px; }
-    body.presentation-mode .bk-semaforo-resp     { font-size: 22px; }
+    body.presentation-mode .bk-semaforo-pregunta { font-size: clamp(16px, 1.5vw, 20px); }
+    body.presentation-mode .bk-semaforo-resp     { font-size: clamp(16px, 1.5vw, 20px); }
+    /* Imágenes de documentos adjuntos */
+    body.presentation-mode .bk-doc-img,
+    body.presentation-mode .bk-doc-img-simple {
+      width: clamp(200px, 18vw, 280px);
+      height: auto;
+      max-height: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
     body.presentation-mode .cap-nav  { display: none; }
     body.presentation-mode footer    { display: none; }
-    /* Logo RAYEN inline — escala proporcional al texto circundante */
+    /* Logo RAYEN inline */
     body.presentation-mode .rayen-logo {
       height: 1.1em;
       width: auto;
@@ -1511,7 +1534,7 @@
           return `<div class="bk-tres-iconos">${items}</div>`;
         }
         if (b.tipo === 'tag-contexto') {
-          return `<p style="font-size:16px;font-style:italic;color:#6B7280;margin:4px 0 8px;">${b.texto || ''}</p>`;
+          return `<p class="bk-tag-contexto" style="font-size:16px;font-style:italic;color:#6B7280;margin:4px 0 8px;">${b.texto || ''}</p>`;
         }
         if (b.tipo === 'lista-simple') {
           const items = (b.items || []).map(it =>
