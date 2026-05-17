@@ -1329,6 +1329,7 @@
     body.presentation-mode .pres-zona-contenido {
       justify-content: space-evenly;
       gap: 6px;
+      width: 100%;
     }
     body.presentation-mode .pres-zona-contenido > .bk-wrap {
       flex: 0 0 auto !important;
@@ -1375,6 +1376,7 @@
       flex: 1;
       min-height: 0;
       align-items: stretch;
+      width: 100%;
     }
     body.presentation-mode .bk-paso-h-compact {
       flex: 1;
@@ -1385,6 +1387,16 @@
       flex: 0 0 auto !important;
       min-height: 0;
       padding: 10px 14px !important;
+    }
+    body.presentation-mode .cap-content {
+      width: 100%;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap > div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
     }
   </style>
 </head>
