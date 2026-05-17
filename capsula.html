@@ -1172,7 +1172,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
     /* ── Zona contenido: flex column → distribuye bloques verticalmente ── */
     body.presentation-mode .pres-zona-contenido {
@@ -1183,33 +1183,26 @@
       flex-direction: column;
       gap: 10px;
     }
-    /* Primer .bk-wrap crece para llenar el espacio disponible */
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child {
+    /* Wrappers con bloques principales crecen para llenar el espacio disponible */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-steps),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-bullets),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-tres-iconos),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-pasos-h),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-comparativa),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-pasos-y-preview),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-temas),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-temas-flow) {
       flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 0;
-      margin-bottom: 0;
     }
-    /* Bloques principales heredan el crecimiento y distribuyen sus filas */
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-steps,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-bullets,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-tres-iconos,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-h,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-comparativa,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-y-preview,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-temas,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-temas-flow {
-      flex: 1;
-      min-height: 0;
-    }
-    body.presentation-mode .cap-steps  { justify-content: space-evenly; margin-bottom: 0; }
-    body.presentation-mode .cap-bullets { justify-content: space-evenly; margin-bottom: 0; }
+    body.presentation-mode .cap-steps  { justify-content: space-evenly; flex: 1; min-height: 0; margin-bottom: 0; }
+    body.presentation-mode .cap-bullets { justify-content: space-evenly; flex: 1; min-height: 0; margin-bottom: 0; }
     body.presentation-mode .bk-pasos-h { justify-content: space-evenly; }
-    /* 3 iconos: tarjetas se estiran verticalmente */
-    body.presentation-mode .bk-tres-iconos { align-items: stretch; gap: 10px; }
+    /* 3 iconos: tarjetas se estiran verticalmente (grid → grid-auto-rows) */
+    body.presentation-mode .bk-tres-iconos { align-items: stretch; gap: 10px; grid-auto-rows: 1fr; }
     body.presentation-mode .bk-icono {
-      flex: 1;
       display: flex; flex-direction: column;
       justify-content: flex-start;
       padding: 12px 14px;
@@ -1312,6 +1305,8 @@
       width: auto;
       vertical-align: middle;
     }
+    /* Anti-scroll global cuando está en modo presentación */
+    html:has(body.presentation-mode) { overflow: hidden; }
   </style>
 </head>
 <body class="presentation-mode">
