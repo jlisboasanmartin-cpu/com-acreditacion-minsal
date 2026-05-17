@@ -1509,6 +1509,72 @@
       padding: 8px 12px !important;
       margin-top: 12px !important;
     }
+
+    /* ══ FIX v4: pasos-horizontal-compactos llenan altura + fuentes mayores ══ */
+
+    /* Wrapper anónimo de pasos-horizontal-compactos crece */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-h-compact) {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-h-compact) > div {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-evenly !important;
+      gap: 0 !important;
+      min-height: 0 !important;
+    }
+    body.presentation-mode .bk-paso-h-compact {
+      flex: 1 !important;
+      min-height: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 14px !important;
+      padding: 12px 18px !important;
+      background: var(--bg) !important;
+      border-radius: 10px !important;
+      border: 1px solid var(--border) !important;
+    }
+    body.presentation-mode .bk-paso-h-compact-num {
+      width: 34px !important;
+      height: 34px !important;
+      font-size: 15px !important;
+      flex-shrink: 0 !important;
+    }
+    body.presentation-mode .bk-paso-h-compact-texto {
+      font-size: clamp(14px, 1.4vw, 20px) !important;
+      line-height: 1.45 !important;
+    }
+
+    /* Fuentes generales más grandes en presentation-mode */
+    body.presentation-mode .bk-psf-titulo {
+      font-size: clamp(15px, 1.4vw, 20px) !important;
+    }
+    body.presentation-mode .bk-psf-texto {
+      font-size: clamp(13px, 1.25vw, 17px) !important;
+      line-height: 1.5 !important;
+    }
+    body.presentation-mode .bk-icono-titulo {
+      font-size: clamp(15px, 1.4vw, 20px) !important;
+    }
+    body.presentation-mode .bk-icono-texto {
+      font-size: clamp(13px, 1.25vw, 17px) !important;
+      line-height: 1.5 !important;
+    }
+    body.presentation-mode .cap-intro {
+      font-size: clamp(16px, 1.5vw, 22px) !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Callout rojo: margen superior fijo */
+    body.presentation-mode .bk-callout-rojo,
+    body.presentation-mode [style*="FEF2F2"] {
+      margin-top: 14px !important;
+      flex-shrink: 0 !important;
+    }
   </style>
 </head>
 <body class="presentation-mode">
