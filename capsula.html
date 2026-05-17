@@ -1190,6 +1190,9 @@
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-pasos-h),
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-comparativa),
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-pasos-y-preview),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-v-lista),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-h-compact),
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-temas),
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-temas-flow) {
       flex: 1;
@@ -1197,21 +1200,35 @@
       flex-direction: column;
       min-height: 0;
     }
+    /* Div intermediario sin clase dentro del bk-wrap que crece */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) > div,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-h-compact) > div {
+      flex: 1; display: flex; flex-direction: column; min-height: 0;
+    }
     body.presentation-mode .cap-steps  { justify-content: space-evenly; flex: 1; min-height: 0; margin-bottom: 0; }
     body.presentation-mode .cap-bullets { justify-content: space-evenly; flex: 1; min-height: 0; margin-bottom: 0; }
     body.presentation-mode .bk-pasos-h { justify-content: space-evenly; }
+    /* Pasos-v-lista y pasos-h-compact crecen dentro de su bk-wrap */
+    body.presentation-mode .bk-paso-v-lista  { flex: 1; min-height: 0; justify-content: space-evenly; gap: 0; }
+    body.presentation-mode .bk-paso-h-compact { flex: 1; min-height: 0; justify-content: space-evenly; }
+    /* bk-psf-grid (pasos + foto): crece dentro del div intermediario, fila única llena el alto */
+    body.presentation-mode .bk-psf-grid { flex: 1; min-height: 0; align-items: stretch; grid-template-rows: 1fr; }
+    body.presentation-mode .bk-psf-grid > div { display: flex; flex-direction: column; justify-content: space-evenly; min-height: 0; }
     /* 3 iconos: tarjetas se estiran verticalmente (grid → grid-auto-rows) */
-    body.presentation-mode .bk-tres-iconos { align-items: stretch; gap: 10px; grid-auto-rows: 1fr; }
+    body.presentation-mode .bk-tres-iconos { align-items: stretch; gap: 10px; grid-auto-rows: 1fr; flex: 1; min-height: 0; }
     body.presentation-mode .bk-icono {
       display: flex; flex-direction: column;
       justify-content: flex-start;
       padding: 12px 14px;
     }
     /* Comparativa 2 cols: cards se estiran */
-    body.presentation-mode .bk-comparativa { align-items: stretch; }
+    body.presentation-mode .bk-comparativa { align-items: stretch; flex: 1; min-height: 0; }
     body.presentation-mode .bk-card-comp   { padding: 12px 14px; }
     /* Pasos+preview: imagen más ancha */
-    body.presentation-mode .bk-pasos-y-preview { grid-template-columns: 1fr 240px; }
+    body.presentation-mode .bk-pasos-y-preview { grid-template-columns: 1fr 240px; flex: 1; min-height: 0; }
+    /* Temas portada: llenar espacio */
+    body.presentation-mode .cap-temas,
+    body.presentation-mode .cap-temas-flow { flex: 1; min-height: 0; }
     /* Anti-desbordamiento global */
     body.presentation-mode * { max-width: 100%; box-sizing: border-box; }
     body.presentation-mode .cap-mascot-img,
@@ -1298,7 +1315,7 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.18);
     }
     body.presentation-mode .cap-nav  { display: none; }
-    body.presentation-mode footer    { display: none; }
+    body.presentation-mode footer    { display: none !important; }
     /* Logo RAYEN inline */
     body.presentation-mode .rayen-logo {
       height: 1.1em;
