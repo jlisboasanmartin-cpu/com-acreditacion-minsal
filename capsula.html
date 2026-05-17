@@ -1348,9 +1348,20 @@
       flex: 1 !important;
     }
     body.presentation-mode .bk-tres-iconos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      flex: 1;
+      gap: 10px;
+    }
+    body.presentation-mode .bk-icono {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    body.presentation-mode .bk-pasos-h > div {
       flex: 1;
       min-height: 0;
-      grid-auto-rows: 1fr;
     }
     body.presentation-mode .cap-steps,
     body.presentation-mode .cap-bullets,
