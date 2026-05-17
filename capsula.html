@@ -1126,114 +1126,135 @@
     .cap-bubble     { transition: font-size 0.25s ease, max-width 0.25s ease; }
 
     /* ─── Modo Presentación ─── */
+    /* header=60px, wrapper padding=8+8px → slide ocupa exactamente el espacio restante */
     body.presentation-mode .cap-wrapper {
       max-width: 100%;
-      padding: 12px 16px 24px;
+      padding: 8px 16px 8px;
     }
     body.presentation-mode .cap-slide {
       background: transparent;
       box-shadow: none;
       border-radius: 0;
       border: none;
-      max-height: calc(100vh - 104px);
+      height: calc(100vh - 80px);
+      max-height: calc(100vh - 80px);
+      overflow: hidden;
     }
     body.presentation-mode .cap-slide.active {
       grid-template-columns: 28% 1fr;
     }
     body.presentation-mode .cap-content,
     body.presentation-mode .cap-slide-comun .cap-content {
-      padding: 20px 44px 16px;
+      padding: 14px 32px 10px;
       justify-content: flex-start;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    /* ── Zonas fijas ── */
+    /* ── Zonas: título auto, contenido ocupa el resto sin scroll ── */
     body.presentation-mode .pres-zona-titulo {
-      min-height: 18vh;
-      max-height: 28vh;
       flex: 0 0 auto;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
     body.presentation-mode .pres-zona-contenido {
       flex: 1;
-      overflow-y: auto;
+      overflow: hidden;
       min-height: 0;
-      padding-top: 8px;
     }
     /* Anti-desbordamiento global */
     body.presentation-mode * { max-width: 100%; box-sizing: border-box; }
     body.presentation-mode .cap-mascot-img,
     body.presentation-mode .cap-slide-comun .cap-mascot-img {
-      width: 320px; max-width: 320px;
+      width: auto; max-width: 100%; max-height: 70%; object-fit: contain;
     }
     /* Bocadillo Dr. COM */
     body.presentation-mode .cap-bubble,
     body.presentation-mode .cap-slide-comun .cap-bubble {
-      font-size: clamp(15px, 1.4vw, 19px); max-width: 280px;
+      font-size: clamp(13px, 1.2vw, 18px); max-width: 280px;
     }
     /* Título principal */
     body.presentation-mode .cap-title-row { align-items: flex-start; }
     body.presentation-mode .cap-title,
     body.presentation-mode .cap-slide-comun .cap-title {
-      font-size: clamp(32px, 3.2vw, 46px); line-height: 1.2; font-weight: 700;
+      font-size: clamp(24px, 2.8vw, 42px); line-height: 1.2; font-weight: 700;
+      margin-bottom: 4px;
     }
     /* Subtítulo */
     body.presentation-mode .cap-intro,
     body.presentation-mode .cap-portada-subtitulo,
     body.presentation-mode .cap-slide-comun .cap-intro {
-      font-size: clamp(18px, 1.8vw, 24px); line-height: 1.3; font-weight: 400;
+      font-size: clamp(14px, 1.6vw, 22px); line-height: 1.3; font-weight: 400;
+      margin-bottom: 6px;
     }
     /* Tag de contexto */
-    body.presentation-mode .cap-profile-badge { font-size: clamp(14px, 1.3vw, 18px); padding: 6px 14px; }
-    body.presentation-mode .bk-tag-contexto   { font-size: clamp(14px, 1.3vw, 18px) !important; font-style: italic; }
-    /* Bullets y párrafos de contenido */
-    body.presentation-mode .cap-step-body   { font-size: clamp(16px, 1.5vw, 21px); line-height: 1.5; }
-    body.presentation-mode .cap-bullet-body { font-size: clamp(16px, 1.5vw, 21px); line-height: 1.5; }
+    body.presentation-mode .cap-profile-badge { font-size: clamp(12px, 1.1vw, 16px); padding: 4px 10px; margin-bottom: 4px; }
+    body.presentation-mode .bk-tag-contexto   { font-size: clamp(12px, 1.1vw, 16px) !important; font-style: italic; margin: 2px 0 6px; }
+    /* Espaciado entre bloques reducido */
+    body.presentation-mode .bk-wrap            { margin-bottom: 8px; }
+    body.presentation-mode .bk-wrap:last-child { margin-bottom: 0; }
+    /* Bullets y párrafos */
+    body.presentation-mode .cap-step-body   { font-size: clamp(13px, 1.3vw, 19px); line-height: 1.4; }
+    body.presentation-mode .cap-bullet-body { font-size: clamp(13px, 1.3vw, 19px); line-height: 1.4; }
+    body.presentation-mode .cap-step        { padding: 5px 0; }
+    body.presentation-mode .cap-bullet      { padding: 4px 0; }
+    body.presentation-mode .cap-steps       { margin-bottom: 6px; }
+    body.presentation-mode .cap-bullets     { margin-bottom: 6px; }
     /* Títulos de paso */
-    body.presentation-mode .bk-paso-h-titulo            { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
-    body.presentation-mode .bk-psf-titulo               { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
-    body.presentation-mode .bk-icono-titulo             { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
-    body.presentation-mode .bk-regla-titulo             { font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; }
-    body.presentation-mode .bk-lista-prohibiciones-item { font-size: clamp(16px, 1.5vw, 21px); }
-    body.presentation-mode .bk-parte-texto              { font-size: clamp(16px, 1.5vw, 21px); }
+    body.presentation-mode .bk-paso-h-titulo            { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
+    body.presentation-mode .bk-psf-titulo               { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
+    body.presentation-mode .bk-icono-titulo             { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
+    body.presentation-mode .bk-regla-titulo             { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
+    body.presentation-mode .bk-lista-prohibiciones-item { font-size: clamp(13px, 1.3vw, 19px); }
+    body.presentation-mode .bk-parte-texto              { font-size: clamp(13px, 1.3vw, 19px); }
     /* Descripción de paso */
-    body.presentation-mode .bk-paso-h-texto { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-psf-texto    { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-icono-texto  { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-regla-texto  { font-size: clamp(15px, 1.4vw, 19px); }
-    /* Callouts — título del bloque */
-    body.presentation-mode .bk-callout-azul-etiqueta         { font-size: clamp(16px, 1.5vw, 20px); font-weight: 700; }
+    body.presentation-mode .bk-paso-h-texto { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-psf-texto    { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-icono-texto  { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-regla-texto  { font-size: clamp(12px, 1.2vw, 17px); }
+    /* Callouts — título */
+    body.presentation-mode .bk-callout-azul-etiqueta         { font-size: clamp(13px, 1.3vw, 18px); font-weight: 700; }
     body.presentation-mode .bk-callout-amarillo-text strong,
-    body.presentation-mode .bk-callout-rojo-text strong      { font-size: clamp(16px, 1.5vw, 20px); font-weight: 700; }
-    /* Callouts — cuerpo */
-    body.presentation-mode .cap-callout-text         { font-size: clamp(15px, 1.4vw, 19px); line-height: 1.5; }
-    body.presentation-mode .cap-drcom-q              { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-callout-azul-text     { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-callout-amarillo-text { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-callout-rojo-text     { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-callout-legal-text    { font-size: clamp(15px, 1.4vw, 19px); }
-    body.presentation-mode .bk-banner-text           { font-size: clamp(15px, 1.4vw, 19px); }
+    body.presentation-mode .bk-callout-rojo-text strong      { font-size: clamp(13px, 1.3vw, 18px); font-weight: 700; }
+    /* Callouts — cuerpo y padding */
+    body.presentation-mode .cap-callout              { padding: 10px 14px; margin-top: 0; margin-bottom: 6px; }
+    body.presentation-mode .bk-callout-azul,
+    body.presentation-mode .bk-callout-amarillo,
+    body.presentation-mode .bk-callout-rojo,
+    body.presentation-mode .bk-callout-legal         { padding: 10px 14px; }
+    body.presentation-mode .cap-callout-text         { font-size: clamp(12px, 1.2vw, 17px); line-height: 1.4; }
+    body.presentation-mode .cap-drcom-q              { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-callout-azul-text     { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-callout-amarillo-text { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-callout-rojo-text     { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-callout-legal-text    { font-size: clamp(12px, 1.2vw, 17px); }
+    body.presentation-mode .bk-banner-text           { font-size: clamp(12px, 1.2vw, 17px); }
+    /* Íconos de callout reducidos */
+    body.presentation-mode .cap-callout-icon { font-size: 16px; }
     /* Números de pasos */
-    body.presentation-mode .cap-step-num  { font-size: clamp(14px, 1.4vw, 18px); width: 36px; height: 36px; }
-    body.presentation-mode .bk-paso-h-num { font-size: clamp(13px, 1.3vw, 17px); width: 32px; height: 32px; }
+    body.presentation-mode .cap-step-num  { font-size: clamp(12px, 1.2vw, 16px); width: 30px; height: 30px; }
+    body.presentation-mode .bk-paso-h-num { font-size: clamp(12px, 1.1vw, 15px); width: 28px; height: 28px; }
     /* Frases ancla */
-    body.presentation-mode .bk-frase-ancla         { font-size: clamp(22px, 2.2vw, 30px); }
-    body.presentation-mode .bk-frase-ancla-mediana { font-size: clamp(18px, 1.8vw, 24px); }
+    body.presentation-mode .bk-frase-ancla         { font-size: clamp(18px, 2vw, 28px); }
+    body.presentation-mode .bk-frase-ancla-mediana { font-size: clamp(15px, 1.6vw, 22px); }
     /* Semáforo */
-    body.presentation-mode .bk-semaforo-pregunta { font-size: clamp(16px, 1.5vw, 20px); }
-    body.presentation-mode .bk-semaforo-resp     { font-size: clamp(16px, 1.5vw, 20px); }
-    /* Imágenes de documentos adjuntos */
+    body.presentation-mode .bk-semaforo-pregunta { font-size: clamp(13px, 1.3vw, 18px); }
+    body.presentation-mode .bk-semaforo-resp     { font-size: clamp(13px, 1.3vw, 18px); }
+    /* Imágenes de documentos */
     body.presentation-mode .bk-doc-img,
     body.presentation-mode .bk-doc-img-simple {
-      width: clamp(200px, 18vw, 280px);
-      height: auto;
-      max-height: none;
+      max-height: 25vh;
+      width: auto;
+      max-width: 220px;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+    /* Padding reducido en grids de iconos */
+    body.presentation-mode .bk-icono { padding: 12px 14px; }
+    body.presentation-mode .bk-card-comp { padding: 12px 14px; }
     body.presentation-mode .cap-nav  { display: none; }
     body.presentation-mode footer    { display: none; }
     /* Logo RAYEN inline */
