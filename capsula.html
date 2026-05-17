@@ -1421,6 +1421,52 @@
       flex: 1;
       min-height: 0;
     }
+
+    /* ══ FIX v3: pasos-split-formulario → layout vertical en presentation-mode ══ */
+    body.presentation-mode .bk-psf-grid {
+      grid-template-columns: 1fr !important;
+      grid-template-rows: auto 1fr;
+      align-items: stretch;
+    }
+    body.presentation-mode .bk-psf-grid > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      min-height: 0;
+    }
+    body.presentation-mode .bk-psf-grid > img {
+      width: 100% !important;
+      max-height: none !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      object-position: top center;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* ══ FIX v3: bk-tres-iconos → tarjetas llenan zona-contenido ══ */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-tres-iconos) {
+      flex: 1 !important;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-tres-iconos) > div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    body.presentation-mode .bk-tres-iconos {
+      flex: 1 !important;
+      align-items: stretch !important;
+      grid-auto-rows: 1fr !important;
+      height: 100%;
+    }
+    body.presentation-mode .bk-icono {
+      flex: 1;
+      min-height: 0;
+    }
   </style>
 </head>
 <body class="presentation-mode">
