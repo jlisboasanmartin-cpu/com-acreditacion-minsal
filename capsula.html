@@ -1512,6 +1512,40 @@
       padding: 8px 12px !important;
     }
 
+    /* Padding derecho igual al izquierdo + respiración general */
+    body.presentation-mode .cap-content {
+      padding-left: 28px !important;
+      padding-right: 28px !important;
+    }
+
+    /* psf: fuente aún más compacta para que quepan todos los pasos */
+    body.presentation-mode .bk-psf-titulo {
+      font-size: clamp(12px, 1.15vw, 15px) !important;
+      margin-bottom: 1px !important;
+      line-height: 1.3 !important;
+    }
+    body.presentation-mode .bk-psf-texto {
+      font-size: clamp(10px, 1vw, 13px) !important;
+      line-height: 1.35 !important;
+    }
+    body.presentation-mode .bk-psf-num {
+      width: 26px !important;
+      height: 26px !important;
+      font-size: 12px !important;
+    }
+    body.presentation-mode .bk-psf-paso {
+      gap: 8px !important;
+      padding-bottom: 0 !important;
+      min-height: 0 !important;
+      flex-shrink: 1 !important;
+    }
+
+    /* grid izq no desborda */
+    body.presentation-mode .bk-psf-grid > div {
+      overflow: hidden !important;
+      min-height: 0 !important;
+    }
+
     /* ══ FIX v4: pasos-horizontal-compactos llenan altura + fuentes mayores ══ */
 
     /* Wrapper anónimo de pasos-horizontal-compactos crece */
