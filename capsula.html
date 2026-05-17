@@ -1570,6 +1570,17 @@
       flex-shrink: 0 !important;
       margin-top: 0 !important;
     }
+    /* callouts: restaurar layout fila (ícono + texto en la misma línea) */
+    body.presentation-mode .bk-callout-amarillo,
+    body.presentation-mode .bk-callout-azul,
+    body.presentation-mode .bk-callout-rojo,
+    body.presentation-mode .bk-callout-legal {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      gap: 10px !important;
+      flex: 0 0 auto !important;
+    }
   </style>
 </head>
 <body class="presentation-mode">
