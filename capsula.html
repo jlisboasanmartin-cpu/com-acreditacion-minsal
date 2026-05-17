@@ -1422,33 +1422,6 @@
       min-height: 0;
     }
 
-    /* ══ FIX v3: pasos-split-formulario → layout vertical en presentation-mode ══ */
-    body.presentation-mode .bk-psf-grid {
-      grid-template-columns: 1fr 42% !important;
-      grid-template-rows: 1fr !important;
-      align-items: stretch !important;
-      flex: 1;
-      min-height: 0;
-      gap: 20px;
-    }
-    body.presentation-mode .bk-psf-grid > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      min-height: 0;
-      overflow: hidden;
-    }
-    body.presentation-mode .bk-psf-grid > img {
-      width: 100% !important;
-      height: 100% !important;
-      max-height: none !important;
-      object-fit: contain !important;
-      object-position: top center;
-      border-radius: 10px;
-      display: block;
-      align-self: stretch;
-    }
-
     /* ══ FIX v3: bk-tres-iconos → tarjetas llenan zona-contenido ══ */
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-tres-iconos) {
       flex: 1 !important;
@@ -1473,41 +1446,70 @@
       min-height: 0;
     }
 
-    /* psf: reducir tamaño de pasos para que quepan todos sin corte */
+    /* psf: layout 2 columnas, pasos izq, imagen der, callout abajo */
+    body.presentation-mode .bk-psf-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 42% !important;
+      grid-template-rows: 1fr !important;
+      align-items: stretch !important;
+      flex: 1 !important;
+      min-height: 0 !important;
+      gap: 20px !important;
+      overflow: hidden !important;
+    }
+    body.presentation-mode .bk-psf-grid > div {
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: space-evenly !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+    body.presentation-mode .bk-psf-grid > img {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      object-position: top center !important;
+      border-radius: 10px !important;
+      display: block !important;
+    }
     body.presentation-mode .bk-psf-paso {
       padding-bottom: 0 !important;
-      gap: 10px;
+      flex-shrink: 1 !important;
+      min-height: 0 !important;
     }
     body.presentation-mode .bk-psf-num {
-      width: 30px !important;
-      height: 30px !important;
-      font-size: 14px !important;
-      flex-shrink: 0;
+      width: 28px !important;
+      height: 28px !important;
+      font-size: 13px !important;
+      flex-shrink: 0 !important;
     }
     body.presentation-mode .bk-psf-titulo {
-      font-size: clamp(12px, 1.15vw, 16px) !important;
-      margin-bottom: 1px;
+      font-size: clamp(13px, 1.3vw, 17px) !important;
+      margin-bottom: 2px !important;
     }
     body.presentation-mode .bk-psf-texto {
-      font-size: clamp(11px, 1.05vw, 14px) !important;
+      font-size: clamp(11px, 1.1vw, 15px) !important;
       line-height: 1.4 !important;
     }
-
-    /* el div contenedor de psf-grid + callout debe ser flex column */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) {
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) > div {
       display: flex !important;
       flex-direction: column !important;
       flex: 1 !important;
       min-height: 0 !important;
-      gap: 8px;
+      gap: 10px !important;
     }
-
-    /* callout rojo bajo el grid: tamaño fijo, no crece */
     body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) > div > div:last-child:not(.bk-psf-grid) {
       flex: 0 0 auto !important;
+      margin-top: 10px !important;
       font-size: clamp(11px, 1vw, 13px) !important;
       padding: 8px 12px !important;
-      margin-top: 12px !important;
     }
 
     /* ══ FIX v4: pasos-horizontal-compactos llenan altura + fuentes mayores ══ */
@@ -1550,13 +1552,6 @@
     }
 
     /* Fuentes generales más grandes en presentation-mode */
-    body.presentation-mode .bk-psf-titulo {
-      font-size: clamp(15px, 1.4vw, 20px) !important;
-    }
-    body.presentation-mode .bk-psf-texto {
-      font-size: clamp(13px, 1.25vw, 17px) !important;
-      line-height: 1.5 !important;
-    }
     body.presentation-mode .bk-icono-titulo {
       font-size: clamp(15px, 1.4vw, 20px) !important;
     }
