@@ -1126,10 +1126,10 @@
     .cap-bubble     { transition: font-size 0.25s ease, max-width 0.25s ease; }
 
     /* ─── Modo Presentación ─── */
-    /* header=60px, wrapper padding=8+8px → slide height = 100vh - 80px */
+    /* header=60px, wrapper sin padding lateral → slide llena todo el ancho */
     body.presentation-mode .cap-wrapper {
       max-width: 100%;
-      padding: 8px 16px 8px;
+      padding: 8px 0 8px;
     }
     body.presentation-mode .cap-slide {
       background: transparent;
@@ -1152,7 +1152,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px 16px;
+      gap: 16px;
+      padding: 20px 16px;
     }
     /* Columna derecha: sin border-left (causa la línea en esquina) */
     body.presentation-mode .cap-content,
@@ -1180,6 +1181,7 @@
       min-height: 0;
       display: flex;
       flex-direction: column;
+      gap: 10px;
     }
     /* Primer .bk-wrap crece para llenar el espacio disponible */
     body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child {
@@ -1195,7 +1197,9 @@
     body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-tres-iconos,
     body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-h,
     body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-comparativa,
-    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-y-preview {
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-y-preview,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-temas,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-temas-flow {
       flex: 1;
       min-height: 0;
     }
