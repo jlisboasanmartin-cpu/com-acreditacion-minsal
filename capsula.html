@@ -1472,6 +1472,43 @@
       flex: 1;
       min-height: 0;
     }
+
+    /* psf: reducir tamaño de pasos para que quepan todos sin corte */
+    body.presentation-mode .bk-psf-paso {
+      padding-bottom: 0 !important;
+      gap: 10px;
+    }
+    body.presentation-mode .bk-psf-num {
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 14px !important;
+      flex-shrink: 0;
+    }
+    body.presentation-mode .bk-psf-titulo {
+      font-size: clamp(12px, 1.15vw, 16px) !important;
+      margin-bottom: 1px;
+    }
+    body.presentation-mode .bk-psf-texto {
+      font-size: clamp(11px, 1.05vw, 14px) !important;
+      line-height: 1.4 !important;
+    }
+
+    /* el div contenedor de psf-grid + callout debe ser flex column */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) > div {
+      display: flex !important;
+      flex-direction: column !important;
+      flex: 1 !important;
+      min-height: 0 !important;
+      gap: 8px;
+    }
+
+    /* callout rojo bajo el grid: tamaño fijo, no crece */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) > div > div:last-child:not(.bk-psf-grid) {
+      flex: 0 0 auto !important;
+      font-size: clamp(11px, 1vw, 13px) !important;
+      padding: 8px 12px !important;
+      margin-top: 0 !important;
+    }
   </style>
 </head>
 <body class="presentation-mode">
