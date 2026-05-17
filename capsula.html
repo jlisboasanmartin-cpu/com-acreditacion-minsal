@@ -1324,6 +1324,47 @@
     }
     /* Anti-scroll global cuando está en modo presentación */
     html:has(body.presentation-mode) { overflow: hidden; }
+
+    /* ══ LAYOUT FIX v2 ══ */
+    body.presentation-mode .pres-zona-contenido {
+      justify-content: space-evenly;
+      gap: 6px;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap {
+      flex: 0 0 auto !important;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:only-child {
+      flex: 1 !important;
+    }
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-steps),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.cap-bullets),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-tres-iconos),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-v-lista),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-paso-h-compact),
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:has(.bk-psf-grid) {
+      flex: 1 !important;
+    }
+    body.presentation-mode .bk-tres-iconos {
+      flex: 1;
+      min-height: 0;
+      grid-auto-rows: 1fr;
+    }
+    body.presentation-mode .cap-steps,
+    body.presentation-mode .cap-bullets,
+    body.presentation-mode .bk-paso-v-lista,
+    body.presentation-mode .bk-paso-h-compact {
+      flex: 1;
+      min-height: 0;
+      justify-content: space-evenly;
+    }
+    body.presentation-mode .bk-psf-grid {
+      flex: 1;
+      min-height: 0;
+      align-items: stretch;
+    }
   </style>
 </head>
 <body class="presentation-mode">
