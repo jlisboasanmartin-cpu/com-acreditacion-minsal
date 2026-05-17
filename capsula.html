@@ -1126,7 +1126,7 @@
     .cap-bubble     { transition: font-size 0.25s ease, max-width 0.25s ease; }
 
     /* ─── Modo Presentación ─── */
-    /* header=60px, wrapper padding=8+8px → slide ocupa exactamente el espacio restante */
+    /* header=60px, wrapper padding=8+8px → slide height = 100vh - 80px */
     body.presentation-mode .cap-wrapper {
       max-width: 100%;
       padding: 8px 16px 8px;
@@ -1140,9 +1140,21 @@
       max-height: calc(100vh - 80px);
       overflow: hidden;
     }
+    /* grid-template-rows:1fr → la única fila llena el alto del slide */
     body.presentation-mode .cap-slide.active {
       grid-template-columns: 28% 1fr;
+      grid-template-rows: 1fr;
+      align-items: stretch;
     }
+    /* Columna izquierda: mascot centrado verticalmente en toda la altura */
+    body.presentation-mode .cap-mascot-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    /* Columna derecha: sin border-left (causa la línea en esquina) */
     body.presentation-mode .cap-content,
     body.presentation-mode .cap-slide-comun .cap-content {
       padding: 14px 32px 10px;
@@ -1150,8 +1162,9 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      border-left: none;
     }
-    /* ── Zonas: título auto, contenido ocupa el resto sin scroll ── */
+    /* ── Zona título: tamaño natural ── */
     body.presentation-mode .pres-zona-titulo {
       flex: 0 0 auto;
       overflow: hidden;
@@ -1160,11 +1173,48 @@
       justify-content: flex-start;
       margin-bottom: 8px;
     }
+    /* ── Zona contenido: flex column → distribuye bloques verticalmente ── */
     body.presentation-mode .pres-zona-contenido {
       flex: 1;
       overflow: hidden;
       min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
+    /* Primer .bk-wrap crece para llenar el espacio disponible */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      margin-bottom: 0;
+    }
+    /* Bloques principales heredan el crecimiento y distribuyen sus filas */
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-steps,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .cap-bullets,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-tres-iconos,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-h,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-comparativa,
+    body.presentation-mode .pres-zona-contenido > .bk-wrap:first-child .bk-pasos-y-preview {
+      flex: 1;
+      min-height: 0;
+    }
+    body.presentation-mode .cap-steps  { justify-content: space-evenly; margin-bottom: 0; }
+    body.presentation-mode .cap-bullets { justify-content: space-evenly; margin-bottom: 0; }
+    body.presentation-mode .bk-pasos-h { justify-content: space-evenly; }
+    /* 3 iconos: tarjetas se estiran verticalmente */
+    body.presentation-mode .bk-tres-iconos { align-items: stretch; gap: 10px; }
+    body.presentation-mode .bk-icono {
+      flex: 1;
+      display: flex; flex-direction: column;
+      justify-content: flex-start;
+      padding: 12px 14px;
+    }
+    /* Comparativa 2 cols: cards se estiran */
+    body.presentation-mode .bk-comparativa { align-items: stretch; }
+    body.presentation-mode .bk-card-comp   { padding: 12px 14px; }
+    /* Pasos+preview: imagen más ancha */
+    body.presentation-mode .bk-pasos-y-preview { grid-template-columns: 1fr 240px; }
     /* Anti-desbordamiento global */
     body.presentation-mode * { max-width: 100%; box-sizing: border-box; }
     body.presentation-mode .cap-mascot-img,
@@ -1193,7 +1243,7 @@
     /* Tag de contexto */
     body.presentation-mode .cap-profile-badge { font-size: clamp(12px, 1.1vw, 16px); padding: 4px 10px; margin-bottom: 4px; }
     body.presentation-mode .bk-tag-contexto   { font-size: clamp(12px, 1.1vw, 16px) !important; font-style: italic; margin: 2px 0 6px; }
-    /* Espaciado entre bloques reducido */
+    /* Espaciado entre bloques */
     body.presentation-mode .bk-wrap            { margin-bottom: 8px; }
     body.presentation-mode .bk-wrap:last-child { margin-bottom: 0; }
     /* Bullets y párrafos */
@@ -1201,8 +1251,6 @@
     body.presentation-mode .cap-bullet-body { font-size: clamp(13px, 1.3vw, 19px); line-height: 1.4; }
     body.presentation-mode .cap-step        { padding: 5px 0; }
     body.presentation-mode .cap-bullet      { padding: 4px 0; }
-    body.presentation-mode .cap-steps       { margin-bottom: 6px; }
-    body.presentation-mode .cap-bullets     { margin-bottom: 6px; }
     /* Títulos de paso */
     body.presentation-mode .bk-paso-h-titulo            { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
     body.presentation-mode .bk-psf-titulo               { font-size: clamp(13px, 1.3vw, 19px); font-weight: 700; }
@@ -1232,8 +1280,7 @@
     body.presentation-mode .bk-callout-rojo-text     { font-size: clamp(12px, 1.2vw, 17px); }
     body.presentation-mode .bk-callout-legal-text    { font-size: clamp(12px, 1.2vw, 17px); }
     body.presentation-mode .bk-banner-text           { font-size: clamp(12px, 1.2vw, 17px); }
-    /* Íconos de callout reducidos */
-    body.presentation-mode .cap-callout-icon { font-size: 16px; }
+    body.presentation-mode .cap-callout-icon         { font-size: 16px; }
     /* Números de pasos */
     body.presentation-mode .cap-step-num  { font-size: clamp(12px, 1.2vw, 16px); width: 30px; height: 30px; }
     body.presentation-mode .bk-paso-h-num { font-size: clamp(12px, 1.1vw, 15px); width: 28px; height: 28px; }
@@ -1243,18 +1290,16 @@
     /* Semáforo */
     body.presentation-mode .bk-semaforo-pregunta { font-size: clamp(13px, 1.3vw, 18px); }
     body.presentation-mode .bk-semaforo-resp     { font-size: clamp(13px, 1.3vw, 18px); }
-    /* Imágenes de documentos */
+    /* Imágenes de documentos: más grandes y visibles */
     body.presentation-mode .bk-doc-img,
     body.presentation-mode .bk-doc-img-simple {
-      max-height: 25vh;
-      width: auto;
-      max-width: 220px;
+      width: clamp(180px, 20vw, 300px);
+      height: auto;
+      max-height: 35vh;
+      object-fit: contain;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
     }
-    /* Padding reducido en grids de iconos */
-    body.presentation-mode .bk-icono { padding: 12px 14px; }
-    body.presentation-mode .bk-card-comp { padding: 12px 14px; }
     body.presentation-mode .cap-nav  { display: none; }
     body.presentation-mode footer    { display: none; }
     /* Logo RAYEN inline */
