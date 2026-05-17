@@ -1424,24 +1424,29 @@
 
     /* ══ FIX v3: pasos-split-formulario → layout vertical en presentation-mode ══ */
     body.presentation-mode .bk-psf-grid {
-      grid-template-columns: 1fr !important;
-      grid-template-rows: auto 1fr;
-      align-items: stretch;
+      grid-template-columns: 1fr 42% !important;
+      grid-template-rows: 1fr !important;
+      align-items: stretch !important;
+      flex: 1;
+      min-height: 0;
+      gap: 20px;
     }
     body.presentation-mode .bk-psf-grid > div {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       min-height: 0;
+      overflow: hidden;
     }
     body.presentation-mode .bk-psf-grid > img {
       width: 100% !important;
-      max-height: 48vh !important;
-      height: auto !important;
+      height: 100% !important;
+      max-height: none !important;
       object-fit: contain !important;
       object-position: top center;
       border-radius: 10px;
       display: block;
+      align-self: stretch;
     }
 
     /* ══ FIX v3: bk-tres-iconos → tarjetas llenan zona-contenido ══ */
