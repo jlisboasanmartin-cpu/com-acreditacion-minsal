@@ -1142,9 +1142,12 @@
     }
     /* grid-template-rows:1fr → la única fila llena el alto del slide */
     body.presentation-mode .cap-slide.active {
+      display: grid;
       grid-template-columns: 28% 1fr;
       grid-template-rows: 1fr;
       align-items: stretch;
+      width: 100%;
+      max-width: 100%;
     }
     /* Columna izquierda: mascot centrado verticalmente en toda la altura */
     body.presentation-mode .cap-mascot-panel {
