@@ -1408,12 +1408,6 @@
       min-height: 0;
       padding: 10px 14px !important;
     }
-    body.presentation-mode .cap-content,
-    body.presentation-mode .cap-slide-comun .cap-content {
-      padding: 14px 20px 10px !important;
-      box-sizing: border-box;
-      width: 100%;
-    }
     body.presentation-mode .pres-zona-contenido > .bk-wrap > div {
       width: 100%;
       display: flex;
@@ -1580,6 +1574,33 @@
       align-items: flex-start !important;
       gap: 10px !important;
       flex: 0 0 auto !important;
+    }
+    /* ── Portada: título + cita agrupados y centrados verticalmente ──
+       Aplica a todas las cápsulas (portada siempre en data-idx="0") */
+    body.presentation-mode .cap-slide[data-idx="0"] .cap-content {
+      justify-content: center !important;
+      gap: 28px !important;
+    }
+    body.presentation-mode .cap-slide[data-idx="0"] .pres-zona-titulo {
+      margin-bottom: 0 !important;
+    }
+    body.presentation-mode .cap-slide[data-idx="0"] .pres-zona-contenido {
+      flex: 0 0 auto !important;
+      gap: 6px !important;
+    }
+    body.presentation-mode .cap-slide[data-idx="0"] .cap-title {
+      font-size: clamp(32px, 3.6vw, 50px) !important;
+      line-height: 1.1 !important;
+      margin-bottom: 0 !important;
+    }
+    body.presentation-mode .cap-slide[data-idx="0"] .bk-frase-ancla {
+      font-size: clamp(22px, 2.6vw, 36px) !important;
+      line-height: 1.2 !important;
+      margin-bottom: 0 !important;
+    }
+    body.presentation-mode .cap-slide[data-idx="0"] .cap-portada-subtitulo {
+      margin-bottom: 0 !important;
+      margin-top: 4px !important;
     }
   </style>
 </head>
@@ -2615,7 +2636,7 @@
   });
   // ── Modo Presentación ──
   const PRES_KEY = 'com_presentation_mode';
-  let isPresentationMode = false;
+  let isPresentationMode = true;
   const btnPres = document.getElementById('btn-presentacion');
 
   const SVG_EXPAND   = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>`;
@@ -2639,8 +2660,8 @@
   document.addEventListener('keydown', e => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
     if (e.key === 'f' || e.key === 'F') { togglePresentationMode(); return; }
-    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1, true); }
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1, false); }
+    if (e.key === 'ArrowRight' && current < total - 1) { e.preventDefault(); goTo(current + 1, true); }
+    if (e.key === 'ArrowLeft'  && current > 0)         { e.preventDefault(); goTo(current - 1, false); }
   });
 
   buildDots(total);

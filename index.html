@@ -86,13 +86,6 @@
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(2, auto);
       gap: 10px; align-content: start;
-    }
-
-    .profiles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, auto);
-      gap: 10px; align-content: start;
       align-items: stretch;
     }
 
@@ -546,8 +539,8 @@
   ORDEN_PERFILES.forEach(perfilId => {
     const perfil = COM.perfiles.find(p => p.id === perfilId);
     if (!perfil) return;
-    const activo = true;
-    const enDesarrollo = false;
+    const activo = perfil.activo !== false;
+    const enDesarrollo = perfil.enDesarrollo === true;
     const prog = parseInt(localStorage.getItem(`progress_${perfil.id}`) || '0');
     const done = activo && (localStorage.getItem(`quiz_done_${perfil.id}`) === '1' || prog >= 100);
 
