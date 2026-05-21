@@ -1100,6 +1100,25 @@
     .cap-mascot-img { transition: transform 0.4s ease, width 0.25s ease; }
     .cap-bubble     { transition: font-size 0.25s ease, max-width 0.25s ease; }
 
+    /* ── Único modo: maximizar pantalla + bordes visibles para proyección ── */
+    .cap-wrapper {
+      max-width: min(1500px, calc(100vw - 32px));
+      padding: 16px 16px 148px;
+    }
+    .cap-slide {
+      max-height: calc(100vh - 210px);
+      border: 2px solid rgba(14, 74, 97, 0.25);
+      box-shadow: 0 4px 32px rgba(14,74,97,0.18);
+    }
+    .cap-nav-inner {
+      max-width: min(1500px, calc(100vw - 32px));
+    }
+    .pres-zona-titulo  { flex-shrink: 0; }
+    .pres-zona-contenido {
+      flex: 1; min-height: 0; display: flex;
+      flex-direction: column; gap: 8px;
+      justify-content: space-evenly; overflow: hidden;
+    }
   </style>
 </head>
 <body>
