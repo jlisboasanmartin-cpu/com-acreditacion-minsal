@@ -1115,13 +1115,8 @@
     .cap-nav-inner {
       max-width: min(1500px, calc(100vw - 32px));
     }
-    .pres-zona-titulo  { flex-shrink: 0; }
-    .pres-zona-contenido {
-      flex: 1; min-height: 0; display: flex;
-      flex-direction: column; gap: 8px;
-      justify-content: space-evenly; overflow: hidden;
-    }
-    /* ── Zone layout (único modo) ── */
+
+    /* ── Zone layout ── */
     .pres-zona-titulo  { flex-shrink: 0; }
     .pres-zona-contenido {
       flex: 1; min-height: 0; display: flex;
@@ -1129,6 +1124,38 @@
       justify-content: space-evenly; overflow: hidden;
     }
     .cap-content { justify-content: flex-start; }
+
+    /* ── Portada (lám 1): centrar grupo título + frase ── */
+    .cap-slide[data-idx="0"] .cap-content {
+      justify-content: center;
+      gap: 24px;
+    }
+    .cap-slide[data-idx="0"] .pres-zona-contenido {
+      flex: 0 0 auto;
+    }
+
+    /* ── Tipografía escalada para pantallas ≥ 769px ── */
+    @media (min-width: 769px) {
+      .cap-title             { font-size: clamp(24px, 2.6vw, 40px); }
+      .cap-intro,
+      .cap-portada-subtitulo { font-size: clamp(16px, 1.6vw, 22px); }
+      .cap-step-body,
+      .cap-bullet-body       { font-size: clamp(14px, 1.3vw, 19px); }
+      .bk-frase-ancla        { font-size: clamp(20px, 2.2vw, 32px); }
+      .bk-icono-titulo       { font-size: clamp(14px, 1.3vw, 18px); }
+      .bk-icono-texto        { font-size: clamp(13px, 1.15vw, 16px); }
+      .bk-paso-h-titulo      { font-size: clamp(13px, 1.3vw, 18px); }
+      .bk-paso-h-texto       { font-size: clamp(12px, 1.15vw, 16px); }
+      .cap-bubble            { font-size: clamp(13px, 1.2vw, 17px); max-width: clamp(180px, 18vw, 260px); }
+      .cap-slide[data-idx="0"] .pres-zona-contenido p:first-child {
+        font-size: clamp(28px, 3.2vw, 46px) !important;
+        max-width: none !important;
+        line-height: 1.2 !important;
+      }
+      .cap-slide[data-idx="0"] .pres-zona-contenido p:last-child {
+        font-size: clamp(16px, 1.5vw, 22px) !important;
+      }
+    }
   </style>
 </head>
 <body>
